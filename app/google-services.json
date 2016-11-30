@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "829690747055",
+    "project_id": "firebase-direct-me"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829690747055:android:04b5d63ed97b07a8",
+        "android_client_info": {
+          "package_name": "com.silab.direct_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829690747055-ftau5203eb0s978lnmdkuuerslmp0fum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.silab.direct_me",
+            "certificate_hash": "807D0202A74DB64D1ADCA4BCE9C4E90F2445163C"
+          }
+        },
+        {
+          "client_id": "829690747055-bjoqfj8nl1io3dfbijd2v6s8bhclhv87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyActqrJinrrwXlNMk_YxzaOvwQRcS5rr2E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

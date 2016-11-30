@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/water">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/island1"
+            android:id="@+id/imageViewisland1"
+            android:layout_above="@+id/imageViewpirateisland"
+            android:layout_toRightOf="@+id/linearLayoutUserList"
+            android:layout_toEndOf="@+id/linearLayoutUserList" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/island2"
+            android:id="@+id/imageViewisland2"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/linearLayoutUserList"
+            android:layout_toEndOf="@+id/linearLayoutUserList"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pirateisland"
+            android:id="@+id/imageViewpirateisland"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/linearLayoutUserList"
+            android:layout_toEndOf="@+id/linearLayoutUserList"
+            android:layout_marginLeft="135dp"
+            android:layout_marginStart="135dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/island3"
+            android:id="@+id/imageViewisland3"
+            android:layout_above="@+id/imageViewisland2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="27dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/island4"
+            android:id="@+id/imageViewisland4"
+            android:layout_alignTop="@+id/imageViewisland2"
+            android:layout_toRightOf="@+id/imageViewpirateisland"
+            android:layout_toEndOf="@+id/imageViewpirateisland" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:id="@+id/linearLayoutUserList"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:background="#1db0d8">
+            <Button
+                android:id="@+id/buttonRemoveUserList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/ic_delete" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

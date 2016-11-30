@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.silab.direct_me">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+
+        android:theme="@style/MyMaterialTheme">
+        <activity android:name=".MainActivity" android:screenOrientation="landscape">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Dashboard" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.DASHBOARD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Showroom" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.SHOWROOM" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Garage" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.GARAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Parknow" android:screenOrientation="landscape"
+            android:parentActivityName=".Dashboard">
+            <intent-filter>
+                <action android:name="in.silive.directme.PARKNOW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Parked" android:screenOrientation="landscape"
+            android:parentActivityName=".Dashboard">
+            <intent-filter>
+                <action android:name="in.silive.directme.PARKNOW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+
+
+    <activity android:name=".Login" android:screenOrientation="landscape">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+
+        </intent-filter>
+    </activity>
+
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_appid_"/>
+        <activity android:name=".Parki" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+            </intent-filter>
+        </activity>
+
+
+</application>
+
+
+</manifest>
