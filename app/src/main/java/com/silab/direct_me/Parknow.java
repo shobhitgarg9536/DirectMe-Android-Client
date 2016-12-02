@@ -109,15 +109,12 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
     public void userList(String island){
 
         AsyncHttpClient client = new AsyncHttpClient();
-        // Http Request Params Object
-        RequestParams params = new RequestParams();
-        params.put("island", island);
 
-        client.post("http://demo8496338.mockable.io/parknow", params, new AsyncHttpResponseHandler() {
+        client.post("http://demo8496338.mockable.io/parknow", new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(String response) {
-
                 try {
+
                     // Extract JSON array from the response
                     JSONArray arr = new JSONArray(response);
                     // If no of array elements is not zero

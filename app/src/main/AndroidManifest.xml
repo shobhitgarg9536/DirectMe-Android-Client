@@ -13,17 +13,17 @@
         <activity android:name=".MainActivity" android:screenOrientation="landscape">
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="in.silive.directme.MAINACTIVITY" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".Dashboard" android:screenOrientation="landscape"
             >
             <intent-filter>
-                <action android:name="in.silive.directme.DASHBOARD" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Showroom" android:screenOrientation="landscape"
