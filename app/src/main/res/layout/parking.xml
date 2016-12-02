@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/img"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <FrameLayout
+        android:layout_width="280dp"
+        android:layout_height="343dp"
+        android:id="@+id/one"
+        android:background="#78676767"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintHorizontal_bias="0.0">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="343dp"
+        android:id="@+id/two"
+        android:background="#78676767"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="2dp"
+        app:layout_constraintLeft_toRightOf="@+id/one"
+        android:layout_marginLeft="2dp"
+        app:layout_constraintHorizontal_bias="0.05">
+
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>
