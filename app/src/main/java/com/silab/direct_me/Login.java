@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
 
-        info = (TextView) findViewById(R.id.info);
+        info = (TextView)findViewById(R.id.info);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         //Initializing google signin option
@@ -176,10 +176,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
-    @Override
-public void onPause(){
-    super.onPause();
-    finish();
-}
+
 
 }

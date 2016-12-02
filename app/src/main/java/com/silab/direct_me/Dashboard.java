@@ -18,11 +18,13 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Dashboard extends AppCompatActivity implements View.OnClickListener {
+import java.util.*;
+
+public class Dashboard extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
 
     private ImageView park,parked,parking,garage,showroom,coinimg,coinimg2,dashboard;
     private TextView bamboo,coconut,banana,timber,gold_coin,log_out;
-    Toolbar tbDashboard;
+    Controller controller;
 
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +66,11 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         garage.setOnClickListener(this);
         showroom.setOnClickListener(this);
         dashboard.setOnClickListener(this);
+        try {
+            controller.addObserver(this);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -78,10 +85,12 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.imageviewparked:
-                fr=new Parked();
+                Intent intent4=new Intent(this,Parked.class);
+                startActivity(intent4);
                 break;
             case R.id.imageviewparking:
-                fr=new Parki();
+                Intent intent1=new Intent(this,Parkinge.class);
+                startActivity(intent1);
                 break;
             case R.id.imageviewshowroom:
                 Intent i = new Intent(Dashboard.this , Showroom.class);
@@ -102,5 +111,13 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 // or ft.add(R.id.your_placeholder, new FooFragment());
 // Complete the changes added above
         ft.commit();
+    }
+    @Override
+    public void update(Observable observable, Object o) {
+        bamboo.setText(controller.getBambooCount());
+        coconut.setText(controller.getCoconutCount());
+        banana.setText(controller.getBananaCount());
+        timber.setText(controller.getTimberCount());
+        gold_coin.setText(controller.getGoldCoinCount());
     }
 }
