@@ -2,7 +2,9 @@ package com.silab.direct_me;
 
 
 import android.content.SharedPreferences;
-import java.util.Observable;
+
+import java.util.*;
+import java.util.Observer;
 
 
 public class Controller extends Observable {
@@ -10,10 +12,14 @@ public class Controller extends Observable {
     private int bananaCount = 0;
     private int timberCount = 0;
     private int coconutCount = 0;
-    private int bambooCount = 50;
+    private int bambooCount = 0;
     private int goldCoinCount = 0;
     SharedPreferences sharedPreferences;
     private String Commodity = "";
+
+    public Controller(){
+
+    }
 
 
     public String getCommodity() {
@@ -51,14 +57,19 @@ public class Controller extends Observable {
     }
 
     public void setBambooCount(int bambooCount) {
-        this.bambooCount = 50;
+        this.bambooCount = bambooCount;
         setChanged();
         notifyObservers();
     }
 
+    @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o);
+    }
+
     public void setBananaCount(int bananaCount) {
 
-        this.bananaCount = 100;
+        this.bananaCount = bananaCount;
         setChanged();
         notifyObservers();
     }
@@ -70,13 +81,13 @@ public class Controller extends Observable {
     }
 
     public void setGoldCoinCount(int goldCoinCount) {
-        this.goldCoinCount = 40;
+        this.goldCoinCount = goldCoinCount;
         setChanged();
         notifyObservers();
     }
 
     public void setTimberCount(int timberCount) {
-        this.timberCount = 110;
+        this.timberCount = timberCount;
         setChanged();
         notifyObservers();
     }

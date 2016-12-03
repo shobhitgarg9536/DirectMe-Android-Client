@@ -4,7 +4,9 @@ package com.silab.direct_me;
  * Created by Lenovo on 09-Nov-16.
  */
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,17 +31,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Parknow extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView island1,island2,island3,island4,pirate_Island;
-    Toolbar tbPArkNow;
     LinearLayout llUserList;
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> users;
     Button removeuserList;
     ListView lvUsers;
+    ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String times = "null";
+    String PARK_NOW= "PARK_NOW";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,10 +115,15 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void userList(String island){
+        progressDialog = new ProgressDialog(Parknow.this);
+        progressDialog.setMessage("Loading your User list ......");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.post("http://demo8496338.mockable.io/parknow", new AsyncHttpResponseHandler() {
+        client.get("http://demo8496338.mockable.io/parknowuser", new AsyncHttpResponseHandler() {
+
             @Override
             public void onSuccess(String response) {
                 try {
@@ -136,8 +149,9 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                         }
 
                     }
+                    progressDialog.dismiss();
                     ListAdapter adapter = new SimpleAdapter(Parknow.this , users , R.layout.parknowuserview , new String[] {
-                            "name" ,"parking" }, new int[] { R.id.textviewusername , R.id.textViewparking ,
+                            "name" ,"parking" }, new int[] { R.id.textviewusername , R.id.textViewparking
                             });
                     lvUsers.setAdapter(adapter);
                     lvUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,14 +160,39 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                             String username = users.get(i).get("name");
                             String parking = users.get(i).get("parking");
 
+                            sharedPreferences = getSharedPreferences(PARK_NOW , MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            //putting values
+                            editor.putString("Name", username);
+                            editor.putString("parking" , parking);
+                            editor.commit();
+
                             android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(Parknow.this);
                             alertDialog.setTitle("Park");
-                            alertDialog.setMessage("Are you sure you want to park your boat in" + username +
+                            alertDialog.setMessage("Are you sure you want to park your boat in " + username +
                             " "+parking+ " area");
                             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    if(sharedPreferences.contains(Parknow.times))
+                                    {
+                                        Toast.makeText(getApplicationContext(),"already parked",Toast.LENGTH_LONG).show();
+                                    }
+                                    else {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.setTime(new Date());
+                                        int hour = calendar.get(calendar.HOUR) * 60 * 60;
+                                        int min = calendar.get(Calendar.MINUTE) * 60;
+                                        int sec = calendar.get(Calendar.SECOND);
+                                        int Seco = hour + min + sec;
+                                        String Sec = Integer.toString(Seco);
 
+                                        Toast.makeText(getApplicationContext(), Sec + "show", Toast.LENGTH_LONG).show();
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString(times, Sec);
+
+                                        editor.apply();
+                                    }
                                 }
                             });
                             alertDialog.create();

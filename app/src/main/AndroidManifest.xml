@@ -13,17 +13,17 @@
         <activity android:name=".MainActivity" android:screenOrientation="landscape">
 
             <intent-filter>
-                <action android:name="in.silive.directme.MAINACTIVITY" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Dashboard" android:screenOrientation="landscape"
             >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="in.silive.directme.DASHBOARD" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".Showroom" android:screenOrientation="landscape"
@@ -58,8 +58,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".enter_db" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="in.silive.directme.ENTER_DB" />
+                <category android:name="android.intent.category.DEFAULT" />
 
+            </intent-filter>
+        </activity>
+        <activity android:name=".enter_boat" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="in.silive.directme.ENTER_BOAT" />
+                <category android:name="android.intent.category.DEFAULT" />
 
+            </intent-filter>
+        </activity>
 
 
     <activity android:name=".Login" android:screenOrientation="landscape">

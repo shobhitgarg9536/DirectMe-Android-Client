@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:id="@+id/imageViewParkedShip1"
-                        android:src="@drawable/ship"/>
+                        android:src="@drawable/ship1"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:id="@+id/imageViewParkedShip2"
-                        android:src="@drawable/ship"/>
+                        android:src="@drawable/ship1"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:id="@+id/imageViewParkedShip3"
-                        android:src="@drawable/ship"/>
+                        android:src="@drawable/ship1"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:id="@+id/imageViewParkedShip4"
-                        android:src="@drawable/ship"/>
+                        android:src="@drawable/ship1"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:id="@+id/imageViewParkedShip5"
-                        android:src="@drawable/ship"/>
+                        android:src="@drawable/ship1"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Island"
+            android:text="Boat name"
             android:id="@+id/fot"
             android:layout_below="@+id/tt"
             android:layout_marginTop="10dp"
@@ -274,7 +274,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remove"
+            android:text="UNDOCK"
             android:id="@+id/remove"
             android:layout_marginTop="15dp"
             android:layout_below="@+id/fitd"

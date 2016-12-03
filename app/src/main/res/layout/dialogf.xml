@@ -15,14 +15,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_marginLeft="100dp"
+        android:text="Cancel"
         android:layout_height="wrap_content"
         android:id="@+id/cancel"
-        android:text="Cancel"
         android:layout_alignBottom="@+id/ok1"
         style="@android:style/Widget.Button" />
 
     <Button
-        android:text="Ok"
+        android:text="ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ok1"

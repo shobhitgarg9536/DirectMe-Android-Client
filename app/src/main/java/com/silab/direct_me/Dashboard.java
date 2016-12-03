@@ -1,8 +1,5 @@
 package com.silab.direct_me;
 
-/**
- * Created by Lenovo on 09-Nov-16.
- */
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -24,7 +21,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     private ImageView park,parked,parking,garage,showroom,coinimg,coinimg2,dashboard;
     private TextView bamboo,coconut,banana,timber,gold_coin,log_out;
-    Controller controller;
+    Controller controller = new Controller();
 
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,35 +39,28 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         gold_coin = (TextView) findViewById(R.id.textviewgoldCoin);
         log_out = (TextView) findViewById(R.id.textviewgoldCoin);
         coinimg=(ImageView)findViewById(R.id.coin);
-        coinimg2=(ImageView)findViewById(R.id.coin1);
+
         park = (ImageView) findViewById(R.id.imageviewpark);
         parked = (ImageView) findViewById(R.id.imageviewparked);
         parking = (ImageView) findViewById(R.id.imageviewparking);
         garage = (ImageView) findViewById(R.id.imageviewgarage);
         showroom = (ImageView) findViewById(R.id.imageviewshowroom);
-        dashboard = (ImageView) findViewById(R.id.imageviewdashboard);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(coinimg, "rotationY", 0.0f, 360f);
-        animation.setDuration(3600);
-        animation.setRepeatCount(ObjectAnimator.INFINITE);
-        animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.start();
-        ObjectAnimator animation2 = ObjectAnimator.ofFloat(coinimg2, "rotationY", 0.0f, 360f);
-        animation2.setDuration(3600);
-        animation2.setRepeatCount(ObjectAnimator.INFINITE);
-        animation2.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation2.start();
+
+
 
         park.setOnClickListener(this);
         parked.setOnClickListener(this);
         parking.setOnClickListener(this);
         garage.setOnClickListener(this);
         showroom.setOnClickListener(this);
-        dashboard.setOnClickListener(this);
-        try {
-            controller.addObserver(this);
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
+
+
+            controller.addObserver(Dashboard.this);
+        controller.setBambooCount(100);
+        controller.setBananaCount(50);
+        controller.setTimberCount(40);
+        controller.setCoconutCount(150);
+        controller.setGoldCoinCount(10);
     }
 
     @Override
@@ -100,24 +90,19 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 Intent in = new Intent(Dashboard.this , Garage.class);
                 startActivity(in);
                 break;
-            case R.id.imageviewdashboard:
-                fr=new Dash();
-                break;
+
         }
-        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-// Replace the contents of the container with the new fragment
-        ft.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
-        ft.replace(R.id.fragment_place,fr);
-// or ft.add(R.id.your_placeholder, new FooFragment());
-// Complete the changes added above
-        ft.commit();
+
     }
     @Override
     public void update(Observable observable, Object o) {
-        bamboo.setText(controller.getBambooCount());
-        coconut.setText(controller.getCoconutCount());
-        banana.setText(controller.getBananaCount());
-        timber.setText(controller.getTimberCount());
-        gold_coin.setText(controller.getGoldCoinCount());
+        controller = (Controller) observable;
+        System.out.println(controller.getBananaCount());
+        bamboo.setText(Integer.toString(controller.getBambooCount()));
+        coconut.setText(Integer.toString(controller.getCoconutCount()));
+        banana.setText(Integer.toString(controller.getBananaCount()));
+        timber.setText(Integer.toString(controller.getTimberCount()));
+        gold_coin.setText(Integer.toString(controller.getGoldCoinCount()));
+
     }
 }

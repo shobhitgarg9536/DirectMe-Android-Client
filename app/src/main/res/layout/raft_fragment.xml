@@ -102,7 +102,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/raft"
             android:layout_margin="20dp"
             android:id="@+id/raftimage"
             android:layout_centerHorizontal="true"
@@ -209,14 +208,15 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/banana_image"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/banana"/>
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:text="25"
+            android:id="@+id/getbanana"
             android:textColor="#ff0000"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
@@ -224,25 +224,26 @@
             android:layout_marginLeft="25dp"
             android:layout_height="wrap_content" />
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:text="Banana"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
             android:layout_alignLeft="@+id/banana_image"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="50dp"
             android:layout_height="wrap_content" />
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="180dp"
             android:id="@+id/coconut_image"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/coconut"/>
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:text="25"
+            android:id="@+id/getcoconut"
             android:textColor="#ff0000"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
@@ -250,25 +251,26 @@
             android:layout_marginLeft="25dp"
             android:layout_height="wrap_content" />
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:text="Coconut"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
             android:layout_alignLeft="@+id/coconut_image"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="50dp"
             android:layout_height="wrap_content" />
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/bamboo_img"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:background="@drawable/bamboo"/>
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:layout_width="wrap_content"
             android:text="25"
+            android:id="@+id/getbamboo"
             android:textColor="#ff0000"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
@@ -276,25 +278,26 @@
             android:layout_marginLeft="25dp"
             android:layout_height="wrap_content" />
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:layout_width="wrap_content"
-            android:text="Banana"
+            android:text="Bamboo"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
             android:layout_alignLeft="@+id/bamboo_img"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="50dp"
             android:layout_height="wrap_content" />
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="180dp"
             android:id="@+id/timber_img"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:background="@drawable/wood"/>
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:layout_width="wrap_content"
             android:text="25"
+            android:id="@+id/getwood"
             android:textColor="#ff0000"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
@@ -302,14 +305,42 @@
             android:layout_marginLeft="25dp"
             android:layout_height="wrap_content" />
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:layout_width="wrap_content"
-            android:text="Banana"
+            android:text="Timber"
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
             android:layout_alignLeft="@+id/timber_img"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="50dp"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="300dp"
+            android:id="@+id/gold_image"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/goldcoin"/>
+        <TextView
+            android:layout_marginTop="45dp"
+            android:layout_width="wrap_content"
+            android:text="00"
+            android:id="@+id/getgold"
+            android:textColor="#ff0000"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20sp"
+            android:layout_alignLeft="@+id/gold_image"
+            android:layout_marginLeft="25dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="45dp"
+            android:layout_width="wrap_content"
+            android:text="Coins"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20sp"
+            android:layout_alignLeft="@+id/gold_image"
+            android:layout_marginLeft="50dp"
+            android:layout_height="wrap_content" />
+
             </RelativeLayout>
 
     <RelativeLayout

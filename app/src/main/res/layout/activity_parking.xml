@@ -2,102 +2,192 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
-     >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:background="@drawable/img"
-    android:layout_height="match_parent"
-    android:padding="5dp">
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@drawable/img"
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
-    <RelativeLayout
-        android:layout_width="76dp"
-        android:background="#FFFFFF"
-        android:elevation="2dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/gold_show"
-        android:layout_toRightOf="@+id/showroom"
-        android:layout_toEndOf="@+id/showroom">
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="76dp"
-        android:background="#FFFFFF"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:id="@+id/banana_show"
-        android:elevation="2dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/gold_show"
-        android:layout_toEndOf="@+id/gold_show">
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="76dp"
-        android:background="#FFFFFF"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/coconut_show"
-        android:elevation="2dp"
-        android:layout_toRightOf="@+id/banana_show"
-        android:layout_toEndOf="@+id/banana_show">
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="76dp"
-        android:background="#FFFFFF"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:elevation="2dp"
-        android:id="@+id/bamboo_show"
-        android:layout_toRightOf="@+id/coconut_show"
-        android:layout_toEndOf="@+id/coconut_show">
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="76dp"
-        android:background="#FFFFFF"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:elevation="2dp"
-        android:id="@+id/timber_show"
-        android:layout_toRightOf="@+id/bamboo_show"
-        android:layout_toEndOf="@+id/bamboo_show">
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/gold_show"
+            android:layout_toRightOf="@+id/showroom"
+            android:layout_toEndOf="@+id/showroom">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/coin"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/imageView8" />
 
-    <RelativeLayout
-        android:text="Button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:elevation="2dp"
-        android:layout_alignBottom="@+id/showroom"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#006400"
-        android:id="@+id/button" />
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/gold_no" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/banana_show"
+            android:elevation="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/gold_show"
+            android:layout_toEndOf="@+id/gold_show">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/banana"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView4" />
 
-    <RelativeLayout
-        android:layout_width="130dp"
-        android:layout_height="30dp"
-        android:id="@+id/showroom"
-        android:background="#FFFFFF"
-        android:elevation="2dp"
-        android:layout_marginLeft="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="PARKING"/>
-    </RelativeLayout>
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/banana_no" />
+        </RelativeLayout>
 
-    <RelativeLayout
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/coconut_show"
+            android:elevation="2dp"
+            android:layout_toRightOf="@+id/banana_show"
+            android:layout_toEndOf="@+id/banana_show">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/coconut"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView5" />
+
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="8dp"
+                android:id="@+id/coconut_no" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:elevation="2dp"
+            android:id="@+id/bamboo_show"
+            android:layout_toRightOf="@+id/coconut_show"
+            android:layout_toEndOf="@+id/coconut_show">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/bamboo"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/imageView6" />
+
+            <TextView
+                android:text="0000"
+                android:layout_marginRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/bamboo_no" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:elevation="2dp"
+            android:id="@+id/timber_show"
+            android:layout_toRightOf="@+id/bamboo_show"
+            android:layout_toEndOf="@+id/bamboo_show">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/wood"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/imageView7" />
+
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:id="@+id/wood_no" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:text="Button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:elevation="2dp"
+            android:layout_alignBottom="@+id/showroom"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#006400"
+            android:id="@+id/button" />
+
+        <RelativeLayout
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:id="@+id/showroom"
+            android:background="#FFFFFF"
+            android:elevation="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/button"
+            android:layout_toEndOf="@+id/button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="PARKING"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
         android:layout_width="400dp"
         android:layout_height="250dp"
         android:background="#78676767"
@@ -130,7 +220,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OWNER"
+            android:text="USER NAME"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
@@ -142,10 +232,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="simran"
+            android:text="-NA-"
             android:fontFamily="sans-serif-condensed"
             android:textColor="#ff0000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:id="@+id/odetail"
             android:layout_below="@+id/details"
             android:layout_marginLeft="70dp"
@@ -155,7 +245,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LastActive"
+            android:text="BOAT NAME"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
@@ -167,10 +257,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1:00 hr"
+            android:text="-NA-"
             android:fontFamily="sans-serif-condensed"
             android:textColor="#ff0000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="10dp"
             android:id="@+id/odet"
@@ -180,7 +270,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PARKING AREA"
+            android:text="ISLAND"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
@@ -192,10 +282,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No"
+            android:text="-NA-"
             android:fontFamily="sans-serif-condensed"
             android:textColor="#ff0000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="10dp"
             android:id="@+id/sdet"

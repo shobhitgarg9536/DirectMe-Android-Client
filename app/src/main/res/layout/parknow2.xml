@@ -87,7 +87,7 @@
             android:background="@android:drawable/ic_delete" />
         <ListView
             android:layout_width="match_parent"
-            android:id="@+id/listviewusers"
+
             android:layout_height="match_parent" />
 
 

@@ -1,163 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background">
-    <FrameLayout
 
-        android:id="@+id/fragment_place"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    </FrameLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+        <RelativeLayout
+            android:text="Button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:elevation="2dp"
+            android:layout_alignBottom="@+id/showroom"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#006400"
+            android:id="@+id/button" />
+        <RelativeLayout
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:id="@+id/showroom"
+            android:background="@color/com_facebook_button_background_color"
+            android:elevation="2dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="30dp"
-            >
-            <ImageView
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/button"
+            android:layout_toEndOf="@+id/button">
+            <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="Dashboard"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/gold_show"
+            android:layout_toRightOf="@+id/showroom"
+            android:layout_toEndOf="@+id/showroom">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/coin"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/coin" />
+
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/textviewgoldCoin" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/banana_show"
+            android:elevation="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/gold_show"
+            android:layout_toEndOf="@+id/gold_show">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/banana"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView4" />
+
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/textviewbanana" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/coconut_show"
+            android:elevation="2dp"
+            android:layout_toRightOf="@+id/banana_show"
+            android:layout_toEndOf="@+id/banana_show">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/coconut"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView5" />
+
+            <TextView
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="8dp"
+                android:id="@+id/textviewcoconut" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:elevation="2dp"
+            android:id="@+id/bamboo_show"
+            android:layout_toRightOf="@+id/coconut_show"
+            android:layout_toEndOf="@+id/coconut_show">
+            <ImageView
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/bamboo"
-                />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/imageView6" />
 
             <TextView
-                android:id="@+id/textviewbamboo"
+                android:text="0000"
+                android:layout_marginRight="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#000000"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/textviewbamboo" />
+        </RelativeLayout>
 
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="30dp"
-            >
+        <RelativeLayout
+            android:layout_width="76dp"
+            android:background="#FFFFFF"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:elevation="2dp"
+            android:id="@+id/timber_show"
+            android:layout_toRightOf="@+id/bamboo_show"
+            android:layout_toEndOf="@+id/bamboo_show">
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bana"
-                />
+                android:src="@drawable/wood"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/imageView7" />
 
             <TextView
-                android:id="@+id/textviewbanana"
+                android:text="0000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#000000"
-
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="30dp"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/coin"
-                android:src="@drawable/coin"
-                />
-            <TextView
-                android:id="@+id/textviewtimber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tim0"
-                android:textColor="#000000"
-
-                android:textSize="20dp"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="30dp"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coc"
-                />
-            <TextView
-                android:id="@+id/textviewcoconut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="20dp"
-                android:textColor="#000000"
-
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="30dp"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/coin1"
-                android:src="@drawable/coin"
-                />
-
-
-            <TextView
-                android:id="@+id/textviewgoldCoin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#000000"
-
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logout"
-                />
-
-
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:id="@+id/textviewtimber" />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -165,51 +193,94 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/linearLayout"
-        android:layout_marginBottom="5dp"
-        android:layout_alignEnd="@+id/linearLayout">
+        android:layout_centerHorizontal="true">
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#70ffffff"
+            android:elevation="2dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
+            <ImageView
+                android:id="@+id/imageviewpark"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/park"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#70ffffff"
+            android:elevation="2dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
+            <ImageView
+                android:id="@+id/imageviewgarage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/garage"
+                android:layout_marginRight="30dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#70ffffff"
+            android:elevation="2dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
 
-        <ImageView
-            android:id="@+id/imageviewpark"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/park"
-            android:layout_marginRight="30dp"
-            />
-        <ImageView
-            android:id="@+id/imageviewgarage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/garage"
-            android:layout_marginRight="30dp"
-            />
-        <ImageView
-            android:id="@+id/imageviewshowroom"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/showroom"
-            android:layout_marginRight="30dp"
-            />
-        <ImageView
-            android:id="@+id/imageviewparked"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/parked"
-            android:layout_marginRight="30dp"
-            />
-        <ImageView
-            android:id="@+id/imageviewparking"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/parking"
-            android:layout_marginRight="30dp"
-            />
-        <ImageView
-            android:id="@+id/imageviewdashboard"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/home"
-            />
+            <ImageView
+                android:id="@+id/imageviewshowroom"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/showroom"
+                android:layout_marginRight="30dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#70ffffff"
+            android:elevation="20dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/imageviewparked"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/parked"
+                android:layout_marginRight="30dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#70ffffff"
+            android:elevation="2dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
+            <ImageView
+                android:id="@+id/imageviewparking"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/parking"
+                android:layout_marginRight="30dp"
+                />
+        </RelativeLayout>
+
 
     </LinearLayout>
 

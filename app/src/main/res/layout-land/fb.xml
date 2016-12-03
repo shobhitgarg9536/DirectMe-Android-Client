@@ -15,7 +15,7 @@
         android:layout_width="439dp"
         android:layout_height="284dp"
         android:id="@+id/imageView"
-        android:src="@drawable/boat"
+        android:src="@drawable/boat1"
         android:contentDescription="Animation"
         tools:layout_constraintTop_creator="1"
         android:layout_marginStart="8dp"
