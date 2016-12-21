@@ -25,8 +25,9 @@ public class MainActivity extends Activity {
     Context c;
     ImageView animImageView,img;
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
+  //  public static final String MyPREFERENCES = "MyPrefs" ;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST =9000 ;
+    public static final String Authorization_Token = "Authorization_Token" ;
     SharedPreferences sharedpreferences;
     public  boolean m,g ;
     @Override    protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.fb);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
+        sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
+        final String token = sharedpreferences.getString("Authorization_Token" , "");
         animImageView = (ImageView) findViewById(R.id.imageView);
         img = (ImageView) findViewById(R.id.imageView8);
 
@@ -63,14 +64,13 @@ public class MainActivity extends Activity {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } finally {
-                                if (sharedpreferences.contains(Login.userfbid)) {
+                                if (!token.equals("")) {
                                     Intent i = new Intent(MainActivity.this, Dashboard.class);
                                     startActivity(i);
                                 } else {
-                                    Intent i = new Intent(MainActivity.this, Login.class);
+                                    Intent i = new Intent(MainActivity.this, CreateAccount.class);
                                     startActivity(i);
                                 }
-
                             }
                         }
                     };

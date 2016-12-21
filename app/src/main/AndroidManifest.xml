@@ -18,6 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CreateAccount" android:screenOrientation="landscape">
+
+            <intent-filter>
+                <action android:name="in.silive.directme.CREATEACCOUNT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UserLogin" android:screenOrientation="landscape">
+
+            <intent-filter>
+                <action android:name="in.silive.directme.USERLOGIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Dashboard" android:screenOrientation="landscape"
             >
             <intent-filter>

@@ -44,10 +44,11 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
     Button removeuserList;
     ListView lvUsers;
     ProgressDialog progressDialog;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences,sharedPreferences1;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String times = "null";
     String PARK_NOW= "PARK_NOW";
+    SharedPreferences.Editor editor1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -174,6 +175,8 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    sharedPreferences = getSharedPreferences(MyPREFERENCES , MODE_PRIVATE);
+                                    editor1 = sharedPreferences.edit();
                                     if(sharedPreferences.contains(Parknow.times))
                                     {
                                         Toast.makeText(getApplicationContext(),"already parked",Toast.LENGTH_LONG).show();
@@ -188,10 +191,10 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                                         String Sec = Integer.toString(Seco);
 
                                         Toast.makeText(getApplicationContext(), Sec + "show", Toast.LENGTH_LONG).show();
-                                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                                        editor.putString(times, Sec);
+                                        SharedPreferences.Editor editor1 = sharedPreferences.edit();
+                                        editor1.putString(times, Sec);
 
-                                        editor.apply();
+                                        editor1.commit();
                                     }
                                 }
                             });

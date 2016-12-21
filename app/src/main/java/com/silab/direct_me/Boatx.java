@@ -19,7 +19,7 @@ public class Boatx extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_boat, container,
                 false);
-        this.undock = (Button) v.findViewById(R.id.undoc);
+        this.undock = (Button) v.findViewById(R.id.undocker);
         this.undock.setOnClickListener(Boatx.this);
         return v;
 
