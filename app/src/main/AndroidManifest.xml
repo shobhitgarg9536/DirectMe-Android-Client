@@ -10,6 +10,10 @@
         android:supportsRtl="true"
 
         android:theme="@style/MyMaterialTheme">
+        <service
+            android:enabled="true"
+            android:name="com.silab.direct_me.BackgroundSoundService" />
+
         <activity android:name=".MainActivity" android:screenOrientation="landscape">
 
             <intent-filter>
@@ -18,26 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccount" android:screenOrientation="portrait">
-
-            <intent-filter>
-                <action android:name="in.silive.directme.CREATEACCOUNT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".UserLogin" android:screenOrientation="portrait">
-
-            <intent-filter>
-                <action android:name="in.silive.directme.USERLOGIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".Dashboard" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.DASHBOARD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Show_room" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.SHOW_ROOM" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Dockyard" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.DOCKYARD" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -51,6 +55,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".Garage" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.GARAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CreateAccount" android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="in.silive.directme.GARAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UserLogin" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.GARAGE" />

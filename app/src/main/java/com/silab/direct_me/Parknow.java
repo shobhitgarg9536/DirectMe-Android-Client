@@ -1,17 +1,14 @@
 package com.silab.direct_me;
 
-/**
- * Created by Lenovo on 09-Nov-16.
- */
-
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,11 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,17 +60,17 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
         island3 = (ImageView) findViewById(R.id.imageViewisland3);
         island4 = (ImageView) findViewById(R.id.imageViewisland4);
         pirate_Island = (ImageView) findViewById(R.id.imageViewpirateisland);
-        lvUsers =(ListView) findViewById(R.id.listviewusers);
+     //  lvUsers =(ListView) findViewById(R.id.listviewusers);
 
-        llUserList = (LinearLayout) findViewById(R.id.linearLayoutUserList);
-        removeuserList = (Button) findViewById(R.id.buttonRemoveUserList);
+   //     llUserList = (LinearLayout) findViewById(R.id.linearLayoutUserList);
+    //    removeuserList = (Button) findViewById(R.id.buttonRemoveUserList);
 
         island1.setOnClickListener(this);
         island2.setOnClickListener(this);
         island3.setOnClickListener(this);
         island4.setOnClickListener(this);
         pirate_Island.setOnClickListener(this);
-        removeuserList.setOnClickListener(this);
+       // removeuserList.setOnClickListener(this);
 
 
 
@@ -85,52 +82,46 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
 
             case R.id.imageViewisland1:
-                userList("island1");
+                userList("4");
                 //making User list visible
-                llUserList.setVisibility(View.VISIBLE);
+            //    llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.imageViewisland2:
-                userList("island2");
+                userList("4");
                 //making User list visible
-                llUserList.setVisibility(View.VISIBLE);
+          //      llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.imageViewisland3:
-                userList("island3");
+                userList("4");
                 //making User list visible
-                llUserList.setVisibility(View.VISIBLE);
+           //     llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.imageViewisland4:
-                userList("island4");
+                userList("4");
                 //making User list visible
-                llUserList.setVisibility(View.VISIBLE);
+           //     llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.buttonRemoveUserList:
                 //making ISland view Visible
-                llUserList.setVisibility(View.GONE);
+            //    llUserList.setVisibility(View.GONE);
                 break;
             case R.id.imageViewpirateisland:
                 //making ISland view Visible
-                llUserList.setVisibility(View.VISIBLE);
+           //     llUserList.setVisibility(View.VISIBLE);
                 break;
         }
     }
 
     public void userList(String island){
-        progressDialog = new ProgressDialog(Parknow.this);
-        progressDialog.setMessage("Loading your User list ......");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
 
-        AsyncHttpClient client = new AsyncHttpClient();
-
-        client.get("http://demo8496338.mockable.io/parknowuser", new AsyncHttpResponseHandler() {
-
+        MyAsyncTask myAsyncTask = new MyAsyncTask(new AsyncResponse() {
             @Override
-            public void onSuccess(String response) {
+            public void processFinish(String output) {
+                System.out.println(output);
                 try {
 
                     // Extract JSON array from the response
-                    JSONArray arr = new JSONArray(response);
+                    JSONArray arr = new JSONArray(output);
                     // If no of array elements is not zero
                     if(arr.length() != 0){
                         users = new ArrayList<HashMap<String, String>>();
@@ -149,13 +140,20 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                             users.add(queryValues);
                         }
 
-                    }
-                    progressDialog.dismiss();
+                    }System.out.println(users);
+
+
+                    final Dialog dialog = new Dialog(Parknow.this);
+                    dialog.setTitle("Park Now");
+                    dialog.setContentView(R.layout.listdialog);
+                    ListView userList = (ListView) dialog.findViewById(R.id.listviewparknow);
+
+
                     ListAdapter adapter = new SimpleAdapter(Parknow.this , users , R.layout.parknowuserview , new String[] {
                             "name" ,"parking" }, new int[] { R.id.textviewusername , R.id.textViewparking
-                            });
-                    lvUsers.setAdapter(adapter);
-                    lvUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    });
+                    userList.setAdapter(adapter);
+                    userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             String username = users.get(i).get("name");
@@ -171,7 +169,7 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                             android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(Parknow.this);
                             alertDialog.setTitle("Park");
                             alertDialog.setMessage("Are you sure you want to park your boat in " + username +
-                            " "+parking+ " area");
+                                    " "+parking+ " area");
                             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -194,7 +192,10 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                                         SharedPreferences.Editor editor1 = sharedPreferences.edit();
                                         editor1.putString(times, Sec);
 
+
                                         editor1.commit();
+
+                                        dialog.dismiss();
                                     }
                                 }
                             });
@@ -204,10 +205,31 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     );
+                    dialog.show();
+
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+
+
+            }
+        },this);
+        myAsyncTask.execute("parkNowUserList", "", island);
+
+/*
+        progressDialog = new ProgressDialog(Parknow.this);
+        progressDialog.setMessage("Loading your User list ......");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        client.get("http://demo8496338.mockable.io/parknowuser", new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(String response) {
+
             }
             // When error occured
 
@@ -225,7 +247,7 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                             Toast.LENGTH_LONG).show();
                 }
             }
-        });
+        });*/
     }
 
     }

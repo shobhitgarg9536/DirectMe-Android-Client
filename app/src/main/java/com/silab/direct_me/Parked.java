@@ -4,40 +4,41 @@ package com.silab.direct_me;
  * Created by Lenovo on 09-Nov-16.
  */
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import static com.silab.direct_me.UserLogin.Authorization_Token;
 
 
 public class Parked extends AppCompatActivity implements View.OnClickListener {
 
     RelativeLayout rl;
+    int i;
     Button undock;
     Button parkedShipDetial1,parkedShipDetial2,parkedShipDetial3,parkedShipDetial4,parkedShipDetial5;
     TextView parking,boat_dock,time,user_name,boat_name,parking_allowness;
-
+    CheckConnectivity network;
+    boolean network_available;
+    DatabaseHandler db;
+    MyAsyncTask myAsyncTask;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "UserName";
+    String token;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,10 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         boat_name = (TextView) findViewById(R.id.fotd);
         rl=(RelativeLayout)findViewById(R.id.relat);
         rl.setVisibility(View.INVISIBLE);
+        sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
+
         undock.setOnClickListener(this);
+        db = new DatabaseHandler(getApplicationContext());
 
         parkedShipDetial1.setOnClickListener(this);
         parkedShipDetial2.setOnClickListener(this);
@@ -75,32 +79,32 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
 
             case R.id.buttonParkedShip1:
-                parkedDetail("1");
-                parking_allowness.setText("YES");
+                parkedDetail("0");
+
                 undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
             case R.id.buttonParkedShip2:
-                parkedDetail("2");
-                parking_allowness.setText("YES");
-                undock.setVisibility(View.GONE);
+                parkedDetail("1");
+
+                    undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
             case R.id.buttonParkedShip3:
-                parkedDetail("3");
-                parking_allowness.setText("YES");
+                parkedDetail("2");
+
                 undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
             case R.id.buttonParkedShip4:
-                parkedDetail("4");
-                parking_allowness.setText("NO");
+                parkedDetail("3");
+
                 undock.setVisibility(View.VISIBLE);
                 rl.setVisibility(View.VISIBLE);
                 break;
             case R.id.buttonParkedShip5:
-                parkedDetail("5");
-                parking_allowness.setText("No");
+                parkedDetail("4");
+
                 undock.setVisibility(View.VISIBLE);
                 rl.setVisibility(View.VISIBLE);
                 break;
@@ -127,51 +131,57 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
+    String type;
 
-    public void parkedDetail(final String parking_no){
+    public void parkedDetail(final String parking_no) {
 
-        AsyncHttpClient client = new AsyncHttpClient();
+        final String token = sharedpreferences.getString("Authorization_Token" , "");
+        network_available = network.isNetConnected(getApplicationContext());
+        if (network_available) {
+            myAsyncTask=new MyAsyncTask(new AsyncResponse()
+            {
+                @Override
+                public void processFinish(String output) {
+                    try {
+                        JSONArray user = new JSONArray(output);
 
-        client.get("http://demo8496338.mockable.io/parked", new AsyncHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(String response) {
-                try {
-
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONObject jsonObject1 = jsonObject.getJSONObject(parking_no);
-
-
-                                    boat_dock.setText(jsonObject1.get("dock_or_not").toString());
-                            user_name.setText(jsonObject1.get("user_name").toString());
-                            boat_name.setText(jsonObject1.get("boat_name").toString());
-                            time.setText(jsonObject1.get("time").toString());
-
-
-
-
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                        JSONObject jsonObject = user.getJSONObject(Integer.parseInt(parking_no));
+                        type = jsonObject.get("type").toString();
+                        parking_allowness.setText(type);
+                        db.addPort(new User(parking_no, "2:00", "Yes", "N-A", type, "2"));
+                    }catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
-            }
-            // When error occured
+            },this);
+            myAsyncTask.execute("copy",token);
 
-            @Override
-            public void onFailure(int statusCode, Throwable error, String content) {
-                // TODO Auto-generated method stub
-                // Hide ProgressBar
-                if (statusCode == 404) {
+        }
+    }
+    public  void alertDialog(String title , String message){
 
-                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
-                } else if (statusCode == 500) {
-                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet]",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getApplicationContext());
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setPositiveButton("Settings",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_WIFI_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        alertDialog.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+
     }
 
 }

@@ -3,26 +3,29 @@ package com.silab.direct_me;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.*;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Observable;
 
 /**
  * Created by Lenovo on 01-Dec-16.
@@ -33,24 +36,43 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> parking_detail;
     Button undock;
-    TextView timee,coin,fill;
+    CheckConnectivity network;
+    boolean network_available;
+    TextView timee,coin,fill,cost_multiplier,experience_gain,boatname;
+    int comm[]=new int[5];
+    String c[]=new String[5];
+    Dashboard dashboard;
     int Second,prevsecond,updated,finalhour,finalmin,finalsec,filspeed;
     String prevsec,update,finalhou,finalmi,finalse,fillspeed;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
+
     public static int value;
     TextView bamboo, coconut, banana, timber, gold_coin;
+    ImageView ship;
     Controller controller = new Controller();
+    DatabaseHandler db;
+    SharedPreferences sharedpreferences;
+
+   static JSONObject data;
+    public static Shipx newInstance(JSONObject jsonObject)
+    {
+        Shipx shipx=new Shipx();
+        data=jsonObject;
+        return shipx;
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_parking, container,
                 false);
         this.undock=(Button)v.findViewById(R.id.undocker);
-
+         dashboard=new Dashboard();
         parkingUserName = (TextView) v.findViewById(R.id.odetail);
+        boatname=(TextView)v.findViewById(R.id.boatname);
         parkingBoatName = (TextView) v.findViewById(R.id.odet);
         parkingIsland = (TextView) v.findViewById(R.id.sdet);
+        cost_multiplier=(TextView)v.findViewById(R.id.capacityval);
+        experience_gain=(TextView)v.findViewById(R.id.Xpvalue);
         this.timee=(TextView)v.findViewById(R.id.timeal);
         this.coin=(TextView)v.findViewById(R.id.coinvalue);
         this.fill=(TextView)v.findViewById(R.id.fillvalue);
@@ -59,6 +81,9 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
         coconut=(TextView)v.findViewById(R.id.coconut_no);
         bamboo=(TextView)v.findViewById(R.id.bamboo_no);
         timber=(TextView)v.findViewById(R.id.wood_no);
+        ship=(ImageView)v.findViewById(R.id.imageship);
+         db = new DatabaseHandler(getActivity());
+
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -97,7 +122,6 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
             fill.setText(100+"%");
             String Earn=Integer.toString(value);
             coin.setText(Earn);
-
         }
 
 
@@ -106,15 +130,33 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
         this.undock=(Button)v.findViewById(R.id.undocker);
 
         this.undock.setOnClickListener(Shipx.this);
-        parkingDetail();
+
+            parkingDetail(0);
 
         controller.addObserver((java.util.Observer) Shipx.this);
-        controller.setBambooCount(100);
-        controller.setBananaCount(50);
-        controller.setTimberCount(40);
-        controller.setCoconutCount(150);
-        controller.setGoldCoinCount(10);
+        count();
+
         return v;
+
+    }
+
+    public void count()
+    {int i;
+        for(i=0;i<5;i++)
+        {   if (sharedpreferences.contains(Dashboard.co[i])) {
+            comm[i]= Integer.parseInt(sharedpreferences.getString(Dashboard.co[i],""));
+
+
+
+        }
+            c[i]= Integer.toString(comm[i]);
+            Toast.makeText(getContext(),c[i], Toast.LENGTH_SHORT).show();
+        }
+        controller.setBambooCount(comm[3]);
+        controller.setBananaCount(comm[2]);
+        controller.setTimberCount(comm[1]);
+        controller.setCoconutCount(comm[0]);
+        controller.setGoldCoinCount(comm[4]);
 
     }
 
@@ -142,65 +184,45 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
         alertDialog.show();
 
     }
-    public void parkingDetail(){
+    String cost,boatnam,ide,Xp;
+    public void parkingDetail(final int id) {
 
-        AsyncHttpClient client = new AsyncHttpClient();
+        network_available = network.isNetConnected(getActivity());
+        if (network_available) {
 
-        client.get("http://demo8496338.mockable.io/parking", new AsyncHttpResponseHandler() {
 
-            @Override
-            public void onSuccess(String response) {
-                try {
+            try {
+                cost = data.get("cost_multiplier").toString();
 
-                    // Extract JSON array from the response
-                    JSONArray arr = new JSONArray(response);
-                    // If no of array elements is not zero
-                    if(arr.length() != 0){
-                        parking_detail = new ArrayList<HashMap<String, String>>();
-                        // Loop through each array element, get JSON object which has userid and username
-                        for (int i = 0; i < arr.length(); i++) {
-                            // Get JSON object
-                            JSONObject obj = (JSONObject) arr.get(i);
-                            System.out.println(obj.get("boat_name"));
-                            System.out.println(obj.get("island"));
-                            System.out.println(obj.get("user_name"));
-
-                            queryValues = new HashMap<String, String>();
-                            // Add values extracted from Object
-                            queryValues.put("boat_name", obj.get("boat_name").toString());
-                            queryValues.put("island", obj.get("island").toString());
-                            queryValues.put("user_name", obj.get("user_name").toString());
-
-                            parkingBoatName.setText(obj.get("boat_name").toString());
-                            parkingIsland.setText(obj.get("island").toString());
-                            parkingUserName.setText(obj.get("user_name").toString());
-
-                            parking_detail.add(queryValues);
-                        }
-
-                    }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                boatnam = data.get("name").toString();
+                ide = data.get("id").toString();
+                Xp = data.get("experience_gain").toString();
+                cost_multiplier.setText(cost);
+                experience_gain.setText(Xp);
+                boatname.setText(boatnam);
+                Picasso.with(getActivity())
+                        .load(data.get("image").toString())
+                        .into(ship);
+                db.addShip(new Ships("1", boatnam, ide, "4", cost, "6", "7", "8", "9", "10"));
+                Ships shi = db.getShip("1");
+                Toast.makeText(getActivity(), "id" + shi.get_Cost_multiplier(), Toast.LENGTH_LONG).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            // When error occured
 
-            @Override
-            public void onFailure(int statusCode, Throwable error, String content) {
-                // TODO Auto-generated method stub
-                // Hide ProgressBar
-                if (statusCode == 404) {
+        }
 
-                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
-                } else if (statusCode == 500) {
-                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet]",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        // When error occured
+
+
+        else {
+            Ships shi = db.getShip("1");
+            cost_multiplier.setText(shi.get_Cost_multiplier());
+
+            boatname.setText(shi.get_name());
+            alertDialog("Error", "Sorry, your device doesn't connect to internet!");
+
+        }
     }
     @Override
     public void update(Observable observable, Object o) {
@@ -211,6 +233,30 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
         banana.setText(Integer.toString(controller.getBananaCount()));
         timber.setText(Integer.toString(controller.getTimberCount()));
         gold_coin.setText(Integer.toString(controller.getGoldCoinCount()));
+
+    }
+    public  void alertDialog(String title , String message){
+
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setPositiveButton("Settings",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_WIFI_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        alertDialog.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
 
     }
 }

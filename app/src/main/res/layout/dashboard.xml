@@ -293,4 +293,15 @@
         android:layout_marginTop="100dp"
         android:id="@+id/tvtoken" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:tag="1"
+        android:background="@drawable/selector"
+        android:layout_below="@+id/tvtoken"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/volume" />
+
 </RelativeLayout>
