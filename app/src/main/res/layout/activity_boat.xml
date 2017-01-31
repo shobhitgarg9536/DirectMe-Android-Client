@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     >
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:background="@drawable/img"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="0dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.66">
 
         <RelativeLayout
-            android:layout_width="76dp"
+            android:layout_width="0dp"
             android:background="#FFFFFF"
             android:elevation="2dp"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
+            android:layout_height="0dp"
             android:id="@+id/gold_show"
-            android:layout_toRightOf="@+id/showroom"
-            android:layout_toEndOf="@+id/showroom">
+            app:layout_constraintRight_toLeftOf="@+id/banana_show"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/banana_show"
+            android:layout_marginEnd="6dp"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintTop_toTopOf="@+id/banana_show"
+            app:layout_constraintLeft_toRightOf="@+id/showroom"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="6dp">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -39,16 +66,26 @@
                 android:layout_alignParentEnd="true"
                 android:id="@+id/gold_no" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="76dp"
             android:background="#FFFFFF"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
+            android:layout_height="0dp"
             android:id="@+id/banana_show"
             android:elevation="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/gold_show"
-            android:layout_toEndOf="@+id/gold_show">
+            app:layout_constraintRight_toLeftOf="@+id/bamboo_show"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="82dp"
+            app:layout_constraintBottom_toBottomOf="@+id/coconut_show"
+            android:layout_marginEnd="82dp"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintTop_toTopOf="@+id/coconut_show"
+            app:layout_constraintLeft_toRightOf="@+id/showroom"
+            android:layout_marginLeft="82dp"
+            android:layout_marginRight="82dp">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -72,13 +109,22 @@
         <RelativeLayout
             android:layout_width="76dp"
             android:background="#FFFFFF"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
+            android:layout_height="0dp"
             android:id="@+id/coconut_show"
             android:elevation="2dp"
-            android:layout_toRightOf="@+id/banana_show"
-            android:layout_toEndOf="@+id/banana_show">
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="79dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bamboo_show"
+            android:layout_marginEnd="79dp"
+            app:layout_constraintRight_toRightOf="@+id/bamboo_show"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="@+id/banana_show"
+            app:layout_constraintTop_toTopOf="@+id/bamboo_show"
+            android:layout_marginLeft="79dp"
+            android:layout_marginRight="79dp">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -102,13 +148,18 @@
         <RelativeLayout
             android:layout_width="76dp"
             android:background="#FFFFFF"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
+            android:layout_height="0dp"
             android:elevation="2dp"
             android:id="@+id/bamboo_show"
-            android:layout_toRightOf="@+id/coconut_show"
-            android:layout_toEndOf="@+id/coconut_show">
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            app:layout_constraintBottom_toBottomOf="@+id/timber_show"
+            android:layout_marginEnd="165dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/timber_show"
+            android:layout_marginRight="165dp">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -132,12 +183,23 @@
             android:layout_width="76dp"
             android:background="#FFFFFF"
             android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
             android:elevation="2dp"
             android:id="@+id/timber_show"
-            android:layout_toRightOf="@+id/bamboo_show"
-            android:layout_toEndOf="@+id/bamboo_show">
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+            android:layout_marginStart="84dp"
+            android:layout_marginEnd="84dp"
+            app:layout_constraintRight_toRightOf="@+id/relativeLayout"
+            android:layout_marginTop="12dp"
+            tools:layout_constraintLeft_creator="1"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/coconut_show"
+            android:layout_marginLeft="84dp"
+            android:layout_marginRight="84dp">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -158,164 +220,230 @@
 
         <RelativeLayout
             android:text="Button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:elevation="2dp"
-            android:layout_alignBottom="@+id/showroom"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:background="#006400"
-            android:id="@+id/button" />
+            android:id="@+id/button"
+            app:layout_constraintRight_toLeftOf="@+id/showroom"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/showroom"
+            android:layout_marginEnd="6dp"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/showroom"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="6dp" />
 
         <RelativeLayout
-            android:layout_width="130dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:id="@+id/showroom"
             android:background="#FFFFFF"
             android:elevation="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/button"
-            android:layout_toEndOf="@+id/button">
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="31dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gold_show"
+            android:layout_marginEnd="31dp"
+            app:layout_constraintRight_toRightOf="@+id/boatchar"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="@+id/boatchar"
+            app:layout_constraintTop_toTopOf="@+id/gold_show"
+            android:layout_marginLeft="31dp"
+            android:layout_marginRight="31dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="PARKING"/>
+                android:text="PARKING" />
         </RelativeLayout>
 
 
-        <RelativeLayout
-            android:layout_width="400dp"
-            android:layout_height="250dp"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="#78676767"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/showroom"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="200dp"
-            android:id="@+id/relativeLayout">
+            android:id="@+id/relativeLayout"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintLeft_toLeftOf="@+id/banana_show"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="52dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:id="@+id/boatimage"
                 android:src="@drawable/island1"
-                android:layout_centerHorizontal="true"
-                />
+                tools:layout_constraintTop_creator="1"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PARKING DETAILS"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="30dp"
                 android:id="@+id/details"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffffff"
-                android:textSize="20sp"
-                android:layout_below="@+id/boatimage"
-                />
+
+                android:layout_marginStart="18dp"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="@+id/boatimage"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/boatimage" />
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="73dp"
                 android:layout_height="wrap_content"
                 android:text="USER NAME"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
+
                 android:id="@+id/owner"
-                android:layout_below="@+id/details"
-                />
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/details"
+                app:layout_constraintLeft_toLeftOf="@+id/details" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-NA-"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ff0000"
-                android:textSize="15sp"
+
                 android:id="@+id/odetail"
-                android:layout_below="@+id/details"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                />
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toRightOf="@+id/owner"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/details"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BOAT NAME"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
+
                 android:id="@+id/active"
-                android:layout_below="@+id/odetail"
-                />
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/parkingslot"
+                app:layout_constraintRight_toRightOf="@+id/owner"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/owner"
+                app:layout_constraintTop_toBottomOf="@+id/owner"
+                android:layout_marginTop="8dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-NA-"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ff0000"
-                android:textSize="15sp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="10dp"
+
                 android:id="@+id/odet"
-                android:layout_below="@+id/odetail"
-                android:layout_centerHorizontal="true"
-                />
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/sdet"
+                app:layout_constraintRight_toRightOf="@+id/odetail"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/odetail"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/odetail" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ISLAND"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
+
                 android:id="@+id/parkingslot"
-                android:layout_below="@+id/odet"
-                />
+                tools:layout_constraintTop_creator="1"
+                app:layout_constraintTop_toBottomOf="@+id/active"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="@+id/active"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginTop="8dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-NA-"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ff0000"
-                android:textSize="15sp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="10dp"
+
                 android:id="@+id/sdet"
-                android:layout_below="@+id/odet"
-                android:layout_centerHorizontal="true"
-                />
+                tools:layout_constraintTop_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toBottomOf="@+id/parkingslot"
+                app:layout_constraintRight_toRightOf="@+id/odet"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="@+id/odet"
+                app:layout_constraintTop_toTopOf="@+id/parkingslot" />
 
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
 
-        <RelativeLayout
-            android:layout_width="200dp"
-            android:layout_height="250dp"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#78676767"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/showroom"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/boatchar">
+            android:id="@+id/boatchar"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintBottom_creator="1"
+            android:layout_marginStart="17dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="52dp"
+            tools:layout_constraintLeft_creator="1"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="17dp">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:text="BOAT"
 
                 android:fontFamily="sans-serif-condensed"
                 android:id="@+id/boatname"
                 android:textColor="#ffffff"
-                android:textSize="40sp"/>
+                android:textSize="40sp"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/chars"
+                android:layout_marginStart="6dp"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintLeft_toRightOf="@+id/imageView2"
+                android:layout_marginLeft="6dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -324,8 +452,14 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
-                android:layout_below="@+id/boatname"
-                android:layout_margin="5dp"/>
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/capacity"
+                android:layout_marginStart="30dp"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="30dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -334,8 +468,12 @@
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:id="@+id/capacity"
-                android:layout_below="@+id/chars"
-                android:layout_margin="5dp"/>
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/fill"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/chars" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -344,10 +482,14 @@
                 android:textColor="#ff0000"
                 android:textSize="10sp"
                 android:id="@+id/capacityval"
-                android:layout_below="@+id/chars"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="80dp"/>
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/fill"
+                android:layout_marginStart="16dp"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toRightOf="@+id/capacity"
+                android:layout_marginLeft="16dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -356,10 +498,11 @@
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:id="@+id/fill"
-                android:layout_below="@+id/capacityval"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                />
+                app:layout_constraintBaseline_toBaselineOf="@+id/fillval"
+                tools:layout_constraintBaseline_creator="1"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="@+id/capacity" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -368,10 +511,14 @@
                 android:textColor="#ff0000"
                 android:textSize="10sp"
                 android:id="@+id/fillval"
-                android:layout_below="@+id/capacityval"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="150dp" />
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/time"
+                android:layout_marginStart="9dp"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintLeft_toRightOf="@+id/fill"
+                android:layout_marginLeft="9dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -380,10 +527,11 @@
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:id="@+id/time"
-                android:layout_below="@+id/fill"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                />
+                app:layout_constraintBaseline_toBaselineOf="@+id/timeal"
+                tools:layout_constraintBaseline_creator="1"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="@+id/boatfill" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -392,10 +540,14 @@
                 android:textColor="#ff0000"
                 android:textSize="10sp"
                 android:id="@+id/timeal"
-                android:layout_below="@+id/fill"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="170dp" />
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/fillvalue"
+                android:layout_marginStart="4dp"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintLeft_toRightOf="@+id/time"
+                android:layout_marginLeft="4dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -404,10 +556,12 @@
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:id="@+id/boatfill"
-                android:layout_below="@+id/time"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                />
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/coins"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/coins" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -416,10 +570,15 @@
                 android:textColor="#ff0000"
                 android:textSize="10sp"
                 android:id="@+id/fillvalue"
-                android:layout_below="@+id/time"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="170dp" />
+                tools:layout_constraintTop_creator="1"
+                tools:layout_constraintBottom_creator="1"
+                android:layout_marginStart="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boatfill"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="@+id/timeal"
+                app:layout_constraintTop_toTopOf="@+id/boatfill"
+                android:layout_marginLeft="5dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -428,10 +587,13 @@
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:id="@+id/coins"
-                android:layout_below="@+id/boatfill"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                />
+                tools:layout_constraintBottom_creator="1"
+                android:layout_marginStart="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="30dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -440,36 +602,51 @@
                 android:textColor="#ff0000"
                 android:textSize="10sp"
                 android:id="@+id/coinvalue"
-                android:layout_below="@+id/boatfill"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="170dp" />
+                tools:layout_constraintTop_creator="1"
+                tools:layout_constraintRight_creator="1"
+                android:layout_marginEnd="3dp"
+                app:layout_constraintRight_toRightOf="@+id/fillvalue"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/fillvalue"
+                android:layout_marginRight="3dp" />
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="49dp"
+                android:layout_height="0dp"
                 app:srcCompat="@drawable/ship1"
                 android:id="@+id/imageView2"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                app:layout_constraintRight_toLeftOf="@+id/capacityval"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/chars"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="23dp"
+                tools:layout_constraintLeft_creator="1"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="23dp"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
 
 
         <Button
             android:text="Undock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_alignLeft="@+id/relativeLayout"
-            android:layout_alignStart="@+id/relativeLayout"
 
-            android:layout_marginLeft="40dp"
+            android:id="@+id/undocker"
+            tools:layout_constraintBottom_creator="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintLeft_toLeftOf="@+id/relativeLayout"
+            android:layout_marginLeft="11dp"
             android:layout_marginStart="11dp"
-            android:layout_marginTop="13dp"
-            android:id="@+id/undocker" />
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            android:layout_marginTop="16dp" />
 
 
-    </RelativeLayout>
-</ScrollView>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
