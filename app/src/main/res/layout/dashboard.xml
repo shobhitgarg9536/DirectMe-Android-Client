@@ -299,9 +299,11 @@
 
         android:tag="1"
         android:background="@drawable/selector"
-        android:layout_below="@+id/tvtoken"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/volume" />
+        android:id="@+id/volume"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp" />
 
 </RelativeLayout>
