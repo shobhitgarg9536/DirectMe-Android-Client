@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Showroom" android:screenOrientation="landscape"
+        <activity android:name=".Show_room" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.SHOWROOM" />
@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Garage" android:screenOrientation="landscape"
+        <activity android:name=".Dockyard" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.GARAGE" />
