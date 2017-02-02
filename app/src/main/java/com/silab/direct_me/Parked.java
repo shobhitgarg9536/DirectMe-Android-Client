@@ -12,10 +12,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -27,10 +29,10 @@ import static com.silab.direct_me.UserLogin.Authorization_Token;
 
 public class Parked extends AppCompatActivity implements View.OnClickListener {
 
-    RelativeLayout rl;
+    ConstraintLayout rl;
     int i;
     Button undock;
-    Button parkedShipDetial1,parkedShipDetial2,parkedShipDetial3,parkedShipDetial4,parkedShipDetial5;
+    ImageView parkedShipDetial1,parkedShipDetial2,parkedShipDetial3,parkedShipDetial4,parkedShipDetial5;
     TextView parking,boat_dock,time,user_name,boat_name,parking_allowness;
     CheckConnectivity network;
     boolean network_available;
@@ -43,11 +45,11 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parked);
-        parkedShipDetial1 = (Button)findViewById(R.id.buttonParkedShip1);
-        parkedShipDetial2 = (Button)findViewById(R.id.buttonParkedShip2);
-        parkedShipDetial3 = (Button)findViewById(R.id.buttonParkedShip3);
-        parkedShipDetial4 = (Button)findViewById(R.id.buttonParkedShip4);
-        parkedShipDetial5 = (Button)findViewById(R.id.buttonParkedShip5);
+        parkedShipDetial1 = (ImageView) findViewById(R.id.imageViewParkedShip1);
+        parkedShipDetial2 = (ImageView) findViewById(R.id.imageViewParkedShip2);
+        parkedShipDetial3 = (ImageView) findViewById(R.id.imageViewParkedShip3);
+        parkedShipDetial4 = (ImageView) findViewById(R.id.imageViewParkedShip4);
+        parkedShipDetial5 = (ImageView) findViewById(R.id.imageViewParkedShip5);
         undock = (Button) findViewById(R.id.remove);
         parking = (TextView) findViewById(R.id.ftd);
         boat_dock = (TextView) findViewById(R.id.std);
@@ -55,11 +57,14 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         parking_allowness = (TextView) findViewById(R.id.ftd);
         user_name = (TextView) findViewById(R.id.ttd);
         boat_name = (TextView) findViewById(R.id.fotd);
-        rl=(RelativeLayout)findViewById(R.id.relat);
-        rl.setVisibility(View.INVISIBLE);
+        rl=(ConstraintLayout) findViewById(R.id.relat);
+        rl.setVisibility(View.VISIBLE);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
-
+        parkedDetail("0");
         undock.setOnClickListener(this);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         db = new DatabaseHandler(getApplicationContext());
 
         parkedShipDetial1.setOnClickListener(this);
@@ -78,31 +83,31 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
 
         switch (view.getId()){
 
-            case R.id.buttonParkedShip1:
+            case R.id.imageViewParkedShip1:
                 parkedDetail("0");
 
                 undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip2:
+            case R.id.imageViewParkedShip2:
                 parkedDetail("1");
 
-                    undock.setVisibility(View.GONE);
+                undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip3:
+            case R.id.imageViewParkedShip3:
                 parkedDetail("2");
 
                 undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip4:
+            case R.id.imageViewParkedShip4:
                 parkedDetail("3");
 
                 undock.setVisibility(View.VISIBLE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip5:
+            case R.id.imageViewParkedShip5:
                 parkedDetail("4");
 
                 undock.setVisibility(View.VISIBLE);
