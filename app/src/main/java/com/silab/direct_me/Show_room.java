@@ -1,12 +1,14 @@
 package com.silab.direct_me;
 
+/**
+ * Created by yesha on 20-01-2017.
+ */
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,18 +26,20 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 
-
 public class Show_room extends AppCompatActivity
 {
     JSONArray jArray;
     ViewPager mViewPager;
-    int count=1;
+    int count=1,slot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garage);
+        slot=getIntent().getIntExtra("slot",0);
+        Log.d("slot",""+slot);
+
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setOffscreenPageLimit(0);
+        //mViewPager.setOffscreenPageLimit(10);
         new SendRequest().execute();
 
 
@@ -115,7 +119,7 @@ public class Show_room extends AppCompatActivity
             {
                 jArray = new JSONArray(result);
                 count=jArray.length();
-
+                Log.d("count",""+count);
             }
             catch (JSONException e)
             {
@@ -144,7 +148,14 @@ public class Show_room extends AppCompatActivity
                     json_send = jArray.getJSONObject(position);
 
                     Log.d("shipapi",json_send.toString());
-                    return Ships_fragment.newInstance(json_send);
+                    Ships_fragment ships_fragment=new Ships_fragment();
+                    Bundle args=new Bundle();
+                    args.putString("data",json_send.toString());
+                    args.putInt("slot",slot);
+                    Log.d("args",args.toString());
+                    ships_fragment.setArguments(args);
+                    return ships_fragment;
+
                 }
                 catch (JSONException e)
                 {
@@ -166,3 +177,5 @@ public class Show_room extends AppCompatActivity
         }
     }
 }
+
+

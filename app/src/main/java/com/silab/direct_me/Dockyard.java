@@ -1,6 +1,5 @@
 package com.silab.direct_me;
 
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,42 +27,40 @@ public class Dockyard extends AppCompatActivity
     ViewPager mViewPager;
     int count=1;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garage);
         mViewPager = (ViewPager) findViewById(R.id.pager);
         new SendRequest().execute();
-
-
     }
 
-    void startfragments()
+void startfragments()
+{
+    mViewPager.setAdapter(new Dockyard.BoatPagerAdapter(
+            getSupportFragmentManager()));
+}
+public class SendRequest extends AsyncTask<String, Void, String> {
+
+    protected void onPreExecute()
     {
-        mViewPager.setAdapter(new Dockyard.BoatPagerAdapter(
-                getSupportFragmentManager()));
     }
-    public class SendRequest extends AsyncTask<String, Void, String> {
 
-        protected void onPreExecute()
-        {
-        }
+    public String doInBackground(String... arg0) {
+        String authtoken = "";
+        String result = "";
+        try {
 
-        public String doInBackground(String... arg0) {
-            String authtoken = "";
-            JSONObject jsonObject = null;
-            String result = "";
-            try {
-
-                URL url = new URL("http://direct-me.herokuapp.com/user/ships/");
+            URL url = new URL("http://direct-me.herokuapp.com/user/ships/");
 
 
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(15000 /* milliseconds */);
-                conn.setConnectTimeout(15000 /* milliseconds */);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
 
-                conn.setRequestMethod("GET");
-                conn.addRequestProperty("Authorization", "Token 54fff69acdaf6842d422b5fd5c15e10707383cd3");
-                conn.connect();
+            conn.setRequestMethod("GET");
+            conn.addRequestProperty("Authorization", "Token 54fff69acdaf6842d422b5fd5c15e10707383cd3");
+            conn.connect();
 
                 /*OutputStream os = conn.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(
@@ -74,51 +71,51 @@ public class Dockyard extends AppCompatActivity
                 writer.close();
                 os.close();*/
 
-                int responseCode = conn.getResponseCode();
+            int responseCode = conn.getResponseCode();
 
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
 
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    StringBuffer sb = new StringBuffer("");
-                    String line = "";
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuffer sb = new StringBuffer("");
+                String line = "";
 
-                    while ((line = in.readLine()) != null) {
+                while ((line = in.readLine()) != null) {
 
-                        sb.append(line);
-                        break;
-                    }
-
-                    in.close();
-                    result = sb.toString();
+                    sb.append(line);
+                    break;
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), responseCode,
-                            Toast.LENGTH_LONG).show();
-                }
-            } catch (Exception e)
-            {
+
+                in.close();
+                result = sb.toString();
             }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result)
+            else
+            {
+                Toast.makeText(getApplicationContext(), responseCode,
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e)
         {
-            try
-            {
-                jArray = new JSONArray(result);
-                count=jArray.length();
+        }
+        return result;
+    }
 
-            }
-            catch (JSONException e)
-            {
-
-            }
-            startfragments();
+    @Override
+    protected void onPostExecute(String result)
+    {
+        try
+        {
+            jArray = new JSONArray(result);
+            count=jArray.length();
 
         }
+        catch (JSONException e)
+        {
+
+        }
+        startfragments();
+
     }
+}
 
     public class BoatPagerAdapter extends FragmentPagerAdapter
     {
@@ -129,33 +126,38 @@ public class Dockyard extends AppCompatActivity
             super(fm);
         }
 
+        int slot=0;
         @Override
         public Fragment getItem(int position)
         {
-            JSONObject json_send=null;
+         JSONObject json_send=null;
             if(jArray!=null) {
                 try {
                     if (position == 0)
-                    {
+                    {    slot=1;
                         json_send = jArray.getJSONObject(0);
-                        return Boats_equipped.newInstance(json_send);
+                        return Boats_equipped.newInstance(json_send,slot);
                     }
                     if(position==1)
-                    {
+                    {   slot=2;
                         json_send = jArray.getJSONObject(1);
-                        return Boats_equipped.newInstance(json_send);
+                        return Boats_equipped.newInstance(json_send,slot);
                     }
                     if(position==2) {
+                        slot=3;
                         json_send = jArray.getJSONObject(2);
-                        return Boats_equipped.newInstance(json_send);
+                        return Boats_equipped.newInstance(json_send,slot);
                     }
                     if(position==3) {
+                        slot=4;
                         json_send = jArray.getJSONObject(3);
-                        return Boats_equipped.newInstance(json_send);
+                        return Boats_equipped.newInstance(json_send,slot);
                     }
                     else
+                    {    slot=5;
                         json_send = jArray.getJSONObject(4);
-                    return Boats_equipped.newInstance(json_send);
+                        return Boats_equipped.newInstance(json_send,slot);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -176,3 +178,4 @@ public class Dockyard extends AppCompatActivity
         }
     }
 }
+

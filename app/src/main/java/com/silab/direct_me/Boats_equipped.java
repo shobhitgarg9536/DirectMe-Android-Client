@@ -7,17 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.support.v7.widget.AppCompatDrawableManager.get;
 
 /**
  * Created by YESH AGNIHOTRI on 19-11-2016.
@@ -27,10 +22,12 @@ public class Boats_equipped extends Fragment
 
 {
     static JSONObject json_data;
-    public static Boats_equipped newInstance(JSONObject jsonObject)
+    static int slot;
+    public static Boats_equipped newInstance(JSONObject jsonObject, int value)
     {
         Boats_equipped boats_equipped=new Boats_equipped();
         json_data=jsonObject;
+        slot=value;
         return boats_equipped;
     }
 
@@ -48,17 +45,18 @@ public class Boats_equipped extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         pref = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
-        View rootView = inflater.inflate(R.layout.dock_full, container,
+        View rootView = inflater.inflate(R.layout.dockyard, container,
                 false);
 
-        try {
+        try
+        {
 
             String name=json_data.getString("name");
 
             TextView boatname;
             boatname=(TextView)rootView.findViewById(R.id.boatname);
             boatname.setText(name);
-        }
+    }
         catch (Exception e)
         {
 
@@ -75,10 +73,10 @@ public class Boats_equipped extends Fragment
 
     }*/
         return rootView;
-    }
+}
 
     @Override
-    public void onViewCreated(View view,Bundle savedInstanceState)
+    public void onViewCreated(View view, Bundle savedInstanceState)
     {
 
         if (dockstatus==1)
@@ -90,6 +88,7 @@ public class Boats_equipped extends Fragment
                 public void onClick(View v)
                 {
                     Intent i = new Intent(getContext(), Show_room.class);
+                    i.putExtra("slot",slot);
                     startActivity(i);
                 }
             });

@@ -1,40 +1,35 @@
 package com.silab.direct_me;
 
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class Ships_fragment extends Fragment
+public class Ships_fragment extends Fragment implements fetch_dock_id.Response
 {
-    static JSONObject json_data;
-    public static Ships_fragment newInstance(JSONObject jsonObject)
+    JSONObject json_data;
+    int slot;
+    fetch_dock_id.FetchRequest object=new fetch_dock_id().new FetchRequest(this);
+
+    /*public static Ships_fragment newInstance(JSONObject jsonObject,int value)
     {
         Ships_fragment shipd=new Ships_fragment();
         json_data=jsonObject;
+        slot=value;
         return shipd;
-    }
+    }*/
 
 
 
@@ -49,11 +44,16 @@ public class Ships_fragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        pref = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
+        //pref = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
+        slot=getArguments().getInt("slot");
+        try {
+            json_data=new JSONObject(getArguments().getString("data",""));
+        } catch (JSONException e) {
+            json_data=null;
+            e.printStackTrace();
+        }
         View rootView = inflater.inflate(R.layout.raft_fragment, container,
                 false);
-        rootView.setId(id);
-        id++;
         try {
             int id=json_data.getInt("id");
             String name=json_data.getString("name");
@@ -65,24 +65,24 @@ public class Ships_fragment extends Fragment
             TextView boatname;
             boatname=(TextView)rootView.findViewById(R.id.boatname);
             boatname.setText(name);
-            if(json_data.getJSONArray("items_required").length()!=0) {
-                JSONArray jsonArray = json_data.getJSONArray("items_required");
+           if(json_data.getJSONArray("items_required").length()!=0) {
+               JSONArray jsonArray = json_data.getJSONArray("items_required");
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    if (jsonObject.getString("name").equalsIgnoreCase("Gold")) {
-                        gold_r = jsonObject.getInt("count");
-                    }
-                    if (jsonObject.getString("name").equalsIgnoreCase("Coconut"))
-                        coconut_r = jsonObject.getInt("count");
-                    if (jsonObject.getString("name").equalsIgnoreCase("Timber"))
-                        wood_r = jsonObject.getInt("count");
-                    if (jsonObject.getString("name").equalsIgnoreCase("Bamboo"))
-                        bamboo_r = jsonObject.getInt("count");
-                    if (jsonObject.getString("name").equalsIgnoreCase("Banana"))
-                        banana_r = jsonObject.getInt("count");
-                }
-            }
+               for (int i = 0; i < jsonArray.length(); i++) {
+                   JSONObject jsonObject = jsonArray.getJSONObject(i);
+                   if (jsonObject.getString("name").equalsIgnoreCase("Gold")) {
+                       gold_r = jsonObject.getInt("count");
+                   }
+                   if (jsonObject.getString("name").equalsIgnoreCase("Coconut"))
+                       coconut_r = jsonObject.getInt("count");
+                   if (jsonObject.getString("name").equalsIgnoreCase("Timber"))
+                       wood_r = jsonObject.getInt("count");
+                   if (jsonObject.getString("name").equalsIgnoreCase("Bamboo"))
+                       bamboo_r = jsonObject.getInt("count");
+                   if (jsonObject.getString("name").equalsIgnoreCase("Banana"))
+                       banana_r = jsonObject.getInt("count");
+               }
+           }
 
         } catch (JSONException e)
         {
@@ -115,41 +115,74 @@ public class Ships_fragment extends Fragment
     public static final int DFRAGMENT = 1;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
 
-        FragmentTransaction ft=getChildFragmentManager().beginTransaction();
+        final FragmentTransaction ft=getChildFragmentManager().beginTransaction();
         final DFragment dFragment = new DFragment();
         // TODO Auto-generated method stub
         // get the button view
         img = (ImageView) getView().findViewById(R.id.buy1);
         // set a onclick listener for when the button gets clicked
         img.setOnClickListener(new View.OnClickListener() {
-            // Start new list activity
-            public void onClick(View v) {
-
-                onResume();
-                checkPurchase cp = new checkPurchase(getContext());
-
-                boolean result = cp.forpurchase(banana_r, bamboo_r, gold_r, coconut_r, wood_r);
-                String sendres;
-
-                if (result == true)
-                    sendres = "true";
-                else
-                    sendres = "false";
+                                   // Start new list activity
+                                   public void onClick(View v)
+                                   {
+                                       fetch_dock_id.FetchRequest object=new fetch_dock_id().new FetchRequest(Ships_fragment.this);
+                                         object.execute();
+                                       //onResume();
 
 
-                Bundle args = new Bundle();
-                args.putString("check", sendres + " " + Integer.toString(banana_r) + " " + Integer.toString(gold_r) + " " + Integer.toString(gold_r) + " " + Integer.toString(bamboo_r) + " " + Integer.toString(coconut_r) + " ");
-                dFragment.setArguments(args);
-                // Show DialogFragment
-                dFragment.show(getFragmentManager(), "Dialog Fragment");      // custom dialog
-                com.silab.direct_me.Ships_fragment obj = new com.silab.direct_me.Ships_fragment();
-            }
-        });
-
-        ft.commit();
+                                   }
+                               });
     }
+
+    public void processfinish(String result)
+    {
+        FragmentTransaction ft=getChildFragmentManager().beginTransaction();
+        final DGFragment dFragment = new DGFragment();
+
+        int res=999;
+        try {
+            JSONArray jsonArray=new JSONArray(result);
+            for(int i=0;i<jsonArray.length();i++)
+            {
+                JSONObject json_data = jsonArray.getJSONObject(i);
+                int get_slot=json_data.getInt("slot");
+                Log.d("slot on this",""+slot);
+                Log.d("get_slot",""+get_slot);
+                if(get_slot==slot)
+                {
+                    res=json_data.getInt("ship");
+                    Log.d("id json",""+json_data.getInt("ship"));
+                    break;
+                }
+            }
+          Log.d("id",""+res);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+             Bundle args=new Bundle();
+             args.putInt("dock_id",res);
+             dFragment.setTargetFragment(this,0);
+             dFragment.setArguments(args);
+            dFragment.show(ft, "Dialog Fragment");
+    }
+
+    public void onActivityResult(int requestcode,int resultcode,Intent intent)
+    {
+        String message=intent.getStringExtra("message");
+        FragmentTransaction ft=this.getChildFragmentManager().beginTransaction();
+        final DFragment dFragment = new DFragment();
+       Log.d("post dialog msg",intent.getStringExtra("message"));
+        Bundle args=new Bundle();
+        args.putString("message",message);
+        dFragment.setArguments(args);
+        dFragment.show(ft, "Dialog Fragment");
+
+    }
+}
     /*public void onResume()
     {
         super.onResume();
@@ -163,5 +196,3 @@ public class Ships_fragment extends Fragment
     }*/
 
 
-
-}
