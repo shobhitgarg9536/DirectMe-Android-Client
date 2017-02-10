@@ -46,7 +46,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         banana = (TextView) findViewById(R.id.textviewbanana);
         timber = (TextView) findViewById(R.id.textviewtimber);
         gold_coin = (TextView) findViewById(R.id.textviewgoldCoin);
-        Volume = (ImageView) findViewById(R.id.volume);
+
         log_out = (TextView) findViewById(R.id.textviewgoldCoin);
         coinimg = (ImageView) findViewById(R.id.coin);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -62,7 +62,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         parking.setOnClickListener(this);
         garage.setOnClickListener(this);
         showroom.setOnClickListener(this);
-        Volume.setOnClickListener(this);
+
 
 
         controller.addObserver(Dashboard.this);
@@ -161,19 +161,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 Intent in = new Intent(Dashboard.this, Dockyard.class);
                 startActivity(in);
                 break;
-            case R.id.volume:
-                if (im) {
-                    Volume.setBackgroundResource(R.drawable.downloade);
 
-                    im=false;
-
-
-                } else {
-                    Volume.setBackgroundResource(R.drawable.volume);
-
-                    im=true;
-
-                }
 
         }
 

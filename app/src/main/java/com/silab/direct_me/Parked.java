@@ -12,42 +12,51 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.*;
+
 import static com.silab.direct_me.UserLogin.Authorization_Token;
 
 
-public class Parked extends AppCompatActivity implements View.OnClickListener {
+public class Parked extends AppCompatActivity implements View.OnClickListener, java.util.Observer{
 
-    RelativeLayout rl;
+    ConstraintLayout rl;
     int i;
     Button undock;
-    Button parkedShipDetial1,parkedShipDetial2,parkedShipDetial3,parkedShipDetial4,parkedShipDetial5;
+    ImageView parkedShipDetial1,parkedShipDetial2,parkedShipDetial3,parkedShipDetial4,parkedShipDetial5;
     TextView parking,boat_dock,time,user_name,boat_name,parking_allowness;
     CheckConnectivity network;
     boolean network_available;
     DatabaseHandler db;
+    int comm[]=new int[5];
     MyAsyncTask myAsyncTask;
-    SharedPreferences sharedpreferences;
+    TextView gold_coin,banana,coconut,bamboo,timber;
+    Controller controller = new Controller();
+    public static final String MyPREFERENCE = "MyPrefs" ;
+
+    SharedPreferences sharedpreferences,sharedpreference;
     public static final String MyPREFERENCES = "UserName";
     String token;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parked);
-        parkedShipDetial1 = (Button)findViewById(R.id.buttonParkedShip1);
-        parkedShipDetial2 = (Button)findViewById(R.id.buttonParkedShip2);
-        parkedShipDetial3 = (Button)findViewById(R.id.buttonParkedShip3);
-        parkedShipDetial4 = (Button)findViewById(R.id.buttonParkedShip4);
-        parkedShipDetial5 = (Button)findViewById(R.id.buttonParkedShip5);
+        parkedShipDetial1 = (ImageView) findViewById(R.id.imageViewParkedShip1);
+        parkedShipDetial2 = (ImageView) findViewById(R.id.imageViewParkedShip2);
+        parkedShipDetial3 = (ImageView) findViewById(R.id.imageViewParkedShip3);
+        parkedShipDetial4 = (ImageView) findViewById(R.id.imageViewParkedShip4);
+        parkedShipDetial5 = (ImageView) findViewById(R.id.imageViewParkedShip5);
         undock = (Button) findViewById(R.id.remove);
         parking = (TextView) findViewById(R.id.ftd);
         boat_dock = (TextView) findViewById(R.id.std);
@@ -55,11 +64,20 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         parking_allowness = (TextView) findViewById(R.id.ftd);
         user_name = (TextView) findViewById(R.id.ttd);
         boat_name = (TextView) findViewById(R.id.fotd);
-        rl=(RelativeLayout)findViewById(R.id.relat);
-        rl.setVisibility(View.INVISIBLE);
+        rl=(ConstraintLayout) findViewById(R.id.relat);
+        rl.setVisibility(View.VISIBLE);
+        gold_coin=(TextView)findViewById(R.id.gold_no);
+        banana=(TextView)findViewById(R.id.banana_no);
+        coconut=(TextView)findViewById(R.id.coconut_no);
+        bamboo=(TextView)findViewById(R.id.bamboo_no);
+        timber=(TextView)findViewById(R.id.wood_no);
+        sharedpreference = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
-
+        parkedDetail("0");
         undock.setOnClickListener(this);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         db = new DatabaseHandler(getApplicationContext());
 
         parkedShipDetial1.setOnClickListener(this);
@@ -67,6 +85,28 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         parkedShipDetial3.setOnClickListener(this);
         parkedShipDetial4.setOnClickListener(this);
         parkedShipDetial5.setOnClickListener(this);
+
+        controller.addObserver((java.util.Observer)this);
+        count();
+    }
+    public void count()
+    {int i;
+        for(i=0;i<5;i++)
+        {   if (sharedpreference.contains(Dashboard.co[i])) {
+            comm[i]= Integer.parseInt(sharedpreference.getString(Dashboard.co[i],""));
+
+
+
+        }
+
+
+        }
+        controller.setBambooCount(comm[3]);
+        controller.setBananaCount(comm[2]);
+        controller.setTimberCount(comm[1]);
+        controller.setCoconutCount(comm[0]);
+        controller.setGoldCoinCount(comm[4]);
+
     }
 
 
@@ -78,31 +118,31 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
 
         switch (view.getId()){
 
-            case R.id.buttonParkedShip1:
+            case R.id.imageViewParkedShip1:
                 parkedDetail("0");
 
                 undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip2:
+            case R.id.imageViewParkedShip2:
                 parkedDetail("1");
 
-                    undock.setVisibility(View.GONE);
+                undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip3:
+            case R.id.imageViewParkedShip3:
                 parkedDetail("2");
 
                 undock.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip4:
+            case R.id.imageViewParkedShip4:
                 parkedDetail("3");
 
                 undock.setVisibility(View.VISIBLE);
                 rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonParkedShip5:
+            case R.id.imageViewParkedShip5:
                 parkedDetail("4");
 
                 undock.setVisibility(View.VISIBLE);
@@ -181,6 +221,17 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         alertDialog.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+
+    }
+    @Override
+    public void update(Observable observable, Object o) {
+        controller = (Controller) observable;
+        System.out.println(controller.getBananaCount());
+        bamboo.setText(Integer.toString(controller.getBambooCount()));
+        coconut.setText(Integer.toString(controller.getCoconutCount()));
+        banana.setText(Integer.toString(controller.getBananaCount()));
+        timber.setText(Integer.toString(controller.getTimberCount()));
+        gold_coin.setText(Integer.toString(controller.getGoldCoinCount()));
 
     }
 

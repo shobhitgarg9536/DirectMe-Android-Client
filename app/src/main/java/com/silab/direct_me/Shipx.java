@@ -150,7 +150,7 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
 
         }
             c[i]= Integer.toString(comm[i]);
-            Toast.makeText(getContext(),c[i], Toast.LENGTH_SHORT).show();
+
         }
         controller.setBambooCount(comm[3]);
         controller.setBananaCount(comm[2]);

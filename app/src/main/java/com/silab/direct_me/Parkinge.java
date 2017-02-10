@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +35,9 @@ public class Parkinge extends AppCompatActivity {
         setContentView(R.layout.parkingmain);
         mViewPager = (ViewPager) findViewById(R.id.pagerr);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         connect();
     }
