@@ -4,12 +4,14 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,11 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +38,7 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
     ArrayList<HashMap<String, String>> users;
     Button removeuserList;
     ListView lvUsers;
+    ImageView imageview,cloud1,cloud2;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences,sharedPreferences1;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -70,34 +69,135 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
         island3.setOnClickListener(this);
         island4.setOnClickListener(this);
         pirate_Island.setOnClickListener(this);
+        cloud1 = (ImageView) findViewById(R.id.imageViewcloud1);
+        cloud2 = (ImageView) findViewById(R.id.imageViewcloud2);
+        cloud1.setVisibility(View.INVISIBLE);
+        cloud2.setVisibility(View.INVISIBLE);
+        final ImageView animImageView = (ImageView) findViewById(R.id.water);
+
+        animImageView.setBackgroundResource(R.drawable.animation);
+        animImageView.post(new Runnable() {
+            @Override
+            public void run() {
+                AnimationDrawable frameAnimation =
+                        (AnimationDrawable) animImageView.getBackground();
+                frameAnimation.start();
+            }
+        });
        // removeuserList.setOnClickListener(this);
 
 
 
     }
-
+    Thread thread;
+    Animation animation,animationb;
     @Override
     public void onClick(View view) {
 
         switch (view.getId()){
 
             case R.id.imageViewisland1:
-                userList("4");
+                cloud1.setVisibility(View.VISIBLE);
+                cloud2.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud1);
+                animationb= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud2);
+                cloud1.startAnimation(animation);
+                cloud2.startAnimation(animationb);
+                thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            while(true) {
+                                sleep(10000);
+                                userList("4");
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                thread.start();
+
+
                 //making User list visible
             //    llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.imageViewisland2:
-                userList("4");
+
+                cloud1.setVisibility(View.VISIBLE);
+                cloud2.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud1);
+                animationb= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud2);
+                cloud1.startAnimation(animation);
+                cloud2.startAnimation(animationb);
+                thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            while(true) {
+                                sleep(10000);
+                                userList("4");
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                thread.start();
                 //making User list visible
           //      llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.imageViewisland3:
-                userList("4");
+
+                cloud1.setVisibility(View.VISIBLE);
+                cloud2.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud1);
+                animationb= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud2);
+                cloud1.startAnimation(animation);
+                cloud2.startAnimation(animationb);
+                thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            while(true) {
+                                sleep(10000);
+                                userList("4");
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                thread.start();
                 //making User list visible
            //     llUserList.setVisibility(View.VISIBLE);
                 break;
             case R.id.imageViewisland4:
-                userList("4");
+
+                cloud1.setVisibility(View.VISIBLE);
+                cloud2.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud1);
+                animationb= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud2);
+                cloud1.startAnimation(animation);
+                cloud2.startAnimation(animationb);
+                thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            while(true) {
+                                sleep(10000);
+                                userList("4");
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                thread.start();
                 //making User list visible
            //     llUserList.setVisibility(View.VISIBLE);
                 break;
@@ -106,6 +206,27 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
             //    llUserList.setVisibility(View.GONE);
                 break;
             case R.id.imageViewpirateisland:
+                cloud1.setVisibility(View.VISIBLE);
+                cloud2.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud1);
+                animationb= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud2);
+                cloud1.startAnimation(animation);
+                cloud2.startAnimation(animationb);
+                thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            while(true) {
+                                sleep(10000);
+                                userList("4");
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                thread.start();
                 //making ISland view Visible
            //     llUserList.setVisibility(View.VISIBLE);
                 break;
@@ -113,6 +234,7 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void userList(String island){
+
 
         MyAsyncTask myAsyncTask = new MyAsyncTask(new AsyncResponse() {
             @Override
@@ -153,6 +275,10 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                             "name" ,"parking" }, new int[] { R.id.textviewusername , R.id.textViewparking
                     });
                     userList.setAdapter(adapter);
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud1b);
+                    Animation animationb= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cloud2b);
+                    cloud1.startAnimation(animation);
+                    cloud2.startAnimation(animationb);
                     userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -207,11 +333,14 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
                     );
                     dialog.show();
 
+
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
+                cloud1.setVisibility(View.INVISIBLE);
+                cloud2.setVisibility(View.INVISIBLE);
+              thread.interrupt();
 
             }
         },this);

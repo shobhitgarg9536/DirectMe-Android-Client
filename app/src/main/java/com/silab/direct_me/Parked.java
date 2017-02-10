@@ -24,10 +24,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.*;
+
 import static com.silab.direct_me.UserLogin.Authorization_Token;
 
 
-public class Parked extends AppCompatActivity implements View.OnClickListener {
+public class Parked extends AppCompatActivity implements View.OnClickListener, java.util.Observer{
 
     ConstraintLayout rl;
     int i;
@@ -37,8 +39,13 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
     CheckConnectivity network;
     boolean network_available;
     DatabaseHandler db;
+    int comm[]=new int[5];
     MyAsyncTask myAsyncTask;
-    SharedPreferences sharedpreferences;
+    TextView gold_coin,banana,coconut,bamboo,timber;
+    Controller controller = new Controller();
+    public static final String MyPREFERENCE = "MyPrefs" ;
+
+    SharedPreferences sharedpreferences,sharedpreference;
     public static final String MyPREFERENCES = "UserName";
     String token;
     @Override
@@ -59,6 +66,12 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         boat_name = (TextView) findViewById(R.id.fotd);
         rl=(ConstraintLayout) findViewById(R.id.relat);
         rl.setVisibility(View.VISIBLE);
+        gold_coin=(TextView)findViewById(R.id.gold_no);
+        banana=(TextView)findViewById(R.id.banana_no);
+        coconut=(TextView)findViewById(R.id.coconut_no);
+        bamboo=(TextView)findViewById(R.id.bamboo_no);
+        timber=(TextView)findViewById(R.id.wood_no);
+        sharedpreference = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
         parkedDetail("0");
         undock.setOnClickListener(this);
@@ -72,6 +85,28 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         parkedShipDetial3.setOnClickListener(this);
         parkedShipDetial4.setOnClickListener(this);
         parkedShipDetial5.setOnClickListener(this);
+
+        controller.addObserver((java.util.Observer)this);
+        count();
+    }
+    public void count()
+    {int i;
+        for(i=0;i<5;i++)
+        {   if (sharedpreference.contains(Dashboard.co[i])) {
+            comm[i]= Integer.parseInt(sharedpreference.getString(Dashboard.co[i],""));
+
+
+
+        }
+
+
+        }
+        controller.setBambooCount(comm[3]);
+        controller.setBananaCount(comm[2]);
+        controller.setTimberCount(comm[1]);
+        controller.setCoconutCount(comm[0]);
+        controller.setGoldCoinCount(comm[4]);
+
     }
 
 
@@ -186,6 +221,17 @@ public class Parked extends AppCompatActivity implements View.OnClickListener {
         alertDialog.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+
+    }
+    @Override
+    public void update(Observable observable, Object o) {
+        controller = (Controller) observable;
+        System.out.println(controller.getBananaCount());
+        bamboo.setText(Integer.toString(controller.getBambooCount()));
+        coconut.setText(Integer.toString(controller.getCoconutCount()));
+        banana.setText(Integer.toString(controller.getBananaCount()));
+        timber.setText(Integer.toString(controller.getTimberCount()));
+        gold_coin.setText(Integer.toString(controller.getGoldCoinCount()));
 
     }
 

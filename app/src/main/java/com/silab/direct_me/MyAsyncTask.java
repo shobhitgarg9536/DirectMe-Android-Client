@@ -40,10 +40,7 @@ public class MyAsyncTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = new ProgressDialog(ctx);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
 
     }
 
@@ -240,7 +237,7 @@ public class MyAsyncTask extends AsyncTask<String, String, String> {
     }
     @Override
     protected void onPostExecute(String result) {
-        progressDialog.dismiss();
+
         delegate.processFinish(result);
         super.onPostExecute(result);
     }
