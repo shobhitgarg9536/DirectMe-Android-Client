@@ -86,8 +86,6 @@ public class Parknow extends AppCompatActivity implements View.OnClickListener {
         });
        // removeuserList.setOnClickListener(this);
 
-
-
     }
     Thread thread;
     Animation animation,animationb;
