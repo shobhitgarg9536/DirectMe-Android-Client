@@ -19,10 +19,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "Direct_me";
 
-    // Contacts table name
+    // SHIP table name
     private static final String TABLE_SHIP = "ship";
 
-    // Contacts Table Columns names
+    // SHIP Table Columns names
     private static final String KEY_ID = "id";
     private static final String Api_id = "_api_id";
     private static final String Name = "_name";
@@ -97,7 +97,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-    // Adding new contact
+    // Adding new ship
     void addShip(Ships ship) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -133,7 +133,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    // Getting single contact
+    // Getting single detail of ship
     Ships getShip(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -149,7 +149,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Ships ship= new Ships(cursor.getString(0),
                 cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),
                 cursor.getString(7),cursor.getString(8),cursor.getString(9));
-        // return contact
+        // return ship
         return ship;
     }
     User getUser(String id) {
@@ -166,12 +166,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         User user= new User(cursor.getString(0),
                 cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4));
-        // return contact
+        // return user
         return user;
     }
 
 
-    // Getting All Contacts
+    // Getting All ship
     public List<Ships> getAllShip() {
         List<Ships> shipList = new ArrayList<Ships>();
         // Select All Query
@@ -200,7 +200,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        // return contact list
+        // return value of ship list
         return shipList;
     }
     public List<User> getAllUser() {
@@ -227,14 +227,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        // return contact list
+        // return user list
         return UserList;
     }
 
 
 
 
-    // Getting contacts Count
+    // Getting ships Count
     public int getshipCount() {
         String countQuery = "SELECT  * FROM " + TABLE_SHIP;
         SQLiteDatabase db = this.getReadableDatabase();

@@ -85,7 +85,7 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
          db = new DatabaseHandler(getActivity());
 
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();//time of parking
         calendar.setTime(new Date());
         int hour = calendar.get(Calendar.HOUR)*60*60;
         int min= calendar.get(Calendar.MINUTE)*60;
@@ -152,7 +152,7 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
             c[i]= Integer.toString(comm[i]);
 
         }
-        controller.setBambooCount(comm[3]);
+        controller.setBambooCount(comm[3]);//controller class to set count
         controller.setBananaCount(comm[2]);
         controller.setTimberCount(comm[1]);
         controller.setCoconutCount(comm[0]);

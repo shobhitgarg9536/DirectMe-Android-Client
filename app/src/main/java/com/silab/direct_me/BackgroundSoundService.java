@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Lenovo on 14-Jan-17.
  */
-
+//Background service for sound
 public class BackgroundSoundService extends Service {
 
     MediaPlayer player;

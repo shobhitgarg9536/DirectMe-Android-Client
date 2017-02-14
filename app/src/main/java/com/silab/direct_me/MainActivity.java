@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
     }
 
     @Override
-
+//to stop sound when minimised
 
     public void onResume() {
         super.onResume();

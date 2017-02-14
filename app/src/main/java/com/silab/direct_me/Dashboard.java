@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -38,7 +37,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);//to make screen full screen
 
 
         bamboo = (TextView) findViewById(R.id.textviewbamboo);
@@ -136,9 +135,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        Fragment fr;
 
-        fr=new Dash();
 
         switch (view.getId()) {
             case R.id.imageviewpark:
@@ -167,6 +164,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     }
     @Override
+    //updating values through observer
     public void update(Observable observable, Object o) {
         controller = (Controller) observable;
         System.out.println(controller.getBananaCount());

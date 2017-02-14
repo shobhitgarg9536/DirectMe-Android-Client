@@ -27,7 +27,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class Login extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
 
-    //Signin bu
+    //Signin button
     private SignInButton signInButton;
 
     //Signing Options
