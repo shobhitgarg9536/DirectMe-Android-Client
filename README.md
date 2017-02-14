@@ -1,2 +1,1 @@
-# Direct
-DirectMe Android
+# Direct Me Android
