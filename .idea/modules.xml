@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Direct.iml" filepath="$PROJECT_DIR$/Direct.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Direct-Me.iml" filepath="$PROJECT_DIR$/Direct-Me.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DirectMe-Android-Client.iml" filepath="$PROJECT_DIR$/DirectMe-Android-Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/android-async-http-1.4.4/android-async-http-1.4.4.iml" filepath="$PROJECT_DIR$/android-async-http-1.4.4/android-async-http-1.4.4.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
