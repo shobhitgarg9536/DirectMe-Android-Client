@@ -1,6 +1,7 @@
 package com.silab.direct_me;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,9 +34,9 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     public static final String[] co = new String[5];
     Controller controller = new Controller();
     public static final String MyPREFERENCES = "MyPrefs";
-    CheckConnectivity network;
     boolean network_available;
     MyAsyncTask myAsyncTask;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     private boolean im=true;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,13 +72,56 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         controller.addObserver(Dashboard.this);
         count();
 
+        if(CheckConnectivity.isNetConnected(Dashboard.this)) {
+
+            SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF, 0);
+            String firebase_id_send_to_server_or_not = sharedPreferences.getString("FirebaseIdSendToServer", "");
+
+            if (firebase_id_send_to_server_or_not.equals("0")) {
+                String token = sharedPreferences.getString("regId", "");
+                sharedPreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+                String UserContact = sharedPreferences.getString("UserContact", "");
+                FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
+                    @Override
+                    public void processFinish(String output) {
+                        System.out.println(output);
+                    }
+                });
+                firebaseTokenBackgroundWorker.execute(UserContact, token);
+            }
+
+        }
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // checking for type intent filter
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                    // fcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+
+
+                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                    // new push notification is received
+
+                    String message = intent.getStringExtra("message");
+
+                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+
+
+                }
+            }
+        };
+
 
     }
 
     public void count() {
 
 
-        network_available = network.isNetConnected(getApplicationContext());
+        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
             myAsyncTask = new MyAsyncTask(new AsyncResponse() {
                 @Override
@@ -136,9 +183,6 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        Fragment fr;
-
-        fr=new Dash();
 
         switch (view.getId()) {
             case R.id.imageviewpark:
