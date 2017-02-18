@@ -85,13 +85,7 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".enter_boat" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="in.silive.directme.ENTER_BOAT" />
-                <category android:name="android.intent.category.DEFAULT" />
 
-            </intent-filter>
-        </activity>
 
 
     <activity android:name=".Login" android:screenOrientation="landscape">
@@ -110,13 +104,7 @@
         </activity>
 
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_appid_"/>
-        <activity android:name=".Parki" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-
-            </intent-filter>
-        </activity>
         <service android:name="MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

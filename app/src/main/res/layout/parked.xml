@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:id="@+id/relativeLayout1"
             android:background="@color/cardview_dark_background"
-            android:layout_height="469dp"
+            android:layout_height="0dp"
             tools:layout_constraintTop_creator="1"
             tools:layout_constraintRight_creator="1"
             app:layout_constraintRight_toRightOf="parent"
@@ -233,7 +233,7 @@
                 app:layout_constraintTop_toTopOf="@+id/coconut_show" />
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="130dp"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:id="@+id/showroom"
                 android:background="#FFFFFF"
@@ -253,7 +253,7 @@
                     android:text="PORTS"
 
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toTopOf="@id/showroom"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginLeft="40dp"
                     android:id="@+id/textView5"
@@ -274,7 +274,8 @@
                 android:layout_marginLeft="2dp"
 
                 android:layout_marginTop="43dp"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="2dp">
 
 
                 <ImageView
@@ -283,12 +284,12 @@
                     app:srcCompat="@drawable/ship1"
                     android:id="@+id/imageViewParkedShip1"
 
-                    app:layout_constraintTop_toTopOf="@id/ports"
-                    app:layout_constraintLeft_toLeftOf="@+id/ports"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
 
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                     />
+                    android:layout_marginStart="20dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -297,11 +298,12 @@
 
                     android:id="@+id/imageViewParkedShip2"
 
-                    app:layout_constraintTop_toTopOf="@id/imageViewParkedShip1"
-                    app:layout_constraintLeft_toLeftOf="@+id/ports"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewParkedShip1"
+                    app:layout_constraintLeft_toLeftOf="parent"
 
                     android:layout_marginTop="60dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -309,11 +311,12 @@
                     app:srcCompat="@drawable/ship1"
 
                     android:id="@+id/imageViewParkedShip3"
-                    app:layout_constraintTop_toTopOf="@id/imageViewParkedShip2"
-                    app:layout_constraintLeft_toLeftOf="@+id/ports"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewParkedShip2"
+                    app:layout_constraintLeft_toLeftOf="parent"
 
                     android:layout_marginTop="60dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -321,11 +324,12 @@
                     app:srcCompat="@drawable/ship1"
 
                     android:id="@+id/imageViewParkedShip4"
-                    app:layout_constraintTop_toTopOf="@id/imageViewParkedShip3"
-                    app:layout_constraintLeft_toLeftOf="@+id/ports"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewParkedShip3"
+                    app:layout_constraintLeft_toLeftOf="parent"
 
                     android:layout_marginTop="60dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -333,23 +337,25 @@
                     app:srcCompat="@drawable/ship1"
 
                     android:id="@+id/imageViewParkedShip5"
-                    app:layout_constraintTop_toTopOf="@id/imageViewParkedShip4"
-                    app:layout_constraintLeft_toLeftOf="@+id/ports"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewParkedShip4"
+                    app:layout_constraintLeft_toLeftOf="parent"
 
                     android:layout_marginTop="60dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="576dp"
-                android:layout_height="431dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:id="@+id/relat"
 
 
-                app:layout_constraintTop_toTopOf="@id/relativeLayout1"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="@+id/ports"
                 android:layout_marginTop="2dp"
-                android:layout_marginLeft="140dp">
+                android:layout_marginLeft="140dp"
+                android:layout_marginStart="140dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -364,7 +370,7 @@
 
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="48dp" />
+                    android:layout_marginLeft="40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -377,7 +383,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/heading"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -389,8 +396,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/heading"
                     android:layout_marginLeft="220dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat"
-                     />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="220dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -402,8 +409,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/ft"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat"
-                     />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -415,7 +422,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/ftd"
                     android:layout_marginLeft="220dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="220dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -427,7 +435,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/st"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -440,7 +449,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/std"
                     android:layout_marginLeft="220dp"
                     android:layout_marginTop="18dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="220dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -452,7 +462,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/tt"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -465,7 +476,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/ttd"
                     android:layout_marginLeft="220dp"
                     android:layout_marginTop="14dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="220dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -477,7 +489,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/fot"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -489,7 +502,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/fotd"
                     android:layout_marginLeft="220dp"
                     android:layout_marginTop="18dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="220dp" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -499,8 +513,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/fotd"
                     android:layout_marginLeft="120dp"
                     android:layout_marginTop="60dp"
-                    app:layout_constraintLeft_toLeftOf="@id/relat"
-                     />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="120dp" />
 
 
             </android.support.constraint.ConstraintLayout>
