@@ -28,8 +28,7 @@ public class Controller extends Observable {
 
     public void setCommodity(String commodity) {
         Commodity = commodity;
-        BackgroundWorker backgroundWorker = new BackgroundWorker();
-        backgroundWorker.execute(Commodity , Config.COMODITY_URL);
+
         //whatever values comes in save it in sharedPreferences , values may come in JSON
         setChanged();
         notifyObservers();
