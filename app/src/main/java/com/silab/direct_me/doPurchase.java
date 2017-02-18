@@ -16,7 +16,7 @@ public class doPurchase
         this.context1=context;
     }
 
-    void subtractcommodities(int banana, int bamboo, int gold, int coco, int wood)
+    public void subtractcommodities(int banana, int bamboo, int gold, int coco, int wood)
     {
         int c=0,field;
         banana=10;
