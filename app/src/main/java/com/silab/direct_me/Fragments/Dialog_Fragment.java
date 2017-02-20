@@ -14,16 +14,15 @@ package com.silab.direct_me.Fragments;
         import android.widget.TextView;
 
         import com.silab.direct_me.R;
-        import com.silab.direct_me.doPurchase;
 
-public class DFragment extends DialogFragment
+public class Dialog_Fragment extends DialogFragment
 {
     String tvalue="",banana_req="", gold_req="", wood_req="", bamboo_req="", coconut_req="";
-    int ibanana_req=0, igold_req=0, iwood_req=0, ibamboo_req=0, icoconut_req=0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView1 = inflater.inflate(R.layout.dialogf, container,
+        View rootView1 = inflater.inflate(R.layout.dialog_fragment_layout, container,
                 false);
         tvalue="";banana_req="";gold_req="";wood_req=""; bamboo_req="";coconut_req="";
 
@@ -93,20 +92,7 @@ public class DFragment extends DialogFragment
                @Override
                public void onClick(View view)
                {
-                   doPurchase obj=new doPurchase(getContext());
-                   if(banana_req!=null)
-                       ibanana_req=Integer.parseInt(banana_req);
-                   if(gold_req!=null)
-                       igold_req=Integer.parseInt(gold_req);
-                   if(wood_req!=null)
-                       iwood_req=Integer.parseInt(wood_req);
-                   if(bamboo_req!=null)
-                       ibamboo_req=Integer.parseInt(bamboo_req);
-                   if(coconut_req!=null)
-                   icoconut_req=Integer.parseInt(coconut_req);
-                   obj.subtractcommodities(ibanana_req, igold_req,iwood_req, ibamboo_req, icoconut_req);
 
-                   dialog.dismiss();
                }
            });
            Button buttoncancel=(Button)rootView1.findViewById(R.id.cancel);

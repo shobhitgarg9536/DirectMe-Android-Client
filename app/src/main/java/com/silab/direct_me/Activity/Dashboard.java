@@ -202,7 +202,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent4);
                 break;
             case R.id.imageviewparking:
-                Intent intent1 = new Intent(this, Parkinge.class);
+                Intent intent1 = new Intent(this, Parking.class);
                 startActivity(intent1);
                 break;
             case R.id.imageviewshowroom:
