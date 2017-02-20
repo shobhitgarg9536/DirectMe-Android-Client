@@ -10,36 +10,37 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import in.silive.directme.AsyncTask.ApiCalling;
-import in.silive.directme.CheckConnectivity;
-import in.silive.directme.Interface.AsyncResponse;
-import in.silive.directme.R;
-import in.silive.directme.Fragments.Shipx;
-import in.silive.directme.Utils.API_URL_LIST;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import static in.silive.directme.Activity.UserLogin.Authorization_Token;
+import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.CheckConnectivity;
+import in.silive.directme.Fragments.Shipx;
+import in.silive.directme.Interface.AsyncResponse;
+import in.silive.directme.R;
+import in.silive.directme.Utils.API_URL_LIST;
+
+import static in.silive.directme.Activity.MainActivity.Authorization_Token;
+
 
 /**
  * Created by Lenovo on 01-Dec-16.
  */
 
-public class Parkinge extends AppCompatActivity {
+public class Parking extends AppCompatActivity {
+    public static final String MyPREFERENCES = "UserName";
     ViewPager mViewPager;
-    CheckConnectivity network;
     boolean network_available;
     ApiCalling apicalling;
     int i;
-    int count=1;
+    int count = 1;
     JSONArray user;
     SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "UserName";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parkingmain);
+        setContentView(R.layout.parkingmain_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pagerr);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -49,34 +50,33 @@ public class Parkinge extends AppCompatActivity {
         connect();
     }
 
-    void startfragments()
-    {
+    void startfragments() {
         mViewPager.setAdapter(new BoatPagerAdapter(
                 getSupportFragmentManager()));
     }
+
     void connect() {
-        final String token = sharedpreferences.getString("Authorization_Token" , "");
-        network_available = network.isNetConnected(getApplicationContext());
+        final String token = sharedpreferences.getString("Authorization_Token", "");
+        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
             apicalling = new ApiCalling(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
                     try {
                         user = new JSONArray(output);
-                        count=user.length();
+                        count = user.length();
                         startfragments();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-            },this);
-            apicalling.execute(API_URL_LIST.PARKED_URL,token,"get");
+            }, this);
+            apicalling.execute(API_URL_LIST.PARKED_URL, token, "get");
 
         }
     }
 
-    public class BoatPagerAdapter extends FragmentPagerAdapter
-    {
+    public class BoatPagerAdapter extends FragmentPagerAdapter {
 
         public BoatPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -98,7 +98,7 @@ public class Parkinge extends AppCompatActivity {
             else
                 return new Shipx();
         }*/
-            if(user!=null) {
+            if (user != null) {
                 try {
 
                     return Shipx.newInstance(user.getJSONObject(0));
@@ -111,8 +111,7 @@ public class Parkinge extends AppCompatActivity {
         }
 
         @Override
-        public int getCount()
-        {
+        public int getCount() {
             return count;
         }
     }

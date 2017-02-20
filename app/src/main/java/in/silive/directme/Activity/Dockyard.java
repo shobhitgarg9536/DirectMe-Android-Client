@@ -1,165 +1,116 @@
 package in.silive.directme.Activity;
 
-import android.os.AsyncTask;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
-
-import in.silive.directme.Fragments.Boats_equipped;
-import in.silive.directme.R;
+import android.view.WindowManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.CheckConnectivity;
+import in.silive.directme.Fragments.Boats_equipped;
+import in.silive.directme.Interface.AsyncResponse;
+import in.silive.directme.R;
+import in.silive.directme.Utils.API_URL_LIST;
 
-import javax.net.ssl.HttpsURLConnection;
+import static in.silive.directme.Activity.MainActivity.Authorization_Token;
 
 
-public class Dockyard extends AppCompatActivity
-{
+public class Dockyard extends AppCompatActivity {
+    public static final String MyPREFERENCES = "UserName";
     JSONArray jArray;
     ViewPager mViewPager;
-    int count=1;
+    boolean network_available;
+    ApiCalling apicalling;
+    int count = 1;
+    SharedPreferences sharedpreferences;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_garage);
+        setContentView(R.layout.activity_garage_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        new SendRequest().execute();
+        sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+        connect();
+
     }
 
-void startfragments()
-{
-    mViewPager.setAdapter(new Dockyard.BoatPagerAdapter(
-            getSupportFragmentManager()));
-}
-public class SendRequest extends AsyncTask<String, Void, String> {
-
-    protected void onPreExecute()
-    {
+    void startfragments() {
+        mViewPager.setAdapter(new Dockyard.BoatPagerAdapter(
+                getSupportFragmentManager()));
     }
 
-    public String doInBackground(String... arg0) {
-        String authtoken = "";
-        String result = "";
-        try {
-
-            URL url = new URL("http://direct-me.herokuapp.com/user/ships/");
-
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
-
-            conn.setRequestMethod("GET");
-            conn.addRequestProperty("Authorization", "Token 54fff69acdaf6842d422b5fd5c15e10707383cd3");
-            conn.connect();
-
-                /*OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getPostDataString(postDataParams));
-
-                writer.flush();
-                writer.close();
-                os.close();*/
-
-            int responseCode = conn.getResponseCode();
-
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuffer sb = new StringBuffer("");
-                String line = "";
-
-                while ((line = in.readLine()) != null) {
-
-                    sb.append(line);
-                    break;
+    void connect() {
+        final String token = sharedpreferences.getString("Authorization_Token", "");
+        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
+        if (network_available) {
+            apicalling = new ApiCalling(new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+                    try {
+                        jArray = new JSONArray(output);
+                        count = jArray.length();
+                        startfragments();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+            }, this);
+            apicalling.execute(API_URL_LIST.PARKED_URL, token, "get");
 
-                in.close();
-                result = sb.toString();
-            }
-            else
-            {
-                Toast.makeText(getApplicationContext(), responseCode,
-                        Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception e)
-        {
         }
-        return result;
     }
 
-    @Override
-    protected void onPostExecute(String result)
-    {
-        try
-        {
-            jArray = new JSONArray(result);
-            count=jArray.length();
 
-        }
-        catch (JSONException e)
-        {
+    public class BoatPagerAdapter extends FragmentPagerAdapter {
 
-        }
-        startfragments();
+        int slot = 0;
 
-    }
-}
-
-    public class BoatPagerAdapter extends FragmentPagerAdapter
-    {
-
-        public BoatPagerAdapter(FragmentManager fm)
-        {
+        public BoatPagerAdapter(FragmentManager fm) {
 
             super(fm);
         }
 
-        int slot=0;
         @Override
-        public Fragment getItem(int position)
-        {
-         JSONObject json_send=null;
-            if(jArray!=null) {
+        public Fragment getItem(int position) {
+            JSONObject json_send = null;
+            if (jArray != null) {
                 try {
-                    if (position == 0)
-                    {    slot=1;
+                    if (position == 0) {
+                        slot = 1;
                         json_send = jArray.getJSONObject(0);
-                        return Boats_equipped.newInstance(json_send,slot);
+                        return Boats_equipped.newInstance(json_send, slot);
                     }
-                    if(position==1)
-                    {   slot=2;
+                    if (position == 1) {
+                        slot = 2;
                         json_send = jArray.getJSONObject(1);
-                        return Boats_equipped.newInstance(json_send,slot);
+                        return Boats_equipped.newInstance(json_send, slot);
                     }
-                    if(position==2) {
-                        slot=3;
+                    if (position == 2) {
+                        slot = 3;
                         json_send = jArray.getJSONObject(2);
-                        return Boats_equipped.newInstance(json_send,slot);
+                        return Boats_equipped.newInstance(json_send, slot);
                     }
-                    if(position==3) {
-                        slot=4;
+                    if (position == 3) {
+                        slot = 4;
                         json_send = jArray.getJSONObject(3);
-                        return Boats_equipped.newInstance(json_send,slot);
-                    }
-                    else
-                    {    slot=5;
+                        return Boats_equipped.newInstance(json_send, slot);
+                    } else {
+                        slot = 5;
                         json_send = jArray.getJSONObject(4);
-                        return Boats_equipped.newInstance(json_send,slot);
+                        return Boats_equipped.newInstance(json_send, slot);
                     }
 
                 } catch (JSONException e) {
@@ -167,15 +118,13 @@ public class SendRequest extends AsyncTask<String, Void, String> {
                     return null;
 
                 }
-            }
-            else
+            } else
                 return null;
         }
 
 
         @Override
-        public int getCount()
-        {
+        public int getCount() {
             return count;
 
         }

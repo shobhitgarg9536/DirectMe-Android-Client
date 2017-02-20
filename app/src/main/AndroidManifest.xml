@@ -27,22 +27,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="in.silive.directme.Activity.Show_room" android:screenOrientation="landscape"
-            >
-            <intent-filter>
-                <action android:name="in.silive.directme.SHOW_ROOM" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name="in.silive.directme.Activity.Dockyard" android:screenOrientation="landscape"
-            >
-            <intent-filter>
-                <action android:name="in.silive.directme.DOCKYARD" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name="in.silive.directme.Activity.CreateAccount" android:screenOrientation="landscape"
             >
             <intent-filter>
@@ -67,40 +51,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="in.silive.directme.Activity.Parked" android:screenOrientation="landscape"
-            android:parentActivityName="in.silive.directme.Activity.Dashboard">
-            <intent-filter>
-                <action android:name="in.silive.directme.PARKNOW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name="in.silive.directme.Activity.enter_db" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="in.silive.directme.ENTER_DB" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-            </intent-filter>
-        </activity>
 
 
+        <activity android:name="in.silive.directme.Activity.Login" android:screenOrientation="landscape">
 
-    <activity android:name="in.silive.directme.Activity.Login" android:screenOrientation="landscape">
+
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
 
         </intent-filter>
     </activity>
-        <activity android:name="in.silive.directme.Activity.Parkinge" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-
-            </intent-filter>
-        </activity>
-
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_appid_"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_appid_"/>
 
         <service android:name="in.silive.directme.Service.MyFirebaseMessagingService">
             <intent-filter>

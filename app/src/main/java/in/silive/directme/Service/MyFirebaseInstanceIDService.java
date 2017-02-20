@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+
 import in.silive.directme.AsyncTask.FirebaseTokenBackgroundWorker;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.Utils.FCMConfig;
@@ -17,8 +18,8 @@ import in.silive.directme.Utils.FCMConfig;
  */
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
-    private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
     public static final String MyPREFERENCES = "UserContact";
+    private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
     SharedPreferences pref;
 
     @Override
@@ -26,12 +27,13 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         super.onTokenRefresh();
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-        System.out.println("refreshedToken" +refreshedToken);
+        System.out.println("refreshedToken" + refreshedToken);
         // Saving reg id to shared preferences
         storeRegIdInPref(refreshedToken);
 
         // sending reg id to your server
-        sendRegistrationToServer(refreshedToken);
+        //// TODO: 2/20/2017 implement correct fcm url and uncomment
+//        sendRegistrationToServer(refreshedToken);
 
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(FCMConfig.REGISTRATION_COMPLETE);
@@ -43,7 +45,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
         SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String mobileNo = sharedpreferences.getString("UserContact", "");
-        if(!mobileNo.equals("")) {
+        if (!mobileNo.equals("")) {
             // sending fcm token to server
             FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
                 @Override

@@ -12,25 +12,25 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import in.silive.directme.AsyncTask.UserAccountManagerBackgroundWorker;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.Utils.API_URL_LIST;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * Created by Shobhit-pc on 12/21/2016.
  */
 
-public class UserLogin extends AppCompatActivity{
-    EditText name,password;
-    String sname,spassword;
+public class UserLogin extends AppCompatActivity {
+    EditText name, password;
+    String sname, spassword;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "UserName";
     public static final String Authorization_Token = "Authorization_Token";
-    TextInputLayout textInputName,textInputPassword;
+    TextInputLayout textInputName, textInputPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +38,24 @@ public class UserLogin extends AppCompatActivity{
         setContentView(R.layout.userlogin);
         name = (EditText) findViewById(R.id.etloginname);
         password = (EditText) findViewById(R.id.etloginpassword);
-        textInputName = (TextInputLayout)  findViewById(R.id.tilloginname);
-        textInputPassword = (TextInputLayout)  findViewById(R.id.tilloginpassword);
+        textInputName = (TextInputLayout) findViewById(R.id.tilloginname);
+        textInputPassword = (TextInputLayout) findViewById(R.id.tilloginpassword);
 
 
         name.addTextChangedListener(new UserLogin.MyTextWatcher(name));
         password.addTextChangedListener(new UserLogin.MyTextWatcher(password));
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String username = sharedpreferences.getString("UserName","");
+        String username = sharedpreferences.getString("UserName", "");
         name.setText(username);
 
 
     }
+
     public void CreateUserAccount(View view) {
         AssignTheValues();
 
-        if ((validateName()) && validatePassword() ) {
+        if ((validateName()) && validatePassword()) {
 /*
             AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
@@ -105,16 +106,16 @@ public class UserLogin extends AppCompatActivity{
                         String authorization_Token = jsonObject.getString("token");
                         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString("Authorization_Token" , authorization_Token);
+                        editor.putString("Authorization_Token", authorization_Token);
                         editor.commit();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-            },this);
-            userAccountManagerBackgroundWorker.execute("USER_ACCOUNT_LOGIN", API_URL_LIST.USER_LOGIN_URL, sname,spassword);
+            }, this);
+            userAccountManagerBackgroundWorker.execute("USER_ACCOUNT_LOGIN", API_URL_LIST.USER_LOGIN_URL, sname, spassword);
 
-            Intent i = new Intent(this , Dashboard.class);
+            Intent i = new Intent(this, Dashboard.class);
             startActivity(i);
         }
     }
@@ -123,6 +124,7 @@ public class UserLogin extends AppCompatActivity{
         sname = name.getText().toString();
         spassword = password.getText().toString();
     }
+
     private boolean validateName() {
         if (name.getText().toString().trim().isEmpty()) {
             textInputName.setError("Enter your full name");
@@ -135,6 +137,7 @@ public class UserLogin extends AppCompatActivity{
 
         return true;
     }
+
     private boolean validatePassword() {
         if (password.getText().toString().trim().isEmpty()) {
             textInputPassword.setError("Enter your Passowrd");
@@ -154,11 +157,13 @@ public class UserLogin extends AppCompatActivity{
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         finish();
     }
+
     private class MyTextWatcher implements TextWatcher {
 
         private View view;
@@ -180,6 +185,7 @@ public class UserLogin extends AppCompatActivity{
                     break;
             }
         }
+
         public void afterTextChanged(Editable editable) {
 
         }

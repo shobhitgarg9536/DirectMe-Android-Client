@@ -80,7 +80,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         controller.addObserver(Dashboard.this);
         count();
 
-        if(CheckConnectivity.isNetConnected(Dashboard.this)) {
+        //// TODO: 2/20/2017 change with correct fcm url and uncomment
+/*        if(CheckConnectivity.isNetConnected(Dashboard.this)) {
 
             SharedPreferences sharedPreferences = getSharedPreferences(FCMConfig.SHARED_PREF, 0);
             String firebase_id_send_to_server_or_not = sharedPreferences.getString("FirebaseIdSendToServer", "");
@@ -98,7 +99,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 firebaseTokenBackgroundWorker.execute("", tok);
             }
 
-        }
+        }*/
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -202,8 +203,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent4);
                 break;
             case R.id.imageviewparking:
-                Intent intent1 = new Intent(this, Parkinge.class);
-                startActivity(intent1);
+//                Intent intent1 = new Intent(this, Parkinge.class);
+//                startActivity(intent1);
                 break;
             case R.id.imageviewshowroom:
                 Intent i = new Intent(Dashboard.this, Show_room.class);
