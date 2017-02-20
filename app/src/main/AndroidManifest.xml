@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.silab.direct_me">
+    package="in.silive.directme">
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -11,7 +11,7 @@
 
         android:theme="@style/MyMaterialTheme">
 
-        <activity android:name=".Activity.MainActivity" android:screenOrientation="landscape">
+        <activity android:name="in.silive.directme.Activity.MainActivity" android:screenOrientation="landscape">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Dashboard" android:screenOrientation="landscape"
+        <activity android:name="in.silive.directme.Activity.Dashboard" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.DASHBOARD" />
@@ -27,23 +27,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Show_room" android:screenOrientation="landscape"
-            >
-            <intent-filter>
-                <action android:name="in.silive.directme.SHOW_ROOM" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Activity.Dockyard" android:screenOrientation="landscape"
-            >
-            <intent-filter>
-                <action android:name="in.silive.directme.DOCKYARD" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Activity.CreateAccount" android:screenOrientation="landscape"
+        <activity android:name="in.silive.directme.Activity.CreateAccount" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.GARAGE" />
@@ -51,7 +35,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.UserLogin" android:screenOrientation="landscape"
+        <activity android:name="in.silive.directme.Activity.UserLogin" android:screenOrientation="landscape"
             >
             <intent-filter>
                 <action android:name="in.silive.directme.GARAGE" />
@@ -59,16 +43,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Parknow" android:screenOrientation="landscape"
-            android:parentActivityName=".Activity.Dashboard">
-            <intent-filter>
-                <action android:name="in.silive.directme.PARKNOW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Activity.Parked" android:screenOrientation="landscape"
-            android:parentActivityName=".Activity.Dashboard">
+        <activity android:name="in.silive.directme.Activity.Parknow" android:screenOrientation="landscape"
+            android:parentActivityName="in.silive.directme.Activity.Dashboard">
             <intent-filter>
                 <action android:name="in.silive.directme.PARKNOW" />
 
@@ -77,30 +53,25 @@
         </activity>
 
 
-        <activity android:name=".Activity.Login" android:screenOrientation="landscape">
+        <activity android:name="in.silive.directme.Activity.Login" android:screenOrientation="landscape">
+
+
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
 
         </intent-filter>
     </activity>
-        <activity android:name=".Activity.Parking" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_appid_"/>
 
-            </intent-filter>
-        </activity>
-
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_appid_"/>
-
-        <service android:name=".Service.MyFirebaseMessagingService">
+        <service android:name="in.silive.directme.Service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name=".Service.MyFirebaseInstanceIDService">
+        <service android:name="in.silive.directme.Service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
