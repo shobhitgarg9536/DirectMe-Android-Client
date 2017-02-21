@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
         alertDialog.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        onDestroy();
                     }
                 });
         alertDialog.create();

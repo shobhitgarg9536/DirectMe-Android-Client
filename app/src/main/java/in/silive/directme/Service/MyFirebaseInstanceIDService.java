@@ -32,8 +32,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         storeRegIdInPref(refreshedToken);
 
         // sending reg id to your server
-        //// TODO: 2/20/2017 implement correct fcm url and uncomment
-//        sendRegistrationToServer(refreshedToken);
+          sendRegistrationToServer(refreshedToken);
 
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(FCMConfig.REGISTRATION_COMPLETE);
@@ -43,25 +42,15 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(final String token) {
 
-        SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String mobileNo = sharedpreferences.getString("UserContact", "");
-        if (!mobileNo.equals("")) {
             // sending fcm token to server
             FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
 
-                    System.out.println(output);
-                    if (output.equals("Firebase updated")) {
-                        pref = getApplicationContext().getSharedPreferences(FCMConfig.SHARED_PREF, 0);
-                        SharedPreferences.Editor editor = pref.edit();
-                        editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
-                        editor.commit();
-                    }
                 }
             });
-            firebaseTokenBackgroundWorker.execute(mobileNo, token);
-        }
+            firebaseTokenBackgroundWorker.execute(token);
+
         Log.e(TAG, "sendRegistrationToServer: " + token);
     }
 

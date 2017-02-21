@@ -1,10 +1,12 @@
 package in.silive.directme.AsyncTask;
 
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.Utils.API_URL_LIST;
+import in.silive.directme.Utils.FCMConfig;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,6 +19,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class FirebaseTokenBackgroundWorker extends AsyncTask<String , String , String> {
 
@@ -35,17 +39,15 @@ public class FirebaseTokenBackgroundWorker extends AsyncTask<String , String , S
 
         try {
 
-            String mobileNo = params[0];
-            String firebaseUid = params[1];
-            URL url = new URL(API_URL_LIST.USER_GOOGLE_OAUTH_URL);
+            String firebaseUid = params[0];
+            URL url = new URL(API_URL_LIST.FIREBASE_TOKEN_UPDATE);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            String post_data = //URLEncoder.encode("mobileNo", "UTF-8") + "=" + URLEncoder.encode(mobileNo, "UTF-8") + "&" +
-                    URLEncoder.encode("access_token", "UTF-8") + "=" + URLEncoder.encode(firebaseUid, "UTF-8");
+            String post_data = URLEncoder.encode("access_token", "UTF-8") + "=" + URLEncoder.encode(firebaseUid, "UTF-8");
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -70,7 +72,12 @@ public class FirebaseTokenBackgroundWorker extends AsyncTask<String , String , S
 
     @Override
     protected void onPostExecute(String s) {
+       SharedPreferences pref = getApplicationContext().getSharedPreferences(FCMConfig.SHARED_PREF, 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
+        editor.commit();
         delecate.processFinish(s);
         super.onPostExecute(s);
+
     }
 }
