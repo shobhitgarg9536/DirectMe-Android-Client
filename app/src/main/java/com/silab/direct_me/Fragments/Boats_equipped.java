@@ -36,18 +36,16 @@ public class Boats_equipped extends Fragment
 
 
     int dockstatus=1;
-    TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req;
+    //TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req;
     ImageView img;
-    int banana_r = 0, gold_r = 0, bamboo_r = 0, wood_r = 0, coconut_r = 0;
-    ImageView boat_image;
-    TextView boat_speed;
 
-    SharedPreferences pref;
+
+    SharedPreferences prefrences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        pref = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
+        prefrences= getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
         View rootView = inflater.inflate(R.layout.dockyard, container,
                 false);
 
@@ -90,9 +88,7 @@ public class Boats_equipped extends Fragment
                 // Start new list activity
                 public void onClick(View v)
                 {
-                    Intent i = new Intent(getContext(), Show_room.class);
-                    i.putExtra("slot",slot);
-                    startActivity(i);
+
                 }
             });
         }

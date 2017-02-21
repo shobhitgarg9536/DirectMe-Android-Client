@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     @Override    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fb);
+        setContentView(R.layout.splash);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);

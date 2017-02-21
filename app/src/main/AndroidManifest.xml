@@ -75,24 +75,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.enter_db" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="in.silive.directme.ENTER_DB" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-            </intent-filter>
-        </activity>
 
 
-
-    <activity android:name=".Activity.Login" android:screenOrientation="landscape">
+        <activity android:name=".Activity.Login" android:screenOrientation="landscape">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
 
         </intent-filter>
     </activity>
-        <activity android:name=".Activity.Parkinge" android:screenOrientation="landscape">
+        <activity android:name=".Activity.Parking" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

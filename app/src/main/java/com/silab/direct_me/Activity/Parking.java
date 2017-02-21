@@ -26,9 +26,9 @@ import static com.silab.direct_me.Activity.UserLogin.Authorization_Token;
  * Created by Lenovo on 01-Dec-16.
  */
 
-public class Parkinge extends AppCompatActivity {
+public class Parking extends AppCompatActivity {
     ViewPager mViewPager;
-    CheckConnectivity network;
+
     boolean network_available;
     ApiCalling apicalling;
     int i;
@@ -39,7 +39,7 @@ public class Parkinge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parkingmain);
+        setContentView(R.layout.parkingmain_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pagerr);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -56,7 +56,7 @@ public class Parkinge extends AppCompatActivity {
     }
     void connect() {
         final String token = sharedpreferences.getString("Authorization_Token" , "");
-        network_available = network.isNetConnected(getApplicationContext());
+        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
             apicalling = new ApiCalling(new AsyncResponse() {
                 @Override

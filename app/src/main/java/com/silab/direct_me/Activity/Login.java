@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         callbackManager = CallbackManager.Factory.create();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
 
         info = (TextView)findViewById(R.id.info);
 

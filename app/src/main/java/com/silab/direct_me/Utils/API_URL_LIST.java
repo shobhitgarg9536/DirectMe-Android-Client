@@ -8,5 +8,6 @@ public class API_URL_LIST {
     public static final String PORTS_URL = "http://direct-me.herokuapp.com/core/ports/";
     public static final String USER_REGISTER_URL = "http://direct-me.herokuapp.com/user/register/";
     public static final String USER_LOGIN_URL = "http://direct-me.herokuapp.com/user/register/";
+    public static final String DOCKS_URL="http://direct-me.herokuapp.com/core/docks/";
 
 }
