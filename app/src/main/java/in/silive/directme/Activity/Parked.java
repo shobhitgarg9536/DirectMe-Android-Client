@@ -38,26 +38,31 @@ import in.silive.directme.Utils.API_URL_LIST;
 import static in.silive.directme.Activity.MainActivity.Authorization_Token;
 
 
-public class Parked extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
 
-    public static final String MyPREFERENCE = "MyPrefs";
-    public static final String MyPREFERENCES = "UserName";
+
+
+
+
+
+public class Parked extends AppCompatActivity implements View.OnClickListener, java.util.Observer{
+
     ConstraintLayout rl;
     int i;
     Button undock;
-    ImageView parkedShipDetial1, parkedShipDetial2, parkedShipDetial3, parkedShipDetial4, parkedShipDetial5;
-    TextView parking, boat_dock, time, user_name, boat_name, parking_allowness;
+    ImageView parkedShipDetial1,parkedShipDetial2,parkedShipDetial3,parkedShipDetial4,parkedShipDetial5;
+    TextView parking,boat_dock,time,user_name,boat_name,parking_allowness;
     CheckConnectivity network;
     boolean network_available;
     DatabaseHandler db;
-    int comm[] = new int[5];
+    int comm[]=new int[5];
     ApiCalling apiCalling;
-    TextView gold_coin_textview, banana_textview, coconut_textview, bamboo_textview, timber_textview;
+    TextView gold_coin_textview,banana_textview,coconut_textview,bamboo_textview,timber_textview;
     Controller controller = new Controller();
-    SharedPreferences sharedpreferences, sharedpreference;
-    String token;
-    String type;
+    public static final String MyPREFERENCE = "MyPrefs" ;
 
+    SharedPreferences sharedpreferences,sharedpreference;
+    public static final String MyPREFERENCES = "UserName";
+    String token;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,13 +79,13 @@ public class Parked extends AppCompatActivity implements View.OnClickListener, j
         parking_allowness = (TextView) findViewById(R.id.ftd);
         user_name = (TextView) findViewById(R.id.ttd);
         boat_name = (TextView) findViewById(R.id.fotd);
-        rl = (ConstraintLayout) findViewById(R.id.relat);
+        rl=(ConstraintLayout) findViewById(R.id.relat);
         rl.setVisibility(View.VISIBLE);
-        gold_coin_textview = (TextView) findViewById(R.id.gold_no);
-        banana_textview = (TextView) findViewById(R.id.banana_no);
-        coconut_textview = (TextView) findViewById(R.id.coconut_no);
-        bamboo_textview = (TextView) findViewById(R.id.bamboo_no);
-        timber_textview = (TextView) findViewById(R.id.wood_no);
+        gold_coin_textview=(TextView)findViewById(R.id.gold_no);
+        banana_textview=(TextView)findViewById(R.id.banana_no);
+        coconut_textview=(TextView)findViewById(R.id.coconut_no);
+        bamboo_textview=(TextView)findViewById(R.id.bamboo_no);
+        timber_textview=(TextView)findViewById(R.id.wood_no);
         sharedpreference = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
         parkedDetail("0");
@@ -96,18 +101,18 @@ public class Parked extends AppCompatActivity implements View.OnClickListener, j
         parkedShipDetial4.setOnClickListener(this);
         parkedShipDetial5.setOnClickListener(this);
 
-        controller.addObserver((java.util.Observer) this);
+        controller.addObserver((java.util.Observer)this);
         count();
     }
+    public void count()
+    {int i;
+        for(i=0;i<5;i++)
+        {   if (sharedpreference.contains(Dashboard.co[i])) {
+            comm[i]= Integer.parseInt(sharedpreference.getString(Dashboard.co[i],""));
 
-    public void count() {
-        int i;
-        for (i = 0; i < 5; i++) {
-            if (sharedpreference.contains(Dashboard.co[i])) {
-                comm[i] = Integer.parseInt(sharedpreference.getString(Dashboard.co[i], ""));
 
 
-            }
+        }
 
 
         }
@@ -119,10 +124,14 @@ public class Parked extends AppCompatActivity implements View.OnClickListener, j
 
     }
 
+
+
+
+
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
+        switch (view.getId()){
 
             case R.id.imageViewParkedShip1:
                 parkedDetail("0");
@@ -177,13 +186,15 @@ public class Parked extends AppCompatActivity implements View.OnClickListener, j
         }
 
     }
+    String type;
 
     public void parkedDetail(final String parking_no) {
 
-        final String token = sharedpreferences.getString("Authorization_Token", "");
+        final String token = sharedpreferences.getString("Authorization_Token" , "");
         network_available = network.isNetConnected(getApplicationContext());
         if (network_available) {
-            apiCalling = new ApiCalling(new AsyncResponse() {
+            apiCalling=new ApiCalling(new AsyncResponse()
+            {
                 @Override
                 public void processFinish(String output) {
                     try {
@@ -193,19 +204,19 @@ public class Parked extends AppCompatActivity implements View.OnClickListener, j
                         type = jsonObject.get("type").toString();
                         parking_allowness.setText(type);
                         db.addPort(new User_DB_Objects(parking_no, "2:00", "Yes", "N-A", type, "2"));
-                    } catch (JSONException e) {
+                    }catch (JSONException e)
+                    {
                         e.printStackTrace();
                     }
                 }
-            }, this);
-            apiCalling.execute(API_URL_LIST.PORTS_URL, token, "get");
+            },this);
+            apiCalling.execute(API_URL_LIST.PORTS_URL,token,"get");
 
         }
     }
+    public  void alertDialog(String title , String message){
 
-    public void alertDialog(String title, String message) {
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getApplicationContext());
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
         alertDialog.setPositiveButton("Settings",
@@ -227,7 +238,6 @@ public class Parked extends AppCompatActivity implements View.OnClickListener, j
         alertDialog.show();
 
     }
-
     @Override
     public void update(Observable observable, Object o) {
         controller = (Controller) observable;

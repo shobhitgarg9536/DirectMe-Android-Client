@@ -39,74 +39,75 @@ import in.silive.directme.R;
  * Created by Lenovo on 01-Dec-16.
  */
 
-public class Shipx extends Fragment implements View.OnClickListener, java.util.Observer {
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static int value;
-    static JSONObject data;
-    TextView parkingUserName, parkingBoatName, parkingIsland;
+public class User_ships extends Fragment implements View.OnClickListener, java.util.Observer {
+    TextView parkingUserName,parkingBoatName,parkingIsland;
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> parking_detail;
     Button undock;
     CheckConnectivity network;
     boolean network_available;
-    TextView timee, coin, fill, cost_multiplier, experience_gain, boatname;
-    int comm[] = new int[5];
-    String c[] = new String[5];
+    TextView timee,coin,fill,cost_multiplier,experience_gain,boatname;
+    int comm[]=new int[5];
+    String c[]=new String[5];
     Dashboard dashboard;
-    int Second, prevsecond, updated, finalhour, finalmin, finalsec, filspeed;
-    String prevsec, update, finalhou, finalmi, finalse, fillspeed;
+    int Second,prevsecond,updated,finalhour,finalmin,finalsec,filspeed;
+    String prevsec,update,finalhou,finalmi,finalse,fillspeed;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+
+    public static int value;
     TextView bamboo, coconut, banana, timber, gold_coin;
     ImageView ship;
     Controller controller = new Controller();
     DatabaseHandler db;
     SharedPreferences sharedpreferences;
-    String cost, boatnam, ide, Xp;
 
-    public static Shipx newInstance(JSONObject jsonObject) {
-        Shipx shipx = new Shipx();
-        data = jsonObject;
-        return shipx;
+    static JSONObject data;
+    public static User_ships newInstance(JSONObject jsonObject)
+    {
+        User_ships userships =new User_ships();
+        data=jsonObject;
+        return userships;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_parking, container,
                 false);
-        this.undock = (Button) v.findViewById(R.id.undocker);
-        dashboard = new Dashboard();
+        this.undock=(Button)v.findViewById(R.id.undocker);
+        dashboard=new Dashboard();
         parkingUserName = (TextView) v.findViewById(R.id.odetail);
-        boatname = (TextView) v.findViewById(R.id.boatname);
+        boatname=(TextView)v.findViewById(R.id.boatname);
         parkingBoatName = (TextView) v.findViewById(R.id.odet);
         parkingIsland = (TextView) v.findViewById(R.id.sdet);
-        cost_multiplier = (TextView) v.findViewById(R.id.capacityval);
-        experience_gain = (TextView) v.findViewById(R.id.Xpvalue);
-        this.timee = (TextView) v.findViewById(R.id.timeal);
-        this.coin = (TextView) v.findViewById(R.id.coinvalue);
-        this.fill = (TextView) v.findViewById(R.id.fillvalue);
-        gold_coin = (TextView) v.findViewById(R.id.gold_no);
-        banana = (TextView) v.findViewById(R.id.banana_no);
-        coconut = (TextView) v.findViewById(R.id.coconut_no);
-        bamboo = (TextView) v.findViewById(R.id.bamboo_no);
-        timber = (TextView) v.findViewById(R.id.wood_no);
-        ship = (ImageView) v.findViewById(R.id.imageship);
+        cost_multiplier=(TextView)v.findViewById(R.id.capacityval);
+        experience_gain=(TextView)v.findViewById(R.id.Xpvalue);
+        this.timee=(TextView)v.findViewById(R.id.timeal);
+        this.coin=(TextView)v.findViewById(R.id.coinvalue);
+        this.fill=(TextView)v.findViewById(R.id.fillvalue);
+        gold_coin=(TextView)v.findViewById(R.id.gold_no);
+        banana=(TextView)v.findViewById(R.id.banana_no);
+        coconut=(TextView)v.findViewById(R.id.coconut_no);
+        bamboo=(TextView)v.findViewById(R.id.bamboo_no);
+        timber=(TextView)v.findViewById(R.id.wood_no);
+        ship=(ImageView)v.findViewById(R.id.imageship);
         db = new DatabaseHandler(getActivity());
 
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int hour = calendar.get(Calendar.HOUR) * 60 * 60;
-        int min = calendar.get(Calendar.MINUTE) * 60;
-        int secon = calendar.get(Calendar.SECOND);
-        int Second = hour + min + secon;
+        int hour = calendar.get(Calendar.HOUR)*60*60;
+        int min= calendar.get(Calendar.MINUTE)*60;
+        int secon=calendar.get(Calendar.SECOND);
+        int Second=hour+min+secon;
         if (sharedpreferences.contains(Parknow.times)) {
-            prevsec = sharedpreferences.getString(Parknow.times, "");
-            prevsecond = Integer.parseInt(prevsec);
+            prevsec=sharedpreferences.getString(Parknow.times, "");
+            prevsecond=Integer.parseInt(prevsec);
 
 
-            updated = Second - prevsecond;
+            updated=Second-prevsecond;
 
         }
-        if (updated < 7200) {
+        if(updated<7200) {
             finalhour = updated / 3600;
             finalmin = (updated % 3600) / 60;
             finalsec = (updated % 60);
@@ -114,45 +115,49 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
             finalhou = Integer.toString(finalhour);
             finalmi = Integer.toString(finalmin);
             finalse = Integer.toString(finalsec);
-            timee.setText(finalhou + ":" + finalmi + ":" + finalse);
-            filspeed = updated / 72;
-            fillspeed = Integer.toString(filspeed);
-            fill.setText(fillspeed + "%");
-        } else {
+            timee.setText(finalhou+":"+finalmi+":"+finalse);
+            filspeed=updated/72;
+            fillspeed=Integer.toString(filspeed);
+            fill.setText(fillspeed+"%");
+        }
+        else
+        {
             sharedpreferences.edit().remove(Parknow.times).commit();
             timee.setText("Time over");
-            String val = coin.getText().toString();
-            value = Integer.parseInt(val);
-            value = value + 30;
-            fill.setText(100 + "%");
-            String Earn = Integer.toString(value);
+            String val= coin.getText().toString();
+            value=Integer.parseInt(val);
+            value=value+30;
+            fill.setText(100+"%");
+            String Earn=Integer.toString(value);
             coin.setText(Earn);
         }
 
 
-        update = Integer.toString(updated);
-        this.undock = (Button) v.findViewById(R.id.undocker);
 
-        this.undock.setOnClickListener(Shipx.this);
+        update=Integer.toString(updated);
+        this.undock=(Button)v.findViewById(R.id.undocker);
+
+        this.undock.setOnClickListener(User_ships.this);
 
         parkingDetail(0);
 
-        controller.addObserver((java.util.Observer) Shipx.this);
+        controller.addObserver((java.util.Observer) User_ships.this);
         count();
 
         return v;
 
     }
 
-    public void count() {
-        int i;
-        for (i = 0; i < 5; i++) {
-            if (sharedpreferences.contains(Dashboard.co[i])) {
-                comm[i] = Integer.parseInt(sharedpreferences.getString(Dashboard.co[i], ""));
+    public void count()
+    {int i;
+        for(i=0;i<5;i++)
+        {   if (sharedpreferences.contains(Dashboard.co[i])) {
+            comm[i]= Integer.parseInt(sharedpreferences.getString(Dashboard.co[i],""));
 
 
-            }
-            c[i] = Integer.toString(comm[i]);
+
+        }
+            c[i]= Integer.toString(comm[i]);
 
         }
         controller.setBambooCount(comm[3]);
@@ -165,7 +170,7 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
 
     @Override
     public void onClick(View view) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Undock");
         alertDialog.setMessage("Do you want to undock");
         alertDialog.setPositiveButton("Yes",
@@ -187,7 +192,7 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
         alertDialog.show();
 
     }
-
+    String cost,boatnam,ide,Xp;
     public void parkingDetail(final int id) {
 
         network_available = network.isNetConnected(getActivity());
@@ -227,7 +232,6 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
 
         }
     }
-
     @Override
     public void update(Observable observable, Object o) {
         controller = (Controller) observable;
@@ -239,10 +243,9 @@ public class Shipx extends Fragment implements View.OnClickListener, java.util.O
         gold_coin.setText(Integer.toString(controller.getGoldCoinCount()));
 
     }
+    public  void alertDialog(String title , String message){
 
-    public void alertDialog(String title, String message) {
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
         alertDialog.setPositiveButton("Settings",

@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="in.silive.directme.Activity.Garage" />
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.MainActivity"/>
+
+    <ImageView
+        android:id="@+id/left_navigation"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical|left"
+        android:src="@drawable/prev" />
+
+    <ImageView
+        android:id="@+id/right_navigation"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical|right"
+        android:src="@drawable/next" />
+
+</FrameLayout>

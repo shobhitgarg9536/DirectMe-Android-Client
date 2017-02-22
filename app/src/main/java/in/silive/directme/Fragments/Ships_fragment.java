@@ -18,9 +18,10 @@ import org.json.JSONObject;
 
 import in.silive.directme.R;
 
-public class Ships_fragment extends Fragment {
-    public static final int DFRAGMENT = 1;
+public class Ships_fragment extends Fragment
+{
     JSONObject json_data;
+    int slot;
 
 
     /*public static Ships_fragment newInstance(JSONObject jsonObject,int value)
@@ -30,24 +31,26 @@ public class Ships_fragment extends Fragment {
         slot=value;
         return shipd;
     }*/
-    int slot;
+
+
+
     TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req;
     ImageView img;
     int banana_r = 0, gold_r = 0, bamboo_r = 0, wood_r = 0, coconut_r = 0;
     ImageView boat_image;
     TextView boat_speed;
-    SharedPreferences pref;
-    int id = 0;
 
+    SharedPreferences pref;
+    int id=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //pref = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
-        slot = getArguments().getInt("slot");
+        slot=getArguments().getInt("slot");
         try {
-            json_data = new JSONObject(getArguments().getString("data", ""));
+            json_data=new JSONObject(getArguments().getString("data",""));
         } catch (JSONException e) {
-            json_data = null;
+            json_data=null;
             e.printStackTrace();
         }
         View rootView = inflater.inflate(R.layout.raft_fragment, container,
@@ -66,20 +69,23 @@ public class Ships_fragment extends Fragment {
         coconut_req.setText(Integer.toString(coconut_r));
 
 
+
         ImageView boat_image;
         TextView boat_speed;
         //boat_image = (ImageView)rootView.findViewById(R.id.raftimage);
-        boat_speed = (TextView) rootView.findViewById(R.id.fillval);
+        boat_speed=(TextView)rootView.findViewById(R.id.fillval);
         //boat_image.setImageResource(R.drawable.raft);
         //boat_speed.setText(pref.getString("Raft"+"Speed",null));
         return rootView;
 
     }
 
+    public static final int DFRAGMENT = 1;
+
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
 
-        final FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        final FragmentTransaction ft=getChildFragmentManager().beginTransaction();
         final Dialog_Fragment dialogFragment = new Dialog_Fragment();
         // TODO Auto-generated method stub
         // get the button view
@@ -87,13 +93,14 @@ public class Ships_fragment extends Fragment {
     }
 
 
-    public void onActivityResult(int requestcode, int resultcode, Intent intent) {
-        String message = intent.getStringExtra("message");
-        FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
+    public void onActivityResult(int requestcode,int resultcode,Intent intent)
+    {
+        String message=intent.getStringExtra("message");
+        FragmentTransaction ft=this.getChildFragmentManager().beginTransaction();
         final Dialog_Fragment dialogFragment = new Dialog_Fragment();
-        Log.d("post dialog msg", intent.getStringExtra("message"));
-        Bundle args = new Bundle();
-        args.putString("message", message);
+        Log.d("post dialog msg",intent.getStringExtra("message"));
+        Bundle args=new Bundle();
+        args.putString("message",message);
         dialogFragment.setArguments(args);
         dialogFragment.show(ft, "Dialog Fragment");
 

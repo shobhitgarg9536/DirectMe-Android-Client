@@ -24,33 +24,40 @@ public class Boats_equipped extends Fragment
 {
     static JSONObject json_data;
     static int slot;
-    int dockstatus = 1;
-    //TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req;
-    ImageView img;
-    SharedPreferences prefrences;
-
-    public static Boats_equipped newInstance(JSONObject jsonObject, int value) {
-        Boats_equipped boats_equipped = new Boats_equipped();
-        json_data = jsonObject;
-        slot = value;
+    public static Boats_equipped newInstance(JSONObject jsonObject, int value)
+    {
+        Boats_equipped boats_equipped=new Boats_equipped();
+        json_data=jsonObject;
+        slot=value;
         return boats_equipped;
     }
+
+
+    int dockstatus=1;
+    //TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req;
+    ImageView img;
+
+
+    SharedPreferences prefrences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        prefrences = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
+        prefrences= getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
         View rootView = inflater.inflate(R.layout.dockyard, container,
                 false);
 
-        try {
+        try
+        {
 
-            String name = json_data.getString("name");
+            String name=json_data.getString("name");
 
             TextView boatname;
-            boatname = (TextView) rootView.findViewById(R.id.boatname);
+            boatname=(TextView)rootView.findViewById(R.id.boatname);
             boatname.setText(name);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
 
         }
     /*public void onResume()
@@ -68,14 +75,17 @@ public class Boats_equipped extends Fragment
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
 
-        if (dockstatus == 1) {
+        if (dockstatus==1)
+        {
             img = (ImageView) getView().findViewById(R.id.upgrade);
             // set a onclick listener for when the button gets clicked
             img.setOnClickListener(new View.OnClickListener() {
                 // Start new list activity
-                public void onClick(View v) {
+                public void onClick(View v)
+                {
 
                 }
             });
