@@ -85,7 +85,7 @@ public class DockyardActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            JSONObject json_send = null;
+            JSONObject json_send;
             if (jArray != null) {
                 try {
                     if (position == 0) {

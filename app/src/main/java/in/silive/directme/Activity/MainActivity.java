@@ -234,11 +234,13 @@ public class MainActivity extends Activity {
             bitmap = BitmapFactory.decodeStream(istr);
         } catch (IOException ioe) {
             // manage exception
+            ioe.printStackTrace();
         } finally {
             if (istr != null) {
                 try {
                     istr.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }

@@ -55,7 +55,6 @@ public class ShipsFragment extends Fragment {
         coconut_req.setText(String.valueOf(coconut_r));
 
 
-        ImageView boat_image;
         TextView boat_speed;
         //boat_image = (ImageView)rootView.findViewById(R.id.raftimage);
         boat_speed = (TextView) rootView.findViewById(R.id.fillval);

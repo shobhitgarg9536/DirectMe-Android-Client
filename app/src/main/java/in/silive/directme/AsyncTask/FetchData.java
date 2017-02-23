@@ -45,8 +45,6 @@ public class FetchData extends AsyncTask<String, String, String> {
     @Override
 
     public String doInBackground(String... args) {
-        String authtoken = "";
-        JSONObject jsonObject = null;
         String result = "";
 
         if (args[2].equals("get"))
@@ -79,6 +77,7 @@ public class FetchData extends AsyncTask<String, String, String> {
                             Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
 
 
@@ -125,6 +124,7 @@ public class FetchData extends AsyncTask<String, String, String> {
                             Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }
