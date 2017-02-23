@@ -26,11 +26,10 @@ import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.Utils.API_URL_LIST;
 
-import static in.silive.directme.Activity.MainActivity.Authorization_Token;
 
 
 public class ShowroomActivity extends AppCompatActivity {
-    public static final String MyPREFERENCES = "UserName";
+    public static final String Authorization_Token = "Authorization_Token";
     JSONArray jArray;
     ViewPager mViewPager;
     int count = 1, slot;
@@ -77,8 +76,8 @@ public class ShowroomActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            }, this);
-            apicalling.execute(API_URL_LIST.PARKED_URL, token, "get");
+            });
+            apicalling.execute(API_URL_LIST.PARKED_URL, "get", token, "" );
 
         }
     }

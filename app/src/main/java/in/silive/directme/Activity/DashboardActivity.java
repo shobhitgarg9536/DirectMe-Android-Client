@@ -20,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Observable;
 
 import in.silive.directme.AsyncTask.FetchData;
@@ -36,6 +38,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     public static final String[] co = new String[5];
     public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Authorization_Token = "Authorization_Token";
+    String token;
     public int[] commod = new int[5];
     int i;
     SharedPreferences sharedpreferences;
@@ -79,6 +83,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         controller.addObserver(DashboardActivity.this);
         count();
 
+        SharedPreferences sharedpreferences1 = getSharedPreferences(Authorization_Token , MODE_PRIVATE);
+        token = sharedpreferences1.getString("Authorization_Token","");
 
         //// TODO: 2/20/2017 change with correct fcm url and uncomment
 
@@ -89,7 +95,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
             if (firebase_id_send_to_server_or_not.equals("0")) {
 
-                String token = sharedPreferences.getString("regId", "");
+                String Firebase_token = sharedPreferences.getString("regId", "");
 
 
                 FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
@@ -98,6 +104,20 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                         System.out.println(output);
                     }
                 });
+
+                FetchData fetchData = new FetchData(new AsyncResponse() {
+                    @Override
+                    public void processFinish(String output) {
+
+                    }
+                });
+                String post_data="";
+                try {
+                    post_data = URLEncoder.encode("access_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                fetchData.execute(API_URL_LIST.FIREBASE_TOKEN_UPDATE, "POST", token, post_data);
 
                 firebaseTokenBackgroundWorker.execute(token);
 
@@ -134,6 +154,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
+
             apicalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
@@ -158,8 +179,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                         e.printStackTrace();
                     }
                 }
-            }, this);
-            apicalling.execute(API_URL_LIST.COMODITY_URL, "0", "get");
+            });
+            apicalling.execute(API_URL_LIST.COMODITY_URL, "GET", token, "" );
         } else {
             for (i = 0; i < 5; i++) {
                 if (sharedpreferences.contains(DashboardActivity.co[i])) {

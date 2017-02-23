@@ -88,7 +88,8 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
                 inputStream.close();
                 SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("Authorization_Token", token);
+                editor.putString("access_token", token);
+                editor.putString("Authorization_Token", result);
                 editor.commit();
             }
             httpURLConnection.disconnect();

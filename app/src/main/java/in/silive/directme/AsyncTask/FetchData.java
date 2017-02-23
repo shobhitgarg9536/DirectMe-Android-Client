@@ -30,87 +30,39 @@ public class FetchData extends AsyncTask<String, String, String> {
     private AsyncResponse delegate = null;//Call back interface
 
 
-    public FetchData(AsyncResponse asyncResponse, Context context) {
+    public FetchData(AsyncResponse asyncResponse) {
         delegate = asyncResponse;//Assigning call back interfacethrough constructor
     }
-
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
-
     }
 
     @Override
-
     public String doInBackground(String... args) {
         String result = "";
-
-        if (args[2].equals("get"))
             try {
                 URL url = new URL(args[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setReadTimeout(15000 /* milliseconds */);
-                connection.setConnectTimeout(15000 /* milliseconds */);
-                connection.setRequestMethod("GET");
-                connection.addRequestProperty("Authorization", "Token " + args[1]);
-                connection.connect();
-                int responseCode = connection.getResponseCode();
-
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
-
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    StringBuilder sb = new StringBuilder("");
-                    String line = "";
-
-                    while ((line = in.readLine()) != null) {
-
-                        sb.append(line);
-                        break;
-                    }
-
-                    in.close();
-                    result = sb.toString();
-                } else {
-                    Toast.makeText(getApplicationContext(), responseCode,
-                            Toast.LENGTH_LONG).show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-        else if (args[2].equals("post")) {
-            try {
-
-                URL url = new URL(args[0]);
-                String auth = args[1];
-
-
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setReadTimeout(15000 /* milliseconds */);
-                connection.setConnectTimeout(15000 /* milliseconds */);
-
-                connection.setRequestMethod("POST");
-                //   connection.addRequestProperty("Authorization", "Token 54fff69acdaf6842d422b5fd5c15e10707383cd3");
+                connection.setReadTimeout(15000);
+                connection.setConnectTimeout(15000);
+                connection.setRequestMethod(args[1]);
+                connection.addRequestProperty("Authorization", "Token "+args[2]);
                 connection.connect();
 
                 OutputStream outputStream = connection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("island_id", "UTF-8") + "=" + URLEncoder.encode(args[2], "UTF-8");
-                bufferedWriter.write(post_data);
+                bufferedWriter.write(args[3]);
                 bufferedWriter.flush();
                 bufferedWriter.close();
 
                 int responseCode = connection.getResponseCode();
-
                 if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                     BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuffer sb = new StringBuffer("");
-                    String line = "";
-
+                    String line;
                     while ((line = in.readLine()) != null) {
 
                         sb.append(line);
@@ -126,17 +78,13 @@ public class FetchData extends AsyncTask<String, String, String> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-        }
         return result;
 
     }
 
     @Override
     protected void onPostExecute(String result) {
-
         delegate.processFinish(result);
         super.onPostExecute(result);
     }
-
 }

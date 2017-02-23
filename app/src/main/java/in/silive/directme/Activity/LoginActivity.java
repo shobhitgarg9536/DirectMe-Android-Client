@@ -157,6 +157,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             loginBackgroundWorker.execute(email);
 
             Intent i = new Intent(LoginActivity.this , DashboardActivity.class);
+            finish();
             startActivity(i);
 
 
@@ -179,6 +180,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
-
 
 }

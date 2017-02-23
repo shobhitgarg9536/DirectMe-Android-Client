@@ -196,8 +196,8 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
                         e.printStackTrace();
                     }
                 }
-            }, this);
-            apiCalling.execute(API_URL_LIST.PORTS_URL, token, "get");
+            });
+            apiCalling.execute(API_URL_LIST.PORTS_URL,"GET", token, "");
 
         }
     }

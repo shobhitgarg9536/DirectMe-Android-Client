@@ -67,8 +67,8 @@ public class DockyardActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            }, this);
-            apicalling.execute(API_URL_LIST.PARKED_URL, token, "get");
+            });
+            apicalling.execute(API_URL_LIST.PARKED_URL, "GET", token, "" );
 
         }
     }

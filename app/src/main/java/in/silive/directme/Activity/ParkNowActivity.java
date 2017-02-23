@@ -23,11 +23,14 @@ import android.widget.Toast;
 import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
+import in.silive.directme.Utils.API_URL_LIST;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,13 +40,13 @@ import java.util.HashMap;
 
 public class ParkNowActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Authorization_Token = "Authorization_Token";
+    public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String times = "null";
-    LinearLayout llUserList;
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> users;
-    ImageView imageview,cloud1,cloud2;
-    ProgressDialog progressDialog;
+    ImageView cloud1,cloud2;
+    String token;
     SharedPreferences sharedPreferences, sharedPreferences1;
     String PARK_NOW = "PARK_NOW";
     SharedPreferences.Editor editor1;
@@ -268,6 +271,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                     }
                     System.out.println(users);
 
+                    sharedPreferences1 = getSharedPreferences(Authorization_Token  , MODE_PRIVATE);
+                    token = sharedPreferences1.getString("Authorization_Token","");
 
                     final Dialog dialog = new Dialog(ParkNowActivity.this);
                     dialog.setTitle("Park Now");
@@ -345,8 +350,15 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                 thread.interrupt();
 
             }
-        }, this);
-        myAsyncTask.execute("parkNowUserList", "", island);
+        });
+
+        String post_data="";
+        try {
+            post_data = URLEncoder.encode("island_id", "UTF-8") + "=" + URLEncoder.encode(island, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        myAsyncTask.execute(API_URL_LIST.GET_USER_LIST, "POST", token, post_data);
 
 /*
         progressDialog = new ProgressDialog(ParkNowActivity.this);
