@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Fragments.UserShipsFragment;
 import in.silive.directme.Interface.AsyncResponse;
@@ -32,7 +32,7 @@ public class ParkingActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "UserName";
     ViewPager mViewPager;
     boolean network_available;
-    ApiCalling apicalling;
+    FetchData apicalling;
     int count = 1;
     JSONArray user;
     ImageView leftNavigation, rightNavigation;
@@ -62,7 +62,7 @@ public class ParkingActivity extends AppCompatActivity {
         final String token = sharedpreferences.getString("Authorization_Token", "");
         network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
-            apicalling = new ApiCalling(new AsyncResponse() {
+            apicalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
                     try {

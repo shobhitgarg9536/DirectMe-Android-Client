@@ -1,115 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.045608107"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="0dp" />
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline14"
+        app:layout_constraintRight_toRightOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/guideline16">
 
-    </android.support.design.widget.CoordinatorLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/water"
-            >
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
 
         </ImageView>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/island1"
-            android:id="@+id/imageViewisland1"
-            android:layout_above="@+id/imageViewpirateisland"
-            android:layout_toRightOf="@+id/linearLayoutUserList"
-            android:layout_toEndOf="@+id/linearLayoutUserList" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintRight_toLeftOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline10">
 
         <ImageView
+            android:id="@+id/imageViewisland1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/island1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline8"
+        app:layout_constraintRight_toLeftOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline10">
+
+        <ImageView
+            android:id="@+id/imageViewisland2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/island2"
-            android:id="@+id/imageViewisland2"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/linearLayoutUserList"
-            android:layout_toEndOf="@+id/linearLayoutUserList"
-            android:layout_marginLeft="28dp"
-            android:layout_marginStart="28dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline7"
+        app:layout_constraintRight_toLeftOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline11">
+
         <ImageView
+            android:id="@+id/imageViewpirateisland"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/pirateisland"
-            android:id="@+id/imageViewpirateisland"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/linearLayoutUserList"
-            android:layout_toEndOf="@+id/linearLayoutUserList"
-            android:layout_marginLeft="135dp"
-            android:layout_marginStart="135dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintRight_toLeftOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline12">
 
         <ImageView
+            android:id="@+id/imageViewisland3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:src="@drawable/island3"
-            android:id="@+id/imageViewisland3"
-            android:layout_above="@+id/imageViewisland2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="27dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline8"
+        app:layout_constraintRight_toLeftOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline12">
 
         <ImageView
+            android:id="@+id/imageViewisland4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/island4"
-            android:id="@+id/imageViewisland4"
-            android:layout_alignTop="@+id/imageViewisland2"
-            android:layout_toRightOf="@+id/imageViewpirateisland"
-            android:layout_toEndOf="@+id/imageViewpirateisland" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/cloud1"
-            android:id="@+id/imageViewcloud1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/cloud2"
-
-            android:id="@+id/imageViewcloud2"
-
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:id="@+id/linearLayoutUserList"
-            android:orientation="vertical"
-            android:layout_height="match_parent"
-            android:background="#1db0d8">
-            <Button
-                android:id="@+id/buttonRemoveUserList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/ic_delete" />
-            <ListView
-                android:layout_width="match_parent"
-                android:id="@+id/listviewusers"
-                android:layout_height="match_parent" />
+    </android.support.constraint.ConstraintLayout>
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/cloud1"
+        android:id="@+id/imageViewcloud1"
 
-        </LinearLayout>
-    </RelativeLayout>
+        />
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/cloud2"
+
+        android:id="@+id/imageViewcloud2"
+
+        />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3293919"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6722973"
+        tools:layout_editor_absoluteX="459dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9611486"
+        tools:layout_editor_absoluteX="656dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1086351"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3955432"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67966574"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="263dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.96657383"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="374dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0014641288"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.0"
+        tools:layout_editor_absoluteX="683dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="387dp" />
+
+
+</android.support.constraint.ConstraintLayout>

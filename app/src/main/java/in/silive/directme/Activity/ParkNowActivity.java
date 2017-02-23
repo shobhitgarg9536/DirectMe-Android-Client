@@ -13,13 +13,16 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import in.silive.directme.AsyncTask.FetchData;
+import in.silive.directme.Interface.AsyncResponse;
+import in.silive.directme.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,9 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import in.silive.directme.AsyncTask.ApiCalling;
-import in.silive.directme.Interface.AsyncResponse;
-import in.silive.directme.R;
+//// TODO: 2/22/2017 set animation in a method and uncomment
 
 public class ParkNowActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,9 +42,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
     LinearLayout llUserList;
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> users;
-    Button removeuserList;
-    ListView lvUsers;
-    ImageView imageview, cloud1, cloud2;
+    ImageView imageview,cloud1,cloud2;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences, sharedPreferences1;
     String PARK_NOW = "PARK_NOW";
@@ -92,6 +91,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
         });
         // removeuserList.setOnClickListener(this);
 
+
     }
 
     @Override
@@ -125,6 +125,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
 
                 //making UserModel list visible
                 //    llUserList.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.imageViewisland2:
 
@@ -151,6 +152,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                 thread.start();
                 //making UserModel list visible
                 //      llUserList.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.imageViewisland3:
 
@@ -177,6 +179,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                 thread.start();
                 //making UserModel list visible
                 //     llUserList.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.imageViewisland4:
 
@@ -204,10 +207,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                 //making UserModel list visible
                 //     llUserList.setVisibility(View.VISIBLE);
                 break;
-            case R.id.buttonRemoveUserList:
-                //making ISland view Visible
-                //    llUserList.setVisibility(View.GONE);
-                break;
+
             case R.id.imageViewpirateisland:
                 cloud1.setVisibility(View.VISIBLE);
                 cloud2.setVisibility(View.VISIBLE);
@@ -239,7 +239,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
     public void userList(String island) {
 
 
-        ApiCalling myAsyncTask = new ApiCalling(new AsyncResponse() {
+        FetchData myAsyncTask = new FetchData(new AsyncResponse() {
             @Override
             public void processFinish(String output) {
                 System.out.println(output);
@@ -382,4 +382,5 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 }
+
 

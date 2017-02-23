@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.Observable;
 
-import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
 import in.silive.directme.Database.DatabaseHandler;
@@ -51,7 +51,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
     boolean network_available;
     DatabaseHandler db;
     int comm[] = new int[5];
-    ApiCalling apiCalling;
+    FetchData apiCalling;
     TextView gold_coin_textview, banana_textview, coconut_textview, bamboo_textview, timber_textview;
     Controller controller = new Controller();
     SharedPreferences sharedpreferences, sharedpreference;
@@ -182,7 +182,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
         final String token = sharedpreferences.getString("Authorization_Token", "");
         network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
-            apiCalling = new ApiCalling(new AsyncResponse() {
+            apiCalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
                     try {

@@ -132,7 +132,7 @@ public class MainActivity extends Activity {
                                     Intent i = new Intent(MainActivity.this, DashboardActivity.class);
                                     startActivity(i);
                                 } else {
-                                    Intent i = new Intent(MainActivity.this, RegistrationActivity.class);
+                                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
                                     startActivity(i);
                                 }
                             }
@@ -170,9 +170,10 @@ public class MainActivity extends Activity {
     }
 
     @Override
-//to stop sound when minimised
-
-
+    protected void onPause() {
+        finish();
+        super.onPause();
+    }
     protected void onDestroy() {
         super.onDestroy();
 

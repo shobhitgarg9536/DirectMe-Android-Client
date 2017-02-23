@@ -19,7 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Fragments.ShipsFragment;
 import in.silive.directme.Interface.AsyncResponse;
@@ -35,7 +35,7 @@ public class ShowroomActivity extends AppCompatActivity {
     ViewPager mViewPager;
     int count = 1, slot;
     boolean network_available;
-    ApiCalling apicalling;
+    FetchData apicalling;
     SharedPreferences sharedpreferences;
 
     @Override
@@ -66,7 +66,7 @@ public class ShowroomActivity extends AppCompatActivity {
         final String token = sharedpreferences.getString("Authorization_Token", "");
         network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
-            apicalling = new ApiCalling(new AsyncResponse() {
+            apicalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
                     try {

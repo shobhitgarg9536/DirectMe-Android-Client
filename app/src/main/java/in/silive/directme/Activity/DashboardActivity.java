@@ -22,7 +22,7 @@ import org.json.JSONObject;
 
 import java.util.Observable;
 
-import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.AsyncTask.FirebaseTokenBackgroundWorker;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
@@ -42,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     Controller controller = new Controller();
     boolean network_available;
     BroadcastReceiver mRegistrationBroadcastReceiver;
-    ApiCalling apicalling;
+    FetchData apicalling;
     private ImageView park, parked, parking, garage, showroom, coinimg, coinimg2, dashboard, Volume;
     private TextView bamboo, coconut, banana, timber, gold_coin, log_out;
 
@@ -134,7 +134,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
-            apicalling = new ApiCalling(new AsyncResponse() {
+            apicalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
                     try {

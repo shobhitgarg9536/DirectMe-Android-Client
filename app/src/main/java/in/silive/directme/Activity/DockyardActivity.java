@@ -15,22 +15,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import in.silive.directme.AsyncTask.ApiCalling;
+import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Fragments.BoatsEquippedFragment;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.Utils.API_URL_LIST;
 
-import static in.silive.directme.Activity.UserLoginActivity.Authorization_Token;
-
 
 public class DockyardActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "UserName";
+    public static final String Authorization_Token = "Authorization_Token";
     JSONArray jArray;
     ViewPager mViewPager;
     boolean network_available;
-    ApiCalling apicalling;
+    FetchData apicalling;
     int count = 1;
     SharedPreferences sharedpreferences;
 
@@ -57,7 +56,7 @@ public class DockyardActivity extends AppCompatActivity {
         final String token = sharedpreferences.getString("Authorization_Token", "");
         network_available = CheckConnectivity.isNetConnected(getApplicationContext());
         if (network_available) {
-            apicalling = new ApiCalling(new AsyncResponse() {
+            apicalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
                     try {

@@ -1,6 +1,5 @@
 package in.silive.directme.AsyncTask;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -26,12 +25,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
  * Created by Lenovo on 19-Jan-17.
  */
 
-public class ApiCalling extends AsyncTask<String, String, String> {
+public class FetchData extends AsyncTask<String, String, String> {
 
     private AsyncResponse delegate = null;//Call back interface
 
 
-    public ApiCalling(AsyncResponse asyncResponse, Context context) {
+    public FetchData(AsyncResponse asyncResponse, Context context) {
         delegate = asyncResponse;//Assigning call back interfacethrough constructor
     }
 
@@ -52,19 +51,13 @@ public class ApiCalling extends AsyncTask<String, String, String> {
 
         if (args[2].equals("get"))
             try {
-
                 URL url = new URL(args[0]);
-
-
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setReadTimeout(15000 /* milliseconds */);
                 connection.setConnectTimeout(15000 /* milliseconds */);
-
                 connection.setRequestMethod("GET");
                 connection.addRequestProperty("Authorization", "Token " + args[1]);
                 connection.connect();
-
-
                 int responseCode = connection.getResponseCode();
 
                 if (responseCode == HttpsURLConnection.HTTP_OK) {

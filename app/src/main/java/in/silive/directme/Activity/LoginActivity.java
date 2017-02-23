@@ -16,33 +16,38 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.IOException;
+
+import in.silive.directme.AsyncTask.LoginBackgroundWorker;
+import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
 
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String usergid = "gidKey";
-    public static final String userfbid = "fidKey";
-    //Signin constant to check the activity result
-    public int RC_SIGN_IN = 100;
-    SharedPreferences sharedpreferences;
-    String userid;
     //Signin button
     private SignInButton signInButton;
     //Signing Options
     private GoogleSignInOptions gso;
+    public static final String MyPREFERENCES = "Authorization_Token" ;
     //google api client
     private GoogleApiClient mGoogleApiClient;
+    public static final String usergid = "gidKey";
+    public static final String userfbid = "Authorization_Token";
+    //Signin constant to check the activity result
+    public int RC_SIGN_IN = 100;
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
@@ -58,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         info = (TextView) findViewById(R.id.info);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         //Initializing google signin option
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -83,11 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                userid = loginResult.getAccessToken().getUserId();
-                editor.putString(userfbid, userid);
 
-                editor.apply();
                 info.setText(
                         "UserModel ID: "
                                 + loginResult.getAccessToken().getUserId()
@@ -137,7 +138,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
     //After the signing we are calling this function
     private void handleSignInResult(GoogleSignInResult result) {
         //If the login succeed
@@ -145,17 +145,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //Getting google account
             GoogleSignInAccount acct = result.getSignInAccount();
             String personName = acct.getDisplayName();
-
             String email = acct.getEmail();
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            userid = acct.getId();
-            editor.putString(userfbid, userid);
 
-            editor.apply();
 
-            info.setText(userid + personName);
-            Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+            LoginBackgroundWorker loginBackgroundWorker = new LoginBackgroundWorker(new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+                    System.out.println(output);
+                    info.setText(output);
+                }
+            });
+            loginBackgroundWorker.execute(email);
+
+            Intent i = new Intent(LoginActivity.this , DashboardActivity.class);
             startActivity(i);
+
 
 
         } else {
