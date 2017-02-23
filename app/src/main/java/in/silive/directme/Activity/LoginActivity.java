@@ -159,9 +159,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent i = new Intent(LoginActivity.this , DashboardActivity.class);
             finish();
             startActivity(i);
-
-
-
         } else {
             //If login fails
             Toast.makeText(this, "LoginActivity Failed", Toast.LENGTH_LONG).show();
