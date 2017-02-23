@@ -9,7 +9,6 @@ import java.util.Observer;
 
 public class Controller extends Observable {
 
-    SharedPreferences sharedPreferences;
     private int bananaCount = 0;
     private int timberCount = 0;
     private int coconutCount = 0;

@@ -28,14 +28,11 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ApiCalling extends AsyncTask<String, String, String> {
 
-    ProgressDialog progressDialog;
     private AsyncResponse delegate = null;//Call back interface
-    private Context ctx;
 
 
     public ApiCalling(AsyncResponse asyncResponse, Context context) {
         delegate = asyncResponse;//Assigning call back interfacethrough constructor
-        this.ctx = context;
     }
 
 

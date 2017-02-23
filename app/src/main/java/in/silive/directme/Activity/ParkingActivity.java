@@ -33,7 +33,6 @@ public class ParkingActivity extends AppCompatActivity {
     ViewPager mViewPager;
     boolean network_available;
     ApiCalling apicalling;
-    int i;
     int count = 1;
     JSONArray user;
     ImageView leftNavigation, rightNavigation;

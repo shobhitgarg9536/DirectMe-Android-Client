@@ -26,7 +26,6 @@ public class ShipsFragment extends Fragment {
     int banana_r = 0, gold_r = 0, bamboo_r = 0, wood_r = 0, coconut_r = 0;
     ImageView boat_image;
     TextView boat_speed;
-    SharedPreferences pref;
     int id = 0;
 
     @Override

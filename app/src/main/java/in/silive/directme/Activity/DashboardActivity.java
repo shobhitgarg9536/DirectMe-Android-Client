@@ -38,16 +38,13 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public static final String MyPREFERENCES = "MyPrefs";
     public int[] commod = new int[5];
     int i;
-    Intent svc;
     SharedPreferences sharedpreferences;
     Controller controller = new Controller();
-    CheckConnectivity network;
     boolean network_available;
     BroadcastReceiver mRegistrationBroadcastReceiver;
     ApiCalling apicalling;
     private ImageView park, parked, parking, garage, showroom, coinimg, coinimg2, dashboard, Volume;
     private TextView bamboo, coconut, banana, timber, gold_coin, log_out;
-    private boolean im = true;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
