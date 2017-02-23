@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import in.silive.directme.Interface.AsyncResponse;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -19,6 +17,8 @@ import java.net.URLEncoder;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import in.silive.directme.Interface.AsyncResponse;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -27,9 +27,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class UserAccountManagerBackgroundWorker extends AsyncTask<String, String, String> {
 
-    public AsyncResponse delegate = null;//Call back interface
+    private AsyncResponse delegate = null;//Call back interface
     ProgressDialog progressDialog;
-    Context ctx;
+    private Context ctx;
 
 
     public UserAccountManagerBackgroundWorker(AsyncResponse asyncResponse, Context context) {
@@ -44,10 +44,10 @@ public class UserAccountManagerBackgroundWorker extends AsyncTask<String, String
 
     @Override
     protected String doInBackground(String... args) {
-        String result="";
+        String result = "";
         String sUrl = args[1];
         String post_data = "";
-        if(args[0].equals("CREATE_ACCOUNT")) {
+        if (args[0].equals("CREATE_ACCOUNT")) {
             String sName = args[2];
             String sEmail = args[3];
             String sPassword = args[4];
@@ -60,7 +60,7 @@ public class UserAccountManagerBackgroundWorker extends AsyncTask<String, String
                 e.printStackTrace();
             }
 
-        }else if(args[1].equals("")){
+        } else if (args[1].equals("")) {
             String sName = args[2];
             String sPassword = args[3];
             try {
@@ -90,8 +90,7 @@ public class UserAccountManagerBackgroundWorker extends AsyncTask<String, String
 
             int responseCode = connection.getResponseCode();
 
-            if (responseCode == HttpsURLConnection.HTTP_OK)
-            {
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuffer sb = new StringBuffer("");
@@ -105,17 +104,14 @@ public class UserAccountManagerBackgroundWorker extends AsyncTask<String, String
 
                 in.close();
                 result = sb.toString();
-            }
-            else
-            {
+            } else {
                 Toast.makeText(getApplicationContext(), responseCode,
                         Toast.LENGTH_LONG).show();
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
         }
 
-    return result;
+        return result;
     }
 
 

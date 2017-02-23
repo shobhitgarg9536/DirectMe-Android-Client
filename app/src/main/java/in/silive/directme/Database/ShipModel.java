@@ -4,43 +4,44 @@ package in.silive.directme.Database;
  * Created by Lenovo on 28-Dec-16.
  */
 
-public class Ships_DB_Objects {
+public class ShipModel {
 
     //private variables
     private String _id;
     private String _api_id;
     private String _name;
-    private  String _Cost_multiplier,_filling_speed,_Parking_time,_Boat_filled,_coins_earn,_user_name,_island;
-    public Ships_DB_Objects()
-    {
+    private String _Cost_multiplier, _filling_speed, _Parking_time, _Boat_filled, _coins_earn, _user_name, _island;
+
+    public ShipModel() {
 
     }
 
 
-    public Ships_DB_Objects(String id, String name, String api_id, String cost_multiplier,
-                            String filling_speed, String Parking_time, String Boat_filled, String coins_earn, String user_name, String island ){
+    public ShipModel(String id, String name, String api_id, String cost_multiplier,
+                     String filling_speed, String Parking_time, String Boat_filled, String coins_earn, String user_name, String island) {
         this._id = id;
         this._name = name;
         this._api_id = api_id;
-        this._Cost_multiplier=cost_multiplier;
-        this._filling_speed=filling_speed;
-        this._Parking_time=Parking_time;
-        this._Boat_filled=Boat_filled;
-        this._coins_earn=coins_earn;
-        this._user_name=user_name;
-        this._island=island;
+        this._Cost_multiplier = cost_multiplier;
+        this._filling_speed = filling_speed;
+        this._Parking_time = Parking_time;
+        this._Boat_filled = Boat_filled;
+        this._coins_earn = coins_earn;
+        this._user_name = user_name;
+        this._island = island;
     }
-    public Ships_DB_Objects(String name, String api_id, String cost_multiplier,
-                            String filling_speed, String Parking_time, String Boat_filled, String coins_earn, String user_name, String island ){
+
+    public ShipModel(String name, String api_id, String cost_multiplier,
+                     String filling_speed, String Parking_time, String Boat_filled, String coins_earn, String user_name, String island) {
         this._name = name;
         this._api_id = api_id;
-        this._Cost_multiplier=cost_multiplier;
-        this._filling_speed=filling_speed;
-        this._Parking_time=Parking_time;
-        this._Boat_filled=Boat_filled;
-        this._coins_earn=coins_earn;
-        this._user_name=user_name;
-        this._island=island;
+        this._Cost_multiplier = cost_multiplier;
+        this._filling_speed = filling_speed;
+        this._Parking_time = Parking_time;
+        this._Boat_filled = Boat_filled;
+        this._coins_earn = coins_earn;
+        this._user_name = user_name;
+        this._island = island;
     }
 
 
@@ -57,7 +58,7 @@ public class Ships_DB_Objects {
     }
 
     public void set_Cost_multiplier(String cost_multiplier) {
-        this._Cost_multiplier= cost_multiplier;
+        this._Cost_multiplier = cost_multiplier;
     }
 
     public String get_filling_speed() {
@@ -112,15 +113,15 @@ public class Ships_DB_Objects {
         return _user_name;
     }
 
+    public void set_user_name(String _user_name) {
+        this._user_name = _user_name;
+    }
+
     public String get_island() {
         return _island;
     }
 
     public void set_island(String _island) {
         this._island = _island;
-    }
-
-    public void set_user_name(String _user_name) {
-        this._user_name = _user_name;
     }
 }

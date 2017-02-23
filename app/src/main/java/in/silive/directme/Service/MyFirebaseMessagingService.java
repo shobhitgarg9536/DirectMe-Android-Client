@@ -7,12 +7,13 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import in.silive.directme.Activity.MainActivity;
-import in.silive.directme.Utils.NotificationUtils;
-import in.silive.directme.Utils.FCMConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import in.silive.directme.Activity.MainActivity;
+import in.silive.directme.Utils.FCMConfig;
+import in.silive.directme.Utils.NotificationUtils;
 
 /**
  * Created by Shobhit-pc on 2/16/2017.
@@ -28,9 +29,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.e(TAG, "From: " + remoteMessage.getFrom());
-
-        if (remoteMessage == null)
-            return;
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
@@ -61,7 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // play notification sound
             NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
             notificationUtils.playNotificationSound();
-        }else{
+        } else {
             // If the app is in background, firebase itself handles the notification
         }
     }
@@ -85,7 +83,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.e(TAG, "payload: " + payload.toString());
             Log.e(TAG, "imageUrl: " + imageUrl);
             Log.e(TAG, "timestamp: " + timestamp);
-
 
 
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {

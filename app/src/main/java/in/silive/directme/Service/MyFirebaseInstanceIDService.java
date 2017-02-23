@@ -1,6 +1,5 @@
 package in.silive.directme.Service;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
@@ -32,7 +31,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         storeRegIdInPref(refreshedToken);
 
         // sending reg id to your server
-          sendRegistrationToServer(refreshedToken);
+        sendRegistrationToServer(refreshedToken);
 
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(FCMConfig.REGISTRATION_COMPLETE);
@@ -42,14 +41,14 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(final String token) {
 
-            // sending fcm token to server
-            FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
-                @Override
-                public void processFinish(String output) {
+        // sending fcm token to server
+        FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
 
-                }
-            });
-            firebaseTokenBackgroundWorker.execute(token);
+            }
+        });
+        firebaseTokenBackgroundWorker.execute(token);
 
         Log.e(TAG, "sendRegistrationToServer: " + token);
     }

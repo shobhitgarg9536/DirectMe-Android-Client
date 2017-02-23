@@ -4,10 +4,6 @@ package in.silive.directme.AsyncTask;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
-import in.silive.directme.Interface.AsyncResponse;
-import in.silive.directme.Utils.API_URL_LIST;
-import in.silive.directme.Utils.FCMConfig;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -20,15 +16,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import in.silive.directme.Interface.AsyncResponse;
+import in.silive.directme.Utils.API_URL_LIST;
+import in.silive.directme.Utils.FCMConfig;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class FirebaseTokenBackgroundWorker extends AsyncTask<String , String , String> {
+public class FirebaseTokenBackgroundWorker extends AsyncTask<String, String, String> {
 
-    public AsyncResponse delecate  = null;
+    private AsyncResponse delecate = null;
 
-    public FirebaseTokenBackgroundWorker(AsyncResponse stringInterface){
+    public FirebaseTokenBackgroundWorker(AsyncResponse stringInterface) {
         this.delecate = stringInterface;
     }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -72,7 +73,7 @@ public class FirebaseTokenBackgroundWorker extends AsyncTask<String , String , S
 
     @Override
     protected void onPostExecute(String s) {
-       SharedPreferences pref = getApplicationContext().getSharedPreferences(FCMConfig.SHARED_PREF, 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(FCMConfig.SHARED_PREF, 0);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
         editor.commit();

@@ -18,29 +18,30 @@ import in.silive.directme.R;
 import in.silive.directme.Utils.API_URL_LIST;
 
 
-public class CreateAccount extends AppCompatActivity {
-    EditText name,email,password;
-    String sname,semail,spassword;
-    SharedPreferences sharedpreferences;
+public class RegistrationActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "UserName";
-    TextInputLayout textInputName,textInputPassword,textInputEmail;
+    EditText etName, etEmail, etPassword;
+    String name, email, password;
+    SharedPreferences sharedpreferences;
+    TextInputLayout textInputName, textInputPassword, textInputEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createaccount);
-        name = (EditText) findViewById(R.id.etname);
-        email = (EditText) findViewById(R.id.etemail);
-        password = (EditText) findViewById(R.id.etpassword);
-        textInputName = (TextInputLayout)  findViewById(R.id.tilname);
-        textInputPassword = (TextInputLayout)  findViewById(R.id.tilpassword);
-        textInputEmail = (TextInputLayout)  findViewById(R.id.tilemail);
+        etName = (EditText) findViewById(R.id.etname);
+        etEmail = (EditText) findViewById(R.id.etemail);
+        etPassword = (EditText) findViewById(R.id.etpassword);
+        textInputName = (TextInputLayout) findViewById(R.id.tilname);
+        textInputPassword = (TextInputLayout) findViewById(R.id.tilpassword);
+        textInputEmail = (TextInputLayout) findViewById(R.id.tilemail);
 
-        name.addTextChangedListener(new MyTextWatcher(name));
-        password.addTextChangedListener(new MyTextWatcher(password));
-        email.addTextChangedListener(new MyTextWatcher(email));
+        etName.addTextChangedListener(new MyTextWatcher(etName));
+        etPassword.addTextChangedListener(new MyTextWatcher(etPassword));
+        etEmail.addTextChangedListener(new MyTextWatcher(etEmail));
 
     }
+
     public void CreateUserAccount(View view) {
         AssignTheValues();
 
@@ -48,13 +49,13 @@ public class CreateAccount extends AppCompatActivity {
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
 
-            editor.putString("UserName", sname);
-            editor.commit();
+            editor.putString("UserName", name);
+            editor.apply();
  /*           AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
-            params.put("username" , sname);
-            params.put("email" , semail);
-            params.put("password" , spassword);
+            params.put("username" , etName);
+            params.put("etEmail" , email);
+            params.put("etPassword" , etPassword);
             client.post("http://direct-me.herokuapp.com/user/register/" ,params, new AsyncHttpResponseHandler()
             {
             @Override
@@ -85,25 +86,26 @@ public class CreateAccount extends AppCompatActivity {
                 public void processFinish(String output) {
 
                 }
-            },this);
-            userAccountManagerBackgroundWorker.execute("CREATE_ACCOUNT", API_URL_LIST.USER_REGISTER_URL, sname,semail,spassword);
+            }, this);
+            userAccountManagerBackgroundWorker.execute("CREATE_ACCOUNT", API_URL_LIST.USER_REGISTER_URL, name, email, password);
 
-            Intent i = new Intent(this , UserLogin.class);
+            Intent i = new Intent(this, UserLoginActivity.class);
             startActivity(i);
 
         }
     }
 
     private void AssignTheValues() {
-        sname = name.getText().toString();
-        semail = email.getText().toString();
-        spassword = password.getText().toString();
+        name = etName.getText().toString();
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
     }
+
     private boolean validateName() {
-        if (name.getText().toString().trim().isEmpty()) {
-            textInputName.setError("Enter your full name");
+        if (etName.getText().toString().trim().isEmpty()) {
+            textInputName.setError("Enter your full etName");
             //requsting focus on editText
-            requestFocus(name);
+            requestFocus(etName);
             return false;
         } else {
             textInputName.setErrorEnabled(false);
@@ -111,33 +113,33 @@ public class CreateAccount extends AppCompatActivity {
 
         return true;
     }
+
     private boolean validatePassword() {
-        if (password.getText().toString().trim().isEmpty() || password.length() < 8) {
-            if(password.getText().toString().trim().isEmpty())
+        if (etPassword.getText().toString().trim().isEmpty() || etPassword.length() < 8) {
+            if (etPassword.getText().toString().trim().isEmpty())
                 textInputPassword.setError("Enter your Password");
-            if(password.length() < 8 )
-                textInputPassword.setError("Enter your password of minimum 8 alphabets or digits");
+            if (etPassword.length() < 8)
+                textInputPassword.setError("Enter your etPassword of minimum 8 alphabets or digits");
             //requsting focus on editText
-            requestFocus(password);
+            requestFocus(etPassword);
             return false;
-        }
-        else {
+        } else {
             textInputPassword.setErrorEnabled(false);
         }
 
         return true;
     }
+
     private boolean validateEmail() {
-        if (email.getText().toString().trim().isEmpty() || !semail.contains("@") || !semail.contains(".com") ) {
-            if(semail.trim().isEmpty())
+        if (etEmail.getText().toString().trim().isEmpty() || !email.contains("@") || !email.contains(".com")) {
+            if (email.trim().isEmpty())
                 textInputEmail.setError("Enter your Email Id");
-            if(!semail.contains("@") || !semail.contains(".com"))
+            if (!email.contains("@") || !email.contains(".com"))
                 textInputEmail.setError("Enter your correct Email Id");
             //requsting focus on editText
-            requestFocus(email);
+            requestFocus(etEmail);
             return false;
-        }
-        else {
+        } else {
             textInputEmail.setErrorEnabled(false);
         }
 
@@ -175,6 +177,7 @@ public class CreateAccount extends AppCompatActivity {
                     break;
             }
         }
+
         public void afterTextChanged(Editable editable) {
 
         }

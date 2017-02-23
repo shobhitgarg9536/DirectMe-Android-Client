@@ -23,30 +23,29 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import in.silive.directme.R;
 
 
-public class Login extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
 
-    //Signin button
-    private SignInButton signInButton;
-
-    //Signing Options
-    private GoogleSignInOptions gso;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    //google api client
-    private GoogleApiClient mGoogleApiClient;
+    public static final String MyPREFERENCES = "MyPrefs";
     public static final String usergid = "gidKey";
     public static final String userfbid = "fidKey";
     //Signin constant to check the activity result
     public int RC_SIGN_IN = 100;
+    SharedPreferences sharedpreferences;
+    String userid;
+    //Signin button
+    private SignInButton signInButton;
+    //Signing Options
+    private GoogleSignInOptions gso;
+    //google api client
+    private GoogleApiClient mGoogleApiClient;
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    SharedPreferences sharedpreferences;
-    String userid;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
 
-        info = (TextView)findViewById(R.id.info);
+        info = (TextView) findViewById(R.id.info);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         //Initializing google signin option
@@ -85,32 +84,32 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
             @Override
             public void onSuccess(LoginResult loginResult) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                 userid=loginResult.getAccessToken().getUserId();
-                editor.putString(userfbid,userid);
+                userid = loginResult.getAccessToken().getUserId();
+                editor.putString(userfbid, userid);
 
                 editor.apply();
                 info.setText(
-                        "User ID: "
+                        "UserModel ID: "
                                 + loginResult.getAccessToken().getUserId()
                                 + "\n" +
                                 "Auth Token: "
                                 + loginResult.getAccessToken().getToken()
                 );
-                Intent i=new Intent(Login.this,Dashboard.class);
+                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
                 startActivity(i);
 
             }
 
             @Override
             public void onCancel() {
-                info.setText("Login attempt canceled.");
+                info.setText("LoginActivity attempt canceled.");
 
             }
 
             @Override
             public void onError(FacebookException e) {
 
-                info.setText("Login attempt failed.");
+                info.setText("LoginActivity attempt failed.");
             }
         });
 
@@ -149,20 +148,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
 
             String email = acct.getEmail();
             SharedPreferences.Editor editor = sharedpreferences.edit();
-             userid=acct.getId();
-            editor.putString(userfbid,userid);
+            userid = acct.getId();
+            editor.putString(userfbid, userid);
 
             editor.apply();
 
-            info.setText(userid+personName);
-           Intent i=new Intent(Login.this,Dashboard.class);
+            info.setText(userid + personName);
+            Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
             startActivity(i);
-
 
 
         } else {
             //If login fails
-            Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "LoginActivity Failed", Toast.LENGTH_LONG).show();
         }
     }
 

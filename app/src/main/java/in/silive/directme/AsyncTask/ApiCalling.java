@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import in.silive.directme.Interface.AsyncResponse;
-
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -20,6 +18,8 @@ import java.net.URLEncoder;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import in.silive.directme.Interface.AsyncResponse;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -28,9 +28,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ApiCalling extends AsyncTask<String, String, String> {
 
-    public AsyncResponse delegate = null;//Call back interface
     ProgressDialog progressDialog;
-    Context ctx;
+    private AsyncResponse delegate = null;//Call back interface
+    private Context ctx;
 
 
     public ApiCalling(AsyncResponse asyncResponse, Context context) {
@@ -53,7 +53,7 @@ public class ApiCalling extends AsyncTask<String, String, String> {
         JSONObject jsonObject = null;
         String result = "";
 
-        if(args[2]=="get")
+        if (args[2].equals("get"))
             try {
 
                 URL url = new URL(args[0]);
@@ -64,18 +64,16 @@ public class ApiCalling extends AsyncTask<String, String, String> {
                 connection.setConnectTimeout(15000 /* milliseconds */);
 
                 connection.setRequestMethod("GET");
-                connection.addRequestProperty("Authorization", "Token "+args[1]);
+                connection.addRequestProperty("Authorization", "Token " + args[1]);
                 connection.connect();
-
 
 
                 int responseCode = connection.getResponseCode();
 
-                if (responseCode == HttpsURLConnection.HTTP_OK)
-                {
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                     BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    StringBuffer sb = new StringBuffer("");
+                    StringBuilder sb = new StringBuilder("");
                     String line = "";
 
                     while ((line = in.readLine()) != null) {
@@ -86,23 +84,19 @@ public class ApiCalling extends AsyncTask<String, String, String> {
 
                     in.close();
                     result = sb.toString();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), responseCode,
                             Toast.LENGTH_LONG).show();
                 }
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
             }
 
 
-        else if(args[2]=="post")
-        {
+        else if (args[2].equals("post")) {
             try {
 
                 URL url = new URL(args[0]);
-                String auth =args[1] ;
+                String auth = args[1];
 
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -110,7 +104,7 @@ public class ApiCalling extends AsyncTask<String, String, String> {
                 connection.setConnectTimeout(15000 /* milliseconds */);
 
                 connection.setRequestMethod("POST");
-             //   connection.addRequestProperty("Authorization", "Token 54fff69acdaf6842d422b5fd5c15e10707383cd3");
+                //   connection.addRequestProperty("Authorization", "Token 54fff69acdaf6842d422b5fd5c15e10707383cd3");
                 connection.connect();
 
                 OutputStream outputStream = connection.getOutputStream();
@@ -122,8 +116,7 @@ public class ApiCalling extends AsyncTask<String, String, String> {
 
                 int responseCode = connection.getResponseCode();
 
-                if (responseCode == HttpsURLConnection.HTTP_OK)
-                {
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                     BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuffer sb = new StringBuffer("");
@@ -137,20 +130,18 @@ public class ApiCalling extends AsyncTask<String, String, String> {
 
                     in.close();
                     result = sb.toString();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), responseCode,
                             Toast.LENGTH_LONG).show();
                 }
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
             }
 
         }
         return result;
 
     }
+
     @Override
     protected void onPostExecute(String result) {
 

@@ -6,6 +6,6 @@ package in.silive.directme.Interface;
 
 public interface AsyncResponse {
 
-    public void processFinish(String output);
+    void processFinish(String output);
 }
 

@@ -4,34 +4,36 @@ package in.silive.directme.Database;
  * Created by Lenovo on 02-Jan-17.
  */
 
-public class User_DB_Objects {
+public class UserModel {
     private String _id;
-    private  String _Type;
+    private String _Type;
     private String _boatpark;
-    private  String _owner ;
-    private  String _boatname;
-    private  String _Time;
-    public User_DB_Objects()
-    {
+    private String _owner;
+    private String _boatname;
+    private String _Time;
+
+    public UserModel() {
 
     }
-    public User_DB_Objects(String Type, String boatpark, String owner, String boatname,
-                           String Time){
+
+    public UserModel(String Type, String boatpark, String owner, String boatname,
+                     String Time) {
         this._Type = Type;
         this._boatpark = boatpark;
         this._owner = owner;
-        this._boatname=boatname;
-        this._Time=Time;
+        this._boatname = boatname;
+        this._Time = Time;
 
     }
-    public User_DB_Objects(String id, String Type, String boatpark, String owner, String boatname,
-                           String Time){
-        this._id=id;
+
+    public UserModel(String id, String Type, String boatpark, String owner, String boatname,
+                     String Time) {
+        this._id = id;
         this._Type = Type;
         this._boatpark = boatpark;
         this._owner = owner;
-        this._boatname=boatname;
-        this._Time=Time;
+        this._boatname = boatname;
+        this._Time = Time;
 
     }
 

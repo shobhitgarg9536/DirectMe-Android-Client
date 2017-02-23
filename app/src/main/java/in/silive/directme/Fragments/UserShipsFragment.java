@@ -27,45 +27,49 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Observable;
 
-import in.silive.directme.Activity.Dashboard;
-import in.silive.directme.Activity.Parknow;
+import in.silive.directme.Activity.DashboardActivity;
+import in.silive.directme.Activity.ParkNowActivity;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
 import in.silive.directme.Database.DatabaseHandler;
-import in.silive.directme.Database.Ships_DB_Objects;
+import in.silive.directme.Database.ShipModel;
 import in.silive.directme.R;
 
 /**
  * Created by Lenovo on 01-Dec-16.
  */
 
-public class User_ships extends Fragment implements View.OnClickListener, java.util.Observer {
-    TextView parkingUserName,parkingBoatName,parkingIsland;
+public class UserShipsFragment extends Fragment implements View.OnClickListener, java.util.Observer {
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static int value;
+    static JSONObject data;
+    TextView parkingUserName, parkingBoatName, parkingIsland;
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> parking_detail;
     Button undock;
     CheckConnectivity network;
     boolean network_available;
-    TextView timee,coin,fill,cost_multiplier,experience_gain,boatname;
-    int comm[]=new int[5];
-    String c[]=new String[5];
-    Dashboard dashboard;
-    int Second,prevsecond,updated,finalhour,finalmin,finalsec,filspeed;
-    String prevsec,update,finalhou,finalmi,finalse,fillspeed;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-
-    public static int value;
+    TextView timee, coin, fill, cost_multiplier, experience_gain, boatname;
+    int comm[] = new int[5];
+    String c[] = new String[5];
+    DashboardActivity dashboard;
+    int prevsecond;
+    int updated;
+    int finalhour;
+    int finalmin;
+    int finalsec;
+    int filspeed;
+    String prevsec, update, finalhou, finalmi, finalse, fillspeed;
     TextView bamboo, coconut, banana, timber, gold_coin;
     ImageView ship;
     Controller controller = new Controller();
     DatabaseHandler db;
     SharedPreferences sharedpreferences;
+    String cost, boatnam, ide, Xp;
 
-    static JSONObject data;
-    public static User_ships newInstance(JSONObject jsonObject)
-    {
-        User_ships userships =new User_ships();
-        data=jsonObject;
+    public static UserShipsFragment newInstance(JSONObject jsonObject) {
+        UserShipsFragment userships = new UserShipsFragment();
+        data = jsonObject;
         return userships;
     }
 
@@ -73,41 +77,41 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_parking, container,
                 false);
-        this.undock=(Button)v.findViewById(R.id.undocker);
-        dashboard=new Dashboard();
+        this.undock = (Button) v.findViewById(R.id.undocker);
+        dashboard = new DashboardActivity();
         parkingUserName = (TextView) v.findViewById(R.id.odetail);
-        boatname=(TextView)v.findViewById(R.id.boatname);
+        boatname = (TextView) v.findViewById(R.id.boatname);
         parkingBoatName = (TextView) v.findViewById(R.id.odet);
         parkingIsland = (TextView) v.findViewById(R.id.sdet);
-        cost_multiplier=(TextView)v.findViewById(R.id.capacityval);
-        experience_gain=(TextView)v.findViewById(R.id.Xpvalue);
-        this.timee=(TextView)v.findViewById(R.id.timeal);
-        this.coin=(TextView)v.findViewById(R.id.coinvalue);
-        this.fill=(TextView)v.findViewById(R.id.fillvalue);
-        gold_coin=(TextView)v.findViewById(R.id.gold_no);
-        banana=(TextView)v.findViewById(R.id.banana_no);
-        coconut=(TextView)v.findViewById(R.id.coconut_no);
-        bamboo=(TextView)v.findViewById(R.id.bamboo_no);
-        timber=(TextView)v.findViewById(R.id.wood_no);
-        ship=(ImageView)v.findViewById(R.id.imageship);
+        cost_multiplier = (TextView) v.findViewById(R.id.capacityval);
+        experience_gain = (TextView) v.findViewById(R.id.Xpvalue);
+        this.timee = (TextView) v.findViewById(R.id.timeal);
+        this.coin = (TextView) v.findViewById(R.id.coinvalue);
+        this.fill = (TextView) v.findViewById(R.id.fillvalue);
+        gold_coin = (TextView) v.findViewById(R.id.gold_no);
+        banana = (TextView) v.findViewById(R.id.banana_no);
+        coconut = (TextView) v.findViewById(R.id.coconut_no);
+        bamboo = (TextView) v.findViewById(R.id.bamboo_no);
+        timber = (TextView) v.findViewById(R.id.wood_no);
+        ship = (ImageView) v.findViewById(R.id.imageship);
         db = new DatabaseHandler(getActivity());
 
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int hour = calendar.get(Calendar.HOUR)*60*60;
-        int min= calendar.get(Calendar.MINUTE)*60;
-        int secon=calendar.get(Calendar.SECOND);
-        int Second=hour+min+secon;
-        if (sharedpreferences.contains(Parknow.times)) {
-            prevsec=sharedpreferences.getString(Parknow.times, "");
-            prevsecond=Integer.parseInt(prevsec);
+        int hour = calendar.get(Calendar.HOUR) * 60 * 60;
+        int min = calendar.get(Calendar.MINUTE) * 60;
+        int secon = calendar.get(Calendar.SECOND);
+        int Second = hour + min + secon;
+        if (sharedpreferences.contains(ParkNowActivity.times)) {
+            prevsec = sharedpreferences.getString(ParkNowActivity.times, "");
+            prevsecond = Integer.parseInt(prevsec);
 
 
-            updated=Second-prevsecond;
+            updated = Second - prevsecond;
 
         }
-        if(updated<7200) {
+        if (updated < 7200) {
             finalhour = updated / 3600;
             finalmin = (updated % 3600) / 60;
             finalsec = (updated % 60);
@@ -115,49 +119,45 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
             finalhou = Integer.toString(finalhour);
             finalmi = Integer.toString(finalmin);
             finalse = Integer.toString(finalsec);
-            timee.setText(finalhou+":"+finalmi+":"+finalse);
-            filspeed=updated/72;
-            fillspeed=Integer.toString(filspeed);
-            fill.setText(fillspeed+"%");
-        }
-        else
-        {
-            sharedpreferences.edit().remove(Parknow.times).commit();
+            timee.setText(finalhou + ":" + finalmi + ":" + finalse);
+            filspeed = updated / 72;
+            fillspeed = Integer.toString(filspeed);
+            fill.setText(fillspeed + "%");
+        } else {
+            sharedpreferences.edit().remove(ParkNowActivity.times).commit();
             timee.setText("Time over");
-            String val= coin.getText().toString();
-            value=Integer.parseInt(val);
-            value=value+30;
-            fill.setText(100+"%");
-            String Earn=Integer.toString(value);
+            String val = coin.getText().toString();
+            value = Integer.parseInt(val);
+            value = value + 30;
+            fill.setText(100 + "%");
+            String Earn = Integer.toString(value);
             coin.setText(Earn);
         }
 
 
+        update = Integer.toString(updated);
+        this.undock = (Button) v.findViewById(R.id.undocker);
 
-        update=Integer.toString(updated);
-        this.undock=(Button)v.findViewById(R.id.undocker);
-
-        this.undock.setOnClickListener(User_ships.this);
+        this.undock.setOnClickListener(UserShipsFragment.this);
 
         parkingDetail(0);
 
-        controller.addObserver((java.util.Observer) User_ships.this);
+        controller.addObserver(UserShipsFragment.this);
         count();
 
         return v;
 
     }
 
-    public void count()
-    {int i;
-        for(i=0;i<5;i++)
-        {   if (sharedpreferences.contains(Dashboard.co[i])) {
-            comm[i]= Integer.parseInt(sharedpreferences.getString(Dashboard.co[i],""));
+    public void count() {
+        int i;
+        for (i = 0; i < 5; i++) {
+            if (sharedpreferences.contains(DashboardActivity.co[i])) {
+                comm[i] = Integer.parseInt(sharedpreferences.getString(DashboardActivity.co[i], ""));
 
 
-
-        }
-            c[i]= Integer.toString(comm[i]);
+            }
+            c[i] = Integer.toString(comm[i]);
 
         }
         controller.setBambooCount(comm[3]);
@@ -170,7 +170,7 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
 
     @Override
     public void onClick(View view) {
-        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Undock");
         alertDialog.setMessage("Do you want to undock");
         alertDialog.setPositiveButton("Yes",
@@ -178,7 +178,7 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
                     public void onClick(DialogInterface dialog, int which) {
                         timee.setText("Not parked");
 
-                        sharedpreferences.edit().remove(Parknow.times).commit();
+                        sharedpreferences.edit().remove(ParkNowActivity.times).commit();
                     }
                 });
         alertDialog.setNegativeButton("Cancel",
@@ -192,10 +192,10 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
         alertDialog.show();
 
     }
-    String cost,boatnam,ide,Xp;
+
     public void parkingDetail(final int id) {
 
-        network_available = network.isNetConnected(getActivity());
+        network_available = CheckConnectivity.isNetConnected(getActivity());
         if (network_available) {
 
 
@@ -211,8 +211,8 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
                 Picasso.with(getActivity())
                         .load(data.get("image").toString())
                         .into(ship);
-                db.addShip(new Ships_DB_Objects("1", boatnam, ide, "4", cost, "6", "7", "8", "9", "10"));
-                Ships_DB_Objects shi = db.getShip("1");
+                db.addShip(new ShipModel("1", boatnam, ide, "4", cost, "6", "7", "8", "9", "10"));
+                ShipModel shi = db.getShip("1");
                 Toast.makeText(getActivity(), "id" + shi.get_Cost_multiplier(), Toast.LENGTH_LONG).show();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -224,7 +224,7 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
 
 
         else {
-            Ships_DB_Objects shi = db.getShip("1");
+            ShipModel shi = db.getShip("1");
             cost_multiplier.setText(shi.get_Cost_multiplier());
 
             boatname.setText(shi.get_name());
@@ -232,20 +232,22 @@ public class User_ships extends Fragment implements View.OnClickListener, java.u
 
         }
     }
+
     @Override
     public void update(Observable observable, Object o) {
         controller = (Controller) observable;
         System.out.println(controller.getBananaCount());
-        bamboo.setText(Integer.toString(controller.getBambooCount()));
-        coconut.setText(Integer.toString(controller.getCoconutCount()));
-        banana.setText(Integer.toString(controller.getBananaCount()));
-        timber.setText(Integer.toString(controller.getTimberCount()));
-        gold_coin.setText(Integer.toString(controller.getGoldCoinCount()));
+        bamboo.setText(String.valueOf(controller.getBambooCount()));
+        coconut.setText(String.valueOf(controller.getCoconutCount()));
+        banana.setText(String.valueOf(controller.getBananaCount()));
+        timber.setText(String.valueOf(controller.getTimberCount()));
+        gold_coin.setText(String.valueOf(controller.getGoldCoinCount()));
 
     }
-    public  void alertDialog(String title , String message){
 
-        AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
+    public void alertDialog(String title, String message) {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
         alertDialog.setPositiveButton("Settings",

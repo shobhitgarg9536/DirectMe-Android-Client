@@ -73,7 +73,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
     // Adding new ship
-    public void addShip(Ships_DB_Objects ship) {
+    public void addShip(ShipModel ship) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -91,7 +91,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_SHIP, null, values);
         db.close(); // Closing database connection
     }
-    public void addPort(User_DB_Objects user) {
+    public void addPort(UserModel user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -109,7 +109,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting single detail of ship
-    public Ships_DB_Objects getShip(String id) {
+    public ShipModel getShip(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_SHIP, new String[] { KEY_ID, Api_id,Name,Filling_speed,
@@ -121,13 +121,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-        Ships_DB_Objects ship= new Ships_DB_Objects(cursor.getString(0),
+        ShipModel ship= new ShipModel(cursor.getString(0),
                 cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),
                 cursor.getString(7),cursor.getString(8),cursor.getString(9));
         // return ship
         return ship;
     }
-    public User_DB_Objects getUser(String id) {
+    public UserModel getUser(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Table_User, new String[] { Key_user, boatname,boatpark,Type,
@@ -139,7 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-        User_DB_Objects user= new User_DB_Objects(cursor.getString(0),
+        UserModel user= new UserModel(cursor.getString(0),
                 cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4));
         // return user
         return user;
@@ -147,8 +147,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     // Getting All ship
-    public List<Ships_DB_Objects> getAllShip() {
-        List<Ships_DB_Objects> shipList = new ArrayList<Ships_DB_Objects>();
+    public List<ShipModel> getAllShip() {
+        List<ShipModel> shipList = new ArrayList<ShipModel>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_SHIP;
 
@@ -158,7 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Ships_DB_Objects ship = new Ships_DB_Objects();
+                ShipModel ship = new ShipModel();
                 ship.set_id(cursor.getString(0));
                 ship.set_api_id(cursor.getString(1));
                 ship.set_name(cursor.getString(2));
@@ -178,8 +178,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return value of ship list
         return shipList;
     }
-    public List<User_DB_Objects> getAllUser() {
-        List<User_DB_Objects> UserList = new ArrayList<User_DB_Objects>();
+    public List<UserModel> getAllUser() {
+        List<UserModel> UserList = new ArrayList<UserModel>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + Table_User;
 
@@ -189,7 +189,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                User_DB_Objects user = new User_DB_Objects();
+                UserModel user = new UserModel();
                 user.set_boatname(cursor.getString(0));
                 user.set_boatpark(cursor.getString(1));
                 user.set_owner(cursor.getString(2));

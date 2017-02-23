@@ -24,30 +24,30 @@ import in.silive.directme.Utils.API_URL_LIST;
  * Created by Shobhit-pc on 12/21/2016.
  */
 
-public class UserLogin extends AppCompatActivity {
-    EditText name, password;
-    String sname, spassword;
-    SharedPreferences sharedpreferences;
+public class UserLoginActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "UserName";
     public static final String Authorization_Token = "Authorization_Token";
+    EditText etName, etPassword;
+    String name, password;
+    SharedPreferences sharedpreferences;
     TextInputLayout textInputName, textInputPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userlogin);
-        name = (EditText) findViewById(R.id.etloginname);
-        password = (EditText) findViewById(R.id.etloginpassword);
+        etName = (EditText) findViewById(R.id.etloginname);
+        etPassword = (EditText) findViewById(R.id.etloginpassword);
         textInputName = (TextInputLayout) findViewById(R.id.tilloginname);
         textInputPassword = (TextInputLayout) findViewById(R.id.tilloginpassword);
 
 
-        name.addTextChangedListener(new UserLogin.MyTextWatcher(name));
-        password.addTextChangedListener(new UserLogin.MyTextWatcher(password));
+        etName.addTextChangedListener(new UserLoginActivity.MyTextWatcher(etName));
+        etPassword.addTextChangedListener(new UserLoginActivity.MyTextWatcher(etPassword));
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String username = sharedpreferences.getString("UserName", "");
-        name.setText(username);
+        etName.setText(username);
 
 
     }
@@ -59,8 +59,8 @@ public class UserLogin extends AppCompatActivity {
 /*
             AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
-            params.put("username" , sname);
-            params.put("password" , spassword);
+            params.put("username" , etName);
+            params.put("etPassword" , etPassword);
             client.post("http://direct-me.herokuapp.com/user/login/" ,params, new AsyncHttpResponseHandler()
                     {
                         @Override
@@ -113,23 +113,23 @@ public class UserLogin extends AppCompatActivity {
                     }
                 }
             }, this);
-            userAccountManagerBackgroundWorker.execute("USER_ACCOUNT_LOGIN", API_URL_LIST.USER_LOGIN_URL, sname, spassword);
+            userAccountManagerBackgroundWorker.execute("USER_ACCOUNT_LOGIN", API_URL_LIST.USER_LOGIN_URL, name, password);
 
-            Intent i = new Intent(this, Dashboard.class);
+            Intent i = new Intent(this, DashboardActivity.class);
             startActivity(i);
         }
     }
 
     private void AssignTheValues() {
-        sname = name.getText().toString();
-        spassword = password.getText().toString();
+        name = etName.getText().toString();
+        password = etPassword.getText().toString();
     }
 
     private boolean validateName() {
-        if (name.getText().toString().trim().isEmpty()) {
-            textInputName.setError("Enter your full name");
+        if (etName.getText().toString().trim().isEmpty()) {
+            textInputName.setError("Enter your full etName");
             //requsting focus on editText
-            requestFocus(name);
+            requestFocus(etName);
             return false;
         } else {
             textInputName.setErrorEnabled(false);
@@ -139,10 +139,10 @@ public class UserLogin extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        if (password.getText().toString().trim().isEmpty()) {
+        if (etPassword.getText().toString().trim().isEmpty()) {
             textInputPassword.setError("Enter your Passowrd");
             //requsting focus on editText
-            requestFocus(password);
+            requestFocus(etPassword);
             return false;
         } else {
             textInputName.setErrorEnabled(false);

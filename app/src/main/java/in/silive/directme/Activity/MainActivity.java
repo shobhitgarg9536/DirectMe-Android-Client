@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -20,7 +19,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -33,54 +31,46 @@ import in.silive.directme.R;
 
 public class MainActivity extends Activity {
 
-    ImageView boat_ImageView;
-    RelativeLayout water_image;
+    public static final String Authorization_Token = "Authorization_Token";
     // frame width
-    private static final int FRAME_W =300;
+    private static final int FRAME_W = 300;
     // frame height
-    private static final int FRAME_H =180;
+    private static final int FRAME_H = 180;
     // number of frames
-    private static final int NB_FRAMES =20;
+    private static final int NB_FRAMES = 20;
     // nb of frames in x
     private static final int COUNT_X = 5;
     // nb of frames in y
     private static final int COUNT_Y = 4;
-    // frame duration
-
     // we can slow animation by changing frame duration
     private static final int FRAME_DURATION = 150; // in ms !
-
-    // stores each frame
-    private Bitmap[] bmps;
-
-
-    public static final String Authorization_Token = "Authorization_Token" ;
+    // frame duration
+    public boolean net_connected, play_services_available;
+    ImageView boat_ImageView;
+    RelativeLayout water_image;
     SharedPreferences sharedpreferences;
-    public  boolean net_connected,play_services_available ;
 
-
-    @Override    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
-        final String token = sharedpreferences.getString("Authorization_Token" , "");
+        final String token = sharedpreferences.getString("Authorization_Token", "");
         boat_ImageView = (ImageView) findViewById(R.id.splashboat);
         water_image = (RelativeLayout) findViewById(R.id.spritesheet);
-        Bitmap waterbmp = getBitmapFromAssets(this,"splashh.png");
+        Bitmap waterbmp = getBitmapFromAssets(this, "splashh.png");
         if (waterbmp != null) {
 
-            bmps = new Bitmap[NB_FRAMES];
+            Bitmap[] bitmaps = new Bitmap[NB_FRAMES];
             int currentFrame = 0;
 
             for (int i = 0; i < COUNT_Y; i++) {
                 for (int j = 0; j < COUNT_X; j++) {
-                    bmps[currentFrame] = Bitmap.createBitmap(waterbmp, FRAME_W
+                    bitmaps[currentFrame] = Bitmap.createBitmap(waterbmp, FRAME_W
                             * j, FRAME_H * i, FRAME_W, FRAME_H);
-
-
 
 
                     if (++currentFrame >= NB_FRAMES) {
@@ -94,7 +84,7 @@ public class MainActivity extends Activity {
             animation.setOneShot(false); // repeat animation
 
             for (int i = 0; i < NB_FRAMES; i++) {
-                animation.addFrame(new BitmapDrawable(getResources(), bmps[i]),
+                animation.addFrame(new BitmapDrawable(getResources(), bitmaps[i]),
                         FRAME_DURATION);
             }
 
@@ -118,9 +108,8 @@ public class MainActivity extends Activity {
         }
 
 
-
         net_connected = CheckConnectivity.isNetConnected(getApplicationContext());
-        try{
+        try {
             play_services_available = isGooglePlayServicesAvailable();
             if (play_services_available) {
                 if (net_connected) {
@@ -129,7 +118,7 @@ public class MainActivity extends Activity {
                     Thread timer = new Thread() {
                         public void run() {
                             try {
-                                Animation animation_boat= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
+                                Animation animation_boat = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
 
 
                                 boat_ImageView.startAnimation(animation_boat);
@@ -140,10 +129,10 @@ public class MainActivity extends Activity {
                             } finally {
                                 if (!token.equals("")) {
 
-                                    Intent i = new Intent(MainActivity.this, Dashboard.class);
+                                    Intent i = new Intent(MainActivity.this, DashboardActivity.class);
                                     startActivity(i);
                                 } else {
-                                    Intent i = new Intent(MainActivity.this, CreateAccount.class);
+                                    Intent i = new Intent(MainActivity.this, RegistrationActivity.class);
                                     startActivity(i);
                                 }
                             }
@@ -174,7 +163,7 @@ public class MainActivity extends Activity {
                 alertDialog.show();
 
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -184,7 +173,6 @@ public class MainActivity extends Activity {
 //to stop sound when minimised
 
 
-
     protected void onDestroy() {
         super.onDestroy();
 
@@ -192,16 +180,15 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
 
     }
 
 
+    public void alertDialog(String title, String message) {
 
-    public  void alertDialog(String title , String message){
-
-        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
         alertDialog.setPositiveButton("Settings",
@@ -234,6 +221,7 @@ public class MainActivity extends Activity {
         }
         return true;
     }
+
     private Bitmap getBitmapFromAssets(MainActivity mainActivity,
                                        String filepath) {
         AssetManager assetManager = mainActivity.getAssets();

@@ -20,6 +20,6 @@ public class FCMConfig {
 
     public static final String SHARED_PREF = "ah_firebase";
 
-    public static final String update_firebase_uid="";
+    public static final String update_firebase_uid = "";
 
 }

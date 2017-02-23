@@ -16,7 +16,7 @@ import android.widget.TextView;
 import in.silive.directme.R;
 
 
-public class Dialog_Fragment extends DialogFragment
+public class CustomDialogFragment extends android.support.v4.app.DialogFragment
 {
     String tvalue="",banana_req="", gold_req="", wood_req="", bamboo_req="", coconut_req="";
 
