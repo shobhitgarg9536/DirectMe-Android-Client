@@ -40,7 +40,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/coin"
+                app:srcCompat="@drawable/ic_coin"
                 android:id="@+id/imageView8"
 
                 tools:layout_constraintTop_creator="1"
@@ -81,7 +81,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/banana"
+                app:srcCompat="@drawable/ic_banana"
                 android:id="@+id/imageView4"
                 tools:layout_constraintTop_creator="1"
                 tools:layout_constraintLeft_creator="1"
@@ -120,7 +120,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/coconut"
+                app:srcCompat="@drawable/ic_coconut"
                 android:id="@+id/imageView5"
                 tools:layout_constraintTop_creator="1"
                 tools:layout_constraintLeft_creator="1"
@@ -159,7 +159,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/bamboo"
+                app:srcCompat="@drawable/ic_bamboo"
                 android:id="@+id/imageView6"
                 tools:layout_constraintTop_creator="1"
                 tools:layout_constraintLeft_creator="1"
@@ -197,7 +197,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:srcCompat="@drawable/wood"
+                app:srcCompat="@drawable/ic_wood"
                 android:id="@+id/imageView7"
                 tools:layout_constraintTop_creator="1"
                 tools:layout_constraintLeft_creator="1"

@@ -78,7 +78,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.ParknowShipActivity"
+            android:name="in.silive.directme.Activity.ParkNowShipActivity"
             android:screenOrientation="landscape">
 
 

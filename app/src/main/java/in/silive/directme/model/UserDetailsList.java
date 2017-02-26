@@ -4,7 +4,7 @@ package in.silive.directme.model;
  * Created by simran on 2/24/2017.
  */
 
-public class UserDetails {
+public class UserDetailsList {
     private String user_name;
     private String user_image_url;
 

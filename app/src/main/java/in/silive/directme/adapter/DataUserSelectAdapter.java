@@ -15,15 +15,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import in.silive.directme.model.UserDetails;
+import in.silive.directme.model.UserDetailsList;
 
 import in.silive.directme.R;
 
 public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAdapter.ViewHolder> {
-    private ArrayList<UserDetails> user_details;
+    private ArrayList<UserDetailsList> user_details;
     private Context context;
 
-    public DataUserSelectAdapter(Context context, ArrayList<UserDetails> user_details) {
+    public DataUserSelectAdapter(Context context, ArrayList<UserDetailsList> user_details) {
         this.context=context;
         this.user_details = user_details;
         this.context = context;

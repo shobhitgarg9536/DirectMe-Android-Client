@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import in.silive.directme.R;
 import in.silive.directme.adapter.DataUserSelectAdapter;
-import in.silive.directme.model.UserDetails;
+import in.silive.directme.model.UserDetailsList;
 
 
 /**
@@ -44,20 +44,20 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<UserDetails> user_details = prepareData();
+        ArrayList<UserDetailsList> user_details = prepareData();
         DataUserSelectAdapter adapter = new DataUserSelectAdapter(getApplicationContext(),user_details);
         recyclerView.setAdapter(adapter);
 
 
     }
-    private ArrayList<UserDetails> prepareData(){
+    private ArrayList<UserDetailsList> prepareData(){
 
-        ArrayList<UserDetails> user_details = new ArrayList<>();
+        ArrayList<UserDetailsList> user_details = new ArrayList<>();
         for(int i=0;i<user_names.length;i++){
-            UserDetails userDetails = new UserDetails();
-            userDetails.setUser_name(user_names[i]);
-            userDetails.setUser_image_url("simran");
-            user_details.add(userDetails);
+            UserDetailsList userDetailsList = new UserDetailsList();
+            userDetailsList.setUser_name(user_names[i]);
+            userDetailsList.setUser_image_url("simran");
+            user_details.add(userDetailsList);
         }
         return user_details;
     }
