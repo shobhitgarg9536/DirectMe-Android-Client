@@ -78,6 +78,28 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="in.silive.directme.Activity.ParknowShipActivity"
+            android:screenOrientation="landscape">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="in.silive.directme.Activity.UserDetailsActivity"
+            android:screenOrientation="landscape">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+            </intent-filter>
+        </activity>
+        <activity
             android:name="in.silive.directme.Activity.ShowroomActivity"
             android:screenOrientation="landscape">
 

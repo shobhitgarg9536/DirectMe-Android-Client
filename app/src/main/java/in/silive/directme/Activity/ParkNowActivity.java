@@ -3,6 +3,7 @@ package in.silive.directme.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -115,7 +116,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                         try {
                             while (true) {
                                 sleep(10000);
-                                userList("4");
+                                Intent intent=new Intent(getApplicationContext(),UserDetailsActivity.class);
+                                startActivity(intent);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -144,7 +146,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                         try {
                             while (true) {
                                 sleep(10000);
-                                userList("4");
+                                Intent intent=new Intent(getApplicationContext(),UserDetailsActivity.class);
+                                startActivity(intent);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -171,7 +174,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                         try {
                             while (true) {
                                 sleep(10000);
-                                userList("4");
+                                Intent intent=new Intent(getApplicationContext(),UserDetailsActivity.class);
+                                startActivity(intent);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -198,7 +202,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                         try {
                             while (true) {
                                 sleep(10000);
-                                userList("4");
+                                Intent intent=new Intent(getApplicationContext(),UserDetailsActivity.class);
+                                startActivity(intent);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -224,7 +229,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                         try {
                             while (true) {
                                 sleep(10000);
-                                userList("4");
+                                Intent intent=new Intent(getApplicationContext(),UserDetailsActivity.class);
+                                startActivity(intent);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();

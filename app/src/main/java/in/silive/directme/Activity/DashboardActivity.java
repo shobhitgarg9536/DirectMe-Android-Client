@@ -200,7 +200,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imageviewpark:
-                Intent intent = new Intent(this, ParkNowActivity.class);
+                Intent intent = new Intent(this, ParknowShipActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imageviewparked:
