@@ -25,7 +25,6 @@ import java.net.URLEncoder;
 import java.util.Observable;
 
 import in.silive.directme.AsyncTask.FetchData;
-import in.silive.directme.AsyncTask.FirebaseTokenBackgroundWorker;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
 import in.silive.directme.Interface.AsyncResponse;
@@ -97,14 +96,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                 String Firebase_token = sharedPreferences.getString("regId", "");
 
-
-                FirebaseTokenBackgroundWorker firebaseTokenBackgroundWorker = new FirebaseTokenBackgroundWorker(new AsyncResponse() {
-                    @Override
-                    public void processFinish(String output) {
-                        System.out.println(output);
-                    }
-                });
-
                 FetchData fetchData = new FetchData(new AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
@@ -118,8 +109,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     e.printStackTrace();
                 }
                 fetchData.execute(API_URL_LIST.FIREBASE_TOKEN_UPDATE, "POST", token, post_data);
-
-                firebaseTokenBackgroundWorker.execute(token);
 
             }
 
