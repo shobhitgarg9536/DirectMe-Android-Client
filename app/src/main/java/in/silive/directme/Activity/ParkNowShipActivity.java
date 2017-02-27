@@ -21,7 +21,7 @@ import in.silive.directme.R;
  * Created by simran on 2/23/2017.
  */
 
-public class ParknowShipActivity extends AppCompatActivity {
+public class ParkNowShipActivity extends AppCompatActivity {
     ViewPager mViewPager;
     int count=1;
   ImageView left,right;
