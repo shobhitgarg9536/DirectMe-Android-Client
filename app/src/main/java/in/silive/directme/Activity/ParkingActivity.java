@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import in.silive.directme.AsyncTask.FetchData;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Fragments.UserShipsFragment;
 import in.silive.directme.Interface.AsyncResponse;

@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.Observable;
 
-import in.silive.directme.AsyncTask.FetchData;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
 import in.silive.directme.Database.DatabaseHandler;

@@ -19,7 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import in.silive.directme.AsyncTask.FetchData;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Fragments.ShipsFragment;
 import in.silive.directme.Interface.AsyncResponse;

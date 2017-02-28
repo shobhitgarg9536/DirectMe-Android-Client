@@ -11,7 +11,7 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import in.silive.directme.AsyncTask.FetchData;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.Utils.API_URL_LIST;
 import in.silive.directme.Utils.FCMConfig;

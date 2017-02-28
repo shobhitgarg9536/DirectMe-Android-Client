@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -25,13 +24,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Observable;
 
-import in.silive.directme.AsyncTask.FetchData;
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.Utils.API_URL_LIST;
 import in.silive.directme.Utils.FCMConfig;
+import in.silive.directme.Utils.ToasterUtils;
+import in.silive.directme.network.FetchData;
 
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
@@ -111,8 +111,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE,token,post_data);
-              fetchData.execute();
+                fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE, token, post_data);
+                fetchData.execute();
 
             }
 
@@ -133,9 +133,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                     String message = intent.getStringExtra("message");
 
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-
-
+                    ToasterUtils.toaster("Push notification: " + message);
                 }
             }
         };

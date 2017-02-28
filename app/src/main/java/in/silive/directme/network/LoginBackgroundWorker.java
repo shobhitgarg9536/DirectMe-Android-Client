@@ -1,14 +1,12 @@
-package in.silive.directme.AsyncTask;
+package in.silive.directme.network;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
-import com.google.android.gms.common.Scopes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,10 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -31,7 +26,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.Utils.API_URL_LIST;
-import in.silive.directme.Utils.FCMConfig;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 

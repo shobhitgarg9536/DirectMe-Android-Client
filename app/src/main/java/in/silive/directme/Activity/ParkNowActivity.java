@@ -1,7 +1,6 @@
 package in.silive.directme.Activity;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,13 +14,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import in.silive.directme.AsyncTask.FetchData;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.Utils.API_URL_LIST;
