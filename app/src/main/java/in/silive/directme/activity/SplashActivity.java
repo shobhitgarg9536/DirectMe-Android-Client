@@ -19,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -28,6 +29,10 @@ import java.io.InputStream;
 
 import in.silive.directme.CheckConnectivity;
 import in.silive.directme.R;
+import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.network.FetchData;
+import in.silive.directme.utils.API_URL_LIST;
+import in.silive.directme.utils.ToasterUtils;
 
 public class SplashActivity extends Activity {
 
@@ -55,6 +60,9 @@ public class SplashActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+
+        versionCheck();
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
@@ -167,6 +175,17 @@ public class SplashActivity extends Activity {
             e.printStackTrace();
         }
 
+    }
+
+    private void versionCheck() {
+        FetchData fetchData = new FetchData(new AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                ToasterUtils.toaster(output);
+            }
+        });
+        fetchData.setArgs(API_URL_LIST.VERSION_CHECK, "", "");
+        fetchData.execute();
     }
 
     @Override

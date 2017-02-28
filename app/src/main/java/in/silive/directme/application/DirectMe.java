@@ -20,5 +20,6 @@ public class DirectMe extends Application {
     public void onCreate() {
         singleton = this;
         super.onCreate();
+        mContext = getApplicationContext();
     }
 }
