@@ -34,7 +34,24 @@ public class BitmapUtils {
                 }
             }
         }
-
         return bitmap;
+    }
+
+    public static Bitmap[] getBitmapsFromSprite(Bitmap bitmap, int NB_FRAMES, int COUNT_X, int COUNT_Y, int FRAME_H, int FRAME_W) {
+        int currentFrame = 0;
+        Bitmap[] bitmaps = new Bitmap[NB_FRAMES];
+
+        for (int i = 0; i < COUNT_Y; i++) {
+            for (int j = 0; j < COUNT_X; j++) {
+                bitmaps[currentFrame] = Bitmap.createBitmap(bitmap, FRAME_W
+                        * j, FRAME_H * i, FRAME_W, FRAME_H);
+
+
+                if (++currentFrame >= NB_FRAMES) {
+                    break;
+                }
+            }
+        }
+        return bitmaps;
     }
 }

@@ -2,10 +2,8 @@ package in.silive.directme.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
@@ -41,7 +39,6 @@ public class SplashActivity extends Activity {
     // we can slow animation by changing frame duration
     private static final int FRAME_DURATION = 150; // in ms !
     // frame duration
-    public boolean net_connected, play_services_available;
 
     @BindView(R.id.iv_boat)
     ImageView iv_boat;
@@ -59,23 +56,54 @@ public class SplashActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        startAnimation();
+
+        if (NetworkUtils.isGooglePlayServicesAvailable()) {
+            if (NetworkUtils.isNetConnected()) {
+                Thread timer = new Thread() {
+                    public void run() {
+                        try {
+                            Animation animation_boat = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
+                            iv_boat.startAnimation(animation_boat);
+                            sleep(5000);
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
+
+                                Intent i = new Intent(SplashActivity.this, DashboardActivity.class);
+                                startActivity(i);
+                            } else {
+                                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                                startActivity(i);
+                            }
+                        }
+                    }
+                };
+                timer.start();
+            } else alertDialog("Error", "Sorry, your device isn't connected to internet");
+        } else {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("Error");
+            alertDialog.setMessage("Please install google play services in order to proceed...");
+            alertDialog.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            onDestroy();
+                        }
+                    });
+            alertDialog.create();
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+        }
+    }
+
+    private void startAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {
 
-            Bitmap[] bitmaps = new Bitmap[NB_FRAMES];
-            int currentFrame = 0;
-
-            for (int i = 0; i < COUNT_Y; i++) {
-                for (int j = 0; j < COUNT_X; j++) {
-                    bitmaps[currentFrame] = Bitmap.createBitmap(waterbmp, FRAME_W
-                            * j, FRAME_H * i, FRAME_W, FRAME_H);
-
-
-                    if (++currentFrame >= NB_FRAMES) {
-                        break;
-                    }
-                }
-            }
+            Bitmap[] bitmaps = BitmapUtils.getBitmapsFromSprite(waterbmp, NB_FRAMES, COUNT_X, COUNT_Y, FRAME_H, FRAME_W);
 
             // create animation programmatically
             final AnimationDrawable animation = new AnimationDrawable();
@@ -104,67 +132,6 @@ public class SplashActivity extends Activity {
             });
 
         }
-
-
-        net_connected = NetworkUtils.isNetConnected();
-        try {
-            play_services_available = NetworkUtils.isGooglePlayServicesAvailable();
-            if (play_services_available) {
-                if (net_connected) {
-
-
-                    Thread timer = new Thread() {
-                        public void run() {
-                            try {
-                                Animation animation_boat = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
-
-
-                                iv_boat.startAnimation(animation_boat);
-                                sleep(5000);
-
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } finally {
-                                if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
-
-                                    Intent i = new Intent(SplashActivity.this, DashboardActivity.class);
-                                    startActivity(i);
-                                } else {
-                                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-                                    startActivity(i);
-                                }
-                            }
-                        }
-                    };
-                    timer.start();
-                } else
-
-                {
-
-                    alertDialog("Error", "Sorry, your device doesn't connect to internet!");
-                }
-
-            } else {
-
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-                alertDialog.setTitle("error");
-                alertDialog.setMessage("please install google paly services");
-                alertDialog.setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                onDestroy();
-                            }
-                        });
-
-                alertDialog.create();
-                alertDialog.setCancelable(false);
-                alertDialog.show();
-
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
     }
 
 
