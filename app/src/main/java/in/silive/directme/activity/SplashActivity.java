@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -19,24 +17,18 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import in.silive.directme.CheckConnectivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import in.silive.directme.NetworkUtils;
 import in.silive.directme.R;
-import in.silive.directme.listeners.AsyncResponse;
-import in.silive.directme.network.FetchData;
-import in.silive.directme.utils.API_URL_LIST;
-import in.silive.directme.utils.ToasterUtils;
+import in.silive.directme.application.DirectMe;
+import in.silive.directme.utils.BitmapUtils;
+import in.silive.directme.utils.Constants;
 
 public class SplashActivity extends Activity {
 
-    public static final String Authorization_Token = "Authorization_Token";
+//    public static final String Authorization_Token = "Authorization_Token";
     // frame width
     private static final int FRAME_W = 300;
     // frame height
@@ -51,9 +43,12 @@ public class SplashActivity extends Activity {
     private static final int FRAME_DURATION = 150; // in ms !
     // frame duration
     public boolean net_connected, play_services_available;
-    ImageView boat_ImageView;
-    RelativeLayout water_image;
     SharedPreferences sharedpreferences;
+
+    @BindView(R.id.iv_boat)
+    ImageView iv_boat;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +56,12 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        versionCheck();
+        ButterKnife.bind(this);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
-        final String token = sharedpreferences.getString("Authorization_Token", "");
-        boat_ImageView = (ImageView) findViewById(R.id.splashboat);
-        water_image = (RelativeLayout) findViewById(R.id.spritesheet);
-        Bitmap waterbmp = getBitmapFromAssets(this, "splashh.png");
+
+        Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {
 
             Bitmap[] bitmaps = new Bitmap[NB_FRAMES];
@@ -98,13 +90,13 @@ public class SplashActivity extends Activity {
 
             // load animation on image
             if (Build.VERSION.SDK_INT < 16) {
-                water_image.setBackgroundDrawable(animation);
+                rl.setBackgroundDrawable(animation);
             } else {
-                water_image.setBackground(animation);
+                rl.setBackground(animation);
             }
 
             // start animation on image
-            water_image.post(new Runnable() {
+            rl.post(new Runnable() {
 
                 @Override
                 public void run() {
@@ -116,9 +108,9 @@ public class SplashActivity extends Activity {
         }
 
 
-        net_connected = CheckConnectivity.isNetConnected(getApplicationContext());
+        net_connected = NetworkUtils.isNetConnected();
         try {
-            play_services_available = isGooglePlayServicesAvailable();
+            play_services_available = NetworkUtils.isGooglePlayServicesAvailable();
             if (play_services_available) {
                 if (net_connected) {
 
@@ -129,13 +121,13 @@ public class SplashActivity extends Activity {
                                 Animation animation_boat = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
 
 
-                                boat_ImageView.startAnimation(animation_boat);
+                                iv_boat.startAnimation(animation_boat);
                                 sleep(5000);
 
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } finally {
-                                if (!token.equals("")) {
+                                if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
 
                                     Intent i = new Intent(SplashActivity.this, DashboardActivity.class);
                                     startActivity(i);
@@ -177,22 +169,13 @@ public class SplashActivity extends Activity {
 
     }
 
-    private void versionCheck() {
-        FetchData fetchData = new FetchData(new AsyncResponse() {
-            @Override
-            public void processFinish(String output) {
-                ToasterUtils.toaster(output);
-            }
-        });
-        fetchData.setArgs(API_URL_LIST.VERSION_CHECK, "", "");
-        fetchData.execute();
-    }
 
     @Override
     protected void onPause() {
         finish();
         super.onPause();
     }
+
     protected void onDestroy() {
         super.onDestroy();
 
@@ -231,41 +214,6 @@ public class SplashActivity extends Activity {
 
     }
 
-    public boolean isGooglePlayServicesAvailable() {
-        GoogleApiAvailability gApi = GoogleApiAvailability.getInstance();
-        int resultCode = gApi.isGooglePlayServicesAvailable(this);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (gApi.isUserResolvableError(resultCode)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private Bitmap getBitmapFromAssets(SplashActivity splashActivity,
-                                       String filepath) {
-        AssetManager assetManager = splashActivity.getAssets();
-        InputStream istr = null;
-        Bitmap bitmap = null;
-
-        try {
-            istr = assetManager.open(filepath);
-            bitmap = BitmapFactory.decodeStream(istr);
-        } catch (IOException ioe) {
-            // manage exception
-            ioe.printStackTrace();
-        } finally {
-            if (istr != null) {
-                try {
-                    istr.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return bitmap;
-    }
 
 
 }

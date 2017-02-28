@@ -12,6 +12,7 @@ import android.widget.TextView;
 import org.json.JSONObject;
 
 import in.silive.directme.R;
+import in.silive.directme.application.DirectMe;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -38,7 +39,7 @@ public class BoatsEquippedFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        prefrences = getActivity().getSharedPreferences("MyPref", MODE_PRIVATE);
+        prefrences = DirectMe.getInstance().sharedPrefs;
         View rootView = inflater.inflate(R.layout.dockyard, container,
                 false);
 

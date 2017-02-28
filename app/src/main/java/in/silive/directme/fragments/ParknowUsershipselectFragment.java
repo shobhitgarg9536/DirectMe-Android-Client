@@ -23,8 +23,8 @@ import android.widget.ImageView;
 import java.io.IOException;
 import java.io.InputStream;
 
-import in.silive.directme.activity.ParkNowActivity;
 import in.silive.directme.R;
+import in.silive.directme.activity.ParkNowActivity;
 
 /**
  * Created by simran on 2/23/2017.
@@ -33,20 +33,19 @@ import in.silive.directme.R;
 public class ParknowUsershipselectFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
 
     @Nullable
-    public static int FRAME_W=720;
+    public static int FRAME_W = 720;
     // frame height
     public static int FRAME_H;
     // number of frames
-    public static int NB_FRAMES=20;
+    public static int NB_FRAMES = 20;
     // nb of frames in x
-    public static int COUNT_X=5;
+    public static int COUNT_X = 5;
     // nb of frames in y
-    public static int COUNT_Y=4;
+    public static int COUNT_Y = 4;
+    public static String spritesheetimage;
     ImageView boat_image;
     Button select;
     private Bitmap[] bitmaps;
-
-    public static String spritesheetimage;
 
 
     public ParknowUsershipselectFragment() {
@@ -56,11 +55,11 @@ public class ParknowUsershipselectFragment extends android.support.v4.app.Fragme
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.parknow_ship_select, container,
                 false);
-        spritesheetimage=getArguments().getString("name");
-        FRAME_H=getArguments().getInt("Frame_width");
+        spritesheetimage = getArguments().getString("name");
+        FRAME_H = getArguments().getInt("Frame_width");
 
         boat_image = (ImageView) v.findViewById(R.id.boatimage);
-        select=(Button)v.findViewById(R.id.select);
+        select = (Button) v.findViewById(R.id.select);
         Bitmap boat_bitmap = getBitmapFromAssets(spritesheetimage);
         select.setOnClickListener(this);
         if (boat_bitmap != null) {
@@ -112,11 +111,6 @@ public class ParknowUsershipselectFragment extends android.support.v4.app.Fragme
     }
 
 
-
-
-
-
-
     private Bitmap getBitmapFromAssets(
             String filepath) {
         AssetManager assetManager = getActivity().getAssets();
@@ -143,7 +137,7 @@ public class ParknowUsershipselectFragment extends android.support.v4.app.Fragme
 
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent(getActivity(), ParkNowActivity.class);
+        Intent intent = new Intent(getActivity(), ParkNowActivity.class);
         startActivity(intent);
     }
 }

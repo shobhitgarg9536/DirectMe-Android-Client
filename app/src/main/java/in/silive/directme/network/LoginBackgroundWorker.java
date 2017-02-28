@@ -24,6 +24,7 @@ import java.net.URLEncoder;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.utils.API_URL_LIST;
 
@@ -36,7 +37,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class LoginBackgroundWorker  extends AsyncTask<String , String , String> {
 
     public AsyncResponse delecate  = null;
-    public static final String MyPREFERENCES = "Authorization_Token" ;
+//    public static final String MyPREFERENCES = "Authorization_Token" ;
     ProgressDialog progressDialog;
     private String url;
     private String token;
@@ -101,7 +102,7 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
                 }
                 bufferedReader.close();
                 inputStream.close();
-                SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("access_token", token);
                 editor.putString("Authorization_Token", result);

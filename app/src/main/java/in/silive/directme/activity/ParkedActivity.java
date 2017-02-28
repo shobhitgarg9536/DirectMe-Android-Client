@@ -5,7 +5,6 @@ package in.silive.directme.activity;
  */
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,28 +25,27 @@ import org.json.JSONObject;
 
 import java.util.Observable;
 
-import in.silive.directme.network.FetchData;
-import in.silive.directme.CheckConnectivity;
 import in.silive.directme.Controller;
+import in.silive.directme.NetworkUtils;
+import in.silive.directme.R;
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.database.DatabaseHandler;
 import in.silive.directme.database.UserModel;
 import in.silive.directme.listeners.AsyncResponse;
-import in.silive.directme.R;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
-
-import static in.silive.directme.activity.SplashActivity.Authorization_Token;
 
 
 public class ParkedActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
 
-    public static final String MyPREFERENCE = "MyPrefs";
-    public static final String MyPREFERENCES = "UserName";
+    //    public static final String MyPREFERENCE = "MyPrefs";
+//    public static final String MyPREFERENCES = "UserName";
     ConstraintLayout rl;
     int i;
     Button undock;
     ImageView parkedShipDetial1, parkedShipDetial2, parkedShipDetial3, parkedShipDetial4, parkedShipDetial5;
     TextView boat_dock, time, user_name, boat_name, parking_allowness;
-    CheckConnectivity network;
+    NetworkUtils network;
     boolean network_available;
     DatabaseHandler db;
     int comm[] = new int[5];
@@ -80,8 +78,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
         coconut_textview = (TextView) findViewById(R.id.coconut_no);
         bamboo_textview = (TextView) findViewById(R.id.bamboo_no);
         timber_textview = (TextView) findViewById(R.id.wood_no);
-        sharedpreference = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
-        sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
+        sharedpreference = DirectMe.getInstance().sharedPrefs;
         parkedDetail("0");
         undock.setOnClickListener(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -180,7 +177,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
     public void parkedDetail(final String parking_no) {
 
         final String token = sharedpreferences.getString("Authorization_Token", "");
-        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
+        network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apiCalling = new FetchData(new AsyncResponse() {
                 @Override

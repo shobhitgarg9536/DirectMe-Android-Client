@@ -29,8 +29,9 @@ import java.util.Observable;
 
 import in.silive.directme.activity.DashboardActivity;
 import in.silive.directme.activity.ParkNowActivity;
-import in.silive.directme.CheckConnectivity;
+import in.silive.directme.NetworkUtils;
 import in.silive.directme.Controller;
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.database.DatabaseHandler;
 import in.silive.directme.database.ShipModel;
 import in.silive.directme.R;
@@ -40,14 +41,14 @@ import in.silive.directme.R;
  */
 
 public class UserShipsFragment extends Fragment implements View.OnClickListener, java.util.Observer {
-    public static final String MyPREFERENCES = "MyPrefs";
+//    public static final String MyPREFERENCES = "MyPrefs";
     public static int value;
     static JSONObject data;
     TextView parkingUserName, parkingBoatName, parkingIsland;
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> parking_detail;
     Button undock;
-    CheckConnectivity network;
+    NetworkUtils network;
     boolean network_available;
     TextView timee, coin, fill, cost_multiplier, experience_gain, boatname;
     int comm[] = new int[5];
@@ -96,7 +97,7 @@ public class UserShipsFragment extends Fragment implements View.OnClickListener,
         ship = (ImageView) v.findViewById(R.id.imageship);
         db = new DatabaseHandler(getActivity());
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedpreferences = DirectMe.getInstance().sharedPrefs;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         int hour = calendar.get(Calendar.HOUR) * 60 * 60;
@@ -195,7 +196,7 @@ public class UserShipsFragment extends Fragment implements View.OnClickListener,
 
     public void parkingDetail(final int id) {
 
-        network_available = CheckConnectivity.isNetConnected(getActivity());
+        network_available = NetworkUtils.isNetConnected();
         if (network_available) {
 
 

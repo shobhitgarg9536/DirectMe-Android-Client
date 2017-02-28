@@ -14,14 +14,13 @@ import android.widget.ImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.FetchData;
-import in.silive.directme.CheckConnectivity;
+import in.silive.directme.NetworkUtils;
 import in.silive.directme.fragments.UserShipsFragment;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
-
-import static in.silive.directme.activity.SplashActivity.Authorization_Token;
 
 
 /**
@@ -29,7 +28,7 @@ import static in.silive.directme.activity.SplashActivity.Authorization_Token;
  */
 
 public class ParkingActivity extends AppCompatActivity {
-    public static final String MyPREFERENCES = "UserName";
+//    public static final String MyPREFERENCES = "UserName";
     ViewPager mViewPager;
     boolean network_available;
     FetchData apicalling;
@@ -43,7 +42,7 @@ public class ParkingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parkingmain_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pagerr);
-        sharedpreferences = getSharedPreferences(Authorization_Token, Context.MODE_PRIVATE);
+        sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         leftNavigation = (ImageView) findViewById(R.id.left_navigation);
@@ -60,7 +59,7 @@ public class ParkingActivity extends AppCompatActivity {
 
     void connect() {
         final String token = sharedpreferences.getString("Authorization_Token", "");
-        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
+        network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apicalling = new FetchData(new AsyncResponse() {
                 @Override

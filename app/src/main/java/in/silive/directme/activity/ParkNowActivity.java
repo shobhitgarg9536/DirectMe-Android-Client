@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
@@ -39,8 +40,8 @@ import java.util.HashMap;
 
 public class ParkNowActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String Authorization_Token = "Authorization_Token";
-    public static final String MyPREFERENCES = "MyPrefs" ;
+//    public static final String Authorization_Token = "Authorization_Token";
+//    public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String times = "null";
     HashMap<String, String> queryValues;
     ArrayList<HashMap<String, String>> users;
@@ -275,7 +276,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                     }
                     System.out.println(users);
 
-                    sharedPreferences1 = getSharedPreferences(Authorization_Token  , MODE_PRIVATE);
+                    sharedPreferences1 = DirectMe.getInstance().sharedPrefs;
                     token = sharedPreferences1.getString("Authorization_Token","");
 
                     final Dialog dialog = new Dialog(ParkNowActivity.this);
@@ -298,7 +299,6 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                                                             String username = users.get(i).get("etName");
                                                             String parking = users.get(i).get("parking");
 
-                                                            sharedPreferences = getSharedPreferences(PARK_NOW, MODE_PRIVATE);
                                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                                             //putting values
                                                             editor.putString("Name", username);
@@ -312,7 +312,6 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                                                             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                                 @Override
                                                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                                                    sharedPreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
                                                                     editor1 = sharedPreferences.edit();
                                                                     if (sharedPreferences.contains(ParkNowActivity.times)) {
                                                                         Toast.makeText(getApplicationContext(), "already parked", Toast.LENGTH_LONG).show();

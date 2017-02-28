@@ -19,16 +19,12 @@ import in.silive.directme.utils.LoggerUtils;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-/**
- * Created by Lenovo on 19-Jan-17.
- */
-
 public class FetchData extends AsyncTask<String, String, String> {
 
     String token = null;
     private AsyncResponse delegate = null;//Call back interface
     private String post_data = null;
-    private String url = "";
+    private String urlString = "";
 
     public FetchData(AsyncResponse asyncResponse) {
         delegate = asyncResponse;//Assigning call back interfacethrough constructor
@@ -36,16 +32,16 @@ public class FetchData extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPreExecute() {
-        LoggerUtils.logger("pre execute : " +
-                "\nurl :" + url +
-                "\ntoken :" + token +
-                "\nPost Data :" + post_data);
+        LoggerUtils.logger(
+                "urlString :" + urlString +
+                        "\ntoken :" + token +
+                        "\nPost Data :" + post_data);
         super.onPreExecute();
 
     }
 
     public void setArgs(String url, String token, String post_data) {
-        this.url = url;
+        this.urlString = url;
         this.token = token;
         this.post_data = post_data;
     }
@@ -54,7 +50,7 @@ public class FetchData extends AsyncTask<String, String, String> {
     public String doInBackground(String... args) {
         String result = "";
         try {
-            URL url = new URL(API_URL_LIST.BASE_URL + this.url);
+            URL url = new URL(API_URL_LIST.BASE_URL + urlString);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setReadTimeout(15000);
@@ -104,7 +100,7 @@ public class FetchData extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        LoggerUtils.logger("post execute : " + result);
+        LoggerUtils.logger("postExecute() : \n" + result);
         delegate.processFinish(result);
         super.onPostExecute(result);
     }

@@ -14,8 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import in.silive.directme.fragments.ParknowUsershipselectFragment;
 import in.silive.directme.R;
+import in.silive.directme.fragments.ParknowUsershipselectFragment;
 
 /**
  * Created by simran on 2/23/2017.
@@ -23,8 +23,13 @@ import in.silive.directme.R;
 
 public class ParkNowShipActivity extends AppCompatActivity {
     ViewPager mViewPager;
-    int count=1;
-  ImageView left,right;
+    int count = 1;
+    ImageView left, right;
+    Bundle arguments;
+    String spritesheetship1 = "ship1spritesheet.png";
+    String spritesheetship2 = "spritesheetship.png";
+    int Frame_Width_ship1 = 720;
+    int Frame_Width_ship2 = 637;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,8 +39,8 @@ public class ParkNowShipActivity extends AppCompatActivity {
         mViewPager.setAdapter(new BoatPagerAdapter1(
                 getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(0);
-        left=(ImageView)findViewById(R.id.left_navigation);
-        right=(ImageView)findViewById(R.id.right_navigation);
+        left = (ImageView) findViewById(R.id.left_navigation);
+        right = (ImageView) findViewById(R.id.right_navigation);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,32 +55,32 @@ public class ParkNowShipActivity extends AppCompatActivity {
         });
 
     }
-   Bundle arguments;
-    String spritesheetship1="ship1spritesheet.png";
-    String spritesheetship2="spritesheetship.png";
-    int Frame_Width_ship1=720;
-    int Frame_Width_ship2=637;
+
     public class BoatPagerAdapter1 extends FragmentPagerAdapter {
+
+        ParknowUsershipselectFragment ships_fragment;
 
         public BoatPagerAdapter1(FragmentManager fm) {
             super(fm);
 
         }
-        ParknowUsershipselectFragment ships_fragment;
+
         @Override
         public Fragment getItem(int position) {
             switch (position) {
 
-                case 0: ships_fragment = new ParknowUsershipselectFragment();
-                 arguments= new Bundle();
-                arguments.putString("name", spritesheetship1);
-                    arguments.putInt("Frame_width",Frame_Width_ship1);
-                ships_fragment.setArguments(arguments);
-                break;
-                case 1: ships_fragment = new ParknowUsershipselectFragment();
-                     arguments = new Bundle();
+                case 0:
+                    ships_fragment = new ParknowUsershipselectFragment();
+                    arguments = new Bundle();
+                    arguments.putString("name", spritesheetship1);
+                    arguments.putInt("Frame_width", Frame_Width_ship1);
+                    ships_fragment.setArguments(arguments);
+                    break;
+                case 1:
+                    ships_fragment = new ParknowUsershipselectFragment();
+                    arguments = new Bundle();
                     arguments.putString("name", spritesheetship2);
-                    arguments.putInt("Frame_width",Frame_Width_ship2);
+                    arguments.putInt("Frame_width", Frame_Width_ship2);
                     ships_fragment.setArguments(arguments);
 
             }

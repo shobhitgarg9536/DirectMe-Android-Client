@@ -37,23 +37,25 @@ public class UserDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.recycler_view_userselect);
         initViews();
     }
-    private void initViews(){
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
+
+    private void initViews() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),5);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 5);
 
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<UserDetailsList> user_details = prepareData();
-        DataUserSelectAdapter adapter = new DataUserSelectAdapter(getApplicationContext(),user_details);
+        DataUserSelectAdapter adapter = new DataUserSelectAdapter(getApplicationContext(), user_details);
         recyclerView.setAdapter(adapter);
 
 
     }
-    private ArrayList<UserDetailsList> prepareData(){
+
+    private ArrayList<UserDetailsList> prepareData() {
 
         ArrayList<UserDetailsList> user_details = new ArrayList<>();
-        for(int i=0;i<user_names.length;i++){
+        for (int i = 0; i < user_names.length; i++) {
             UserDetailsList userDetailsList = new UserDetailsList();
             userDetailsList.setUser_name(user_names[i]);
             userDetailsList.setUser_image_url("simran");

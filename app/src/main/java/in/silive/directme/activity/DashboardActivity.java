@@ -24,8 +24,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Observable;
 
-import in.silive.directme.CheckConnectivity;
+import in.silive.directme.NetworkUtils;
 import in.silive.directme.Controller;
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
@@ -37,8 +38,8 @@ import in.silive.directme.network.FetchData;
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
 
     public static final String[] co = new String[5];
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String Authorization_Token = "Authorization_Token";
+//    public static final String MyPREFERENCES = "MyPrefs";
+//    public static final String Authorization_Token = "Authorization_Token";
     public int[] commod = new int[5];
     String token;
     int i;
@@ -65,7 +66,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         log_out = (TextView) findViewById(R.id.textviewgoldCoin);
         coinimg = (ImageView) findViewById(R.id.coin);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedpreferences = DirectMe.getInstance().sharedPrefs;
 
         park = (ImageView) findViewById(R.id.imageviewpark);
         parked = (ImageView) findViewById(R.id.imageviewparked);
@@ -83,14 +84,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         controller.addObserver(DashboardActivity.this);
 
 
-        SharedPreferences sharedpreferences1 = getSharedPreferences(Authorization_Token, MODE_PRIVATE);
-        token = sharedpreferences1.getString("Authorization_Token", "");
+//        SharedPreferences sharedpreferences1 = getSharedPreferences(Authorization_Token, MODE_PRIVATE);
+        token = sharedpreferences.getString("Authorization_Token", "");
 
         Log.d("token", token);
         //// TODO: 2/20/2017 change with correct fcm url and uncomment
         count();
 
-        if (CheckConnectivity.isNetConnected(DashboardActivity.this)) {
+        if (NetworkUtils.isNetConnected()) {
 
             SharedPreferences sharedPreferences = getSharedPreferences(FCMConfig.SHARED_PREF, 0);
             String firebase_id_send_to_server_or_not = sharedPreferences.getString("FirebaseIdSendToServer", "");
@@ -143,7 +144,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void count() {
 
 
-        network_available = CheckConnectivity.isNetConnected(getApplicationContext());
+        network_available = NetworkUtils.isNetConnected();
         if (network_available) {
 
             apicalling = new FetchData(new AsyncResponse() {

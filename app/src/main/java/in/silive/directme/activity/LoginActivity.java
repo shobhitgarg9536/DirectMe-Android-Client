@@ -24,6 +24,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.LoginBackgroundWorker;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
@@ -36,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private SignInButton signInButton;
     //Signing Options
     private GoogleSignInOptions gso;
-    public static final String MyPREFERENCES = "Authorization_Token" ;
+//    public static final String MyPREFERENCES = "Authorization_Token" ;
     //google api client
     private GoogleApiClient mGoogleApiClient;
     public static final String usergid = "gidKey";
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         info = (TextView) findViewById(R.id.info);
 
-        SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
         //Initializing google signin option
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
