@@ -24,8 +24,8 @@ import java.net.URLEncoder;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import in.silive.directme.Interface.AsyncResponse;
-import in.silive.directme.Utils.API_URL_LIST;
+import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.utils.API_URL_LIST;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 

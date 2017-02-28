@@ -15,7 +15,7 @@
         android:theme="@style/MyMaterialTheme">
 
         <activity
-            android:name="in.silive.directme.Activity.MainActivity"
+            android:name="in.silive.directme.activity.SplashActivity"
             android:screenOrientation="landscape">
 
             <intent-filter>
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.DashboardActivity"
+            android:name="in.silive.directme.activity.DashboardActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="in.silive.directme.DASHBOARD" />
@@ -34,8 +34,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.ParkNowActivity"
-            android:parentActivityName="in.silive.directme.Activity.DashboardActivity"
+            android:name="in.silive.directme.activity.ParkNowActivity"
+            android:parentActivityName="in.silive.directme.activity.DashboardActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="in.silive.directme.PARKNOW" />
@@ -46,7 +46,7 @@
 
 
         <activity
-            android:name="in.silive.directme.Activity.LoginActivity"
+            android:name="in.silive.directme.activity.LoginActivity"
             android:screenOrientation="landscape">
 
 
@@ -57,7 +57,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.ParkedActivity"
+            android:name="in.silive.directme.activity.ParkedActivity"
             android:screenOrientation="landscape">
 
 
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.ParkingActivity"
+            android:name="in.silive.directme.activity.ParkingActivity"
             android:screenOrientation="landscape">
 
 
@@ -79,7 +79,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.ParkNowShipActivity"
+            android:name="in.silive.directme.activity.ParkNowShipActivity"
             android:screenOrientation="landscape">
 
 
@@ -90,7 +90,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.UserDetailsActivity"
+            android:name="in.silive.directme.activity.UserDetailsActivity"
             android:screenOrientation="landscape">
 
 
@@ -101,7 +101,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.ShowroomActivity"
+            android:name="in.silive.directme.activity.ShowroomActivity"
             android:screenOrientation="landscape">
 
 
@@ -112,7 +112,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.silive.directme.Activity.DockyardActivity"
+            android:name="in.silive.directme.activity.DockyardActivity"
             android:screenOrientation="landscape">
 
 
@@ -127,13 +127,13 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_appid_" />
 
-        <service android:name="in.silive.directme.Service.MyFirebaseMessagingService">
+        <service android:name="in.silive.directme.services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name="in.silive.directme.Service.MyFirebaseInstanceIDService">
+        <service android:name="in.silive.directme.services.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>

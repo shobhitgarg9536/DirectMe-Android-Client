@@ -4,4 +4,4 @@
     android:id="@+id/pagerr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.silive.directme.Activity.MainActivity" />
+    tools:context="in.silive.directme.activity.SplashActivity" />
