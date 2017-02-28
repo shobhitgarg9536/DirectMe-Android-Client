@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -27,11 +28,16 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import in.silive.directme.AsyncTask.LoginBackgroundWorker;
 import in.silive.directme.Interface.AsyncResponse;
 import in.silive.directme.R;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -147,9 +153,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String personName = acct.getDisplayName();
             String email = acct.getEmail();
 
+
             LoginBackgroundWorker loginBackgroundWorker = new LoginBackgroundWorker(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
+
+
+
                     System.out.println(output);
                     info.setText(output);
                 }

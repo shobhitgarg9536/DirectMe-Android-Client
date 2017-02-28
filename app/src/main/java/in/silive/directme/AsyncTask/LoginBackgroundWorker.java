@@ -4,10 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.common.Scopes;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,6 +44,10 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
     public AsyncResponse delecate  = null;
     public static final String MyPREFERENCES = "Authorization_Token" ;
     ProgressDialog progressDialog;
+    private String url;
+    private String token;
+    private String post_data;
+
 
     public LoginBackgroundWorker(AsyncResponse stringInterface){
         this.delecate = stringInterface;
@@ -48,6 +56,11 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
     protected void onPreExecute() {
         super.onPreExecute();
 
+    }
+    public void setArgs(String url, String token, String post_data){
+        this.url = url;
+        this.token = token;
+        this.post_data = post_data;
     }
 
     @Override
@@ -63,7 +76,7 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
             e.printStackTrace();
         }
         try {
-            URL url = new URL(API_URL_LIST.USER_GOOGLE_OAUTH_URL);
+            URL url = new URL(API_URL_LIST.BASE_URL+API_URL_LIST.USER_GOOGLE_OAUTH_URL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
@@ -81,8 +94,16 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
 
                 String line = "";
+                String tokenn="";
                 while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
+                    try {
+                        JSONObject jsonObject=new JSONObject(line);
+                        tokenn=jsonObject.getString("token");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    result=tokenn;
                 }
                 bufferedReader.close();
                 inputStream.close();
@@ -93,12 +114,6 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
                 editor.commit();
             }
             httpURLConnection.disconnect();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

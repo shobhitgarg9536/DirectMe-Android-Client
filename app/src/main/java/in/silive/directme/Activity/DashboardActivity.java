@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -38,8 +39,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public static final String[] co = new String[5];
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Authorization_Token = "Authorization_Token";
-    String token;
     public int[] commod = new int[5];
+    String token;
     int i;
     SharedPreferences sharedpreferences;
     Controller controller = new Controller();
@@ -80,12 +81,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
 
         controller.addObserver(DashboardActivity.this);
-        count();
 
-        SharedPreferences sharedpreferences1 = getSharedPreferences(Authorization_Token , MODE_PRIVATE);
-        token = sharedpreferences1.getString("Authorization_Token","");
 
+        SharedPreferences sharedpreferences1 = getSharedPreferences(Authorization_Token, MODE_PRIVATE);
+        token = sharedpreferences1.getString("Authorization_Token", "");
+
+        Log.d("token", token);
         //// TODO: 2/20/2017 change with correct fcm url and uncomment
+        count();
 
         if (CheckConnectivity.isNetConnected(DashboardActivity.this)) {
 
@@ -102,13 +105,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                     }
                 });
-                String post_data="";
+                String post_data = "";
                 try {
                     post_data = URLEncoder.encode("access_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                fetchData.execute(API_URL_LIST.FIREBASE_TOKEN_UPDATE, "POST", token, post_data);
+                fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE,token,post_data);
+              fetchData.execute();
 
             }
 
@@ -169,7 +173,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     }
                 }
             });
-            apicalling.execute(API_URL_LIST.COMODITY_URL, "GET", token, "" );
+            apicalling.setArgs(API_URL_LIST.COMODITY_URL, token, "");
+            apicalling.execute();
         } else {
             for (i = 0; i < 5; i++) {
                 if (sharedpreferences.contains(DashboardActivity.co[i])) {

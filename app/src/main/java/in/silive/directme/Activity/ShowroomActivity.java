@@ -77,7 +77,8 @@ public class ShowroomActivity extends AppCompatActivity {
                     }
                 }
             });
-            apicalling.execute(API_URL_LIST.PARKED_URL, "get", token, "" );
+            apicalling.setArgs(API_URL_LIST.PARKED_URL, token, "");
+            apicalling.execute();
 
         }
     }

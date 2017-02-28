@@ -74,7 +74,8 @@ public class ParkingActivity extends AppCompatActivity {
                     }
                 }
             });
-            apicalling.execute(API_URL_LIST.PARKED_URL, "GET", token, "" );
+            apicalling.setArgs(API_URL_LIST.PARKED_URL, token, "");
+            apicalling.execute();
 
         }
     }
