@@ -1,8 +1,6 @@
 package in.silive.directme;
 
 
-import android.content.SharedPreferences;
-
 import java.util.Observable;
 import java.util.Observer;
 
