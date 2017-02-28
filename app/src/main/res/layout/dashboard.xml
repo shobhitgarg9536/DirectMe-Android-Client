@@ -66,7 +66,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/textviewgoldCoin" />
+                android:id="@+id/tvGold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -96,7 +96,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/textviewbanana" />
+                android:id="@+id/tvBanana" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -126,7 +126,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="8dp"
-                android:id="@+id/textviewcoconut" />
+                android:id="@+id/tvCoconut" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -155,7 +155,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/textviewbamboo" />
+                android:id="@+id/tvBamboo" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -182,7 +182,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
-                android:id="@+id/textviewtimber" />
+                android:id="@+id/tvTimber" />
         </RelativeLayout>
     </LinearLayout>
 

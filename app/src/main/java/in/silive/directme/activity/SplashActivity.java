@@ -28,7 +28,6 @@ import in.silive.directme.utils.Constants;
 
 public class SplashActivity extends Activity {
 
-//    public static final String Authorization_Token = "Authorization_Token";
     // frame width
     private static final int FRAME_W = 300;
     // frame height
@@ -43,7 +42,6 @@ public class SplashActivity extends Activity {
     private static final int FRAME_DURATION = 150; // in ms !
     // frame duration
     public boolean net_connected, play_services_available;
-    SharedPreferences sharedpreferences;
 
     @BindView(R.id.iv_boat)
     ImageView iv_boat;
@@ -213,7 +211,4 @@ public class SplashActivity extends Activity {
         alertDialog.show();
 
     }
-
-
-
 }

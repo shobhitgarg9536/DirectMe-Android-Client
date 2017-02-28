@@ -24,22 +24,22 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Observable;
 
-import in.silive.directme.NetworkUtils;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import in.silive.directme.Controller;
+import in.silive.directme.NetworkUtils;
+import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
-import in.silive.directme.R;
+import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.FCMConfig;
 import in.silive.directme.utils.ToasterUtils;
-import in.silive.directme.network.FetchData;
 
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
 
     public static final String[] co = new String[5];
-//    public static final String MyPREFERENCES = "MyPrefs";
-//    public static final String Authorization_Token = "Authorization_Token";
     public int[] commod = new int[5];
     String token;
     int i;
@@ -48,31 +48,36 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     boolean network_available;
     BroadcastReceiver mRegistrationBroadcastReceiver;
     FetchData apicalling;
-    private ImageView park, parked, parking, garage, showroom, coinimg, coinimg2, dashboard, Volume;
-    private TextView bamboo, coconut, banana, timber, gold_coin, log_out;
+
+    @BindView(R.id.tvBamboo)
+    TextView bamboo;
+    @BindView(R.id.tvBanana)
+    TextView banana;
+    @BindView(R.id.tvCoconut)
+    TextView coconut;
+    @BindView(R.id.tvTimber)
+    TextView timber;
+    @BindView(R.id.tvGold)
+    TextView gold_coin;
+
+    @BindView(R.id.imageviewpark)
+    ImageView park;
+    @BindView(R.id.imageviewparked)
+    ImageView parked;
+    @BindView(R.id.imageviewparking)
+    ImageView parking;
+    @BindView(R.id.imageviewgarage)
+    ImageView garage;
+    @BindView(R.id.imageviewshowroom)
+    ImageView showroom;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
+        ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);//to make screen full screen
-
-
-        bamboo = (TextView) findViewById(R.id.textviewbamboo);
-        coconut = (TextView) findViewById(R.id.textviewcoconut);
-        banana = (TextView) findViewById(R.id.textviewbanana);
-        timber = (TextView) findViewById(R.id.textviewtimber);
-        gold_coin = (TextView) findViewById(R.id.textviewgoldCoin);
-
-        log_out = (TextView) findViewById(R.id.textviewgoldCoin);
-        coinimg = (ImageView) findViewById(R.id.coin);
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
-
-        park = (ImageView) findViewById(R.id.imageviewpark);
-        parked = (ImageView) findViewById(R.id.imageviewparked);
-        parking = (ImageView) findViewById(R.id.imageviewparking);
-        garage = (ImageView) findViewById(R.id.imageviewgarage);
-        showroom = (ImageView) findViewById(R.id.imageviewshowroom);
 
         park.setOnClickListener(this);
         parked.setOnClickListener(this);
@@ -80,11 +85,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         garage.setOnClickListener(this);
         showroom.setOnClickListener(this);
 
-
         controller.addObserver(DashboardActivity.this);
 
-
-//        SharedPreferences sharedpreferences1 = getSharedPreferences(Authorization_Token, MODE_PRIVATE);
         token = sharedpreferences.getString("Authorization_Token", "");
 
         Log.d("token", token);
