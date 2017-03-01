@@ -5,6 +5,7 @@ package in.silive.directme.activity;
  */
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,14 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Observable;
 
 import in.silive.directme.Controller;
 import in.silive.directme.NetworkUtils;
@@ -36,14 +34,14 @@ import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 
 
-public class ParkedActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
+public class ParkedActivity extends AppCompatActivity implements View.OnClickListener {
 
     //    public static final String MyPREFERENCE = "MyPrefs";
 //    public static final String MyPREFERENCES = "UserName";
     ConstraintLayout rl;
     int i;
     Button undock;
-    ImageView parkedShipDetial1, parkedShipDetial2, parkedShipDetial3, parkedShipDetial4, parkedShipDetial5;
+    ConstraintLayout parkedShipDetial1, parkedShipDetial2, parkedShipDetial3, parkedShipDetial4, parkedShipDetial5;
     TextView boat_dock, time, user_name, boat_name, parking_allowness;
     NetworkUtils network;
     boolean network_available;
@@ -60,24 +58,14 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parked);
-        parkedShipDetial1 = (ImageView) findViewById(R.id.imageViewParkedShip1);
-        parkedShipDetial2 = (ImageView) findViewById(R.id.imageViewParkedShip2);
-        parkedShipDetial3 = (ImageView) findViewById(R.id.imageViewParkedShip3);
-        parkedShipDetial4 = (ImageView) findViewById(R.id.imageViewParkedShip4);
-        parkedShipDetial5 = (ImageView) findViewById(R.id.imageViewParkedShip5);
-        undock = (Button) findViewById(R.id.remove);
-        boat_dock = (TextView) findViewById(R.id.std);
-        time = (TextView) findViewById(R.id.fitd);
-        parking_allowness = (TextView) findViewById(R.id.ftd);
-        user_name = (TextView) findViewById(R.id.ttd);
-        boat_name = (TextView) findViewById(R.id.fotd);
-        rl = (ConstraintLayout) findViewById(R.id.relat);
-        rl.setVisibility(View.VISIBLE);
-        gold_coin_textview = (TextView) findViewById(R.id.gold_no);
-        banana_textview = (TextView) findViewById(R.id.banana_no);
-        coconut_textview = (TextView) findViewById(R.id.coconut_no);
-        bamboo_textview = (TextView) findViewById(R.id.bamboo_no);
-        timber_textview = (TextView) findViewById(R.id.wood_no);
+        parkedShipDetial1 = (ConstraintLayout) findViewById(R.id.port1);
+        parkedShipDetial2 = (ConstraintLayout) findViewById(R.id.port2);
+        parkedShipDetial3 = (ConstraintLayout) findViewById(R.id.port3);
+        parkedShipDetial4 = (ConstraintLayout) findViewById(R.id.port4);
+        parkedShipDetial5 = (ConstraintLayout) findViewById(R.id.port5);
+        undock = (Button) findViewById(R.id.catchbutton);
+
+
         sharedpreference = DirectMe.getInstance().sharedPrefs;
         parkedDetail("0");
         undock.setOnClickListener(this);
@@ -92,65 +80,44 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
         parkedShipDetial4.setOnClickListener(this);
         parkedShipDetial5.setOnClickListener(this);
 
-        controller.addObserver(this);
-        count();
-    }
-
-    public void count() {
-        int i;
-        for (i = 0; i < 5; i++) {
-            if (sharedpreference.contains(DashboardActivity.co[i])) {
-                comm[i] = Integer.parseInt(sharedpreference.getString(DashboardActivity.co[i], ""));
-
-
-            }
-
-
-        }
-        controller.setBambooCount(comm[3]);
-        controller.setBananaCount(comm[2]);
-        controller.setTimberCount(comm[1]);
-        controller.setCoconutCount(comm[0]);
-        controller.setGoldCoinCount(comm[4]);
 
     }
+
 
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
-            case R.id.imageViewParkedShip1:
+            case R.id.port1:
                 parkedDetail("0");
+                customdialog("null", "null", "null", "null", "null");
 
-                undock.setVisibility(View.GONE);
-                rl.setVisibility(View.VISIBLE);
+
                 break;
-            case R.id.imageViewParkedShip2:
+            case R.id.port2:
                 parkedDetail("1");
+                customdialog("null", "null", "null", "null", "null");
 
-                undock.setVisibility(View.GONE);
-                rl.setVisibility(View.VISIBLE);
+
                 break;
-            case R.id.imageViewParkedShip3:
+            case R.id.port3:
                 parkedDetail("2");
+                customdialog("null", "null", "null", "null", "null");
 
-                undock.setVisibility(View.GONE);
-                rl.setVisibility(View.VISIBLE);
+
                 break;
-            case R.id.imageViewParkedShip4:
+            case R.id.port4:
                 parkedDetail("3");
+                customdialog("null", "null", "null", "null", "null");
 
-                undock.setVisibility(View.VISIBLE);
-                rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.imageViewParkedShip5:
+            case R.id.port5:
                 parkedDetail("4");
+                customdialog("null", "null", "null", "null", "null");
 
-                undock.setVisibility(View.VISIBLE);
-                rl.setVisibility(View.VISIBLE);
                 break;
-            case R.id.remove:
+            case R.id.catchbutton:
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ParkedActivity.this);
                 alertDialog.setTitle("UNDOCK");
                 alertDialog.setMessage("Are you sure you want to this boat from your non parking area");
@@ -176,7 +143,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
 
     public void parkedDetail(final String parking_no) {
 
-        final String token = sharedpreferences.getString("Authorization_Token", "");
+
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apiCalling = new FetchData(new AsyncResponse() {
@@ -187,7 +154,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
 
                         JSONObject jsonObject = user.getJSONObject(Integer.parseInt(parking_no));
                         type = jsonObject.get("type").toString();
-                        parking_allowness.setText(type);
+
                         db.addPort(new UserModel(parking_no, "2:00", "Yes", "N-A", type, "2"));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -226,17 +193,26 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    @Override
-    public void update(Observable observable, Object o) {
-        controller = (Controller) observable;
-        System.out.println(controller.getBananaCount());
-        bamboo_textview.setText(String.valueOf(controller.getBambooCount()));
-        coconut_textview.setText(String.valueOf(controller.getCoconutCount()));
-        banana_textview.setText(String.valueOf(controller.getBananaCount()));
-        timber_textview.setText(String.valueOf(controller.getTimberCount()));
-        gold_coin_textview.setText(String.valueOf(controller.getGoldCoinCount()));
+    public void customdialog(String Username, String Type, String BoatName, String Time, String Commodity_Filled) {
 
+        final Dialog dialog = new Dialog(ParkedActivity.this);
+
+//        dialog.setContentView(R.layout.parked);
+        View view = View.inflate(this, R.layout.customdialog, null);
+        dialog.setContentView(view);
+        TextView BoatnameTextview = (TextView) dialog.findViewById(R.id.BOATNAMEVALUE);
+        BoatnameTextview.setText(BoatName);
+        TextView UsernameTextview = (TextView) dialog.findViewById(R.id.UserNameValue);
+        UsernameTextview.setText(Username);
+        TextView TypeTextView = (TextView) dialog.findViewById(R.id.TYPEVALUE);
+        TypeTextView.setText(Type);
+        TextView TimeTextView = (TextView) dialog.findViewById(R.id.TIMEVALUE);
+        TimeTextView.setText(Time);
+        TextView CommodityTextView = (TextView) dialog.findViewById(R.id.CommoditiesVALUE);
+        CommodityTextView.setText(Commodity_Filled);
+        dialog.show();
     }
+
 
 }
 
