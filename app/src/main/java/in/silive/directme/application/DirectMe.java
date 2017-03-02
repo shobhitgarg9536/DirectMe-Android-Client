@@ -16,6 +16,15 @@ public class DirectMe extends Application {
     private static DirectMe singleton = null;
     public Context mContext;
     public SharedPreferences sharedPrefs;
+    public String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public static DirectMe getInstance() {
         return singleton;

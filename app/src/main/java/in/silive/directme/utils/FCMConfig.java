@@ -1,5 +1,8 @@
 package in.silive.directme.utils;
 
+/**
+ * Created by simran on 3/2/2017.
+ */
 
 public class FCMConfig {
     public static final String COMODITY_URL = "";
@@ -23,3 +26,4 @@ public class FCMConfig {
     public static final String update_firebase_uid = "";
 
 }
+

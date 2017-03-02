@@ -89,24 +89,12 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
 
                 String line = "";
-                String tokenn="";
                 while ((line = bufferedReader.readLine()) != null) {
-                    try {
-                        JSONObject jsonObject=new JSONObject(line);
-                        tokenn=jsonObject.getString("token");
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    result=tokenn;
+                        result += line;
                 }
                 bufferedReader.close();
                 inputStream.close();
-                SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("access_token", token);
-                editor.putString("Authorization_Token", result);
-                editor.commit();
             }
             httpURLConnection.disconnect();
         } catch (IOException e) {
@@ -114,7 +102,7 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
         }
 
 //return result from the server
-        return token;
+        return result;
     }
 
     @Override

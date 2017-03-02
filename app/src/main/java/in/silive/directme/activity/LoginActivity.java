@@ -24,6 +24,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.LoginBackgroundWorker;
 import in.silive.directme.listeners.AsyncResponse;
@@ -47,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,22 +151,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             LoginBackgroundWorker loginBackgroundWorker = new LoginBackgroundWorker(new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
-
-
+                    JSONObject jsonObject= null;
+                    try {
+                        jsonObject = new JSONObject(output);
+                        token=jsonObject.getString("token");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                  
+                    SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString("Authorization_Token", token);
+                    editor.commit();
 
                     System.out.println(output);
                     info.setText(output);
+                    startDashboardActivity();
                 }
             });
             loginBackgroundWorker.execute(email);
 
-            Intent i = new Intent(LoginActivity.this , DashboardActivity.class);
-            finish();
-            startActivity(i);
+
         } else {
             //If login fails
             Toast.makeText(this, "LoginActivity Failed", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void startDashboardActivity() {
+        Intent i = new Intent(LoginActivity.this , DashboardActivity.class);
+        finish();
+        startActivity(i);
     }
 
     @Override

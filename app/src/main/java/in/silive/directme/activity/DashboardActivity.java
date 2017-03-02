@@ -33,6 +33,7 @@ import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
+
 import in.silive.directme.utils.FCMConfig;
 import in.silive.directme.utils.ToasterUtils;
 
@@ -77,7 +78,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);//to make screen full screen
-        sharedpreferences = DirectMe.getInstance().sharedPrefs;
+         sharedpreferences = DirectMe.getInstance().sharedPrefs;
 
         park.setOnClickListener(this);
         parked.setOnClickListener(this);
@@ -87,7 +88,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         controller.addObserver(DashboardActivity.this);
 
+
+
         token = sharedpreferences.getString("Authorization_Token", "");
+
 
         Log.d("token", token);
         //// TODO: 2/20/2017 change with correct fcm url and uncomment
@@ -95,12 +99,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         if (NetworkUtils.isNetConnected()) {
 
-            SharedPreferences sharedPreferences = getSharedPreferences(FCMConfig.SHARED_PREF, 0);
-            String firebase_id_send_to_server_or_not = sharedPreferences.getString("FirebaseIdSendToServer", "");
+            String firebase_id_send_to_server_or_not = sharedpreferences.getString("FirebaseIdSendToServer", "");
 
             if (firebase_id_send_to_server_or_not.equals("0")) {
 
-                String Firebase_token = sharedPreferences.getString("regId", "");
+                String Firebase_token = sharedpreferences.getString("regId", "");
 
                 FetchData fetchData = new FetchData(new AsyncResponse() {
                     @Override
@@ -110,7 +113,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 });
                 String post_data = "";
                 try {
-                    post_data = URLEncoder.encode("access_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
+                    post_data =  URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
