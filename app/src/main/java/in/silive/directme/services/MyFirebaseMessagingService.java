@@ -12,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import in.silive.directme.activity.SplashActivity;
-import in.silive.directme.utils.FCMConfig;
 import in.silive.directme.utils.NotificationUtils;
 
 /**

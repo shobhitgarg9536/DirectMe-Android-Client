@@ -15,7 +15,6 @@ import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
-import in.silive.directme.utils.FCMConfig;
 
 /**
  * Created by Shobhit-pc on 2/16/2017.

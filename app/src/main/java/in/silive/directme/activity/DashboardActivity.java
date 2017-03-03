@@ -33,8 +33,7 @@ import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
-
-import in.silive.directme.utils.FCMConfig;
+import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.ToasterUtils;
 
 
@@ -78,7 +77,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);//to make screen full screen
-         sharedpreferences = DirectMe.getInstance().sharedPrefs;
+        sharedpreferences = DirectMe.getInstance().sharedPrefs;
 
         park.setOnClickListener(this);
         parked.setOnClickListener(this);
@@ -87,7 +86,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         showroom.setOnClickListener(this);
 
         controller.addObserver(DashboardActivity.this);
-
 
 
         token = sharedpreferences.getString("Authorization_Token", "");
@@ -113,7 +111,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 });
                 String post_data = "";
                 try {
-                    post_data =  URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
+                    post_data = URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -128,13 +126,13 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             public void onReceive(Context context, Intent intent) {
 
                 // checking for type intent filter
-                if (intent.getAction().equals(FCMConfig.REGISTRATION_COMPLETE)) {
+                if (intent.getAction().equals(Constants.REGISTRATION_COMPLETE)) {
                     // fcm successfully registered
                     // now subscribe to `global` topic to receive app wide notifications
-                    FirebaseMessaging.getInstance().subscribeToTopic(FCMConfig.TOPIC_GLOBAL);
+                    FirebaseMessaging.getInstance().subscribeToTopic(Constants.TOPIC_GLOBAL);
 
 
-                } else if (intent.getAction().equals(FCMConfig.PUSH_NOTIFICATION)) {
+                } else if (intent.getAction().equals(Constants.PUSH_NOTIFICATION)) {
                     // new push notification is received
 
                     String message = intent.getStringExtra("message");

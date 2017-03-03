@@ -73,7 +73,7 @@ public class FetchData extends AsyncTask<String, String, String> {
             }
 
             int responseCode = connection.getResponseCode();
-            Log.d("debuggingfcm response",Integer.toString(responseCode));
+            Log.d("debuggingfcm response", Integer.toString(responseCode));
             if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

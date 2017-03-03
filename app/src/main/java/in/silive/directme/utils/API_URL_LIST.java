@@ -14,5 +14,4 @@ public class API_URL_LIST {
     //// TODO: 2/21/2017 Add Firebase url and uncomment 
     public static final String FIREBASE_TOKEN_UPDATE = "user/fcm/";
     public static final String VERSION_CHECK = "core/version/";
-
 }
