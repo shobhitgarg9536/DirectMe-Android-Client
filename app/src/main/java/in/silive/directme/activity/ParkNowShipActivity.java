@@ -17,9 +17,6 @@ import android.widget.ImageView;
 import in.silive.directme.R;
 import in.silive.directme.fragments.ParknowUsershipselectFragment;
 
-/**
- * Created by simran on 2/23/2017.
- */
 
 public class ParkNowShipActivity extends AppCompatActivity {
     ViewPager mViewPager;
@@ -39,8 +36,8 @@ public class ParkNowShipActivity extends AppCompatActivity {
         mViewPager.setAdapter(new BoatPagerAdapter1(
                 getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(0);
-        left = (ImageView) findViewById(R.id.left_navigation);
-        right = (ImageView) findViewById(R.id.right_navigation);
+        left = (ImageView) findViewById(R.id.imageView_garage_left_navigation);
+        right = (ImageView) findViewById(R.id.imageView_garage_right_navigation);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
