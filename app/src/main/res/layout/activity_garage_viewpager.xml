@@ -14,14 +14,14 @@
         tools:context=".activity.SplashActivity"/>
 
     <ImageView
-        android:id="@+id/left_navigation"
+        android:id="@+id/imageView_garage_left_navigation"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center_vertical|left"
         android:src="@drawable/prev" />
 
     <ImageView
-        android:id="@+id/right_navigation"
+        android:id="@+id/imageView_garage_right_navigation"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center_vertical|right"

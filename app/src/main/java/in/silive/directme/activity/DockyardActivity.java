@@ -1,24 +1,21 @@
 package in.silive.directme.activity;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import in.silive.directme.adapter.GarageAdapter;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.NetworkUtils;
-import in.silive.directme.fragments.BoatsEquippedFragment;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
@@ -33,6 +30,7 @@ public class DockyardActivity extends AppCompatActivity {
     FetchData apicalling;
     int count = 1;
     SharedPreferences sharedpreferences;
+    ImageView left,right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +40,21 @@ public class DockyardActivity extends AppCompatActivity {
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
+        left = (ImageView) findViewById(R.id.imageView_garage_left_navigation);
+        right = (ImageView) findViewById(R.id.imageView_garage_right_navigation);
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.arrowScroll(View.FOCUS_LEFT);
+            }
+        });
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.arrowScroll(View.FOCUS_RIGHT);
+            }
+        });
         connect();
-
-    }
-
-    void startfragments() {
-        mViewPager.setAdapter(new DockyardActivity.BoatPagerAdapter(
-                getSupportFragmentManager()));
     }
 
     void connect() {
@@ -74,61 +78,9 @@ public class DockyardActivity extends AppCompatActivity {
 
         }
     }
-
-
-    public class BoatPagerAdapter extends FragmentPagerAdapter {
-
-        int slot = 0;
-
-        public BoatPagerAdapter(FragmentManager fm) {
-
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            JSONObject json_send;
-            if (jArray != null) {
-                try {
-                    if (position == 0) {
-                        slot = 1;
-                        json_send = jArray.getJSONObject(0);
-                        return BoatsEquippedFragment.newInstance(json_send, slot);
-                    }
-                    if (position == 1) {
-                        slot = 2;
-                        json_send = jArray.getJSONObject(1);
-                        return BoatsEquippedFragment.newInstance(json_send, slot);
-                    }
-                    if (position == 2) {
-                        slot = 3;
-                        json_send = jArray.getJSONObject(2);
-                        return BoatsEquippedFragment.newInstance(json_send, slot);
-                    }
-                    if (position == 3) {
-                        slot = 4;
-                        json_send = jArray.getJSONObject(3);
-                        return BoatsEquippedFragment.newInstance(json_send, slot);
-                    } else {
-                        slot = 5;
-                        json_send = jArray.getJSONObject(4);
-                        return BoatsEquippedFragment.newInstance(json_send, slot);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return null;
-
-                }
-            } else
-                return null;
-        }
-
-
-        @Override
-        public int getCount() {
-            return count;
-
-        }
+    void startfragments() {
+        mViewPager.setAdapter(new GarageAdapter(
+                getSupportFragmentManager() , jArray , count));
     }
+
 }

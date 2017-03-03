@@ -12,27 +12,27 @@
         android:layout_height="0dp"
         android:id="@+id/guideline3"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="31dp"
+        tools:layout_editor_absoluteY="57dp"
         tools:layout_editor_absoluteX="0dp"
-        app:layout_constraintGuide_percent="0.104166664" />
+        app:layout_constraintGuide_percent="0.14728682" />
 
     <android.support.constraint.Guideline
         android:layout_height="wrap_content"
         android:id="@+id/guideline4"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.86440676"
-        tools:layout_editor_absoluteY="255dp"
+        tools:layout_editor_absoluteY="335dp"
         tools:layout_editor_absoluteX="0dp"
-        android:layout_width="533dp" />
+        android:layout_width="683dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
-        android:layout_height="295dp"
+        android:layout_height="387dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.35304055"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="188dp" />
+        tools:layout_editor_absoluteX="241dp" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -47,17 +47,18 @@
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="24dp">
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:srcCompat="@drawable/raft"
+            android:id="@+id/imageViewGarageBoat"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
@@ -67,12 +68,12 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.Guideline
-        android:layout_width="533dp"
+        android:layout_width="683dp"
         android:layout_height="0dp"
         android:id="@+id/guideline2"
         app:layout_constraintGuide_percent="0.8194444"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="242dp"
+        tools:layout_editor_absoluteY="317dp"
         tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.ConstraintLayout
@@ -84,7 +85,7 @@
 
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline39"
         android:layout_marginLeft="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         android:layout_marginBottom="8dp"
@@ -106,15 +107,76 @@
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
-            android:text="Characterstics"
-            android:layout_width="0dp"
+            android:text="Cost Multiplier: "
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/boatchar"
-            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/textviewgaragecostmulti"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/boatname"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" />
+
+        <TextView
+            android:text="00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewgaragecostmultiplier"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textviewgaragecostmulti"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewgaragecostmulti"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp" />
+
+        <TextView
+            android:text="Experience Gain: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewgarageexperiencegaintext"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewgaragecostmultiplier"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" />
+
+        <TextView
+            android:text="00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:id="@+id/textviewgarageexperiencegain"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textviewgarageexperiencegaintext"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewgaragecostmultiplier"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewgarageexperiencegaintext" />
+
+        <TextView
+            android:text="Buy Cost: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewgaragebuycosttext"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewgarageexperiencegaintext"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" />
+
+        <TextView
+            android:text="NA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:id="@+id/textviewgaragebuycost"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textviewgaragebuycosttext"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewgarageexperiencegaintext"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewgaragebuycosttext" />
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
@@ -131,5 +193,14 @@
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline39"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="35dp"
+        app:layout_constraintGuide_percent="0.05124451" />
 
 </android.support.constraint.ConstraintLayout>

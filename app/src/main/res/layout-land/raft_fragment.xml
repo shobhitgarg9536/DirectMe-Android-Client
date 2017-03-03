@@ -8,31 +8,31 @@
     android:background="@drawable/showroomdesign">
 
     <android.support.constraint.Guideline
-        android:layout_width="592dp"
+        android:layout_width="683dp"
         android:layout_height="0dp"
         android:id="@+id/guideline3"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="34dp"
+        tools:layout_editor_absoluteY="79dp"
         tools:layout_editor_absoluteX="0dp"
-        app:layout_constraintGuide_percent="0.10027855" />
+        app:layout_constraintGuide_percent="0.20338982" />
 
     <android.support.constraint.Guideline
         android:layout_height="0dp"
         android:id="@+id/guideline4"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.6197917"
-        tools:layout_editor_absoluteY="208dp"
+        tools:layout_editor_absoluteY="240dp"
         tools:layout_editor_absoluteX="0dp"
-        android:layout_width="592dp" />
+        android:layout_width="683dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
-        android:layout_height="335dp"
+        android:layout_height="387dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.4"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="237dp" />
+        tools:layout_editor_absoluteX="273dp" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -43,22 +43,28 @@
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp">
 
         <ImageView
-            android:layout_width="339dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             app:srcCompat="@drawable/raft"
+            android:id="@+id/imageViewShowroomBoat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="130dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -88,12 +94,12 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.Guideline
-        android:layout_width="592dp"
+        android:layout_width="683dp"
         android:layout_height="0dp"
         android:id="@+id/guideline2"
         app:layout_constraintGuide_percent="0.8194444"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="275dp"
+        tools:layout_editor_absoluteY="317dp"
         tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.ConstraintLayout
@@ -155,7 +161,7 @@
 
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline38"
         android:layout_marginLeft="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         android:layout_marginBottom="8dp"
@@ -165,57 +171,115 @@
             android:text="Boat Name"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
-            android:id="@+id/boatname"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+            android:id="@+id/textviewshowroomboatname"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:fontFamily="monospace"
             android:gravity="center_horizontal"
             android:alpha="50"
-
             android:elevation="2dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
-            android:text="Characterstics"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/boatchar"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/boatname"
-            app:layout_constraintRight_toRightOf="parent"
+            android:text="Cost Multiplier: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewshowroomcostmulti"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.95" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewshowroomboatname"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" />
+
+        <TextView
+            android:text="00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewshowroomcostmultiplier"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textviewshowroomcostmulti"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewshowroomcostmulti"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp" />
+
+        <TextView
+            android:text="Experience Gain: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewshowroomexperiencegaintext"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewshowroomcostmultiplier"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" />
+
+        <TextView
+            android:text="00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:id="@+id/textviewshowroomexperiencegain"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textviewshowroomexperiencegaintext"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewshowroomcostmultiplier"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewshowroomexperiencegaintext" />
+
+        <TextView
+            android:text="Buy Cost: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewshowroombuycosttext"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewshowroomexperiencegaintext"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" />
+
+        <TextView
+            android:text="NA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:id="@+id/textviewshowroombuycost"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textviewshowroombuycosttext"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textviewshowroomexperiencegaintext"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewshowroombuycosttext" />
+
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.Guideline
-        android:layout_width="592dp"
+        android:layout_width="683dp"
         android:layout_height="wrap_content"
         android:id="@+id/second"
         app:layout_constraintGuide_percent="0.7954704"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="266dp"
+        tools:layout_editor_absoluteY="308dp"
         tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.Guideline
-        android:layout_width="592dp"
+        android:layout_width="683dp"
         android:layout_height="0dp"
         android:id="@+id/third"
         app:layout_constraintGuide_percent="0.8854704"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="297dp"
+        tools:layout_editor_absoluteY="343dp"
         tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.Guideline
-        android:layout_width="592dp"
+        android:layout_width="683dp"
         android:layout_height="wrap_content"
         android:id="@+id/first"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7054704"
-        tools:layout_editor_absoluteY="236dp"
+        tools:layout_editor_absoluteY="273dp"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
@@ -295,12 +359,12 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5591216"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="331dp" />
+        tools:layout_editor_absoluteX="382dp" />
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:id="@+id/getbanana"
+        android:id="@+id/getbanana"
         android:textColor="#FF0000"
         app:layout_constraintLeft_toRightOf="@+id/bananaimg"
         android:layout_marginTop="3dp"
@@ -340,7 +404,7 @@
         app:layout_constraintGuide_percent="0.7043919"
         android:orientation="vertical"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="417dp" />
+        tools:layout_editor_absoluteX="481dp" />
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -398,7 +462,7 @@
         app:layout_constraintGuide_percent="0.8351216"
         android:orientation="vertical"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="494dp" />
+        tools:layout_editor_absoluteX="570dp" />
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
@@ -425,4 +489,13 @@
         android:layout_marginLeft="70dp"
         android:layout_marginStart="70dp"
         app:layout_constraintTop_toTopOf="@+id/second" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline38"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.052532833"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="36dp" />
 </android.support.constraint.ConstraintLayout>

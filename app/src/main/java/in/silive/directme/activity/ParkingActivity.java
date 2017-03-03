@@ -34,7 +34,6 @@ public class ParkingActivity extends AppCompatActivity {
     FetchData apicalling;
     int count = 1;
     JSONArray user;
-    ImageView leftNavigation, rightNavigation;
     SharedPreferences sharedpreferences;
 
     @Override
@@ -45,8 +44,7 @@ public class ParkingActivity extends AppCompatActivity {
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        leftNavigation = (ImageView) findViewById(R.id.left_navigation);
-        rightNavigation = (ImageView) findViewById(R.id.right_navigation);
+
 
 
         connect();
