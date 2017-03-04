@@ -31,6 +31,7 @@ import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.LoginBackgroundWorker;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
+import in.silive.directme.utils.Constants;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -166,7 +167,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                   
                     SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
                     SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putString("Authorization_Token", token);
+                    editor.putString(Constants.AUTH_TOKEN, token);
                     editor.commit();
 
                     System.out.println(output);

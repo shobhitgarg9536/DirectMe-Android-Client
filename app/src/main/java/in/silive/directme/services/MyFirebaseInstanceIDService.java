@@ -46,8 +46,11 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(final String token) {
 
-        SharedPreferences sharedpreferences1 = DirectMe.getInstance().sharedPrefs;
-        String authorization_token = sharedpreferences1.getString("Authorization_Token", "");
+        String authorization_token = DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "");
+
+        // checking if auth token is saved or not
+        if (authorization_token.equals(""))
+            return;
 
         // sending fcm token to server
         FetchData fetchData = new FetchData(new AsyncResponse() {
