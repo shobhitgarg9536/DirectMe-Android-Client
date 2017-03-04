@@ -1,14 +1,12 @@
 package in.silive.directme.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -27,29 +25,24 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import in.silive.directme.application.DirectMe;
-import in.silive.directme.network.LoginBackgroundWorker;
-import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
+import in.silive.directme.application.DirectMe;
+import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.network.LoginBackgroundWorker;
 import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.LoggerUtils;
+import in.silive.directme.utils.ToasterUtils;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
 
-    //Signin button
-    private SignInButton signInButton;
-    //Signing Options
-    private GoogleSignInOptions gso;
-//    public static final String MyPREFERENCES = "Authorization_Token" ;
-    //google api client
-    private GoogleApiClient mGoogleApiClient;
-    public static final String usergid = "gidKey";
-    public static final String userfbid = "Authorization_Token";
     //Signin constant to check the activity result
     public int RC_SIGN_IN = 100;
-    private TextView info;
-    private LoginButton loginButton;
+    //Signin button
+    private SignInButton signInButton;
+    //google api client
+    private GoogleApiClient mGoogleApiClient;
     private CallbackManager callbackManager;
     private String token;
 
@@ -62,11 +55,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
 
-        info = (TextView) findViewById(R.id.info);
-
         SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
         //Initializing google signin option
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
@@ -84,46 +75,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Setting onclick listener to signing button
         signInButton.setOnClickListener(this);
-        loginButton = (LoginButton) findViewById(R.id.login_button);
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
-                info.setText(
-                        "UserModel ID: "
-                                + loginResult.getAccessToken().getUserId()
-                                + "\n" +
-                                "Auth Token: "
-                                + loginResult.getAccessToken().getToken()
-                );
+                LoggerUtils.logger("logged in successfully");
                 Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
                 startActivity(i);
-
             }
 
             @Override
             public void onCancel() {
-                info.setText("LoginActivity attempt canceled.");
-
+                LoggerUtils.logger("google login canceled");
             }
 
             @Override
             public void onError(FacebookException e) {
-
-                info.setText("LoginActivity attempt failed.");
+                e.printStackTrace();
             }
         });
 
     }
 
-
     //This function will option signing intent
     private void signIn() {
-        //Creating an intent
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-
-        //Starting intent for result
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -157,35 +134,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 @Override
                 public void processFinish(String output) {
-                    JSONObject jsonObject= null;
+                    JSONObject jsonObject = null;
                     try {
                         jsonObject = new JSONObject(output);
-                        token=jsonObject.getString("token");
+                        token = jsonObject.getString("token");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                  
+
                     SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString(Constants.AUTH_TOKEN, token);
                     editor.commit();
 
                     System.out.println(output);
-                    info.setText(output);
                     startDashboardActivity();
                 }
             });
             loginBackgroundWorker.execute(email);
-
-
         } else {
             //If login fails
-            Toast.makeText(this, "LoginActivity Failed", Toast.LENGTH_LONG).show();
+            ToasterUtils.toaster("Login Failed");
         }
     }
 
     private void startDashboardActivity() {
-        Intent i = new Intent(LoginActivity.this , DashboardActivity.class);
+        Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
         finish();
         startActivity(i);
     }
@@ -193,14 +167,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == signInButton) {
-            //Calling signin
             signIn();
         }
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        ToasterUtils.toaster(connectionResult.getErrorMessage());
     }
 
 }

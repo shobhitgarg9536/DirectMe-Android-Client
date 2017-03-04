@@ -14,6 +14,7 @@ import org.json.JSONException;
 
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.FetchData;
+import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.fragments.UserShipsFragment;
 import in.silive.directme.listeners.AsyncResponse;
@@ -21,15 +22,11 @@ import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
 
 
-/**
- * Created by Lenovo on 01-Dec-16.
- */
-
 public class ParkingActivity extends AppCompatActivity {
 //    public static final String MyPREFERENCES = "UserName";
     ViewPager mViewPager;
     boolean network_available;
-    FetchData apicalling;
+    FetchData fetchData;
     int count = 1;
     JSONArray user;
     SharedPreferences sharedpreferences;
@@ -37,27 +34,21 @@ public class ParkingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parkingmain_viewpager);
+        setContentView(R.layout.parknow);
         mViewPager = (ViewPager) findViewById(R.id.pagerr);
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
-
         connect();
     }
 
-    void startfragments() {
-        mViewPager.setAdapter(new BoatPagerAdapter(
-                getSupportFragmentManager()));
-    }
+
 
     void connect() {
-        final String token = sharedpreferences.getString("Authorization_Token", "");
+        final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
-            apicalling = new FetchData(new AsyncResponse() {
+            fetchData = new FetchData(new AsyncResponse() {
                 @Override
                 public void processStart() {
 
@@ -74,12 +65,16 @@ public class ParkingActivity extends AppCompatActivity {
                     }
                 }
             });
-            apicalling.setArgs(API_URL_LIST.PARKED_URL, token, "");
-            apicalling.execute();
+            fetchData.setArgs(API_URL_LIST.PARKED_URL, token, "");
+            fetchData.execute();
 
         }
     }
 
+    void startfragments() {
+        mViewPager.setAdapter(new BoatPagerAdapter(
+                getSupportFragmentManager()));
+    }
 
     public class BoatPagerAdapter extends FragmentPagerAdapter {
 
@@ -105,7 +100,6 @@ public class ParkingActivity extends AppCompatActivity {
         }*/
             if (user != null) {
                 try {
-
                     return UserShipsFragment.newInstance(user.getJSONObject(0));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -120,5 +114,8 @@ public class ParkingActivity extends AppCompatActivity {
             return count;
         }
     }
+
+
+
 
 }
