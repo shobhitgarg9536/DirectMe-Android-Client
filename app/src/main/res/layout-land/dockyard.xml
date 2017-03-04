@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/garage">
+    android:background="@drawable/garagebackground"
+    >
 
     <android.support.constraint.Guideline
         android:layout_width="0dp"
@@ -182,7 +183,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/upgrade"
+        app:srcCompat="@drawable/ic_upgradebutton"
         android:id="@+id/imageview_garage_ship_upgrade"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="parent"

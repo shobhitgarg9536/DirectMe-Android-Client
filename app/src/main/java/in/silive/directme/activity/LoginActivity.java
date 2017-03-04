@@ -122,7 +122,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (result.isSuccess()) {
             //Getting google account
             GoogleSignInAccount acct = result.getSignInAccount();
-            String personName = acct.getDisplayName();
             String email = acct.getEmail();
 
 

@@ -23,7 +23,6 @@ import in.silive.directme.utils.API_URL_LIST;
 
 
 public class ParkingActivity extends AppCompatActivity {
-//    public static final String MyPREFERENCES = "UserName";
     ViewPager mViewPager;
     boolean network_available;
     FetchData fetchData;
@@ -84,20 +83,6 @@ public class ParkingActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            /*if (position == 0)
-            {
-                try {
-                    return UserShipsFragment.newInstance(user.getJSONObject(position));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(position==1) {
-                return  new Boatx();
-            }
-            else
-                return new UserShipsFragment();
-        }*/
             if (user != null) {
                 try {
                     return UserShipsFragment.newInstance(user.getJSONObject(0));

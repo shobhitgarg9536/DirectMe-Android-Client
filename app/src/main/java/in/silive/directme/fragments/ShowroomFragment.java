@@ -1,11 +1,8 @@
 package in.silive.directme.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +14,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import butterknife.BindView;
 import in.silive.directme.R;
 
 public class ShowroomFragment extends Fragment {
@@ -43,14 +39,14 @@ public class ShowroomFragment extends Fragment {
             json_data = null;
             e.printStackTrace();
         }
-        View rootView = inflater.inflate(R.layout.raft_fragment, container,
+        View rootView = inflater.inflate(R.layout.showroom_fragment, container,
                 false);
 
-        banana_req = (TextView) rootView.findViewById(R.id.getbanana);
-        bamboo_req = (TextView) rootView.findViewById(R.id.getbamboo);
-        gold_req = (TextView) rootView.findViewById(R.id.getgold);
-        wood_req = (TextView) rootView.findViewById(R.id.getwood);
-        coconut_req = (TextView) rootView.findViewById(R.id.getcoconut);
+        banana_req = (TextView) rootView.findViewById(R.id.textView_showroom_banana_count);
+        bamboo_req = (TextView) rootView.findViewById(R.id.textView_showroom_bamboo_count);
+        gold_req = (TextView) rootView.findViewById(R.id.textView_showroom_gold_count);
+        wood_req = (TextView) rootView.findViewById(R.id.textView_showroom_wood_count);
+        coconut_req = (TextView) rootView.findViewById(R.id.textView_showroom_coconut_count);
         tv_boat_name = (TextView) rootView.findViewById(R.id.textviewshowroomboatname);
         tv_cost_multiplier = (TextView) rootView.findViewById(R.id.textviewshowroomcostmultiplier);
         tv_experience = (TextView) rootView.findViewById(R.id.textviewshowroomexperiencegain);
