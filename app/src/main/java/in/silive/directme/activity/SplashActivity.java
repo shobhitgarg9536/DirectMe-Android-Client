@@ -10,7 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,7 +22,6 @@ import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.utils.BitmapUtils;
 import in.silive.directme.utils.Constants;
-import in.silive.directme.utils.LoggerUtils;
 import in.silive.directme.utils.NetworkUtils;
 
 public class SplashActivity extends Activity implements Animation.AnimationListener {
@@ -89,10 +87,7 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
     private void startWaterAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {
-
             Bitmap[] bitmaps = BitmapUtils.getBitmapsFromSprite(waterbmp, NB_FRAMES, COUNT_X, COUNT_Y, FRAME_H, FRAME_W);
-
-            // create animation programmatically
             final AnimationDrawable animation = new AnimationDrawable();
             animation.setOneShot(false); // repeat animation
 
@@ -100,14 +95,12 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
                 animation.addFrame(new BitmapDrawable(getResources(), bitmaps[i]),
                         FRAME_DURATION);
             }
-
             // load animation on image
             if (Build.VERSION.SDK_INT < 16) {
                 rl.setBackgroundDrawable(animation);
             } else {
                 rl.setBackground(animation);
             }
-
             // start animation on image
             rl.post(new Runnable() {
 
@@ -163,17 +156,15 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
 
     @Override
     public void onAnimationStart(Animation animation) {
-        LoggerUtils.logger("boat animation starts");
     }
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        LoggerUtils.logger("boat animation ends");
         Intent intent;
         if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
             intent = new Intent(this, DashboardActivity.class);
         } else {
-            intent = new Intent(this, DashboardActivity.class);
+            intent = new Intent(this, LoginActivity.class);
         }
         startActivity(intent);
     }
