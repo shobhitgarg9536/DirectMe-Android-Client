@@ -73,7 +73,7 @@ public class DockyardActivity extends AppCompatActivity {
                     }
                 }
             });
-            apicalling.setArgs(API_URL_LIST.PARKED_URL, token, "");
+            apicalling.setArgs(API_URL_LIST.GARAGE_SHIPS_URL, token, "");
             apicalling.execute();
 
         }

@@ -190,7 +190,7 @@ public class NotificationUtils {
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(FCMConfig.NOTIFICATION_ID, notification);
+        notificationManager.notify(Constants.NOTIFICATION_ID, notification);
     }
 
     private void showBigNotification(Bitmap bitmap, NotificationCompat.Builder mBuilder, int icon, String title, String message, String timeStamp, PendingIntent resultPendingIntent, Uri alarmSound) {
@@ -212,7 +212,7 @@ public class NotificationUtils {
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(FCMConfig.NOTIFICATION_ID_BIG_IMAGE, notification);
+        notificationManager.notify(Constants.NOTIFICATION_ID_BIG_IMAGE, notification);
     }
 
     /**

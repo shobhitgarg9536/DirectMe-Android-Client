@@ -66,12 +66,10 @@ public class SplashActivity extends Activity {
                             Animation animation_boat = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
                             iv_boat.startAnimation(animation_boat);
                             sleep(5000);
-
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } finally {
                             if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
-
                                 Intent i = new Intent(SplashActivity.this, DashboardActivity.class);
                                 startActivity(i);
                             } else {
@@ -143,16 +141,13 @@ public class SplashActivity extends Activity {
 
     protected void onDestroy() {
         super.onDestroy();
-
         finish();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
     }
-
 
     public void alertDialog(String title, String message) {
 
