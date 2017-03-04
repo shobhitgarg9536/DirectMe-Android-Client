@@ -34,6 +34,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="in.silive.directme.activity.ShipTransitionActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="in.silive.directme.DASHBOARD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="in.silive.directme.activity.ParkNowActivity"
             android:parentActivityName="in.silive.directme.activity.DashboardActivity"
             android:screenOrientation="landscape">
@@ -80,17 +89,6 @@
         </activity>
         <activity
             android:name="in.silive.directme.activity.ParkNowShipActivity"
-            android:screenOrientation="landscape">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="in.silive.directme.activity.UserDetailsActivity"
             android:screenOrientation="landscape">
 
 

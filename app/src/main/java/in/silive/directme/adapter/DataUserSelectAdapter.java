@@ -5,6 +5,7 @@ package in.silive.directme.adapter;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import in.silive.directme.activity.ShipTransitionActivity;
 import in.silive.directme.model.UserDetailsList;
 
 import in.silive.directme.R;
@@ -39,8 +41,8 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
     public void onBindViewHolder(DataUserSelectAdapter.ViewHolder viewHolder, int i) {
 
         viewHolder.usr_name.setText(user_details.get(i).getUser_name());
-    //   Picasso.with(context).load(user_details.get(i).getUser_image_url()).resize(240, 120).into(viewHolder.usr_img);
-        viewHolder.usr_img.setImageResource(R.drawable.banana);
+        //   Picasso.with(context).load(user_details.get(i).getUser_image_url()).resize(240, 120).into(viewHolder.usr_img);
+        viewHolder.usr_img.setImageResource(R.drawable.ic_wood);
     }
 
     @Override
@@ -61,7 +63,11 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context,"clicked",Toast.LENGTH_LONG).show();
+            String s=usr_name.getText().toString();
+            Intent i=new Intent(context, ShipTransitionActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
+
         }
     }
 
