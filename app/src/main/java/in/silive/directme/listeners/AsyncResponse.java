@@ -5,7 +5,7 @@ package in.silive.directme.listeners;
  */
 
 public interface AsyncResponse {
-
+    void processStart();
     void processFinish(String output);
 }
 

@@ -24,7 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import in.silive.directme.Controller;
-import in.silive.directme.NetworkUtils;
+import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.database.DatabaseHandler;
@@ -147,6 +147,11 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apiCalling = new FetchData(new AsyncResponse() {
+                @Override
+                public void processStart() {
+
+                }
+
                 @Override
                 public void processFinish(String output) {
                     try {

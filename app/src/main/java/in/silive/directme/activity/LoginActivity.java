@@ -150,6 +150,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             LoginBackgroundWorker loginBackgroundWorker = new LoginBackgroundWorker(new AsyncResponse() {
                 @Override
+                public void processStart() {
+
+                }
+
+                @Override
                 public void processFinish(String output) {
                     JSONObject jsonObject= null;
                     try {

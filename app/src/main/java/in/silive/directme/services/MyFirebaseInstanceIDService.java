@@ -52,6 +52,11 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // sending fcm token to server
         FetchData fetchData = new FetchData(new AsyncResponse() {
             @Override
+            public void processStart() {
+
+            }
+
+            @Override
             public void processFinish(String output) {
 
             }
