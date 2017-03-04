@@ -1,4 +1,4 @@
-package in.silive.directme;
+package in.silive.directme.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

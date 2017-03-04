@@ -1,6 +1,5 @@
 package in.silive.directme.activity;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,14 +8,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.FetchData;
-import in.silive.directme.NetworkUtils;
+import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.fragments.UserShipsFragment;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
@@ -60,6 +58,11 @@ public class ParkingActivity extends AppCompatActivity {
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apicalling = new FetchData(new AsyncResponse() {
+                @Override
+                public void processStart() {
+
+                }
+
                 @Override
                 public void processFinish(String output) {
                     try {

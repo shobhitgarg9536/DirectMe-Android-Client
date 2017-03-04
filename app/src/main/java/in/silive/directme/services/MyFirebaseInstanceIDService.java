@@ -15,6 +15,7 @@ import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
+import in.silive.directme.utils.Constants;
 
 /**
  * Created by Shobhit-pc on 2/16/2017.
@@ -38,18 +39,26 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         sendRegistrationToServer(refreshedToken);
 
         // Notify UI that registration has completed, so the progress indicator can be hidden.
-        Intent registrationComplete = new Intent(FCMConfig.REGISTRATION_COMPLETE);
+        Intent registrationComplete = new Intent(Constants.REGISTRATION_COMPLETE);
         registrationComplete.putExtra("token", refreshedToken);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
 
     private void sendRegistrationToServer(final String token) {
 
-        SharedPreferences sharedpreferences1 = DirectMe.getInstance().sharedPrefs;
-        String authorization_token = sharedpreferences1.getString("Authorization_Token", "");
+        String authorization_token = DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "");
+
+        // checking if auth token is saved or not
+        if (authorization_token.equals(""))
+            return;
 
         // sending fcm token to server
         FetchData fetchData = new FetchData(new AsyncResponse() {
+            @Override
+            public void processStart() {
+
+            }
+
             @Override
             public void processFinish(String output) {
 

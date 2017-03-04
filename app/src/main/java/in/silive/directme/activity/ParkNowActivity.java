@@ -249,6 +249,11 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
 
         FetchData myAsyncTask = new FetchData(new AsyncResponse() {
             @Override
+            public void processStart() {
+
+            }
+
+            @Override
             public void processFinish(String output) {
                 System.out.println(output);
                 try {

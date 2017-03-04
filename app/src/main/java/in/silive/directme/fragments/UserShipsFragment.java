@@ -1,7 +1,6 @@
 package in.silive.directme.fragments;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +28,7 @@ import java.util.Observable;
 
 import in.silive.directme.activity.DashboardActivity;
 import in.silive.directme.activity.ParkNowActivity;
-import in.silive.directme.NetworkUtils;
+import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.Controller;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.database.DatabaseHandler;

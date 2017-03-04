@@ -27,7 +27,7 @@ import java.util.Observable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.silive.directme.Controller;
-import in.silive.directme.NetworkUtils;
+import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.AsyncResponse;
@@ -105,6 +105,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                 FetchData fetchData = new FetchData(new AsyncResponse() {
                     @Override
+                    public void processStart() {
+
+                    }
+
+                    @Override
                     public void processFinish(String output) {
 
                     }
@@ -151,6 +156,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         if (network_available) {
 
             apicalling = new FetchData(new AsyncResponse() {
+                @Override
+                public void processStart() {
+
+                }
+
                 @Override
                 public void processFinish(String output) {
                     try {

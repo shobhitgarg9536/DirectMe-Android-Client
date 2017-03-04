@@ -17,6 +17,7 @@ import javax.net.ssl.HttpsURLConnection;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.LoggerUtils;
+import in.silive.directme.utils.ToasterUtils;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -56,7 +57,6 @@ public class FetchData extends AsyncTask<String, String, String> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setReadTimeout(15000);
             connection.setConnectTimeout(15000);
-//                connection.setRequestMethod("GET");
             connection.addRequestProperty("Authorization", "Token " + token);
 
             if (!this.post_data.equals("")) {
@@ -73,7 +73,8 @@ public class FetchData extends AsyncTask<String, String, String> {
             }
 
             int responseCode = connection.getResponseCode();
-            Log.d("debuggingfcm response", Integer.toString(responseCode));
+            LoggerUtils.logger("response code : " + Integer.toString(responseCode));
+
             if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -81,7 +82,6 @@ public class FetchData extends AsyncTask<String, String, String> {
                 String line = "";
 
                 while ((line = in.readLine()) != null) {
-
                     sb.append(line);
                     break;
                 }
@@ -89,8 +89,7 @@ public class FetchData extends AsyncTask<String, String, String> {
                 in.close();
                 result = sb.toString();
             } else {
-                Toast.makeText(getApplicationContext(), responseCode,
-                        Toast.LENGTH_LONG).show();
+                ToasterUtils.toaster("response code : " + responseCode);
             }
         } catch (Exception e) {
             e.printStackTrace();
