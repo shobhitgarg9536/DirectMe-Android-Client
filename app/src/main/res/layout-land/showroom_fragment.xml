@@ -195,7 +195,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline48" />
 
         <TextView
-            android:text="00000000"
+            android:text="00"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textviewshowroomcostmultiplier"
@@ -217,7 +217,7 @@
             />
 
         <TextView
-            android:text="000000000"
+            android:text="00"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -241,7 +241,7 @@
             app:layout_constraintVertical_bias="0.04000002" />
 
         <TextView
-            android:text="0000000"
+            android:text="00"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
@@ -397,12 +397,11 @@
             app:layout_constraintTop_toTopOf="@+id/guideline43"
              />
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textView_showroom_gold_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00"
-            android:maxLines="2"
             android:textColor="#FF0000"
             android:layout_marginLeft="8dp"
             app:layout_constraintRight_toRightOf="@+id/guideline39"
