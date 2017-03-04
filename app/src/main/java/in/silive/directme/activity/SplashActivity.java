@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,13 +19,14 @@ import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.utils.BitmapUtils;
 import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.LoggerUtils;
+import in.silive.directme.utils.NetworkUtils;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends Activity implements Animation.AnimationListener {
 
     // frame width
     private static final int FRAME_W = 300;
@@ -56,31 +58,18 @@ public class SplashActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        startAnimation();
+        startWaterAnimation();
 
         if (NetworkUtils.isGooglePlayServicesAvailable()) {
             if (NetworkUtils.isNetConnected()) {
-                Thread timer = new Thread() {
-                    public void run() {
-                        try {
-                            Animation animation_boat = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.boatanim);
-                            iv_boat.startAnimation(animation_boat);
-                            sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } finally {
-                            if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
-                                Intent i = new Intent(SplashActivity.this, DashboardActivity.class);
-                                startActivity(i);
-                            } else {
-                                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-                                startActivity(i);
-                            }
-                        }
-                    }
-                };
-                timer.start();
-            } else alertDialog("Error", "Sorry, your device isn't connected to internet");
+
+                Animation animation = AnimationUtils.loadAnimation(this, R.anim.boatanim);
+                animation.setFillAfter(true);
+                animation.setAnimationListener(this);
+                iv_boat.startAnimation(animation);
+            } else {
+                alertDialog("Error", "Sorry, your device isn't connected to internet");
+            }
         } else {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("Error");
@@ -97,7 +86,7 @@ public class SplashActivity extends Activity {
         }
     }
 
-    private void startAnimation() {
+    private void startWaterAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {
 
@@ -128,7 +117,6 @@ public class SplashActivity extends Activity {
                 }
 
             });
-
         }
     }
 
@@ -171,6 +159,26 @@ public class SplashActivity extends Activity {
         alertDialog.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+    }
 
+    @Override
+    public void onAnimationStart(Animation animation) {
+        LoggerUtils.logger("boat animation starts");
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+        LoggerUtils.logger("boat animation ends");
+        Intent intent;
+        if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
+            intent = new Intent(this, DashboardActivity.class);
+        } else {
+            intent = new Intent(this, DashboardActivity.class);
+        }
+        startActivity(intent);
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
     }
 }
