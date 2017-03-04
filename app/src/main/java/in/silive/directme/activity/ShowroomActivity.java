@@ -89,7 +89,7 @@ public class ShowroomActivity extends AppCompatActivity {
                     }
                 }
             });
-            apicalling.setArgs(API_URL_LIST.PARKED_URL, token, "");
+            apicalling.setArgs(API_URL_LIST.SHOWROOM_SHIPS_URL, token, "");
             apicalling.execute();
 
         }
