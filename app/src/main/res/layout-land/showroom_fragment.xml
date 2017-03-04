@@ -397,7 +397,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline43"
              />
 
-        <me.grantland.widget.AutofitTextView
+        <TextView
             android:id="@+id/textView_showroom_gold_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
