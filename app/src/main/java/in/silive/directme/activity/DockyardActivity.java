@@ -15,6 +15,7 @@ import org.json.JSONException;
 import in.silive.directme.adapter.GarageAdapter;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.network.FetchData;
+import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
@@ -62,7 +63,7 @@ public class DockyardActivity extends AppCompatActivity {
     }
 
     void connect() {
-        final String token = sharedpreferences.getString("Authorization_Token", "");
+        final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apicalling = new FetchData(new AsyncResponse() {

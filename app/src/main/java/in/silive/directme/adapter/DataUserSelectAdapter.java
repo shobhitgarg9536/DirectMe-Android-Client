@@ -6,20 +6,22 @@ package in.silive.directme.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import in.silive.directme.activity.ShipTransitionActivity;
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.model.UserDetailsList;
 
 import in.silive.directme.R;
+import in.silive.directme.utils.Constants;
 
 public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAdapter.ViewHolder> {
     private ArrayList<UserDetailsList> user_details;
@@ -36,13 +38,15 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_layout_userselect, viewGroup, false);
         return new ViewHolder(view);
     }
-
+    String userid;
     @Override
     public void onBindViewHolder(DataUserSelectAdapter.ViewHolder viewHolder, int i) {
 
         viewHolder.usr_name.setText(user_details.get(i).getUser_name());
         //   Picasso.with(context).load(user_details.get(i).getUser_image_url()).resize(240, 120).into(viewHolder.usr_img);
         viewHolder.usr_img.setImageResource(R.drawable.ic_wood);
+        userid=user_details.get(i).getUser_id();
+        viewHolder.setUserId(userid);
     }
 
     @Override
@@ -53,7 +57,16 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView usr_name;
         private ImageView usr_img;
+        private String user_id;
+
+
+
+        public void setUserId(String user_id) {
+            this.user_id = user_id;
+        }
+
         public ViewHolder(View view) {
+
             super(view);
 
             usr_name = (TextView)view.findViewById(R.id.usr_name);
@@ -61,9 +74,15 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
             view.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View v) {
-            String s=usr_name.getText().toString();
+
+
+            SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(Constants.USER_ID,user_id);
+            editor.commit();
             Intent i=new Intent(context, ShipTransitionActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);

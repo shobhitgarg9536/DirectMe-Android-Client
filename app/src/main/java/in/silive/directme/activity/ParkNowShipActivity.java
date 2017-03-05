@@ -4,6 +4,7 @@ package in.silive.directme.activity;
  * Created by simran on 2/24/2017.
  */
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,10 +13,22 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import in.silive.directme.R;
+import in.silive.directme.adapter.BoatPagerAdapterParkNow;
+import in.silive.directme.adapter.GarageAdapter;
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.fragments.ParknowUsershipselectFragment;
+import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.network.FetchData;
+import in.silive.directme.utils.API_URL_LIST;
+import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.NetworkUtils;
 
 
 public class ParkNowShipActivity extends AppCompatActivity {
@@ -27,15 +40,20 @@ public class ParkNowShipActivity extends AppCompatActivity {
     String spritesheetship2 = "spritesheetship.png";
     int Frame_Width_ship1 = 720;
     int Frame_Width_ship2 = 637;
-
+    private SharedPreferences sharedpreferences;
+    boolean network_available;
+    private FetchData apicalling;
+    JSONArray jArray;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garage_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(new BoatPagerAdapter1(
-                getSupportFragmentManager()));
-        mViewPager.setOffscreenPageLimit(0);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        sharedpreferences = DirectMe.getInstance().sharedPrefs;
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         left = (ImageView) findViewById(R.id.imageView_garage_left_navigation);
         right = (ImageView) findViewById(R.id.imageView_garage_right_navigation);
         left.setOnClickListener(new View.OnClickListener() {
@@ -50,44 +68,37 @@ public class ParkNowShipActivity extends AppCompatActivity {
                 mViewPager.arrowScroll(View.FOCUS_RIGHT);
             }
         });
-
+      connect();
     }
+    void connect() {
+        final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
+        network_available = NetworkUtils.isNetConnected();
+        if (network_available) {
+            apicalling = new FetchData(new AsyncResponse() {
+                @Override
+                public void processStart() {
 
-    public class BoatPagerAdapter1 extends FragmentPagerAdapter {
+                }
 
-        ParknowUsershipselectFragment ships_fragment;
-
-        public BoatPagerAdapter1(FragmentManager fm) {
-            super(fm);
+                @Override
+                public void processFinish(String output) {
+                    try {
+                        jArray = new JSONArray(output);
+                        count = jArray.length();
+                        startfragments();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            apicalling.setArgs(API_URL_LIST.GARAGE_SHIPS_URL, token, "");
+            apicalling.execute();
 
         }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-
-                case 0:
-                    ships_fragment = new ParknowUsershipselectFragment();
-                    arguments = new Bundle();
-                    arguments.putString("name", spritesheetship1);
-                    arguments.putInt("Frame_width", Frame_Width_ship1);
-                    ships_fragment.setArguments(arguments);
-                    break;
-                case 1:
-                    ships_fragment = new ParknowUsershipselectFragment();
-                    arguments = new Bundle();
-                    arguments.putString("name", spritesheetship2);
-                    arguments.putInt("Frame_width", Frame_Width_ship2);
-                    ships_fragment.setArguments(arguments);
-
-            }
-            return ships_fragment;
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
+    }
+    void startfragments() {
+        mViewPager.setAdapter(new BoatPagerAdapterParkNow(
+                getSupportFragmentManager() , jArray , count));
     }
 
 
