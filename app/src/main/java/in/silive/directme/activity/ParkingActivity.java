@@ -13,10 +13,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.fragments.ParkingWorldViewFragment;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
-import in.silive.directme.fragments.UserShipsFragment;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
@@ -33,12 +33,14 @@ public class ParkingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parknow);
+        setContentView(R.layout.parkingmain_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pagerr);
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        connect();
+
+        startfragments();
+
     }
 
 
@@ -83,24 +85,14 @@ public class ParkingActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            if (user != null) {
-                try {
-                    return UserShipsFragment.newInstance(user.getJSONObject(0));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return null;
-                }
-            }
-            return null;
+
+
+            return new ParkingWorldViewFragment();
         }
 
         @Override
         public int getCount() {
-            return count;
+            return 1;
         }
     }
-
-
-
-
 }
