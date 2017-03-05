@@ -23,7 +23,7 @@ import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
-
+import in.silive.directme.utils.ViewPagerAnimation;
 
 
 public class ShowroomActivity extends AppCompatActivity {
@@ -39,11 +39,12 @@ public class ShowroomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_garage_viewpager);
+        setContentView(R.layout.activity_showroom_viewpager);
         slot = getIntent().getIntExtra("slot", 0);
         Log.d("slot", "" + slot);
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setPageTransformer(false , new ViewPagerAnimation());
         //mViewPager.setOffscreenPageLimit(10);
 
         sharedpreferences = DirectMe.getInstance().sharedPrefs;

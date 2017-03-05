@@ -19,10 +19,11 @@ import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.R;
 import in.silive.directme.utils.API_URL_LIST;
+import in.silive.directme.utils.ViewPagerAnimation;
 
 
 public class DockyardActivity extends AppCompatActivity {
-//    public static final String MyPREFERENCES = "UserName";
+    //    public static final String MyPREFERENCES = "UserName";
 //    public static final String Authorization_Token = "Authorization_Token";
     JSONArray jArray;
     ViewPager mViewPager;
@@ -30,13 +31,16 @@ public class DockyardActivity extends AppCompatActivity {
     FetchData apicalling;
     int count = 1;
     SharedPreferences sharedpreferences;
-    ImageView left,right;
+    ImageView left, right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_garage_viewpager);
+        setContentView(R.layout.
+                activity_garage_viewpager);
         mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setPageTransformer(false, new ViewPagerAnimation());
+
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -83,9 +87,10 @@ public class DockyardActivity extends AppCompatActivity {
 
         }
     }
+
     void startfragments() {
         mViewPager.setAdapter(new GarageAdapter(
-                getSupportFragmentManager() , jArray , count));
+                getSupportFragmentManager(), jArray, count));
     }
 
 }
