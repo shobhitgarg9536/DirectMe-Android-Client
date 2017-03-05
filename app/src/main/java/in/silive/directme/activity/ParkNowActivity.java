@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import in.silive.directme.R;
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.fragments.UserDetailsFragment;
+import in.silive.directme.utils.Constants;
 
 //// TODO: 2/22/2017 set animation in a method and uncomment
 
@@ -77,61 +79,69 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
-
+    String id;
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.imageViewisland1:
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
-                        R.anim.exit_to_right);
-                fragment = new UserDetailsFragment();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+
+                fragmentInitialise();
+                 sharedpreferences = DirectMe.getInstance().sharedPrefs;
+                 editor = sharedpreferences.edit();
+                editor.putString(Constants.ISLAND_ID,Constants.BANANA_ISLAND_ID);
+                editor.commit();
 
                 break;
             case R.id.imageViewisland2:
+                 fragmentInitialise();
 
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
-                        R.anim.exit_to_right);
-                fragment = new UserDetailsFragment();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                 sharedpreferences = DirectMe.getInstance().sharedPrefs;
+                 editor = sharedpreferences.edit();
+                editor.putString(Constants.ISLAND_ID,Constants.COCONUT_ISLAND_ID);
+                editor.commit();
 
                 break;
             case R.id.imageViewisland3:
 
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
-                        R.anim.exit_to_right);
-                fragment = new UserDetailsFragment();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                fragmentInitialise();
+                sharedpreferences = DirectMe.getInstance().sharedPrefs;
+                editor = sharedpreferences.edit();
+                editor.putString(Constants.ISLAND_ID,Constants.BAMBOO_ISLAND_ID);
+                editor.commit();
                 break;
             case R.id.imageViewisland4:
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
-                        R.anim.exit_to_right);
-                fragment = new UserDetailsFragment();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                  fragmentInitialise();
+
+                sharedpreferences = DirectMe.getInstance().sharedPrefs;
+                editor = sharedpreferences.edit();
+                editor.putString(Constants.ISLAND_ID,Constants.TIMBER_ISLAND_ID);
+                editor.commit();
                 break;
 
             case R.id.imageViewpirateisland:
 
+                sharedpreferences = DirectMe.getInstance().sharedPrefs;
+                editor = sharedpreferences.edit();
+                editor.putString(Constants.ISLAND_ID,Constants.PIRATE_ISLAND_ID);
+                editor.commit();
+
                 break;
         }
+    }
+    void fragmentInitialise()
+    {fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
+                R.anim.exit_to_right);
+        fragment = new UserDetailsFragment();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 }
 

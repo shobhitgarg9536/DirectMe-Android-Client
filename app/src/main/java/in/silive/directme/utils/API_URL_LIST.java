@@ -9,6 +9,7 @@ public class API_URL_LIST {
     public static final String GARAGE_SHIPS_URL = "user/ships/";
     public static final String GET_USER_LIST = "user/get-suggestions/";
     public static final String PORTS_URL = "core/ports/";
+    public static final String Dock_Url="/core/dock/";
     public static final String USER_REGISTER_URL = "user/register/";
     public static final String USER_LOGIN_URL = "user/register/";
     public static final String USER_GOOGLE_OAUTH_URL = "user/social/google-oauth2/";

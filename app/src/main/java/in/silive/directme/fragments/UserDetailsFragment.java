@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.adapter.DataUserSelectAdapter;
@@ -35,6 +36,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class UserDetailsFragment extends Fragment {
     public final String user_names[] = new String[10];
+    public final String user_id[]=new String[10];
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
     FetchData apicalling;
@@ -67,7 +69,8 @@ public class UserDetailsFragment extends Fragment {
     }
 
     void connect() {
-        final String token = sharedPreferences.getString("Authorization_Token", "");
+        final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
+        final String id=sharedPreferences.getString(Constants.ISLAND_ID,"");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
             apicalling = new FetchData(new AsyncResponse() {
@@ -90,6 +93,7 @@ public class UserDetailsFragment extends Fragment {
                                 // Get JSON object
                                 JSONObject obj = (JSONObject) arr.get(i);
                                 user_names[i] = obj.get("name").toString();
+                                user_id[i]=obj.get("user_id").toString();
                                 initViews();
                             }
                         }
@@ -100,7 +104,7 @@ public class UserDetailsFragment extends Fragment {
             });
             String post_data = "";
             try {
-                post_data = URLEncoder.encode("island_id", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8");
+                post_data = URLEncoder.encode("island_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -113,9 +117,10 @@ public class UserDetailsFragment extends Fragment {
     private ArrayList<UserDetailsList> prepareData() {
 
         ArrayList<UserDetailsList> user_details = new ArrayList<>();
-        for (String userName : user_names) {
+        for (int i=0;i<user_names.length;i++) {
             UserDetailsList userDetailsList = new UserDetailsList();
-            userDetailsList.setUser_name(userName);
+            userDetailsList.setUser_name(user_names[i]);
+            userDetailsList.setUser_id(user_id[i]);
             //// TODO: 3/4/2017 add image url
             userDetailsList.setUser_image_url("simran");
             user_details.add(userDetailsList);

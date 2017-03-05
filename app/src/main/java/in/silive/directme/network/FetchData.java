@@ -67,9 +67,12 @@ public class FetchData extends AsyncTask<String, String, String> {
             if (!this.post_data.equals("")) {
                 OutputStream outputStream = connection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
+
+
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+
             }
 
             int responseCode = connection.getResponseCode();

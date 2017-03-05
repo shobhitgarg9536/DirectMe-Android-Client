@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,6 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import in.silive.directme.Controller;
+import in.silive.directme.fragments.ParkingDetailsFragment;
+import in.silive.directme.fragments.UserDetailsFragment;
+import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
@@ -32,6 +37,8 @@ import in.silive.directme.database.UserModel;
 import in.silive.directme.listeners.AsyncResponse;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
+
+import static android.R.attr.fragment;
 
 
 public class ParkedActivity extends AppCompatActivity implements View.OnClickListener {
@@ -53,6 +60,11 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
     SharedPreferences sharedpreferences, sharedpreference;
     String token;
     String type;
+    String id;
+    TextView port1status,port2status,port3status,port4status,port5status;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    ParkingDetailsFragment fragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,12 +75,15 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
         parkedShipDetial3 = (ConstraintLayout) findViewById(R.id.port3);
         parkedShipDetial4 = (ConstraintLayout) findViewById(R.id.port4);
         parkedShipDetial5 = (ConstraintLayout) findViewById(R.id.port5);
-        undock = (Button) findViewById(R.id.catchbutton);
 
-
+        port1status=(TextView)findViewById(R.id.NamePort1);
+        port2status=(TextView)findViewById(R.id.NamePort2);
+        port3status=(TextView)findViewById(R.id.NamePort3);
+        port4status=(TextView)findViewById(R.id.NamePort4);
+        port5status=(TextView)findViewById(R.id.NamePort5);
         sharedpreference = DirectMe.getInstance().sharedPrefs;
         parkedDetail("0");
-        undock.setOnClickListener(this);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -82,7 +97,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
 
 
     }
-
+    Bundle args;
 
     @Override
     public void onClick(View view) {
@@ -90,34 +105,56 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
 
             case R.id.port1:
+
                 parkedDetail("0");
-                customdialog("null", "null", "null", "null", "null");
+                if(status!=null) {
+                    port1status.setText(status);
+                }
+
+                fragmentInitialise();
+
 
 
                 break;
             case R.id.port2:
                 parkedDetail("1");
-                customdialog("null", "null", "null", "null", "null");
+                if(status!=null) {
+                    port2status.setText(status);
+                }
+                fragmentInitialise();
+
 
 
                 break;
             case R.id.port3:
                 parkedDetail("2");
-                customdialog("null", "null", "null", "null", "null");
+                if(status!=null) {
+                    port3status.setText(status);
+                }
+               fragmentInitialise();
+
 
 
                 break;
             case R.id.port4:
                 parkedDetail("3");
-                customdialog("null", "null", "null", "null", "null");
+                if(status!=null) {
+                    port4status.setText(status);
+                }
+               fragmentInitialise();
+
 
                 break;
             case R.id.port5:
                 parkedDetail("4");
-                customdialog("null", "null", "null", "null", "null");
+                if(status!=null) {
+                    port5status.setText(status);
+                }
+                fragmentInitialise();
+
 
                 break;
-            case R.id.catchbutton:
+           /*case R.id.catchbutton:
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ParkedActivity.this);
                 alertDialog.setTitle("UNDOCK");
                 alertDialog.setMessage("Are you sure you want to this boat from your non parking area");
@@ -136,16 +173,19 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
                 alertDialog.create();
                 alertDialog.show();
 
-                break;
+                break;*/
         }
 
     }
-
+    String status;
+    String user_id;
+    JSONObject jsonObject;
     public void parkedDetail(final String parking_no) {
-
-
+        final String token = sharedpreference.getString(Constants.AUTH_TOKEN, "");
+        user_id=sharedpreference.getString(Constants.USER_ID,"");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
+
             apiCalling = new FetchData(new AsyncResponse() {
                 @Override
                 public void processStart() {
@@ -157,8 +197,18 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
                     try {
                         JSONArray user = new JSONArray(output);
 
-                        JSONObject jsonObject = user.getJSONObject(Integer.parseInt(parking_no));
+                         jsonObject = user.getJSONObject(Integer.parseInt(parking_no));
                         type = jsonObject.get("type").toString();
+                        id=jsonObject.get("id").toString();
+                        JSONArray logs=jsonObject.getJSONArray("logs");
+                        if(logs.length()>0)
+                        { status="Busy";
+
+                        }
+                        else
+                        {
+                            status="Empty";
+                        }
 
                         db.addPort(new UserModel(parking_no, "2:00", "Yes", "N-A", type, "2"));
                     } catch (JSONException e) {
@@ -166,7 +216,7 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }
             });
-            apiCalling.setArgs(API_URL_LIST.PORTS_URL, token, "");
+            apiCalling.setArgs(API_URL_LIST.PORTS_URL+user_id+"/", token, "");
             apiCalling.execute();
 
 
@@ -198,24 +248,24 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    public void customdialog(String Username, String Type, String BoatName, String Time, String Commodity_Filled) {
 
-        final Dialog dialog = new Dialog(ParkedActivity.this);
+    void fragmentInitialise()
+    {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
+                R.anim.exit_to_right);
+        args = new Bundle();
+        args.putString("data", jsonObject.toString());
 
-//        dialog.setContentView(R.layout.parked);
-        View view = View.inflate(this, R.layout.customdialog, null);
-        dialog.setContentView(view);
-        TextView BoatnameTextview = (TextView) dialog.findViewById(R.id.BOATNAMEVALUE);
-        BoatnameTextview.setText(BoatName);
-        TextView UsernameTextview = (TextView) dialog.findViewById(R.id.UserNameValue);
-        UsernameTextview.setText(Username);
-        TextView TypeTextView = (TextView) dialog.findViewById(R.id.TYPEVALUE);
-        TypeTextView.setText(Type);
-        TextView TimeTextView = (TextView) dialog.findViewById(R.id.TIMEVALUE);
-        TimeTextView.setText(Time);
-        TextView CommodityTextView = (TextView) dialog.findViewById(R.id.CommoditiesVALUE);
-        CommodityTextView.setText(Commodity_Filled);
-        dialog.show();
+
+
+        fragment = new ParkingDetailsFragment();
+        fragment.setArguments(args);
+        fragmentTransaction.replace(R.id.fragment, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 
 

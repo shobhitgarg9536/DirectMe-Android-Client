@@ -91,7 +91,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         token = sharedpreferences.getString("Authorization_Token", "");
 
 
-        Log.d("token", token);
+
         //// TODO: 2/20/2017 change with correct fcm url and uncomment
         count();
 
