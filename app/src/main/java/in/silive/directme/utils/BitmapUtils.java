@@ -15,7 +15,7 @@ import in.silive.directme.application.DirectMe;
 
 public class BitmapUtils {
     public static Bitmap getBitmapFromAssets(String filepath) {
-        AssetManager assetManager = DirectMe.getInstance().mContext.getAssets();
+        AssetManager assetManager = DirectMe.getInstance().getAssets();
         InputStream istr = null;
         Bitmap bitmap = null;
 

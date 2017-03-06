@@ -2,9 +2,6 @@ package in.silive.directme.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
@@ -12,8 +9,8 @@ import android.view.WindowManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import in.silive.directme.adapter.ParkingPagerAdapter;
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.fragments.ParkingWorldViewFragment;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
@@ -73,26 +70,9 @@ public class ParkingActivity extends AppCompatActivity {
     }
 
     void startfragments() {
-        mViewPager.setAdapter(new BoatPagerAdapter(
+        mViewPager.setAdapter(new ParkingPagerAdapter(
                 getSupportFragmentManager()));
     }
 
-    public class BoatPagerAdapter extends FragmentPagerAdapter {
 
-        public BoatPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-
-
-            return new ParkingWorldViewFragment();
-        }
-
-        @Override
-        public int getCount() {
-            return 1;
-        }
-    }
 }

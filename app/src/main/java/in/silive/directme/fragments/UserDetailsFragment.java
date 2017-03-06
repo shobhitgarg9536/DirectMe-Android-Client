@@ -40,8 +40,7 @@ public class UserDetailsFragment extends Fragment {
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
     FetchData apicalling;
-    String post_data;
-    private boolean network_available;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class UserDetailsFragment extends Fragment {
     }
 
     void connect() {
+        boolean network_available;
         final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
         final String id=sharedPreferences.getString(Constants.ISLAND_ID,"");
         network_available = NetworkUtils.isNetConnected();

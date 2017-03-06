@@ -74,9 +74,6 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
                 frameAnimation.start();
             }
         });
-        // removeuserList.setOnClickListe
-        // ner(this);
-
 
     }
     String id;
