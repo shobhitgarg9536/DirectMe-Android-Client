@@ -28,7 +28,7 @@ import in.silive.directme.utils.Constants;
 public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAdapter.ViewHolder> {
     private ArrayList<UserDetailsList> user_details;
     private Context context;
-    ParkNowActivity parkNowActivity;
+    private ParkNowActivity parkNowActivity;
 
     public DataUserSelectAdapter(Context context, ArrayList<UserDetailsList> user_details,ParkNowActivity parkNowActivity) {
         this.context=context;
@@ -42,7 +42,7 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_layout_userselect, viewGroup, false);
         return new ViewHolder(view);
     }
-    String userid;
+    private String userid;
     @Override
     public void onBindViewHolder(DataUserSelectAdapter.ViewHolder viewHolder, int i) {
 
@@ -58,7 +58,7 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
         return user_details.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView usr_name;
         private ImageView usr_img;
         private String user_id;
@@ -67,11 +67,11 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
         ShipTransitionFragment fragment;
 
 
-        public void setUserId(String user_id) {
+        void setUserId(String user_id) {
             this.user_id = user_id;
         }
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
 
             super(view);
 

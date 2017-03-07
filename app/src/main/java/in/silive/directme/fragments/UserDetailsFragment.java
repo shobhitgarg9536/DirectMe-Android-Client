@@ -65,6 +65,7 @@ public class UserDetailsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
+
     }
 
     void connect() {

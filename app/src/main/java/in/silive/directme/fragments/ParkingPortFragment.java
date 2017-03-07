@@ -87,6 +87,7 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
 
                         for(int i=0; i<count; i++ ){
                             JSONObject jsonObject = user_port_jsonArray.getJSONObject(i);
+                            String parkingType = jsonObject.getString("type");
                             JSONArray jsonArray1 = jsonObject.getJSONArray("logs");
                             JSONObject jsonObject1 = jsonArray1.getJSONObject(0);
                             String ship_id = jsonObject1.getString("ship");
@@ -143,10 +144,11 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
                         break;
         }
     }
-    void replaceWithNewFragment(JSONObject jsonObject){
+    void replaceWithNewFragment(JSONObject jsonObject, String parkingType){
         Fragment islandFragment = new ParkingUserPortViewFragment();
         Bundle bundle = new Bundle();
         bundle.putString("port_jsonObject" , jsonObject.toString());
+        bundle.putString("parkingType" , parkingType);
         islandFragment.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(android.R.id.content, islandFragment);
@@ -159,19 +161,19 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
 
         switch (view.getId()){
             case R.id.parkingport1:
-                replaceWithNewFragment(jsonObject_port1);
+                replaceWithNewFragment(jsonObject_port1 , "Parking");
                 break;
             case R.id.parkingport2:
-                replaceWithNewFragment(jsonObject_port2);
+                replaceWithNewFragment(jsonObject_port2, "Parking");
                 break;
             case R.id.nonparkingport3:
-                replaceWithNewFragment(jsonObject_port3);
+                replaceWithNewFragment(jsonObject_port3, "Non Parking");
                 break;
             case R.id.nonparkingport4:
-                replaceWithNewFragment(jsonObject_port4);
+                replaceWithNewFragment(jsonObject_port4, "Non Parking");
                 break;
             case R.id.nonparkingport5:
-                replaceWithNewFragment(jsonObject_port5);
+                replaceWithNewFragment(jsonObject_port5, "Non Parking");
                 break;
         }
 
