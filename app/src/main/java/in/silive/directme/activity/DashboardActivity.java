@@ -112,7 +112,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     public void processFinish(String output) {
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
+                        editor.putString(Constants.FIREBASE_ID_SENT, "1");//1 means firebase id is registered
                         editor.commit();
                     }
                 });
