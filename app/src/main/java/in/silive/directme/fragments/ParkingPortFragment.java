@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
@@ -73,7 +73,7 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
         token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
-            fetchData = new FetchData(new AsyncResponse() {
+            fetchData = new FetchData(new FetchDataListener() {
                 @Override
                 public void processStart() {
 

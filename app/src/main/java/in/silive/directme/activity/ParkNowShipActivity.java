@@ -7,9 +7,6 @@ package in.silive.directme.activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,10 +18,8 @@ import org.json.JSONException;
 
 import in.silive.directme.R;
 import in.silive.directme.adapter.BoatPagerAdapterParkNow;
-import in.silive.directme.adapter.GarageAdapter;
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.fragments.ParknowUsershipselectFragment;
-import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
@@ -74,7 +69,7 @@ public class ParkNowShipActivity extends AppCompatActivity {
         final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
-            apicalling = new FetchData(new AsyncResponse() {
+            apicalling = new FetchData(new FetchDataListener() {
                 @Override
                 public void processStart() {
 

@@ -23,12 +23,11 @@ import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.adapter.DataUserSelectAdapter;
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.model.UserDetailsList;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 /**
@@ -57,12 +56,12 @@ public class UserDetailsFragment extends Fragment {
     private void initViews() {
 
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 5);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 5);
 
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<UserDetailsList> user_details = prepareData();
-        DataUserSelectAdapter adapter = new DataUserSelectAdapter(getApplicationContext(), user_details, (ParkNowActivity) getContext());
+        DataUserSelectAdapter adapter = new DataUserSelectAdapter(getActivity(), user_details, (ParkNowActivity) getContext());
         recyclerView.setAdapter(adapter);
 
 
@@ -74,7 +73,7 @@ public class UserDetailsFragment extends Fragment {
         final String id=sharedPreferences.getString(Constants.ISLAND_ID,"");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
-            apicalling = new FetchData(new AsyncResponse() {
+            apicalling = new FetchData(new FetchDataListener() {
                 @Override
                 public void processStart() {
 

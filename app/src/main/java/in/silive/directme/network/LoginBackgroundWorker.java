@@ -1,15 +1,10 @@
 package in.silive.directme.network;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,10 +20,9 @@ import java.net.URLEncoder;
 import javax.net.ssl.HttpsURLConnection;
 
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.utils.API_URL_LIST;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Shobhit-pc on 2/23/2017.
@@ -36,15 +30,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class LoginBackgroundWorker  extends AsyncTask<String , String , String> {
 
-    public AsyncResponse delecate  = null;
-//    parkonmineparking static final String MyPREFERENCES = "Authorization_Token" ;
-    ProgressDialog progressDialog;
-    private String url;
-    private String token;
-    private String post_data;
+    private FetchDataListener delecate  = null;
 
-
-    public LoginBackgroundWorker(AsyncResponse stringInterface){
+    public LoginBackgroundWorker(FetchDataListener stringInterface){
         this.delecate = stringInterface;
     }
     @Override
@@ -53,9 +41,6 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
 
     }
     public void setArgs(String url, String token, String post_data){
-        this.url = url;
-        this.token = token;
-        this.post_data = post_data;
     }
 
     @Override
@@ -63,7 +48,7 @@ public class LoginBackgroundWorker  extends AsyncTask<String , String , String> 
         String token = "",result = "";
         String scopes = "oauth2:profile email";
         try {
-            token = GoogleAuthUtil.getToken(getApplicationContext(), params[0] , scopes );
+            token = GoogleAuthUtil.getToken(DirectMe.getInstance(), params[0] , scopes );
         } catch (IOException e) {
             e.printStackTrace();
 

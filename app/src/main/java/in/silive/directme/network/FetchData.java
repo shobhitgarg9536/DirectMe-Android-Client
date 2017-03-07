@@ -1,8 +1,6 @@
 package in.silive.directme.network;
 
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,22 +12,21 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.LoggerUtils;
 import in.silive.directme.utils.ToasterUtils;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class FetchData extends AsyncTask<String, String, String> {
 
-    String token = null;
-    private AsyncResponse delegate = null;//Call back interface
+    private String token = null;
+    private FetchDataListener delegate = null;
     private String post_data = null;
     private String urlString = "";
 
-    public FetchData(AsyncResponse asyncResponse) {
-        delegate = asyncResponse;//Assigning call back interfacethrough constructor
+    public FetchData(FetchDataListener fetchDataListener) {
+        delegate = fetchDataListener;
     }
 
     @Override
