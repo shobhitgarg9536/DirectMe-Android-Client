@@ -21,11 +21,13 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Key;
 import java.util.Observable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.silive.directme.Controller;
+import in.silive.directme.utils.Keys;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
@@ -85,21 +87,13 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         showroom.setOnClickListener(this);
 
         controller.addObserver(DashboardActivity.this);
-
-
         token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
 
-
-
-        //// TODO: 2/20/2017 change with correct fcm url and uncomment
         count();
 
         if (NetworkUtils.isNetConnected()) {
-
-            String firebase_id_send_to_server_or_not = sharedpreferences.getString("FirebaseIdSendToServer", "");
-
+            String firebase_id_send_to_server_or_not = sharedpreferences.getString(Constants.FIREBASE_ID_SENT, "");
             if (firebase_id_send_to_server_or_not.equals("0")) {
-
                 String Firebase_token = sharedpreferences.getString("regId", "");
 
                 FetchData fetchData = new FetchData(new FetchDataListener() {
@@ -124,9 +118,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 }
                 fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE, token, post_data);
                 fetchData.execute();
-
             }
-
         }
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -137,23 +129,17 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     // fcm successfully registered
                     // now subscribe to `global` topic to receive app wide notifications
                     FirebaseMessaging.getInstance().subscribeToTopic(Constants.TOPIC_GLOBAL);
-
-
                 } else if (intent.getAction().equals(Constants.PUSH_NOTIFICATION)) {
                     // new push notification is received
 
                     String message = intent.getStringExtra("message");
-
                     ToasterUtils.toaster("Push notification: " + message);
                 }
             }
         };
-
     }
 
     public void count() {
-
-
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
 
@@ -168,18 +154,18 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     try {
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         JSONObject jsonObject = new JSONObject(output);
-                        String username = jsonObject.getString("username");
-                        String user_id = jsonObject.getString("user_id");
-                        String island_id = jsonObject.getString("island_id");
-                        String island_name = jsonObject.getString("island_name");
-                        editor.putString("username",username);
-                        editor.putString("user_id",user_id);
-                        editor.putString("island_id",island_id);
-                        editor.putString("island_name",island_name);
-                        JSONArray things = jsonObject.getJSONArray("inventory");
+                        String username = jsonObject.getString(Keys.username);
+                        String user_id = jsonObject.getString(Keys.user_id);
+                        String island_id = jsonObject.getString(Keys.island_id);
+                        String island_name = jsonObject.getString(Keys.island_name);
+                        editor.putString(Keys.username,username);
+                        editor.putString(Keys.user_id,user_id);
+                        editor.putString(Keys.island_id,island_id);
+                        editor.putString(Keys.island_name,island_name);
+                        JSONArray things = jsonObject.getJSONArray(Keys.inventory);
                         for (i = 0; i < 5; i++) {
                             JSONObject jsonObject1 = things.getJSONObject(i);
-                            commod[i] = Integer.parseInt(jsonObject1.getString("count"));
+                            commod[i] = Integer.parseInt(jsonObject1.getString(Keys.count));
 
 
                             //putting values
@@ -249,6 +235,5 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         banana.setText(String.valueOf(controller.getBananaCount()));
         timber.setText(String.valueOf(controller.getTimberCount()));
         gold_coin.setText(String.valueOf(controller.getGoldCoinCount()));
-
     }
 }
