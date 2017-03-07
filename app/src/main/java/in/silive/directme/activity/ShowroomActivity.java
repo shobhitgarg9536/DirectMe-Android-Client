@@ -28,7 +28,7 @@ import in.silive.directme.utils.ViewPagerAnimation;
 
 
 public class ShowroomActivity extends AppCompatActivity {
-//    public static final String Authorization_Token = "Authorization_Token";
+//    parkonmineparking static final String Authorization_Token = "Authorization_Token";
     JSONArray jArray;
     ViewPager mViewPager;
     int count = 1, slot;

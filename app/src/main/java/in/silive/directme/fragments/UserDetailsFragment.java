@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import in.silive.directme.activity.ParkNowActivity;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
@@ -61,7 +62,7 @@ public class UserDetailsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<UserDetailsList> user_details = prepareData();
-        DataUserSelectAdapter adapter = new DataUserSelectAdapter(getApplicationContext(), user_details);
+        DataUserSelectAdapter adapter = new DataUserSelectAdapter(getApplicationContext(), user_details, (ParkNowActivity) getContext());
         recyclerView.setAdapter(adapter);
 
 
