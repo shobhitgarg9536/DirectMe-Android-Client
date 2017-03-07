@@ -40,7 +40,7 @@ import in.silive.directme.R;
  */
 
 public class UserShipsFragment extends Fragment implements View.OnClickListener, java.util.Observer {
-//    public static final String MyPREFERENCES = "MyPrefs";
+//    parkonmineparking static final String MyPREFERENCES = "MyPrefs";
     public static int value;
     static JSONObject data;
     TextView parkingUserName, parkingBoatName, parkingIsland;

@@ -36,12 +36,11 @@ import in.silive.directme.utils.BitmapUtils;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
 
-
 /**
- * Created by simran on 3/5/2017.
+ * Created by simran on 3/7/2017.
  */
 
-public class ParkingDetailsFragment extends Fragment implements View.OnClickListener {
+public class PortDetailsFragment extends Fragment implements View.OnClickListener {
     TextView UsernameTextview,TypeTextView;
     JSONObject json_data;
     Button Catch;
@@ -50,8 +49,8 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
     SharedPreferences sharedPreferences;
     ConstraintLayout r1;
     FetchData apicalling;
-    Button Dock;
     int flag=0;
+    String ship_id;
     String username,ship_img_url;
     private boolean network_available;
     // frame width
@@ -67,6 +66,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
     // we can slow animation by changing frame duration
     private static final int FRAME_DURATION = 150; // in ms !
     // frame duration
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.portdetails, container,
                 false);
@@ -78,15 +78,24 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
 
         land=(ImageView)v.findViewById(R.id.land);
         boat=(ImageView)v.findViewById(R.id.boat);
-
+        Catch=(Button) v.findViewById(R.id.catchbutton);
         r1=(ConstraintLayout)v.findViewById(R.id.background);
-        Dock=(Button)v.findViewById(R.id.catchbutton);
-        Dock.setOnClickListener(this);
+
+        Catch.setOnClickListener(this);
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
 
         try {
             json_data= new JSONObject(getArguments().getString("data", ""));
+
             type = json_data.get("type").toString();
+            if(type.equals("parking"))
+            {
+                Catch.setEnabled(false);
+            }
+            else
+            {
+                Catch.setEnabled(true);
+            }
             TypeTextView.setText(type);
             id=json_data.get("id").toString();
             JSONArray logs=json_data.getJSONArray("logs");
@@ -95,20 +104,21 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                 JSONObject logdetails=logs.getJSONObject(0);
                 username=logdetails.get("username").toString();
                 ship_img_url=logdetails.get("ship_image").toString();
+                ship_id=logdetails.get("ship").toString();
                 Picasso.with(getContext())
                         .load(ship_img_url)
                         .into(boat);
 
                 UsernameTextview.setText(username);
-                 Dock.setEnabled(false);
+                Catch.setEnabled(true);
             }
             else
             {
 
                 UsernameTextview.setText("N-A");
                 TypeTextView.setText(type);
-               Dock.setEnabled(true);
 
+                Catch.setEnabled(false);
 
             }
 
@@ -117,88 +127,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         }
         startAnimation();
 
-
-
-
-
         return v;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(flag==0)
-        {
-            Dock.setEnabled(true);
-            alertDialog();
-        }
-        else if(flag==1)
-        {
-            Dock.setEnabled(false);
-        }
-
-
-    }
-    void alertDialog()
-    {final String ship_img=sharedPreferences.getString(Constants.SHIP_IMAGE_URL,"");
-
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Do you want to Dock your ship");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        flag=1;
-                        connect();
-                        Picasso.with(getContext())
-                                .load(ship_img)
-                                .into(boat);
-                        Toast.makeText(getActivity(),"Your ship is docked succesfully",Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        flag=0;
-                        dialog.cancel();
-                        Toast.makeText(getActivity(),"Your ship is not docked",Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-    }
-    void connect() {
-        final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
-        final String ship_id=sharedPreferences.getString(Constants.SHIP_ID,"");
-        network_available = NetworkUtils.isNetConnected();
-        if (network_available) {
-            apicalling = new FetchData(new AsyncResponse() {
-                @Override
-                public void processStart() {
-
-                }
-
-                @Override
-                public void processFinish(String output) {
-
-                }
-            });
-            String post_data = "";
-
-            try {
-                post_data= URLEncoder.encode("ship_id", "UTF-8") + "=" + URLEncoder.encode(ship_id, "UTF-8");
-                post_data+="&"+URLEncoder.encode("port_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            apicalling.setArgs(API_URL_LIST.Dock_Url, token, post_data);
-            apicalling.execute();
-
-        }
     }
     private void startAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
@@ -230,6 +159,83 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                 }
 
             });
+
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if(flag==0)
+        {
+            Catch.setEnabled(true);
+            alertDialog();
+        }
+        else if(flag==1)
+        {
+            Catch.setEnabled(false);
+        }
+
+
+    }
+    void alertDialog()
+    {final String ship_img=sharedPreferences.getString(Constants.SHIP_IMAGE_URL,"");
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Do you want to Catch ship");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        flag=1;
+                        connect();
+
+                        Toast.makeText(getActivity(),"You Caught ship",Toast.LENGTH_LONG).show();
+                        boat.setVisibility(View.GONE);
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        flag=0;
+                        dialog.cancel();
+                        Toast.makeText(getActivity(),"Your ship is not docked",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+    void connect() {
+        final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
+
+        network_available = NetworkUtils.isNetConnected();
+        if (network_available) {
+            apicalling = new FetchData(new AsyncResponse() {
+                @Override
+                public void processStart() {
+
+                }
+
+                @Override
+                public void processFinish(String output) {
+
+                }
+            });
+            String post_data = "";
+
+            try {
+                post_data= URLEncoder.encode("ship_id", "UTF-8") + "=" + URLEncoder.encode(ship_id, "UTF-8");
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            apicalling.setArgs(API_URL_LIST.FINE_URL, token, post_data);
+            apicalling.execute();
 
         }
     }

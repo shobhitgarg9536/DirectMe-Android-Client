@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -210,7 +209,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 startActivity(intent);
                 break;
             case R.id.imageviewparked:
-                Intent intent4 = new Intent(this, ParkedActivity.class);
+                Intent intent4 = new Intent(this, ParkOnMineActivity.class);
                 startActivity(intent4);
                 break;
             case R.id.imageviewparking:

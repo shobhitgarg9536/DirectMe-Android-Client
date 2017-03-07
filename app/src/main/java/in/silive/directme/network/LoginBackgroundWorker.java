@@ -37,7 +37,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class LoginBackgroundWorker  extends AsyncTask<String , String , String> {
 
     public AsyncResponse delecate  = null;
-//    public static final String MyPREFERENCES = "Authorization_Token" ;
+//    parkonmineparking static final String MyPREFERENCES = "Authorization_Token" ;
     ProgressDialog progressDialog;
     private String url;
     private String token;

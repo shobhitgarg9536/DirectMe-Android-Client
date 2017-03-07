@@ -6,7 +6,7 @@ package in.silive.directme.database;
 
 public class ShipModel {
 
-    //private variables
+    //parkonminenonparking variables
     private String _id;
     private String _api_id;
     private String _name;

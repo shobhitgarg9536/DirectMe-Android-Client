@@ -14,6 +14,8 @@ public class API_URL_LIST {
     public static final String USER_LOGIN_URL = "user/register/";
     public static final String USER_GOOGLE_OAUTH_URL = "user/social/google-oauth2/";
     public static final String DOCKS_URL = "core/docks/";
+    public static final String UNDOCK_URL="/core/undock/";
+    public static final String FINE_URL="/core/fine/";
     public static final String FIREBASE_TOKEN_UPDATE = "user/fcm/";
     public static final String VERSION_CHECK = "core/version/";
 }

@@ -22,7 +22,7 @@ import in.silive.directme.utils.Constants;
  */
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
-    //    public static final String Authorization_Token = "Authorization_Token";
+    //    parkonmineparking static final String Authorization_Token = "Authorization_Token";
     private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
     SharedPreferences pref;
 

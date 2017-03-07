@@ -5,8 +5,9 @@ package in.silive.directme.adapter;
  */
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import in.silive.directme.activity.ShipTransitionActivity;
+import in.silive.directme.activity.ParkNowActivity;
+import in.silive.directme.fragments.ShipTransitionFragment;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.model.UserDetailsList;
 
@@ -26,11 +28,13 @@ import in.silive.directme.utils.Constants;
 public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAdapter.ViewHolder> {
     private ArrayList<UserDetailsList> user_details;
     private Context context;
+    ParkNowActivity parkNowActivity;
 
-    public DataUserSelectAdapter(Context context, ArrayList<UserDetailsList> user_details) {
+    public DataUserSelectAdapter(Context context, ArrayList<UserDetailsList> user_details,ParkNowActivity parkNowActivity) {
         this.context=context;
         this.user_details = user_details;
         this.context = context;
+        this.parkNowActivity=parkNowActivity;
     }
 
     @Override
@@ -58,7 +62,9 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
         private TextView usr_name;
         private ImageView usr_img;
         private String user_id;
-
+        FragmentManager fragmentManager;
+        FragmentTransaction fragmentTransaction;
+        ShipTransitionFragment fragment;
 
 
         public void setUserId(String user_id) {
@@ -77,15 +83,20 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
 
         @Override
         public void onClick(View v) {
+            fragmentManager = parkNowActivity.getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,
+                    R.anim.exit_to_left);
+            fragment = new ShipTransitionFragment();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
 
+            fragmentTransaction.commit();
 
             SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(Constants.USER_ID,user_id);
             editor.commit();
-            Intent i=new Intent(context, ShipTransitionActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
+
 
         }
     }

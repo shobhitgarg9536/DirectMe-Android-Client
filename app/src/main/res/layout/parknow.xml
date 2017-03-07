@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.045608107"
-        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="0dp" />
 
 
@@ -214,7 +214,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.3293919"
-        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteX="119dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <android.support.constraint.Guideline
@@ -223,7 +223,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.6722973"
-        tools:layout_editor_absoluteX="398dp"
+        tools:layout_editor_absoluteX="242dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <android.support.constraint.Guideline
@@ -232,7 +232,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9611486"
-        tools:layout_editor_absoluteX="569dp"
+        tools:layout_editor_absoluteX="346dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <android.support.constraint.Guideline
@@ -242,7 +242,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1086351"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="39dp" />
+        tools:layout_editor_absoluteY="62dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline11"
@@ -251,7 +251,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3955432"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="142dp" />
+        tools:layout_editor_absoluteY="224dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline12"
@@ -260,7 +260,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.67966574"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="244dp" />
+        tools:layout_editor_absoluteY="385dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline13"
@@ -269,7 +269,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.96657383"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="347dp" />
+        tools:layout_editor_absoluteY="548dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline14"
@@ -286,7 +286,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1.0"
-        tools:layout_editor_absoluteX="592dp"
+        tools:layout_editor_absoluteX="360dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <android.support.constraint.Guideline
@@ -305,7 +305,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1.0"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="359dp" />
+        tools:layout_editor_absoluteY="567dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
