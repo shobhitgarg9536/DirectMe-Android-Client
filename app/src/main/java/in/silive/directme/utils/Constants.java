@@ -5,7 +5,7 @@ package in.silive.directme.utils;
  */
 
 public class Constants {
-    public static final String LOG = "debugging";
+    static final String LOG = "debugging";
     public static final String SHARED_PREFS = "directme_prefs";
     public static final String AUTH_TOKEN = "Authorization_Token";
     public static final String SHIP_IMAGE_URL ="SHIP_IMAGE_URL";
@@ -29,4 +29,6 @@ public class Constants {
     // id to handle the notification in the notification tray
     public static final int NOTIFICATION_ID = 100;
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
+
+    public static final String FIREBASE_ID_SENT = "FirebaseIdSendToServer";
 }

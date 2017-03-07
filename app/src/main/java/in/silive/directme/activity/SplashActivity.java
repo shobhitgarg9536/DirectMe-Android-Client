@@ -26,19 +26,12 @@ import in.silive.directme.utils.NetworkUtils;
 
 public class SplashActivity extends Activity implements Animation.AnimationListener {
 
-    // frame width
     private static final int FRAME_W = 300;
-    // frame height
     private static final int FRAME_H = 180;
-    // number of frames
     private static final int NB_FRAMES = 20;
-    // nb of frames in x
     private static final int COUNT_X = 5;
-    // nb of frames in y
     private static final int COUNT_Y = 4;
-    // we can slow animation by changing frame duration
     private static final int FRAME_DURATION = 150; // in ms !
-    // frame duration
 
     @BindView(R.id.iv_boat)
     ImageView iv_boat;
@@ -95,13 +88,11 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
                 animation.addFrame(new BitmapDrawable(getResources(), bitmaps[i]),
                         FRAME_DURATION);
             }
-            // load animation on image
             if (Build.VERSION.SDK_INT < 16) {
                 rl.setBackgroundDrawable(animation);
             } else {
                 rl.setBackground(animation);
             }
-            // start animation on image
             rl.post(new Runnable() {
 
                 @Override

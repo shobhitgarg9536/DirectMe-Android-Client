@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.listeners.AsyncResponse;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
@@ -53,7 +53,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
             return;
 
         // sending fcm token to server
-        FetchData fetchData = new FetchData(new AsyncResponse() {
+        FetchData fetchData = new FetchData(new FetchDataListener() {
             @Override
             public void processStart() {
 
