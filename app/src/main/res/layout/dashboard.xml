@@ -2,237 +2,227 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <RelativeLayout
-            android:text="Button"
+            android:id="@+id/button"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:elevation="2dp"
-            android:layout_alignBottom="@+id/showroom"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:background="#006400"
-            android:id="@+id/button" />
+            android:elevation="2dp"/>
+
         <RelativeLayout
+            android:id="@+id/showroom"
             android:layout_width="130dp"
             android:layout_height="30dp"
-            android:id="@+id/showroom"
-            android:background="@android:color/darker_gray"
-            android:elevation="2dp"
             android:layout_marginLeft="5dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/button"
-            android:layout_toEndOf="@+id/button">
+            android:background="@android:color/darker_gray"
+            android:elevation="2dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="Dashboard"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_width="56dp"
-            android:background="#FFFFFF"
-            android:elevation="2dp"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
             android:id="@+id/gold_show"
-            android:layout_toRightOf="@+id/showroom"
-            android:layout_toEndOf="@+id/showroom">
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
             <ImageView
+                android:id="@+id/coin"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_coin"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:id="@+id/coin" />
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_coin" />
 
             <TextView
-                android:text="0"
+                android:id="@+id/tvGold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/tvGold" />
+                tools:text="0" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="56dp"
-            android:background="#FFFFFF"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
             android:id="@+id/banana_show"
-            android:elevation="2dp"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/gold_show"
-            android:layout_toEndOf="@+id/gold_show">
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
             <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_banana"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/imageView4" />
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_banana" />
 
             <TextView
-                android:text="0"
+                android:id="@+id/tvBanana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/tvBanana" />
+                tools:text="0" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="56dp"
-            android:background="#FFFFFF"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
             android:id="@+id/coconut_show"
-            android:elevation="2dp"
-            android:layout_toRightOf="@+id/banana_show"
-            android:layout_toEndOf="@+id/banana_show">
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
             <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_coconut"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/imageView5" />
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_coconut" />
 
             <TextView
-                android:text="0"
+                android:id="@+id/tvCoconut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
-                android:id="@+id/tvCoconut" />
+                tools:text="0" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="56dp"
-            android:background="#FFFFFF"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
-            android:elevation="2dp"
             android:id="@+id/bamboo_show"
-            android:layout_toRightOf="@+id/coconut_show"
-            android:layout_toEndOf="@+id/coconut_show">
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
             <ImageView
+                android:id="@+id/imageView6"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_bamboo"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:id="@+id/imageView6" />
+                android:src="@drawable/ic_bamboo" />
 
             <TextView
-                android:text="0"
-                android:layout_marginRight="8dp"
+                android:id="@+id/tvBamboo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/tvBamboo" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                tools:text="0" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="56dp"
-            android:background="#FFFFFF"
             android:layout_height="30dp"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="5dp"
-            android:elevation="2dp"
-            android:layout_toRightOf="@+id/bamboo_show"
-            android:layout_toEndOf="@+id/bamboo_show">
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
             <ImageView
+                android:id="@+id/imageView7"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_wood"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:id="@+id/imageView7" />
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_wood" />
 
             <TextView
-                android:text="0"
+                android:id="@+id/tvTimber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
-                android:id="@+id/tvTimber" />
+                tools:text="0" />
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="#70ffffff"
-            android:elevation="2dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:layout_marginLeft="20dp">
+            android:background="#70ffffff"
+            android:elevation="2dp">
+
             <ImageView
                 android:id="@+id/imageviewpark"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/park"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="30dp"
-                />
+                android:src="@drawable/park" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="#70ffffff"
-            android:elevation="2dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:layout_marginLeft="20dp">
+            android:background="#70ffffff"
+            android:elevation="2dp">
+
             <ImageView
                 android:id="@+id/imageviewgarage"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/garage"
                 android:layout_marginRight="30dp"
-                />
+                android:src="@drawable/garage" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="#70ffffff"
-            android:elevation="2dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:layout_marginLeft="20dp">
+            android:background="#70ffffff"
+            android:elevation="2dp">
 
             <ImageView
                 android:id="@+id/imageviewshowroom"
@@ -240,43 +230,44 @@
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/showroom"
                 android:layout_marginRight="30dp"
-                />
+                android:src="@drawable/showroom" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="#70ffffff"
-            android:elevation="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp">
+            android:background="#70ffffff"
+            android:elevation="20dp">
+
             <ImageView
                 android:id="@+id/imageviewparked"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/parked"
                 android:layout_marginRight="30dp"
-                />
+                android:src="@drawable/parked" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="#70ffffff"
-            android:elevation="2dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:layout_marginLeft="20dp">
+            android:background="#70ffffff"
+            android:elevation="2dp">
+
             <ImageView
                 android:id="@+id/imageviewparking"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/parking"
                 android:layout_marginRight="30dp"
-                />
+                android:src="@drawable/parking" />
         </RelativeLayout>
 
 
