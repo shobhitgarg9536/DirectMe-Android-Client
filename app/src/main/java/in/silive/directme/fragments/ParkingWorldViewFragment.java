@@ -198,10 +198,6 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
 
     void showUserList(final ArrayList<ParkingUserListModel> parkingUserList) {
         ParkingUserListAdapter parkingUserListAdapter = new ParkingUserListAdapter(parkingUserList);
-        // final Dialog dialog = new Dialog(DirectMe.getInstance().mContext);
-        //  dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //   dialog.setContentView(R.layout.recycler_view_userselect);
-        //   RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.card_recycler_view);
         cluserList.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(DirectMe.getInstance());
         recyclerView.setLayoutManager(mLayoutManager);
