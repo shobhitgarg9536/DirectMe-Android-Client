@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="387dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.42" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -95,7 +95,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_buybutton" />
+            app:srcCompat="@drawable/buybtn" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -227,7 +227,8 @@
 
             app:layout_constraintTop_toBottomOf="@+id/textviewshowroomcostmultiplier"
 
-            app:layout_constraintBaseline_toBaselineOf="@+id/textviewshowroomexperiencegaintext" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/textviewshowroomexperiencegaintext"
+            app:layout_constraintHorizontal_bias="0.0" />
 
         <TextView
             android:text="Buy Cost: "

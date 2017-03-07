@@ -140,15 +140,15 @@ public class ShipTransitionFragment extends Fragment implements Animation.Animat
         int id=Integer.parseInt(island_id);
         switch (id)
         {
-            case 1:island.setImageResource(R.drawable.ic_coconut_island);
+            case 1:island.setImageResource(R.drawable.coconut_island);
                 break;
-            case 2:island.setImageResource(R.drawable.ic_wood_island);
+            case 2:island.setImageResource(R.drawable.wood_island);
                 break;
-            case 3:island.setImageResource(R.drawable.ic_banana_island);
+            case 3:island.setImageResource(R.drawable.banana_island);
                 break;
-            case 4:island.setImageResource(R.drawable.ic_banboo_island);
+            case 4:island.setImageResource(R.drawable.bamboo_island);
                 break;
-            case 5:island.setImageResource(R.drawable.ic_pyrate_island);
+            case 5:island.setImageResource(R.drawable.pirate_island);
                 break;
         }
 

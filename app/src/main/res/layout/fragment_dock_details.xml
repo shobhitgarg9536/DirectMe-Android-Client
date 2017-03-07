@@ -217,7 +217,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/upgrade"
+        app:srcCompat="@drawable/upgradebtn"
         android:id="@+id/upgrade"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
@@ -233,7 +233,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/upgrade"
+        app:srcCompat="@drawable/upgradebtn"
         android:id="@+id/upgrade2"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline23"

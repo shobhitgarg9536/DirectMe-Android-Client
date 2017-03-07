@@ -61,6 +61,10 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
             @Override
             public void processFinish(String output) {
+                pref = DirectMe.getInstance().sharedPrefs;
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
+                editor.commit();
 
             }
         });

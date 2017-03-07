@@ -87,7 +87,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         controller.addObserver(DashboardActivity.this);
 
 
-        token = sharedpreferences.getString("Authorization_Token", "");
+        token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
 
 
 
@@ -111,6 +111,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void processFinish(String output) {
 
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
+                        editor.commit();
                     }
                 });
                 String post_data = "";
@@ -163,13 +166,22 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 @Override
                 public void processFinish(String output) {
                     try {
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
                         JSONObject jsonObject = new JSONObject(output);
+                        String username = jsonObject.getString("username");
+                        String user_id = jsonObject.getString("user_id");
+                        String island_id = jsonObject.getString("island_id");
+                        String island_name = jsonObject.getString("island_name");
+                        editor.putString("username",username);
+                        editor.putString("user_id",user_id);
+                        editor.putString("island_id",island_id);
+                        editor.putString("island_name",island_name);
                         JSONArray things = jsonObject.getJSONArray("inventory");
                         for (i = 0; i < 5; i++) {
                             JSONObject jsonObject1 = things.getJSONObject(i);
                             commod[i] = Integer.parseInt(jsonObject1.getString("count"));
 
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
                             //putting values
                             editor.putString(co[i], Integer.toString(commod[i]));
                             editor.apply();

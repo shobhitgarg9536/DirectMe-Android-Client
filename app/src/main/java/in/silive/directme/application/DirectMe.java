@@ -14,7 +14,6 @@ import in.silive.directme.utils.Constants;
 public class DirectMe extends Application {
 
     private static DirectMe singleton = null;
-    public Context mContext;
     public SharedPreferences sharedPrefs;
     public String token;
 
@@ -34,7 +33,6 @@ public class DirectMe extends Application {
     public void onCreate() {
         singleton = this;
         super.onCreate();
-        mContext = getApplicationContext();
         sharedPrefs = getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
     }
 }

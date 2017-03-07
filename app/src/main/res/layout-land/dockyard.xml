@@ -29,9 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="387dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35304055"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="241dp" />
+        app:layout_constraintGuide_percent="0.38" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -246,7 +244,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/ic_upgradebutton"
+        app:srcCompat="@drawable/upgradebtn"
         android:id="@+id/imageview_garage_ship_upgrade"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="parent"

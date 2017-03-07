@@ -11,7 +11,7 @@ import in.silive.directme.application.DirectMe;
 
 public class NetworkUtils {
     public static boolean isNetConnected() {
-        NetworkInfo netInfo = ((ConnectivityManager) DirectMe.getInstance().mContext
+        NetworkInfo netInfo = ((ConnectivityManager) DirectMe.getInstance()
                 .getSystemService(Context.CONNECTIVITY_SERVICE))
                 .getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
@@ -20,7 +20,7 @@ public class NetworkUtils {
 
     public static boolean isGooglePlayServicesAvailable() {
         GoogleApiAvailability gApi = GoogleApiAvailability.getInstance();
-        int resultCode = gApi.isGooglePlayServicesAvailable(DirectMe.getInstance().mContext);
+        int resultCode = gApi.isGooglePlayServicesAvailable(DirectMe.getInstance());
         if (resultCode != ConnectionResult.SUCCESS) {
             if (gApi.isUserResolvableError(resultCode)) {
                 return false;

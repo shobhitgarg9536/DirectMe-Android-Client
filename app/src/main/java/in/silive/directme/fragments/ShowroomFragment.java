@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import in.silive.directme.R;
+import in.silive.directme.application.DirectMe;
 
 public class ShowroomFragment extends Fragment {
     JSONObject json_data;
@@ -56,7 +57,7 @@ public class ShowroomFragment extends Fragment {
         tv_experience.setText(experienceGain);
         tv_buy_cost.setText(buyCost);
         ivBoatImage = (ImageView) rootView.findViewById(R.id.imageViewShowroomBoat);
-        Picasso.with(getContext())
+        Picasso.with(DirectMe.getInstance())
                 .load(boatImageUrl)
                 .into(ivBoatImage);
         banana_req.setText(String.valueOf(banana_r));
