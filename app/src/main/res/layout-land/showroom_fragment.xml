@@ -317,28 +317,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.09" />
+            app:layout_constraintGuide_percent="0.10" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.74" />
+            app:layout_constraintGuide_percent="0.65" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.46" />
+            app:layout_constraintGuide_percent="0.30" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.98" />
+            app:layout_constraintGuide_percent="0.90" />
 
         <ImageView
             android:id="@+id/goldimg"
@@ -348,7 +348,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@id/guideline40"
             app:layout_constraintTop_toTopOf="@id/guideline41"
-            app:srcCompat="@drawable/ic_coin" />
+            app:layout_constraintBottom_toBottomOf="@+id/guideline43"
+            app:srcCompat="@drawable/img_gold_coin" />
 
 
         <ImageView
@@ -358,7 +359,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@+id/guideline40"
             app:layout_constraintTop_toTopOf="@+id/guideline43"
-            app:srcCompat="@drawable/ic_banana" />
+            app:layout_constraintBottom_toBottomOf="@+id/guideline42"
+            app:srcCompat="@drawable/img_banana" />
 
         <ImageView
             android:id="@+id/coconutimg"
@@ -370,7 +372,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/guideline40"
             app:layout_constraintTop_toTopOf="@+id/guideline42"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_coconut" />
+            app:srcCompat="@drawable/img_cococnut" />
 
         <ImageView
             android:id="@+id/bammbooimg"
@@ -380,7 +382,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@+id/guideline39"
             app:layout_constraintTop_toTopOf="@+id/guideline41"
-            app:srcCompat="@drawable/ic_bamboo" />
+            app:layout_constraintBottom_toBottomOf="@+id/guideline43"
+            app:srcCompat="@drawable/img_timber" />
 
         <ImageView
             android:id="@+id/woodimg"
@@ -389,7 +392,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@+id/guideline39"
             app:layout_constraintTop_toTopOf="@+id/guideline43"
-            app:srcCompat="@drawable/ic_wood" />
+            app:layout_constraintBottom_toBottomOf="@+id/guideline42"
+            app:srcCompat="@drawable/img_wood" />
 
         <TextView
             android:id="@+id/textView_showroom_gold_count"
@@ -436,7 +440,7 @@
             android:text="00"
             android:textColor="#FF0000"
             app:layout_constraintBottom_toBottomOf="@+id/bammbooimg"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toRightOf="@+id/bammbooimg"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bammbooimg"
@@ -450,7 +454,7 @@
             android:text="00"
             android:textColor="#FF0000"
             app:layout_constraintBottom_toBottomOf="@+id/woodimg"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toRightOf="@+id/woodimg"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/woodimg"
