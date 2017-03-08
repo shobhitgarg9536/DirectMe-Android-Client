@@ -17,7 +17,7 @@ public class Constants {
     public static final String TIMBER_ISLAND_ID ="2";
     public static final String PIRATE_ISLAND_ID ="5";
     public static final String BAMBOO_ISLAND_ID ="4";
-
+    public static final String RESPONSE_CODE="Response_Code";
 
     // global topic to receive app wide push notifications
     public static final String TOPIC_GLOBAL = "global";

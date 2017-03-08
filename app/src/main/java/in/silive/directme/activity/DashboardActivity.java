@@ -112,7 +112,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 });
                 String post_data = "";
                 try {
-                    post_data = URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
+                    post_data = URLEncoder.encode(Keys.fcm_token, "UTF-8") + "=" + URLEncoder.encode(Firebase_token, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -225,6 +225,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+
     @Override
     //updating values through observer
     public void update(Observable observable, Object o) {
@@ -235,5 +236,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         banana.setText(String.valueOf(controller.getBananaCount()));
         timber.setText(String.valueOf(controller.getTimberCount()));
         gold_coin.setText(String.valueOf(controller.getGoldCoinCount()));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        count();
+
     }
 }

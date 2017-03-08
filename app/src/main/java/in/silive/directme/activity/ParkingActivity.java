@@ -35,14 +35,10 @@ public class ParkingActivity extends AppCompatActivity {
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         startfragments();
-
     }
 
-
-
-    void connect() {
+    void c1onnect() {
         final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
         network_available = NetworkUtils.isNetConnected();
         if (network_available) {
