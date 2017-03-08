@@ -12,4 +12,5 @@ public final class Keys {
     public static String username = "username";
     public static String inventory = "inventory";
     public static String count = "count";
+    public static String fcm_token = "fcm_token";
 }

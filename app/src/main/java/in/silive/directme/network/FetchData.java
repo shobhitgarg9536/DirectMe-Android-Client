@@ -1,5 +1,6 @@
 package in.silive.directme.network;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -12,8 +13,10 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.utils.API_URL_LIST;
+import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.LoggerUtils;
 import in.silive.directme.utils.ToasterUtils;
 
@@ -74,7 +77,10 @@ public class FetchData extends AsyncTask<String, String, String> {
 
             int responseCode = connection.getResponseCode();
             LoggerUtils.logger("response code : " + Integer.toString(responseCode));
-
+            SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(Constants.RESPONSE_CODE, Integer.toString(responseCode));
+            editor.commit();
             if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

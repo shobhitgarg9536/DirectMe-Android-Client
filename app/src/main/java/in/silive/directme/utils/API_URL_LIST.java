@@ -20,4 +20,6 @@ public class API_URL_LIST {
     public static final String FINE_URL="/core/fine/";
     public static final String FIREBASE_TOKEN_UPDATE = "user/fcm/";
     public static final String VERSION_CHECK = "core/version/";
+    public static final String UPGRADE_URL="/core/upgrade-ship/";
+
 }
