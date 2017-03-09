@@ -1,10 +1,12 @@
 package in.silive.directme.fragments;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,15 +89,13 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
 
                         for(int i=0; i<count; i++ ){
                             JSONObject jsonObject = user_port_jsonArray.getJSONObject(i);
-                            String parkingType = jsonObject.getString("type");
                             JSONArray jsonArray1 = jsonObject.getJSONArray("logs");
-                            JSONObject jsonObject1 = jsonArray1.getJSONObject(0);
-                            String ship_id = jsonObject1.getString("ship");
-                            String user_name = jsonObject1.getString("username");
-                            String user_id = jsonObject1.getString("user_id");
-                            String ship_image = jsonObject1.getString("ship_image");
+                            if(jsonArray1.length() != 0) {
+                                JSONObject jsonObject1 = jsonArray1.getJSONObject(0);
+                                String ship_image = jsonObject1.getString("ship_image");
 
-                            showPort(i+1 , ship_image , jsonObject1);
+                                showPort(i + 1, ship_image, jsonObject1);
+                            }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -145,15 +145,29 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
         }
     }
     void replaceWithNewFragment(JSONObject jsonObject, String parkingType){
-        Fragment islandFragment = new ParkingUserPortViewFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("port_jsonObject" , jsonObject.toString());
-        bundle.putString("parkingType" , parkingType);
-        islandFragment.setArguments(bundle);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(android.R.id.content, islandFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+        if(jsonObject ==null) {
+
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+            dialog.setMessage("This port is empty")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .show();
+        }else{
+            Fragment islandFragment = new ParkingUserPortViewFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("port_jsonObject", jsonObject.toString());
+            bundle.putString("parkingType", parkingType);
+            islandFragment.setArguments(bundle);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(android.R.id.content, islandFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     @Override
