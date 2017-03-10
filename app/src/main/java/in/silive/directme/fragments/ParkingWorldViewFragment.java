@@ -1,6 +1,7 @@
 package in.silive.directme.fragments;
 
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import org.json.JSONArray;
@@ -57,7 +60,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
         iv_island4 = (ImageView) view.findViewById(R.id.imageViewisland4marker);
         iv_pirate = (ImageView) view.findViewById(R.id.imageViewpirateislandmarker);
         cluserList = (android.support.constraint.ConstraintLayout) view.findViewById(R.id.constrainstLayoutParkNow);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewUserList);
+       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewUserList);
 
         iv_island1.setOnClickListener(this);
         iv_island2.setOnClickListener(this);
@@ -72,6 +75,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
 
 
         apiCalling();
+
 
         return view;
     }
@@ -116,22 +120,26 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
 
     void makeMarkerVisible(String island_id, JSONObject jsonObject) {
         switch (Integer.valueOf(island_id)) {
+            //Coconut island
             case 1:
-                iv_island1.setVisibility(View.VISIBLE);
-                jsonArrayIslanad1.put(jsonObject);
-
-                break;
-            case 2:
                 iv_island2.setVisibility(View.VISIBLE);
                 jsonArrayIslanad2.put(jsonObject);
+
                 break;
-            case 3:
-                iv_island3.setVisibility(View.VISIBLE);
-                jsonArrayIslanad3.put(jsonObject);
-                break;
-            case 4:
+            //Timber Island
+            case 2:
                 iv_island4.setVisibility(View.VISIBLE);
                 jsonArrayIslanad4.put(jsonObject);
+                break;
+            //Banana Island
+            case 3:
+                iv_island1.setVisibility(View.VISIBLE);
+                jsonArrayIslanad1.put(jsonObject);
+                break;
+            //Bamboo Island
+            case 4:
+                iv_island3.setVisibility(View.VISIBLE);
+                jsonArrayIslanad3.put(jsonObject);
                 break;
             case 5:
                 iv_pirate.setVisibility(View.VISIBLE);
@@ -198,8 +206,12 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
 
     void showUserList(final ArrayList<ParkingUserListModel> parkingUserList) {
         ParkingUserListAdapter parkingUserListAdapter = new ParkingUserListAdapter(parkingUserList);
-        cluserList.setVisibility(View.VISIBLE);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(DirectMe.getInstance());
+       // cluserList.setVisibility(View.VISIBLE);
+         final Dialog dialog = new Dialog(getActivity());
+          dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+           dialog.setContentView(R.layout.recycler_view_user);
+           RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.card_recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(parkingUserListAdapter);
@@ -208,6 +220,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
             public void onClick(View view, int position) {
                 ParkingUserListModel parkingUserListModel = parkingUserList.get(position);
                 String user_id = parkingUserListModel.getUser_id();
+                dialog.dismiss();
                 replaceWithNewFragment(user_id);
 
             }
@@ -217,5 +230,6 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
 
             }
         }));
+        dialog.show();
     }
 }

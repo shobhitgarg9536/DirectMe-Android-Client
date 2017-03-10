@@ -59,7 +59,6 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
                 false);
         ButterKnife.bind(this, rootView);
         sharedpreference = DirectMe.getInstance().sharedPrefs;
-        parkedDetail("0");
         parkingport1.setOnClickListener(this);
         parkingport2.setOnClickListener(this);
         nonparkingport3.setOnClickListener(this);
@@ -74,7 +73,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
 
             case R.id.parkingport1:
 
-                parkedDetail("0");
+                parkedDetail(0);
 
 
                 if (jsonObject != null) {
@@ -85,7 +84,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.parkingport2:
-                parkedDetail("1");
+                parkedDetail(1);
                 if (jsonObject != null) {
                     fragmentInitialise();
 
@@ -94,7 +93,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.nonparkingport3:
-                parkedDetail("2");
+                parkedDetail(2);
 
                 if (jsonObject != null) {
                     fragmentInitialise();
@@ -104,7 +103,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.nonparkingport4:
-                parkedDetail("3");
+                parkedDetail(3);
 
                 if (jsonObject != null) {
                     fragmentInitialise();
@@ -114,7 +113,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.nonparkingport5:
-                parkedDetail("4");
+                parkedDetail(4);
                 if (jsonObject != null) {
                     fragmentInitialise();
 
@@ -127,7 +126,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public void parkedDetail(final String parking_no) {
+    public void parkedDetail(final int parking_no) {
         final String token = sharedpreference.getString(Constants.AUTH_TOKEN, "");
         final String user_id = sharedpreference.getString(Constants.USER_ID, "");
         network_available = NetworkUtils.isNetConnected();
@@ -144,7 +143,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
                     try {
                         JSONArray user = new JSONArray(output);
 
-                        jsonObject = user.getJSONObject(Integer.parseInt(parking_no));
+                        jsonObject = user.getJSONObject(parking_no);
                         type = jsonObject.get("type").toString();
                         id = jsonObject.get("id").toString();
                         JSONArray logs = jsonObject.getJSONArray("logs");

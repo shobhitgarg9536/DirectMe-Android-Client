@@ -1,6 +1,7 @@
 package in.silive.directme.fragments;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -27,6 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import in.silive.directme.R;
+import in.silive.directme.activity.DashboardActivity;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
@@ -70,8 +72,9 @@ public class ParkingUserPortViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.portdetails , container ,false);
         clBackground=(ConstraintLayout) view.findViewById(R.id.background);
         btDock=(Button) view.findViewById(R.id.catchbutton);
-        port_jsonObject = getArguments().getString("port_jsonObject");
-        parkingType = getArguments().getString("parkingType");
+        Bundle bundle = getArguments();
+        port_jsonObject = bundle.getString("port_jsonObject");
+        parkingType = bundle.getString("parkingType");
         userNameTextview = (TextView) view.findViewById(R.id.username);
         parkingTypeTextView = (TextView) view.findViewById(R.id.type);
         startAnimation();
@@ -136,7 +139,7 @@ public class ParkingUserPortViewFragment extends Fragment {
                 "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
+                        sendToSuperWorld();
                     }
                 });
 
@@ -144,6 +147,11 @@ public class ParkingUserPortViewFragment extends Fragment {
         alert11.show();
     }
 
+    private void sendToSuperWorld() {
+        Intent i = new Intent(getActivity() , DashboardActivity.class);
+        startActivity(i);
+        getActivity().finish();
+    }
 
     private void startAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
