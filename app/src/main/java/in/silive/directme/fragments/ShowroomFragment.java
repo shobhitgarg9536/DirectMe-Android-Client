@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -21,6 +23,7 @@ public class ShowroomFragment extends Fragment {
     JSONObject json_data;
     int slot;
     ImageView ivBoatImage;
+    ProgressBar pbShip;
     TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req,tv_boat_name,tv_cost_multiplier,tv_buy_cost,tv_experience;
     int banana_r = 0, gold_r = 0, bamboo_r = 0, wood_r = 0, coconut_r = 0;
     String boatName,costMultiplier,buyCost,experienceGain,boatImageUrl;
@@ -52,6 +55,7 @@ public class ShowroomFragment extends Fragment {
         tv_cost_multiplier = (TextView) rootView.findViewById(R.id.textviewshowroomcostmultiplier);
         tv_experience = (TextView) rootView.findViewById(R.id.textviewshowroomexperiencegain);
         tv_buy_cost = (TextView) rootView.findViewById(R.id.textviewshowroombuycost);
+        pbShip = (ProgressBar) rootView.findViewById(R.id.progressBarShowroomShip);
         tv_boat_name.setText(boatName);
         tv_cost_multiplier.setText(costMultiplier);
         tv_experience.setText(experienceGain);
@@ -59,7 +63,17 @@ public class ShowroomFragment extends Fragment {
         ivBoatImage = (ImageView) rootView.findViewById(R.id.imageViewShowroomBoat);
         Picasso.with(DirectMe.getInstance())
                 .load(boatImageUrl)
-                .into(ivBoatImage);
+                .into(ivBoatImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        pbShip.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
         banana_req.setText(String.valueOf(banana_r));
         bamboo_req.setText(String.valueOf(bamboo_r));
         gold_req.setText(String.valueOf(gold_r));
