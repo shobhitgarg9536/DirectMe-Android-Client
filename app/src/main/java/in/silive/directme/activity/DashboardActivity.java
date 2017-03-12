@@ -10,7 +10,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -38,7 +42,7 @@ import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.ToasterUtils;
 
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer {
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer,Animation.AnimationListener {
 
     public static final String[] co = new String[5];
     public int[] commod = new int[5];
@@ -71,6 +75,35 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     ImageView garage;
     @BindView(R.id.imageviewshowroom)
     ImageView showroom;
+    @BindView(R.id.wave1)
+    RelativeLayout wave1;
+    @BindView(R.id.wave2)
+    RelativeLayout wave2;
+    @BindView(R.id.wave3)
+    RelativeLayout wave3;
+    @BindView(R.id.wave4)
+    RelativeLayout wave4;
+    @BindView(R.id.wave5)
+    RelativeLayout wave5;
+    @BindView(R.id.wave6)
+    RelativeLayout wave6;
+    @BindView(R.id.wave7)
+    RelativeLayout wave7;
+    @BindView(R.id.wave8)
+    RelativeLayout wave8;
+    @BindView(R.id.wave9)
+    RelativeLayout wave9;
+    @BindView(R.id.wave10)
+    RelativeLayout wave10;
+    @BindView(R.id.wave11)
+    RelativeLayout wave11;
+    @BindView(R.id.wave12)
+    RelativeLayout wave12;
+    @BindView(R.id.wave13)
+    RelativeLayout wave13;
+    @BindView(R.id.wave14)
+    RelativeLayout wave14;
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +118,25 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         parking.setOnClickListener(this);
         garage.setOnClickListener(this);
         showroom.setOnClickListener(this);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.waveanimation);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(this);
+        wave1.startAnimation(animation);
+
+        wave2.startAnimation(animation);
+        wave3.startAnimation(animation);
+        wave4.startAnimation(animation);
+        wave5.startAnimation(animation);
+        wave6.startAnimation(animation);
+        wave7.startAnimation(animation);
+        wave8.startAnimation(animation);
+        wave9.startAnimation(animation);
+        wave10.startAnimation(animation);
+        wave11.startAnimation(animation);
+        wave12.startAnimation(animation);
+        wave13.startAnimation(animation);
+        wave14.startAnimation(animation);
+
 
         controller.addObserver(DashboardActivity.this);
         token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
@@ -158,10 +210,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                         String user_id = jsonObject.getString(Keys.user_id);
                         String island_id = jsonObject.getString(Keys.island_id);
                         String island_name = jsonObject.getString(Keys.island_name);
-                        editor.putString(Keys.username,username);
-                        editor.putString(Keys.user_id,user_id);
-                        editor.putString(Keys.island_id,island_id);
-                        editor.putString(Keys.island_name,island_name);
+                        editor.putString(Keys.username, username);
+                        editor.putString(Keys.user_id, user_id);
+                        editor.putString(Keys.island_id, island_id);
+                        editor.putString(Keys.island_name, island_name);
                         JSONArray things = jsonObject.getJSONArray(Keys.inventory);
                         for (i = 0; i < 5; i++) {
                             JSONObject jsonObject1 = things.getJSONObject(i);
@@ -243,4 +295,23 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         count();
 
     }
+
+
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
+    }
+
+
 }

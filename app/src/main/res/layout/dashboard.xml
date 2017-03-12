@@ -5,13 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+     android:background="@drawable/background"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background">
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
 
         <RelativeLayout
             android:id="@+id/button"
@@ -175,102 +177,236 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
+
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="#70ffffff"
-            android:elevation="2dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageviewpark"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/park" />
-        </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="#70ffffff"
-            android:elevation="2dp">
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:id="@+id/wave1"
+            android:background="@drawable/wave1"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/wave2"
+                android:orientation="horizontal"
 
-            <ImageView
-                android:id="@+id/imageviewgarage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/garage" />
-        </RelativeLayout>
+                android:background="@drawable/wave2"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/wave3"
+                android:orientation="horizontal"
 
-        <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="#70ffffff"
-            android:elevation="2dp">
+                android:background="@drawable/wave3"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/wave4"
+                android:orientation="horizontal"
 
-            <ImageView
-                android:id="@+id/imageviewshowroom"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/showroom" />
-        </RelativeLayout>
+                android:background="@drawable/wave4"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="40dp"
+                android:id="@+id/wave5"
+                android:orientation="horizontal"
 
-        <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="#70ffffff"
-            android:elevation="20dp">
+                android:background="@drawable/wave1"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="50dp"
+                android:id="@+id/wave6"
+                android:orientation="horizontal"
 
-            <ImageView
-                android:id="@+id/imageviewparked"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/parked" />
-        </RelativeLayout>
+                android:background="@drawable/wave2"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="60dp"
+                android:id="@+id/wave7"
+                android:orientation="horizontal"
 
-        <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="#70ffffff"
-            android:elevation="2dp">
+                android:background="@drawable/wave3"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="70dp"
+                android:id="@+id/wave8"
+                android:orientation="horizontal"
 
-            <ImageView
-                android:id="@+id/imageviewparking"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/parking" />
-        </RelativeLayout>
+                android:background="@drawable/wave4"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="80dp"
+                android:id="@+id/wave9"
+                android:orientation="horizontal"
 
+                android:background="@drawable/wave1"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:id="@+id/wave10"
+                android:orientation="horizontal"
+
+                android:background="@drawable/wave2"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:id="@+id/wave11"
+                android:orientation="horizontal"
+
+                android:background="@drawable/wave3"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:id="@+id/wave12"
+                android:orientation="horizontal"
+
+                android:background="@drawable/wave4"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:id="@+id/wave13"
+                android:orientation="horizontal"
+
+                android:background="@drawable/wave1"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:id="@+id/wave14"
+                android:orientation="horizontal"
+
+                android:background="@drawable/wave2"/>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="#70ffffff"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:id="@+id/imageviewpark"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/park" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="130dp"
+                android:layout_weight="1"
+                android:background="#70ffffff"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:id="@+id/imageviewgarage"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/garage" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="250dp"
+                android:layout_weight="1"
+                android:background="#70ffffff"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:id="@+id/imageviewshowroom"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/showroom" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="360dp"
+                android:layout_weight="1"
+                android:background="#70ffffff"
+                android:elevation="20dp">
+
+                <ImageView
+                    android:id="@+id/imageviewparked"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/parked" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="460dp"
+                android:layout_weight="1"
+                android:background="#70ffffff"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:id="@+id/imageviewparking"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/parking" />
+            </RelativeLayout>
+
+
+</RelativeLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/userprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="26dp"
+        app:srcCompat="@drawable/avatar" />
 
 </RelativeLayout>
