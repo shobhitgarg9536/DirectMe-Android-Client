@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#b3b3b3"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Banana"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/textViewGarageUpgradeBanana"
+        app:layout_constraintTop_toTopOf="@+id/guidelinegarage21"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage22"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline18"
+        app:layout_constraintRight_toRightOf="@+id/guideline19"
+        app:layout_constraintVertical_bias="0.484" />
+
+    <SeekBar
+        android:id="@+id/seekBarGarageUpgradeBanana"
+        android:layout_width="0dp"
+        android:thumb="@drawable/drag_thumb"
+        android:progressDrawable="@drawable/custom_seekbar_layout"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/guidelinegarage21"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage22"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline19"
+        app:layout_constraintRight_toRightOf="@+id/guideline20"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="8dp"
+        app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Coconut"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/textViewGarageUpgradeCoconut"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage22"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage23"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline18"
+        app:layout_constraintRight_toRightOf="@+id/guideline19"
+        app:layout_constraintVertical_bias="0.484" />
+
+    <SeekBar
+        android:id="@+id/seekBarGarageUpgradeCoconut"
+        android:layout_width="0dp"
+        android:thumb="@drawable/drag_thumb"
+        android:progressDrawable="@drawable/custom_seekbar_layout"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage22"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage23"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline19"
+        app:layout_constraintRight_toRightOf="@+id/guideline20"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="8dp" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bamboo"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/textViewGarageUpgradeBamboo"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage23"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage25"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline18"
+        app:layout_constraintRight_toRightOf="@+id/guideline19"
+        app:layout_constraintVertical_bias="0.484" />
+
+    <SeekBar
+        android:id="@+id/seekBarGarageUpgradeBamboo"
+        android:layout_width="0dp"
+        android:thumb="@drawable/drag_thumb"
+        android:progressDrawable="@drawable/custom_seekbar_layout"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage23"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage25"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline19"
+        app:layout_constraintRight_toRightOf="@+id/guideline20"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="8dp" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Timber"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/textViewGarageUpgradeTimber"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage25"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage34"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline18"
+        app:layout_constraintRight_toRightOf="@+id/guideline19"
+        app:layout_constraintVertical_bias="0.484" />
+
+    <SeekBar
+        android:id="@+id/seekBarGarageUpgradeWood"
+        android:layout_width="0dp"
+        android:thumb="@drawable/drag_thumb"
+        android:progressDrawable="@drawable/custom_seekbar_layout"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage25"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinegarage34"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline19"
+        app:layout_constraintRight_toRightOf="@+id/guideline20"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="8dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline18"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.016885553" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline19"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12945591" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline20"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <ImageView
+        android:id="@+id/imageViewUpgradeGarageShip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/upgradebtn"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline19"
+        app:layout_constraintRight_toRightOf="@+id/guideline20"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage34"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelinegarage21"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelinegarage22"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelinegarage23"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelinegarage25"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.62" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelinegarage34"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelinegarage35"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94237286" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline21"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3125" />
+
+    <ImageView
+        android:id="@+id/imageViewUpgradeShipImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/raft"
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelinegarage21"
+        app:layout_constraintLeft_toLeftOf="@id/guideline18"
+        app:layout_constraintRight_toLeftOf="@id/guideline21"
+/>
+    <TextView
+        android:id="@+id/textViewGarageUpgradeShipName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="Ship Upgrade to"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelinegarage21"
+        app:layout_constraintLeft_toLeftOf="@id/guideline21"
+        app:layout_constraintRight_toLeftOf="@id/guideline20"/>
+
+    <TextView
+        android:id="@+id/textViewUpgradeBanana"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="0"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline20"
+        app:layout_constraintBottom_toTopOf="@id/guidelinegarage22"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage21"
+        />
+    <TextView
+        android:id="@+id/textViewUpgradeCoconut"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="0"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline20"
+        app:layout_constraintBottom_toTopOf="@id/guidelinegarage23"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage22"
+         />
+
+    <TextView
+        android:id="@+id/textViewUpgradeBamboo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="0"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline20"
+        app:layout_constraintBottom_toTopOf="@id/guidelinegarage25"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage23"
+         />
+
+    <TextView
+        android:id="@+id/textViewUpgradeTimber"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="0"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline20"
+        app:layout_constraintBottom_toTopOf="@id/guidelinegarage34"
+        app:layout_constraintTop_toTopOf="@id/guidelinegarage25"
+         />
+
+
+</android.support.constraint.ConstraintLayout>

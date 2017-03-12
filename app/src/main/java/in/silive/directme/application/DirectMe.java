@@ -75,4 +75,9 @@ public class DirectMe extends Application {
         this.coconutCount=Integer.toString(this.commodity[0]);
 
     }
+
+    public void setBambooCount(String bambooCount) {
+        this.bambooCount = bambooCount;
+
+    }
 }
