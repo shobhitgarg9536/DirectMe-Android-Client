@@ -219,14 +219,13 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                             JSONObject jsonObject1 = things.getJSONObject(i);
                             commod[i] = Integer.parseInt(jsonObject1.getString(Keys.count));
 
-
                             //putting values
                             editor.putString(co[i], Integer.toString(commod[i]));
                             editor.apply();
                             controller.setBambooCount(commod[3]);
                             controller.setBananaCount(commod[2]);
-                            controller.setTimberCount(commod[1]);
-                            controller.setCoconutCount(commod[0]);
+                            controller.setTimberCount(commod[0]);
+                            controller.setCoconutCount(commod[1]);
                             controller.setGoldCoinCount(commod[4]);
                         }
                     } catch (JSONException e) {
@@ -244,8 +243,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             }
             controller.setBambooCount(commod[3]);
             controller.setBananaCount(commod[2]);
-            controller.setTimberCount(commod[1]);
-            controller.setCoconutCount(commod[0]);
+            controller.setTimberCount(commod[0]);
+            controller.setCoconutCount(commod[1]);
             controller.setGoldCoinCount(commod[4]);
         }
     }
