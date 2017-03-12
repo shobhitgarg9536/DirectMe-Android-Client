@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import in.silive.directme.R;
 import in.silive.directme.adapter.BoatPagerAdapterParkNow;
@@ -39,6 +40,7 @@ public class ParkNowShipActivity extends AppCompatActivity {
     boolean network_available;
     private FetchData apicalling;
     JSONArray jArray;
+    JSONArray jsonArray;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,15 @@ public class ParkNowShipActivity extends AppCompatActivity {
                 public void processFinish(String output) {
                     try {
                         jArray = new JSONArray(output);
-                        count = jArray.length();
+                        String ship_status;
+                        jsonArray = new JSONArray();
+                        for(int i =0; i<jArray.length(); i++) {
+                            JSONObject jsonObject = jArray.getJSONObject(i);
+                            ship_status = jsonObject.getString("ship_status");
+                            if(!ship_status.equals("null"))
+                                jsonArray.put(jsonObject);
+                        }
+                        count = jsonArray.length();
                         startfragments();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -93,7 +103,7 @@ public class ParkNowShipActivity extends AppCompatActivity {
     }
     void startfragments() {
         mViewPager.setAdapter(new BoatPagerAdapterParkNow(
-                getSupportFragmentManager() , jArray , count));
+                getSupportFragmentManager() , jsonArray , count));
     }
 
 

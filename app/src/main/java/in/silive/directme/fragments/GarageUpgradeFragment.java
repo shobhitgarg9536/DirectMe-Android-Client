@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -41,6 +43,7 @@ public class GarageUpgradeFragment extends Fragment {
     private String ship_id, ship_name, ship_image_url;
     int[] upgrade_count;
     ImageView btupgrade, ivshipImage;
+    ProgressBar pbUpgradeShip;
     TextView tvshipName, tvBananaCount, tvCoconutCount, tvBambooCount, tvTimberCount;
     int upgradeFlag = 0;
     SharedPreferences sharedPreferences;
@@ -63,6 +66,7 @@ public class GarageUpgradeFragment extends Fragment {
         tvCoconutCount = (TextView) view.findViewById(R.id.textViewUpgradeCoconut);
         tvBambooCount = (TextView) view.findViewById(R.id.textViewUpgradeBamboo);
         tvTimberCount = (TextView) view.findViewById(R.id.textViewUpgradeTimber);
+        pbUpgradeShip = (ProgressBar) view.findViewById(R.id.progressBarUpgradeBoat);
 
         Bundle bundle = getArguments();
         String upgradeShipJsonArray = bundle.getString("json");
@@ -87,7 +91,17 @@ public class GarageUpgradeFragment extends Fragment {
         tvshipName.setText("Üpgrade Ship to "+ship_name);
         Picasso.with(getContext())
                 .load(ship_image_url)
-                .into(ivshipImage);
+                .into(ivshipImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        pbUpgradeShip.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
         //getting user inventories from shared preferences
         for (int i = 0; i < 5; i++) {

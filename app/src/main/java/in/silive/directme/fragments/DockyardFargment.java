@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -29,6 +31,7 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
 {
     static JSONObject json_data;
     ImageView ivBoatImage,ivShipUpgrade, ivBuySlot;
+    ProgressBar pbGarageBoat;
     SharedPreferences prefrences;
     TextView tv_boat_name,tv_status;
     String boatName,boatImageUrl,status, dock_status;
@@ -65,10 +68,21 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
         ivBoatImage = (ImageView) rootView.findViewById(R.id.imageViewGarageBoat);
         ivShipUpgrade = (ImageView) rootView.findViewById(R.id.imageview_garage_ship_upgrade);
         ivBuySlot = (ImageView) rootView.findViewById(R.id.imageViewGarageLocked);
+        pbGarageBoat = (ProgressBar) rootView.findViewById(R.id.progressBarGarageBoat);
         ivShipUpgrade.setOnClickListener(this);
         Picasso.with(getContext())
                 .load(boatImageUrl)
-                .into(ivBoatImage);
+                .into(ivBoatImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        pbGarageBoat.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
         tv_boat_name.setText(boatName);
         tv_status.setText(status);
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
