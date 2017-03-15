@@ -7,6 +7,7 @@ import android.provider.SyncStateContract;
 
 import in.silive.directme.activity.DashboardActivity;
 import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.Keys;
 
 /**
  * Created by shobhit on 27/2/17.
@@ -17,26 +18,26 @@ public class DirectMe extends Application {
     private static DirectMe singleton = null;
     public SharedPreferences sharedPrefs;
     public String token;
-    int commodity[]=new int[10];
+    String commodity[]=new String[10];
     public String coconutCount;
 
     public String getCoinCount() {
-        return coinCount;
+        return this.coinCount;
     }
 
     public String getTimberCount() {
 
-        return timberCount;
+        return this.timberCount;
     }
 
     public String getBananaCount() {
 
-        return bananaCount;
+        return this.bananaCount;
     }
 
     public String getCoconutCount() {
 
-        return coconutCount;
+        return this.coconutCount;
     }
 
     public String bananaCount;
@@ -45,7 +46,7 @@ public class DirectMe extends Application {
     public String bambooCount;
 
     public String getBambooCount() {
-        return bambooCount;
+        return this.bambooCount;
     }
 
     public String getToken() {
@@ -64,15 +65,16 @@ public class DirectMe extends Application {
         super.onCreate();
         sharedPrefs = getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
         for (int i = 0; i < 5; i++) {
-            if (sharedPrefs.contains(DashboardActivity.co[i])) {
-                this.commodity[i] = Integer.parseInt(sharedPrefs.getString(DashboardActivity.co[i], ""));
-            }
+
+                this.commodity[i] = sharedPrefs.getString(Keys.co[i],"");
+
         }
-        this.bambooCount=Integer.toString(this.commodity[3]);
-        this.bananaCount=Integer.toString(this.commodity[2]);
-        this.coinCount=Integer.toString(this.commodity[4]);
-        this.timberCount=Integer.toString(this.commodity[1]);
-        this.coconutCount=Integer.toString(this.commodity[0]);
+        this.bambooCount=this.commodity[1];
+
+        this.bananaCount=this.commodity[2];
+        this.coinCount=this.commodity[0];
+        this.timberCount=this.commodity[3];
+        this.coconutCount=this.commodity[4];
 
     }
 

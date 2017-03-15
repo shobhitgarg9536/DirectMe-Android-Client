@@ -60,10 +60,12 @@
 
         <ImageView
 
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/img_wood"
 
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/img_wood"
+
+
 
             android:id="@+id/img_user"
             app:layout_constraintRight_toRightOf="parent"
