@@ -1,191 +1,521 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     android:background="@drawable/background"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/guideline23"
+        app:layout_constraintGuide_percent="0.0"
         android:orientation="horizontal"
-        android:id="@+id/linearLayout">
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <RelativeLayout
-            android:id="@+id/button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#006400"
-            android:elevation="2dp"/>
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline25"
+        app:layout_constraintGuide_percent="0.17"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="57dp"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <RelativeLayout
-            android:id="@+id/showroom"
-            android:layout_width="130dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/darker_gray"
-            android:elevation="2dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="Dashboard"
-                android:textColor="#ffffff" />
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/gold_show"
-            android:layout_width="56dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:elevation="2dp">
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline35"
+        app:layout_constraintGuide_percent="0.0"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
-            <ImageView
-                android:id="@+id/coin"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/img_gold_coin" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline78"
+        app:layout_constraintGuide_percent="0.08"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="47dp" />
 
-            <TextView
-                android:id="@+id/tvGold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"
-                tools:text="0" />
-        </RelativeLayout>
+    <ImageView
+        android:id="@+id/userprofile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/avatar"
+        app:layout_constraintRight_toLeftOf="@+id/guideline78"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline35"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <RelativeLayout
-            android:id="@+id/banana_show"
-            android:layout_width="56dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:elevation="2dp">
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline79"
+        app:layout_constraintGuide_percent="0.30"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="142dp" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/img_banana" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline80"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="20dp" />
 
-            <TextView
-                android:id="@+id/tvBanana"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"
-                tools:text="0" />
-        </RelativeLayout>
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline81"
+        app:layout_constraintGuide_percent="0.18"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="59dp" />
 
-        <RelativeLayout
-            android:id="@+id/coconut_show"
-            android:layout_width="56dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:elevation="2dp">
+    <RelativeLayout
+        android:id="@+id/experience_show"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/img_cococnut" />
+        android:background="@android:color/transparent"
 
-            <TextView
-                android:id="@+id/tvCoconut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"
-                tools:text="0" />
-        </RelativeLayout>
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline81"
+        app:layout_constraintRight_toLeftOf="@+id/guideline79"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/bamboo_show"
-            android:layout_width="56dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:elevation="2dp">
+        <ImageView
+            android:id="@+id/experience"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/xpicon" />
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:src="@drawable/img_timber" />
+        <TextView
+            android:id="@+id/tvExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/tvBamboo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"
-                tools:text="0" />
-        </RelativeLayout>
+            android:layout_toLeftOf="@id/experience_show"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            tools:text="0" />
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="56dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:elevation="2dp">
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline83"
+        app:layout_constraintGuide_percent="0.42"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="225dp" />
+    <RelativeLayout
+        android:id="@+id/gold_show"
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/img_wood" />
+        app:layout_constraintLeft_toLeftOf="@+id/guideline79"
+        app:layout_constraintRight_toLeftOf="@+id/guideline83"
 
-            <TextView
-                android:id="@+id/tvTimber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"
-                tools:text="0" />
-        </RelativeLayout>
-    </LinearLayout>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/coin"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/img_gold_coin" />
+
+        <TextView
+            android:id="@+id/tvGold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/gold_show"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            tools:text="0" />
+    </RelativeLayout>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline84"
+        app:layout_constraintGuide_percent="0.54"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="308dp" />
+    <RelativeLayout
+        android:id="@+id/banana_show"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline83"
+        app:layout_constraintRight_toLeftOf="@+id/guideline84"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/img_banana" />
+
+        <TextView
+            android:id="@+id/tvBanana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/banana_show"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            tools:text="0" />
+    </RelativeLayout>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline85"
+        app:layout_constraintGuide_percent="0.68"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="391dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline104"
+        app:layout_constraintGuide_percent="0.66"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="391dp" />
+
+    <RelativeLayout
+        android:id="@+id/coconut_show"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline84"
+        app:layout_constraintRight_toLeftOf="@+id/guideline104"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/img_cococnut" />
+
+        <TextView
+            android:id="@+id/tvCoconut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/coconut_show"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            tools:text="0" />
+    </RelativeLayout>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline86"
+        app:layout_constraintGuide_percent="0.78"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="474dp" />
+    <RelativeLayout
+        android:id="@+id/bamboo_show"
+
+        app:layout_constraintLeft_toLeftOf="@+id/guideline104"
+        app:layout_constraintRight_toLeftOf="@+id/guideline86"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/img_timber" />
+
+        <TextView
+            android:id="@+id/tvBamboo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/bamboo_show"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            tools:text="0" />
+    </RelativeLayout>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline87"
+        app:layout_constraintGuide_percent="0.93"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="551dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline105"
+        app:layout_constraintGuide_percent="0.90"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="551dp" />
+    <RelativeLayout
+        android:id="@+id/wood_show"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline86"
+        app:layout_constraintRight_toLeftOf="@+id/guideline105"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/img_wood" />
+
+        <TextView
+            android:id="@+id/tvTimber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/wood_show"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            tools:text="0" />
+    </RelativeLayout>
+    <ImageView
+        app:layout_constraintLeft_toLeftOf="@+id/guideline87"
+        app:layout_constraintRight_toLeftOf="@+id/guideline88"
+        android:id="@+id/setting"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/setting"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline88"
+        app:layout_constraintGuide_percent="1.0"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="592dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline90"
+        app:layout_constraintGuide_percent="0.33"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="111dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <ImageView
+        app:layout_constraintLeft_toLeftOf="@+id/guideline87"
+        app:layout_constraintRight_toLeftOf="@+id/guideline88"
+        android:id="@+id/leaderboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintBottom_toTopOf="@+id/guideline90"
+        app:layout_constraintTop_toTopOf="@+id/guideline25"
+        android:src="@drawable/leaderboardsign"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline91"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="168dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <ImageView
+        app:layout_constraintLeft_toLeftOf="@+id/guideline87"
+        app:layout_constraintRight_toLeftOf="@+id/guideline88"
+        android:id="@+id/software_incubator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintBottom_toTopOf="@+id/guideline91"
+        app:layout_constraintTop_toTopOf="@+id/guideline90"
+        android:src="@drawable/credits"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline92"
+        app:layout_constraintGuide_percent="0.24"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="80dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/showroom"
+
+        android:id="@+id/imageviewshowroom"
+        app:layout_constraintRight_toLeftOf="@+id/guideline83"
+        android:layout_marginRight="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline92"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline93"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginEnd="50dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline93"
+        app:layout_constraintGuide_percent="0.65"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="218dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bigsign"
+        app:layout_constraintRight_toLeftOf="@+id/guideline85"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline83"
+        app:layout_constraintTop_toTopOf="@+id/guideline92"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline93"
+        app:layout_constraintVertical_bias="0.0">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/imageviewgarage"
+            android:src="@drawable/dme_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32999998" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageviewparking"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintRight_toLeftOf="@+id/guideline87"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline94"
+        app:layout_constraintTop_toTopOf="@+id/guideline92"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline93"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/myharbour" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline94"
+        app:layout_constraintGuide_percent="0.74"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="438dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline95"
+        app:layout_constraintGuide_percent="0.88"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="295dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <RelativeLayout
+
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline101"
+        android:layout_marginTop="0dp"
 
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline98"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="0dp">
+
 
 
         <RelativeLayout
@@ -194,219 +524,223 @@
             android:orientation="horizontal"
             android:id="@+id/wave1"
             android:background="@drawable/wave1"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/wave2"
-                android:orientation="horizontal"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/wave2"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave2"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/wave3"
-                android:orientation="horizontal"
+            android:background="@drawable/wave2"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/wave3"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave3"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:id="@+id/wave4"
-                android:orientation="horizontal"
+            android:background="@drawable/wave3"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/wave4"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave4"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="40dp"
-                android:id="@+id/wave5"
-                android:orientation="horizontal"
+            android:background="@drawable/wave4"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/wave5"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave1"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="50dp"
-                android:id="@+id/wave6"
-                android:orientation="horizontal"
+            android:background="@drawable/wave1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="50dp"
+            android:id="@+id/wave6"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave2"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="60dp"
-                android:id="@+id/wave7"
-                android:orientation="horizontal"
+            android:background="@drawable/wave2"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="60dp"
+            android:id="@+id/wave7"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave3"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="70dp"
-                android:id="@+id/wave8"
-                android:orientation="horizontal"
+            android:background="@drawable/wave3"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="70dp"
+            android:id="@+id/wave8"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave4"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="80dp"
-                android:id="@+id/wave9"
-                android:orientation="horizontal"
+            android:background="@drawable/wave4"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="80dp"
+            android:id="@+id/wave9"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave1"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="90dp"
-                android:id="@+id/wave10"
-                android:orientation="horizontal"
+            android:background="@drawable/wave1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="90dp"
+            android:id="@+id/wave10"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave2"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="90dp"
-                android:id="@+id/wave11"
-                android:orientation="horizontal"
+            android:background="@drawable/wave2"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="90dp"
+            android:id="@+id/wave11"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave3"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="90dp"
-                android:id="@+id/wave12"
-                android:orientation="horizontal"
+            android:background="@drawable/wave3"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="90dp"
+            android:id="@+id/wave12"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave4"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="90dp"
-                android:id="@+id/wave13"
-                android:orientation="horizontal"
+            android:background="@drawable/wave4"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="90dp"
+            android:id="@+id/wave13"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave1"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="90dp"
-                android:id="@+id/wave14"
-                android:orientation="horizontal"
+            android:background="@drawable/wave1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="90dp"
+            android:id="@+id/wave14"
+            android:orientation="horizontal"
 
-                android:background="@drawable/wave2"/>
-
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:background="#70ffffff"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageviewpark"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/park" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="130dp"
-                android:layout_weight="1"
-                android:background="#70ffffff"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageviewgarage"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/garage" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="250dp"
-                android:layout_weight="1"
-                android:background="#70ffffff"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageviewshowroom"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/showroom" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="360dp"
-                android:layout_weight="1"
-                android:background="#70ffffff"
-                android:elevation="20dp">
-
-                <ImageView
-                    android:id="@+id/imageviewparked"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/parked" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="460dp"
-                android:layout_weight="1"
-                android:background="#70ffffff"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageviewparking"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/parking" />
-            </RelativeLayout>
+            android:background="@drawable/wave2"/>
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
 
-    <ImageView
-        android:id="@+id/userprofile"
+        app:layout_constraintRight_toLeftOf="@+id/guideline87"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline85"
+        app:layout_constraintTop_toTopOf="@+id/guideline96"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/plank"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline95"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="0dp"
+        android:id="@+id/constraintLayout5">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout"
-        android:layout_marginTop="26dp"
-        app:srcCompat="@drawable/avatar" />
+        android:id="@+id/guideline96"
+        app:layout_constraintGuide_percent="0.6"
+        android:orientation="horizontal" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline99"
+        app:layout_constraintGuide_percent="0.52"
+        android:orientation="horizontal" />
 
-</RelativeLayout>
+    <ImageView
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/docknow"
+        android:id="@+id/imageviewpark"
+        app:layout_constraintRight_toLeftOf="@+id/guideline87"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="45dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline85"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline97"
+        app:layout_constraintTop_toTopOf="@+id/guideline99"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
+    <ImageView
+        android:id="@+id/imageviewparked"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/mydocking"
+        app:layout_constraintRight_toLeftOf="@+id/guideline87"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline85"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline100"
+        app:layout_constraintTop_toTopOf="@+id/guideline97"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline97"
+        app:layout_constraintGuide_percent="0.82"
+        android:orientation="horizontal" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline100"
+        app:layout_constraintGuide_percent="0.90"
+        android:orientation="horizontal" />
+
+
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline98"
+        app:layout_constraintGuide_percent="1"
+        android:orientation="horizontal" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline101"
+        app:layout_constraintGuide_percent="0.63"
+        android:orientation="horizontal" />
+    <FrameLayout
+
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0">
+
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

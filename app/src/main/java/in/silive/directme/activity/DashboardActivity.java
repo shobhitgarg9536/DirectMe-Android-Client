@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -31,6 +34,9 @@ import java.util.Observable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.silive.directme.Controller;
+import in.silive.directme.fragments.ParkingDetailsFragment;
+import in.silive.directme.fragments.UserDetailsFragment;
+import in.silive.directme.fragments.UserProfileFragment;
 import in.silive.directme.utils.Keys;
 import in.silive.directme.utils.NetworkUtils;
 import in.silive.directme.R;
@@ -44,13 +50,16 @@ import in.silive.directme.utils.ToasterUtils;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, java.util.Observer,Animation.AnimationListener {
 
-    public static final String[] co = new String[5];
-    public int[] commod = new int[5];
+    public static final String[] co = new String[7];
+    public int[] commod = new int[7];
     String token;
     int i;
     SharedPreferences sharedpreferences;
     Controller controller = new Controller();
     boolean network_available;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    UserProfileFragment fragment;
     BroadcastReceiver mRegistrationBroadcastReceiver;
     FetchData apicalling;
 
@@ -64,7 +73,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     TextView timber;
     @BindView(R.id.tvGold)
     TextView gold_coin;
-
+    @BindView(R.id.tvExperience)
+    TextView experiencetxtview;
     @BindView(R.id.imageviewpark)
     ImageView park;
     @BindView(R.id.imageviewparked)
@@ -104,6 +114,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.wave14)
     RelativeLayout wave14;
 
+    @BindView(R.id.userprofile)
+    ImageView avatar;
+     Bundle args;
+    JSONObject jsonObject;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +132,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         parking.setOnClickListener(this);
         garage.setOnClickListener(this);
         showroom.setOnClickListener(this);
+
+        avatar.setOnClickListener(this);
+        avatar.setEnabled(false);
+
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.waveanimation);
         animation.setFillAfter(true);
         animation.setAnimationListener(this);
@@ -205,29 +223,36 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 public void processFinish(String output) {
                     try {
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        JSONObject jsonObject = new JSONObject(output);
+                        jsonObject = new JSONObject(output);
                         String username = jsonObject.getString(Keys.username);
                         String user_id = jsonObject.getString(Keys.user_id);
                         String island_id = jsonObject.getString(Keys.island_id);
                         String island_name = jsonObject.getString(Keys.island_name);
+                        String first_name=jsonObject.getString(Keys.firstname);
+                        String experience=jsonObject.getString(Keys.experience);
+                        experiencetxtview.setText(experience);
                         editor.putString(Keys.username, username);
                         editor.putString(Keys.user_id, user_id);
                         editor.putString(Keys.island_id, island_id);
                         editor.putString(Keys.island_name, island_name);
+                        editor.putString(Keys.firstname,first_name);
+                        editor.putString(Keys.experience,experience);
                         JSONArray things = jsonObject.getJSONArray(Keys.inventory);
-                        for (i = 0; i < 5; i++) {
-                            JSONObject jsonObject1 = things.getJSONObject(i);
-                            commod[i] = Integer.parseInt(jsonObject1.getString(Keys.count));
+                            for(i=0;i<5;i++) {
+                                JSONObject jsonObject1 = things.getJSONObject(i);
+                                commod[i] = Integer.parseInt(jsonObject1.getString(Keys.count));
 
-                            //putting values
-                            editor.putString(co[i], Integer.toString(commod[i]));
-                            editor.apply();
-                            controller.setBambooCount(commod[3]);
+                                //putting values
+                                editor.putString(Keys.co[i], Integer.toString(commod[i]));
+                                editor.commit();
+                                avatar.setEnabled(true);
+                            }
+                            controller.setBambooCount(commod[1]);
                             controller.setBananaCount(commod[2]);
-                            controller.setTimberCount(commod[0]);
-                            controller.setCoconutCount(commod[1]);
-                            controller.setGoldCoinCount(commod[4]);
-                        }
+                            controller.setTimberCount(commod[3]);
+                            controller.setCoconutCount(commod[4]);
+                            controller.setGoldCoinCount(commod[0]);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -237,15 +262,15 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             apicalling.execute();
         } else {
             for (i = 0; i < 5; i++) {
-                if (sharedpreferences.contains(DashboardActivity.co[i])) {
-                    commod[i] = Integer.parseInt(sharedpreferences.getString(DashboardActivity.co[i], ""));
-                }
+
+                    commod[i] = Integer.parseInt(sharedpreferences.getString(Keys.co[i], ""));
+
             }
-            controller.setBambooCount(commod[3]);
+            controller.setBambooCount(commod[1]);
             controller.setBananaCount(commod[2]);
-            controller.setTimberCount(commod[0]);
-            controller.setCoconutCount(commod[1]);
-            controller.setGoldCoinCount(commod[4]);
+            controller.setTimberCount(commod[3]);
+            controller.setCoconutCount(commod[4]);
+            controller.setGoldCoinCount(commod[0]);
         }
     }
 
@@ -272,6 +297,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             case R.id.imageviewgarage:
                 Intent in = new Intent(DashboardActivity.this, DockyardActivity.class);
                 startActivity(in);
+                break;
+            case R.id.userprofile:
+
+                    fragmentInitialise();
+
                 break;
         }
     }
@@ -313,5 +343,21 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    void fragmentInitialise()
+    {fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,
+                R.anim.exit_to_right);
+
+
+
+        fragment = new UserProfileFragment();
+
+
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+
+        fragmentTransaction.commit();
+
+    }
 
 }
