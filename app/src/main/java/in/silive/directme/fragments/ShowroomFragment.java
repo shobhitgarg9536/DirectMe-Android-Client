@@ -21,10 +21,6 @@ import org.json.JSONObject;
 
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
-import in.silive.directme.listeners.FetchDataListener;
-import in.silive.directme.network.FetchData;
-import in.silive.directme.utils.Constants;
-import in.silive.directme.utils.NetworkUtils;
 
 public class ShowroomFragment extends Fragment {
     JSONObject json_data;
@@ -125,15 +121,13 @@ public class ShowroomFragment extends Fragment {
     }
 
     private void startFragment() {
-        Fragment dockyardBuyShipFragment = new Fragment1();
-        Fragment dockyardBuyShipFragment2 = new Fragment2();
+
+        Fragment buyShipResources = new BuyShipResources();
         Bundle bundle = new Bundle();
         bundle.putString("json", json_data.toString());
-        dockyardBuyShipFragment.setArguments(bundle);
-        dockyardBuyShipFragment2.setArguments(bundle);
+        buyShipResources.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.constraintLayoutfragment1, dockyardBuyShipFragment);
-        transaction.add(R.id.constraintLayoutfragment2, dockyardBuyShipFragment2);
+        transaction.add(android.R.id.content, buyShipResources);
         transaction.addToBackStack(null);
         transaction.commit();
     }

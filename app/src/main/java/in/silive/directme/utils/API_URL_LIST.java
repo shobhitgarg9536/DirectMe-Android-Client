@@ -19,4 +19,5 @@ public class API_URL_LIST {
     public static final String FIREBASE_TOKEN_UPDATE = "user/fcm/";
     public static final String UPGRADE_URL="/core/upgrade-ship/";
     public static final String BUY_SLOT="/core/buy-slot/";
+    public static final String BUY_SHIP="/core/buy-ship/";
 }

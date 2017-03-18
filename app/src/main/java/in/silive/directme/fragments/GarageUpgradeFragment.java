@@ -68,6 +68,11 @@ public class GarageUpgradeFragment extends Fragment {
         tvTimberCount = (TextView) view.findViewById(R.id.textViewUpgradeTimber);
         pbUpgradeShip = (ProgressBar) view.findViewById(R.id.progressBarUpgradeBoat);
 
+        sbBamboo.setEnabled(false);
+        sbBanana.setEnabled(false);
+        sbCoconut.setEnabled(false);
+        sbTimber.setEnabled(false);
+
         Bundle bundle = getArguments();
         String upgradeShipJsonArray = bundle.getString("json");
         ship_id = bundle.getString("ship_id");
