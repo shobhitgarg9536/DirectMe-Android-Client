@@ -1,8 +1,10 @@
 package in.silive.directme.fragments;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,9 +27,12 @@ public class ShowroomFragment extends Fragment {
     int slot;
     ImageView ivBoatImage;
     ProgressBar pbShip;
-    TextView banana_req, gold_req, wood_req, bamboo_req, coconut_req,tv_boat_name,tv_cost_multiplier,tv_buy_cost,tv_experience;
-    int banana_r = 0, gold_r = 0, bamboo_r = 0, wood_r = 0, coconut_r = 0;
+    TextView tv_banana, tv_gold, tv_wood, tv_bamboo, tv_coconut,tv_boat_name,tv_cost_multiplier,tv_buy_cost,tv_experience;
+    int banana_req = 0, bamboo_req = 0, timber_req = 0, coconut_req = 0, item_id, count;
     String boatName,costMultiplier,buyCost,experienceGain,boatImageUrl;
+    ImageView iv_buy_ship;
+    SharedPreferences sharedPreferences;
+    android.support.constraint.ConstraintLayout clfragment1, clfragment2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,27 +45,39 @@ public class ShowroomFragment extends Fragment {
             costMultiplier = json_data.getString("cost_multiplier");
             buyCost = json_data.getString("buy_cost");
             experienceGain = json_data.getString("experience_gain");
+            JSONArray jsonArray = json_data.getJSONArray("items_required");
+            for(int i= 0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                item_id = jsonObject.getInt("item_id");
+                count = jsonObject.getInt("count");
+                setInventoriesCount(item_id, count);
+            }
         } catch (JSONException e) {
-            json_data = null;
             e.printStackTrace();
         }
+
         View rootView = inflater.inflate(R.layout.showroom_fragment, container,
                 false);
 
-        banana_req = (TextView) rootView.findViewById(R.id.textView_showroom_banana_count);
-        bamboo_req = (TextView) rootView.findViewById(R.id.textView_showroom_bamboo_count);
-        gold_req = (TextView) rootView.findViewById(R.id.textView_showroom_gold_count);
-        wood_req = (TextView) rootView.findViewById(R.id.textView_showroom_wood_count);
-        coconut_req = (TextView) rootView.findViewById(R.id.textView_showroom_coconut_count);
+        tv_banana = (TextView) rootView.findViewById(R.id.textView_showroom_banana_count);
+        tv_bamboo = (TextView) rootView.findViewById(R.id.textView_showroom_bamboo_count);
+        tv_gold = (TextView) rootView.findViewById(R.id.textView_showroom_gold_count);
+        tv_wood = (TextView) rootView.findViewById(R.id.textView_showroom_wood_count);
+        tv_coconut = (TextView) rootView.findViewById(R.id.textView_showroom_coconut_count);
         tv_boat_name = (TextView) rootView.findViewById(R.id.textviewshowroomboatname);
         tv_cost_multiplier = (TextView) rootView.findViewById(R.id.textviewshowroomcostmultiplier);
         tv_experience = (TextView) rootView.findViewById(R.id.textviewshowroomexperiencegain);
         tv_buy_cost = (TextView) rootView.findViewById(R.id.textviewshowroombuycost);
         pbShip = (ProgressBar) rootView.findViewById(R.id.progressBarShowroomShip);
+        iv_buy_ship = (ImageView) rootView.findViewById(R.id.imageViewShowroomBuy);
+        clfragment1 = (android.support.constraint.ConstraintLayout) rootView.findViewById(R.id.constraintLayoutfragment1);
+        clfragment2 = (android.support.constraint.ConstraintLayout) rootView.findViewById(R.id.constraintLayoutfragment2);
+
         tv_boat_name.setText(boatName);
         tv_cost_multiplier.setText(costMultiplier);
         tv_experience.setText(experienceGain);
         tv_buy_cost.setText(buyCost);
+        tv_gold.setText(buyCost);
         ivBoatImage = (ImageView) rootView.findViewById(R.id.imageViewShowroomBoat);
         Picasso.with(DirectMe.getInstance())
                 .load(boatImageUrl)
@@ -74,14 +92,43 @@ public class ShowroomFragment extends Fragment {
 
                     }
                 });
-        banana_req.setText(String.valueOf(banana_r));
-        bamboo_req.setText(String.valueOf(bamboo_r));
-        gold_req.setText(String.valueOf(gold_r));
-        wood_req.setText(String.valueOf(wood_r));
-        coconut_req.setText(String.valueOf(coconut_r));
+        sharedPreferences = DirectMe.getInstance().sharedPrefs;
+        tv_banana.setText(String.valueOf(banana_req));
+        tv_bamboo.setText(String.valueOf(bamboo_req));
+        tv_wood.setText(String.valueOf(timber_req));
+        tv_coconut.setText(String.valueOf(coconut_req));
 
-
+        iv_buy_ship.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startFragment();
+            }
+        });
         return rootView;
 
+    }
+
+    private void setInventoriesCount(int item_id, int count) {
+        if(item_id == 1)
+            coconut_req = count;
+        else if(item_id == 2)
+            timber_req = count;
+        else if(item_id == 3)
+            banana_req = count;
+        else if(item_id == 4)
+            bamboo_req = count;
+        else{}
+    }
+
+    private void startFragment() {
+
+        Fragment buyShipResources = new BuyShipResources();
+        Bundle bundle = new Bundle();
+        bundle.putString("json", json_data.toString());
+        buyShipResources.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(android.R.id.content, buyShipResources);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

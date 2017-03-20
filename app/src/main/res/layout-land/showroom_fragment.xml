@@ -97,8 +97,8 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
+            android:id="@+id/imageViewShowroomBuy"
             app:layout_constraintBottom_toBottomOf="parent"
-
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -508,4 +508,23 @@
         app:layout_constraintGuide_percent="0.052532833"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/constraintLayoutfragment1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline3"></android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/constraintLayoutfragment2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"></android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

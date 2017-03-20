@@ -74,7 +74,7 @@ public class ParknowUsershipselectFragment extends android.support.v4.app.Fragme
             boatImageUrl = json_data.getString("ship_image");
             status = json_data.getString("ship_status");
             id=json_data.getString("ship_id");
-            //  buyCost = json_data.getString("buy_cost");
+            //  goldCoinCost = json_data.getString("buy_cost");
             //  experienceGain = json_data.getString("experience_gain");
 
         } catch (JSONException e) {

@@ -3,6 +3,7 @@ package in.silive.directme.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -70,6 +71,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             //Calling a new function to handle signin
+            int statusCode = result.getStatus().getStatusCode();
+            System.out.print(statusCode);
             handleSignInResult(result);
         }
     }
