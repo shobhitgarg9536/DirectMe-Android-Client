@@ -1,4 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,13 +8,49 @@
 
     <ImageView
         android:id="@+id/iv_boat"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="Animation"
-        android:src="@drawable/splashboat" />
+        android:src="@drawable/splashboat"
+
+        app:layout_constraintRight_toLeftOf="@+id/guideline112"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline113"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintTop_toTopOf="@+id/guideline111"
+        android:layout_marginTop="8dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline110"
+        app:layout_constraintGuide_percent="0"
+        android:orientation="vertical" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline111"
+        app:layout_constraintGuide_percent="0.21"
+        android:orientation="horizontal" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline112"
+        app:layout_constraintGuide_percent="0.6"
+        android:orientation="vertical" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline113"
+        app:layout_constraintGuide_percent="1"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="horizontal" />
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

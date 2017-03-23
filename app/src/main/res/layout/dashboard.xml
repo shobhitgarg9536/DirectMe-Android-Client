@@ -95,14 +95,21 @@
         app:layout_constraintLeft_toLeftOf="@+id/guideline81"
         app:layout_constraintRight_toLeftOf="@+id/guideline79"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/guideline23"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginTop="0dp">
 
         <ImageView
             android:id="@+id/experience"
+
             android:layout_width="20dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+
+
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            app:srcCompat="@drawable/xpicon" />
+            app:srcCompat="@drawable/expicon" />
 
         <TextView
             android:id="@+id/tvExperience"
@@ -722,22 +729,23 @@
         android:id="@+id/guideline101"
         app:layout_constraintGuide_percent="0.63"
         android:orientation="horizontal" />
+
     <FrameLayout
 
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp"
-
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+
         android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
 

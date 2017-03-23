@@ -39,8 +39,17 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
 
     @Override
     public DataUserSelectAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_layout_userselect, viewGroup, false);
-        return new ViewHolder(view);
+
+        if(user_details.size()<=5) {
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_layout_recycler, viewGroup, false);
+            return new ViewHolder(view);
+        }
+        else  if(user_details.size()>=5) {
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_layout_userselect, viewGroup, false);
+            return new ViewHolder(view);
+        }
+        return null;
+
     }
     private String userid;
     @Override

@@ -35,11 +35,12 @@ import in.silive.directme.utils.API_URL_LIST;
  */
 
 public class UserDetailsFragment extends Fragment {
-    public final String user_names[] = new String[10];
-    public final String user_id[]=new String[10];
+    public  String user_names[] ;
+    public  String user_id[];
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
     FetchData apicalling;
+    RecyclerView.LayoutManager layoutManager;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +57,13 @@ public class UserDetailsFragment extends Fragment {
     private void initViews() {
 
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 5);
+        if(arr.length()<5) {
+            layoutManager = new GridLayoutManager(getActivity(), arr.length());
+        }
+        else if(arr.length()>=5)
+        {
+            layoutManager = new GridLayoutManager(getActivity(), 5);
+        }
 
         recyclerView.setLayoutManager(layoutManager);
 
@@ -67,7 +74,7 @@ public class UserDetailsFragment extends Fragment {
 
 
     }
-
+    JSONArray arr;
     void connect() {
         boolean network_available;
         final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
@@ -85,7 +92,9 @@ public class UserDetailsFragment extends Fragment {
                     try {
 
                         // Extract JSON array from the response
-                        JSONArray arr = new JSONArray(output);
+                        arr = new JSONArray(output);
+                        user_names= new String[arr.length()];
+                        user_id=new String[arr.length()];
                         // If no of array elements is not zero
                         if (arr.length() != 0) {
 
@@ -93,6 +102,7 @@ public class UserDetailsFragment extends Fragment {
                             for (int i = 0; i < arr.length(); i++) {
                                 // Get JSON object
                                 JSONObject obj = (JSONObject) arr.get(i);
+
                                 user_names[i] = obj.get("name").toString();
                                 user_id[i]=obj.get("user_id").toString();
                                 initViews();
@@ -116,6 +126,8 @@ public class UserDetailsFragment extends Fragment {
     }
 
     private ArrayList<UserDetailsList> prepareData() {
+
+
 
         ArrayList<UserDetailsList> user_details = new ArrayList<>();
         for (int i=0;i<user_names.length;i++) {
