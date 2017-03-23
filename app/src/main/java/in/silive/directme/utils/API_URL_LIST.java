@@ -20,4 +20,5 @@ public class API_URL_LIST {
     public static final String UPGRADE_URL="/core/upgrade-ship/";
     public static final String BUY_SLOT="/core/buy-slot/";
     public static final String BUY_SHIP="/core/buy-ship/";
+    public static final String LEADERBOARD_URL="/user/leaderboard/";
 }
