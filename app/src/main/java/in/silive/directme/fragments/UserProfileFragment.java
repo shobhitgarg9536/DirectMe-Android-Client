@@ -23,27 +23,30 @@ import in.silive.directme.utils.LoggerUtils;
 
 public class UserProfileFragment extends Fragment {
     SharedPreferences sharedpreference;
-    @BindView(R.id.progressBar_banana)
-    ProgressBar progressBar_banana;
-    @BindView(R.id.progressBar_coconut)
-    ProgressBar progressBar_coconut;
-    @BindView(R.id.progressBar_bamboo)
-    ProgressBar progressBar_bamboo;
-    @BindView(R.id.progressBar_gold)
-    ProgressBar progressBar_gold;
-    @BindView(R.id.progressBar_wood)
-    ProgressBar progressBar_wood;
+
     @BindView(R.id.circularProgressbar)
     ProgressBar progressBar_experience;
     @BindView(R.id.username)
     TextView user_name;
-    int Banana_Count;
-    int Bamboo_Count;
-    int Gold_Count;
-    int Coconut_Count;
-     int Wood_Count;
-     int Experience_Count;
-   String commodity[]=new String[5];
+    @BindView(R.id.textView_bamboo_count)
+    TextView bamboo_count;
+    @BindView(R.id.textView_banana_count)
+    TextView banana_count;
+    @BindView(R.id.textView_gold_count)
+    TextView gold_count;
+    @BindView(R.id.textView_coconut_count)
+    TextView coconut_count;
+    @BindView(R.id.textView_wood_count)
+    TextView wood_count;
+    @BindView(R.id.island)
+    ImageView island;
+    String Banana_Count;
+    String Bamboo_Count;
+    String Gold_Count;
+    String Coconut_Count;
+    String Wood_Count;
+    int Experience_Count;
+    String commodity[]=new String[5];
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.user_profile, container,
@@ -55,32 +58,29 @@ public class UserProfileFragment extends Fragment {
             commodity[i]=sharedpreference.getString(Keys.co[i],"");
         }
 
-            this.Banana_Count = Integer.parseInt(commodity[2]);
-
-            progressBar_banana.setMax(10000);
-            progressBar_banana.setProgress(Banana_Count);
+        this.Banana_Count = commodity[2];
+        banana_count.setText(Banana_Count);
 
 
-             this.Bamboo_Count = Integer.parseInt(commodity[1]);
-             progressBar_bamboo.setMax(10000);
 
 
-             progressBar_bamboo.setProgress(Bamboo_Count);
+        this.Bamboo_Count = commodity[1];
+        bamboo_count.setText(Bamboo_Count);
 
 
-             this.Gold_Count = Integer.parseInt(commodity[0]);
-             progressBar_gold.setMax(10000);
-             progressBar_gold.setProgress(Gold_Count);
 
 
-             this.Coconut_Count = Integer.parseInt(commodity[4]);
-             progressBar_coconut.setMax(10000);
-             progressBar_coconut.setProgress(Coconut_Count);
+
+        this.Gold_Count = commodity[0];
+        gold_count.setText(Gold_Count);
 
 
-             this.Wood_Count = Integer.parseInt(commodity[3]);
-             progressBar_wood.setMax(10000);
-             progressBar_wood.setProgress(Wood_Count);
+        this.Coconut_Count = commodity[4];
+        coconut_count.setText(Coconut_Count);
+
+
+        this.Wood_Count = commodity[3];
+        wood_count.setText(Wood_Count);
 
         final String expreience=sharedpreference.getString(Keys.experience,"");
         Experience_Count =Integer.parseInt(expreience);
@@ -88,8 +88,26 @@ public class UserProfileFragment extends Fragment {
         progressBar_experience.setProgress(Experience_Count);
         final  String username=sharedpreference.getString(Keys.username,"");
         user_name.setText(username);
-
+        final String island_id=sharedpreference.getString(Keys.island_id,"");
+        islandImage(island_id);
         return rootView;
     }
+    void islandImage(String island_id)
+    {
+        int id=Integer.parseInt(island_id);
+        switch (id)
+        {
+            case 1:island.setImageResource(R.drawable.coconut_island);
+                break;
+            case 2:island.setImageResource(R.drawable.wood_island);
+                break;
+            case 3:island.setImageResource(R.drawable.banana_island);
+                break;
+            case 4:island.setImageResource(R.drawable.bamboo_island);
+                break;
+            case 5:island.setImageResource(R.drawable.pirate_island);
+                break;
+        }
 
+    }
 }

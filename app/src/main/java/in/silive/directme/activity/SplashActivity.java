@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.constraint.ConstraintLayout;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -37,7 +38,7 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
     @BindView(R.id.iv_boat)
     ImageView iv_boat;
     @BindView(R.id.rl)
-    RelativeLayout rl;
+    ConstraintLayout rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

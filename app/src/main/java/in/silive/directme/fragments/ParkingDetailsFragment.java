@@ -1,6 +1,8 @@
 package in.silive.directme.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -10,11 +12,13 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import in.silive.directme.R;
+import in.silive.directme.activity.DashboardActivity;
+import in.silive.directme.activity.ParkNowActivity;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
@@ -67,8 +73,9 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
     // we can slow animation by changing frame duration
     private static final int FRAME_DURATION = 150; // in ms !
     // frame duration
+    View v;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.portdetails, container,
+        v = inflater.inflate(R.layout.portdetails, container,
                 false);
 
 
@@ -100,14 +107,14 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                         .into(boat);
 
                 UsernameTextview.setText(username);
-                 Dock.setEnabled(false);
+                Dock.setEnabled(false);
             }
             else
             {
 
                 UsernameTextview.setText("N-A");
                 TypeTextView.setText(type);
-               Dock.setEnabled(true);
+                Dock.setEnabled(true);
 
 
             }
@@ -138,9 +145,10 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
 
 
     }
+    String  ship_image;
     void alertDialog()
     {final String ship_img=sharedPreferences.getString(Constants.SHIP_IMAGE_URL,"");
-
+        ship_image=ship_img;
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Do you want to Dock your ship");
         builder1.setCancelable(true);
@@ -151,10 +159,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                     public void onClick(DialogInterface dialog, int id) {
                         flag=1;
                         connect();
-                        Picasso.with(getContext())
-                                .load(ship_img)
-                                .into(boat);
-                        Toast.makeText(getActivity(),"Your ship is docked succesfully",Toast.LENGTH_LONG).show();
+
                     }
                 });
 
@@ -171,6 +176,14 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+    void dock()
+    {
+        Picasso.with(getContext())
+                .load(ship_image)
+                .into(boat);
+        initiatePopupWindow("Congratulation your ship has been docked succesfully",1);
+    }
+
     void connect() {
         final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
         final String ship_id=sharedPreferences.getString(Constants.SHIP_ID,"");
@@ -184,6 +197,18 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
 
                 @Override
                 public void processFinish(String output) {
+                    final String responsecode=sharedPreferences.getString(Constants.RESPONSE_CODE,"");
+                    if (Integer.parseInt(responsecode)==201)
+                    {
+                        dock();
+
+
+
+                    }
+                    else
+                    {
+                        initiatePopupWindow("Sorry your ship is not docked...",0);
+                    }
 
                 }
             });
@@ -200,6 +225,47 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
 
         }
     }
+    private PopupWindow pwindo;
+    Button ok;
+    int dock_status;
+    private void initiatePopupWindow(String message_status,int status) {
+        try {
+// We need to get the instance of the LayoutInflater
+            dock_status=status;
+            LayoutInflater layoutInflater = (LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = layoutInflater.inflate(R.layout.screenpopup,
+                    (ViewGroup)v.findViewById(R.id.popup_element));
+
+            pwindo = new PopupWindow(layout, 580, 400, true);
+
+            pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+
+            ok = (Button) layout.findViewById(R.id.ok);
+
+            ok.setOnClickListener(cancel_button_click_listener);
+            TextView message=(TextView) layout.findViewById(R.id.dock_status);
+            message.setText(message_status);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private View.OnClickListener cancel_button_click_listener = new View.OnClickListener() {
+        public void onClick(View v) {
+            if(dock_status==1) {
+                Intent i = new Intent(getActivity(), DashboardActivity.class);
+                startActivity(i);
+                pwindo.dismiss();
+            }
+            else
+            {
+                pwindo.dismiss();
+            }
+
+        }
+    };
+
+
     private void startAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {
