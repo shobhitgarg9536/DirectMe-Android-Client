@@ -87,6 +87,7 @@ public class LeaderBoardFragment extends Fragment {
         ArrayList<LeaderBoardObject> leaderUserListArrayList = new ArrayList<>();
         int countuserList = jsonArray.length();
         for (int i = 0; i < countuserList; i++) {
+
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String user_name = jsonObject.getString("username");
