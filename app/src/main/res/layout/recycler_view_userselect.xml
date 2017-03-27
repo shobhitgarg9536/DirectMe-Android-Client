@@ -23,6 +23,13 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="583dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline9"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="vertical"
+         />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -33,6 +40,14 @@
         android:orientation="horizontal"
         tools:layout_editor_absoluteY="354dp"
         tools:layout_editor_absoluteX="0dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+
+        android:id="@+id/guideline8"
+        android:orientation="horizontal"
+        />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -42,6 +57,7 @@
         android:orientation="horizontal"
         tools:layout_editor_absoluteY="4dp"
         tools:layout_editor_absoluteX="0dp" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/card_recycler_view"
@@ -58,5 +74,21 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp" />
+
+<ImageView
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:id="@+id/refresh"
+    android:src="@drawable/ic_arrowleft"
+    app:layout_constraintRight_toLeftOf="@+id/guideline9"
+    app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+    app:layout_constraintBottom_toTopOf="@+id/guideline8"
+    app:layout_constraintTop_toTopOf="@+id/guideline12"
+    android:layout_marginBottom="0dp"
+    app:layout_constraintHorizontal_bias="0.6"
+    android:layout_marginRight="24dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="32dp" />
+
 
 </android.support.constraint.ConstraintLayout>
