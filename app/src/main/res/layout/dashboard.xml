@@ -45,11 +45,12 @@
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="47dp" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userprofile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:srcCompat="@drawable/avatar"
+
         app:layout_constraintRight_toLeftOf="@+id/guideline78"
         app:layout_constraintLeft_toLeftOf="@+id/guideline35"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
@@ -88,9 +89,6 @@
         android:id="@+id/experience_show"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
-        android:background="@android:color/transparent"
-
         app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintLeft_toLeftOf="@+id/guideline81"
         app:layout_constraintRight_toLeftOf="@+id/guideline79"

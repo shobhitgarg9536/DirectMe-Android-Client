@@ -16,4 +16,5 @@ public final class Keys {
     public static String fcm_token = "fcm_token";
     public static String experience="experience";
     public static String[] co={"gold_count","bamboo_count","banana_count","timber_count","coconut_count"};
+    public static String gravatar="gravatar";
 }

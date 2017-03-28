@@ -21,19 +21,14 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
 import in.silive.directme.R;
 import in.silive.directme.activity.DashboardActivity;
-import in.silive.directme.activity.ParkNowActivity;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
@@ -77,20 +72,14 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.portdetails, container,
                 false);
-
-
         UsernameTextview = (TextView) v.findViewById(R.id.username);
-
         TypeTextView = (TextView) v.findViewById(R.id.type);
-
         land=(ImageView)v.findViewById(R.id.land);
         boat=(ImageView)v.findViewById(R.id.boat);
-
         r1=(ConstraintLayout)v.findViewById(R.id.background);
         Dock=(Button)v.findViewById(R.id.catchbutton);
         Dock.setOnClickListener(this);
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
-
         try {
             json_data= new JSONObject(getArguments().getString("data", ""));
             type = json_data.get("type").toString();
@@ -107,30 +96,20 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                         .into(boat);
 
                 UsernameTextview.setText(username);
-                Dock.setEnabled(false);
+                Dock.setVisibility(View.GONE);
             }
             else
             {
-
                 UsernameTextview.setText("N-A");
                 TypeTextView.setText(type);
                 Dock.setEnabled(true);
-
-
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
         startAnimation();
-
-
-
-
-
         return v;
     }
-
     @Override
     public void onClick(View v) {
         if(flag==0)
@@ -142,8 +121,6 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         {
             Dock.setEnabled(false);
         }
-
-
     }
     String  ship_image;
     void alertDialog()
@@ -152,17 +129,14 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Do you want to Dock your ship");
         builder1.setCancelable(true);
-
         builder1.setPositiveButton(
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         flag=1;
                         connect();
-
                     }
                 });
-
         builder1.setNegativeButton(
                 "No",
                 new DialogInterface.OnClickListener() {
@@ -172,7 +146,6 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                         Toast.makeText(getActivity(),"Your ship is not docked",Toast.LENGTH_LONG).show();
                     }
                 });
-
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
@@ -183,7 +156,6 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                 .into(boat);
         initiatePopupWindow("Congratulation your ship has been docked succesfully",1);
     }
-
     void connect() {
         final String token = sharedPreferences.getString(Constants.AUTH_TOKEN, "");
         final String ship_id=sharedPreferences.getString(Constants.SHIP_ID,"");
@@ -192,18 +164,13 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
             apicalling = new FetchData(new FetchDataListener() {
                 @Override
                 public void processStart() {
-
                 }
-
                 @Override
                 public void processFinish(String output) {
                     final String responsecode=sharedPreferences.getString(Constants.RESPONSE_CODE,"");
                     if (Integer.parseInt(responsecode)==201)
                     {
                         dock();
-
-
-
                     }
                     else
                     {
@@ -213,7 +180,6 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                 }
             });
             String post_data = "";
-
             try {
                 post_data= URLEncoder.encode("ship_id", "UTF-8") + "=" + URLEncoder.encode(ship_id, "UTF-8");
                 post_data+="&"+URLEncoder.encode("port_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
@@ -235,13 +201,9 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
             LayoutInflater layoutInflater = (LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View layout = layoutInflater.inflate(R.layout.screenpopup,
                     (ViewGroup)v.findViewById(R.id.popup_element));
-
             pwindo = new PopupWindow(layout, 580, 400, true);
-
             pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-
             ok = (Button) layout.findViewById(R.id.ok);
-
             ok.setOnClickListener(cancel_button_click_listener);
             TextView message=(TextView) layout.findViewById(R.id.dock_status);
             message.setText(message_status);
@@ -254,7 +216,11 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         public void onClick(View v) {
             if(dock_status==1) {
                 Intent i = new Intent(getActivity(), DashboardActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
+                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                getActivity().finish();
                 pwindo.dismiss();
             }
             else
@@ -264,14 +230,10 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
 
         }
     };
-
-
     private void startAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {
-
             Bitmap[] bitmaps = BitmapUtils.getBitmapsFromSprite(waterbmp, NB_FRAMES, COUNT_X, COUNT_Y, FRAME_H, FRAME_W);
-
             // create animation programmatically
             final AnimationDrawable animation = new AnimationDrawable();
             animation.setOneShot(false); // repeat animation
@@ -279,24 +241,19 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                 animation.addFrame(new BitmapDrawable(getResources(), bitmaps[i]),
                         FRAME_DURATION);
             }
-
             // load animation on image
             if (Build.VERSION.SDK_INT < 16) {
                 r1.setBackgroundDrawable(animation);
             } else {
                 r1.setBackground(animation);
             }
-
             // start animation on image
             r1.post(new Runnable() {
-
                 @Override
                 public void run() {
                     animation.start();
                 }
-
             });
-
         }
     }
 }
