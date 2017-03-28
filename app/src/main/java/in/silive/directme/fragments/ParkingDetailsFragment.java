@@ -108,6 +108,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
             e.printStackTrace();
         }
         startAnimation();
+
         return v;
     }
     @Override
@@ -149,6 +150,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
     void dock()
     {
         Picasso.with(getContext())
@@ -176,7 +178,6 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                     {
                         initiatePopupWindow("Sorry your ship is not docked...",0);
                     }
-
                 }
             });
             String post_data = "";
@@ -189,6 +190,9 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
             apicalling.setArgs(API_URL_LIST.Dock_Url, token, post_data);
             apicalling.execute();
 
+        }else{
+            in.silive.directme.dialog.AlertDialog alertDialog = new in.silive.directme.dialog.AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
     private PopupWindow pwindo;
@@ -230,6 +234,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
 
         }
     };
+
     private void startAnimation() {
         Bitmap waterbmp = BitmapUtils.getBitmapFromAssets("splashh.png");
         if (waterbmp != null) {

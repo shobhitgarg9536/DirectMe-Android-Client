@@ -26,6 +26,7 @@ import java.net.URLEncoder;
 import in.silive.directme.R;
 import in.silive.directme.activity.DashboardActivity;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
@@ -208,6 +209,9 @@ public class GarageUpgradeFragment extends Fragment {
             }
             fetchData.setArgs(API_URL_LIST.UPGRADE_URL, token, post_data);
             fetchData.execute();
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
 

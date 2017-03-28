@@ -21,10 +21,6 @@ import in.silive.directme.utils.API_URL_LIST;
 
 public class ParkingActivity extends AppCompatActivity {
     ViewPager mViewPager;
-    boolean network_available;
-    FetchData fetchData;
-    int count = 1;
-    JSONArray user;
     SharedPreferences sharedpreferences;
 
     @Override
@@ -38,32 +34,6 @@ public class ParkingActivity extends AppCompatActivity {
         startfragments();
     }
 
-    void c1onnect() {
-        final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");
-        network_available = NetworkUtils.isNetConnected();
-        if (network_available) {
-            fetchData = new FetchData(new FetchDataListener() {
-                @Override
-                public void processStart() {
-
-                }
-
-                @Override
-                public void processFinish(String output) {
-                    try {
-                        user = new JSONArray(output);
-                        count = user.length();
-                        startfragments();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            fetchData.setArgs(API_URL_LIST.PARKED_URL, token, "");
-            fetchData.execute();
-
-        }
-    }
 
     void startfragments() {
         mViewPager.setAdapter(new ParkingPagerAdapter(

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import in.silive.directme.R;
 import in.silive.directme.adapter.ParkingUserListAdapter;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.model.ParkingUserListModel;
 import in.silive.directme.network.FetchData;
@@ -44,7 +45,6 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
     String token;
     JSONArray jsonArrayIslanad1, jsonArrayIslanad2, jsonArrayIslanad3, jsonArrayIslanad4;
     android.support.constraint.ConstraintLayout cluserList;
-    RecyclerView recyclerView;
     private String status;
     private String island_id;
 
@@ -60,7 +60,6 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
         iv_island4 = (ImageView) view.findViewById(R.id.imageViewisland4marker);
         iv_pirate = (ImageView) view.findViewById(R.id.imageViewpirateislandmarker);
         cluserList = (android.support.constraint.ConstraintLayout) view.findViewById(R.id.constrainstLayoutParkNow);
-       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewUserList);
 
         iv_island1.setOnClickListener(this);
         iv_island2.setOnClickListener(this);
@@ -115,6 +114,9 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
             fetchData.setArgs(API_URL_LIST.PARKING_DOCKS_URL, token, "");
             fetchData.execute();
 
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
 
@@ -206,7 +208,6 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
 
     void showUserList(final ArrayList<ParkingUserListModel> parkingUserList) {
         ParkingUserListAdapter parkingUserListAdapter = new ParkingUserListAdapter(parkingUserList);
-       // cluserList.setVisibility(View.VISIBLE);
          final Dialog dialog = new Dialog(getActivity());
           dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
            dialog.setContentView(R.layout.recycler_view_user);

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import in.silive.directme.R;
 import in.silive.directme.adapter.LeaderBoardAdapter;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.model.LeaderBoardObject;
 import in.silive.directme.network.FetchData;
@@ -38,9 +39,7 @@ import static in.silive.directme.utils.Keys.island_id;
 public class LeaderBoardFragment extends Fragment {
 
     RecyclerView rv_user_list;
-    ArrayList<LeaderBoardObject> leaderBoardUserList;
     JSONArray userList_jsonArray;
-    int count;
 
     @Nullable
     @Override
@@ -79,6 +78,9 @@ public class LeaderBoardFragment extends Fragment {
             fetchData.setArgs(API_URL_LIST.LEADERBOARD_URL, token,"");
             fetchData.execute();
 
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
 
@@ -92,9 +94,8 @@ public class LeaderBoardFragment extends Fragment {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String user_name = jsonObject.getString("username");
                 String user_icon = jsonObject.getString("gravatar");
-                String user_rank = jsonObject.getString("rank");
 
-                LeaderBoardObject leaderBoardObject = new LeaderBoardObject(user_name, user_icon, user_rank);
+                LeaderBoardObject leaderBoardObject = new LeaderBoardObject(user_name, user_icon, String.valueOf(i+1));
                 leaderUserListArrayList.add(leaderBoardObject);
             } catch (JSONException e) {
                 e.printStackTrace();

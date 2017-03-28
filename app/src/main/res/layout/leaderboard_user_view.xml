@@ -11,28 +11,28 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline106"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.01" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline107"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.11" />
+        app:layout_constraintGuide_percent="0.32" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline110"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7922297" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline111"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.972973" />
+        app:layout_constraintGuide_percent="0.03" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -85,8 +85,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/guideline113"
         app:layout_constraintTop_toTopOf="@+id/guideline112"
-        app:layout_constraintRight_toRightOf="@+id/guideline111"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline110"/>
+        app:layout_constraintRight_toRightOf="@+id/guideline106"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline111"/>
 
 
 </android.support.constraint.ConstraintLayout>

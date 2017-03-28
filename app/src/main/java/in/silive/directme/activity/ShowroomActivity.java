@@ -18,6 +18,7 @@ import org.json.JSONException;
 
 import in.silive.directme.adapter.ShowroomAdapter;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
@@ -28,7 +29,6 @@ import in.silive.directme.utils.ViewPagerAnimation;
 
 
 public class ShowroomActivity extends AppCompatActivity {
-//    parkonmineparking static final String Authorization_Token = "Authorization_Token";
     JSONArray jArray;
     ViewPager mViewPager;
     int count = 1, slot;
@@ -46,7 +46,6 @@ public class ShowroomActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setPageTransformer(false , new ViewPagerAnimation());
-        //mViewPager.setOffscreenPageLimit(10);
 
         sharedpreferences = DirectMe.getInstance().sharedPrefs;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -99,9 +98,9 @@ public class ShowroomActivity extends AppCompatActivity {
             apicalling.setArgs(API_URL_LIST.SHOWROOM_SHIPS_URL, token, "");
             apicalling.execute();
 
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(this);
         }
     }
-
-
-
 }

@@ -29,6 +29,7 @@ import java.util.Observable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.silive.directme.Controller;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.fragments.LeaderBoardFragment;
 import in.silive.directme.fragments.UserProfileFragment;
 import in.silive.directme.utils.Keys;
@@ -169,6 +170,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE, token, post_data);
                 fetchData.execute();
             }
+        }else {
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(this);
         }
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
