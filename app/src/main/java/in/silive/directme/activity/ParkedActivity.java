@@ -4,12 +4,8 @@ package in.silive.directme.activity;
  * Created by Lenovo on 09-Nov-16.
  */
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
@@ -17,14 +13,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import in.silive.directme.Controller;
 import in.silive.directme.fragments.ParkingDetailsFragment;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
@@ -39,19 +33,11 @@ import in.silive.directme.utils.API_URL_LIST;
 
 public class ParkedActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //    public static final String MyPREFERENCE = "MyPrefs";
-//    public static final String MyPREFERENCES = "UserName";
-    ConstraintLayout rl;
-    int i;
-    Button undock;
     ConstraintLayout parkedShipDetial1, parkedShipDetial2, parkedShipDetial3, parkedShipDetial4, parkedShipDetial5;
     boolean network_available;
     DatabaseHandler db;
-    int comm[] = new int[5];
     FetchData apiCalling;
-    Controller controller = new Controller();
     SharedPreferences sharedpreference;
-    String token;
     String type;
     String id;
     TextView port1status,port2status,port3status,port4status,port5status;
@@ -147,26 +133,6 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 break;
-           /*case R.id.catchbutton:
-                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ParkedActivity.this);
-                alertDialog.setTitle("UNDOCK");
-                alertDialog.setMessage("Are you sure you want to this boat from your non parking area");
-                alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                alertDialog.create();
-                alertDialog.show();
-
-                break;*/
         }
 
     }
@@ -208,39 +174,16 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
                         e.printStackTrace();
                     }
                 }
-            });
+            }, this);
             apiCalling.setArgs(API_URL_LIST.PORTS_URL+user_id+"/", token, "");
             apiCalling.execute();
 
 
+        }else{
+            in.silive.directme.dialog.AlertDialog alertDialog = new in.silive.directme.dialog.AlertDialog();
+            alertDialog.alertDialog(this);
         }
     }
-
-    public void alertDialog(String title, String message) {
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getApplicationContext());
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setPositiveButton("Settings",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(
-                                Settings.ACTION_WIFI_SETTINGS);
-                        startActivity(intent);
-                    }
-                });
-        alertDialog.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        alertDialog.create();
-        alertDialog.setCancelable(false);
-        alertDialog.show();
-
-    }
-
 
     void fragmentInitialise()
     {
@@ -250,8 +193,6 @@ public class ParkedActivity extends AppCompatActivity implements View.OnClickLis
                 R.anim.exit_to_right);
         args = new Bundle();
         args.putString("data", jsonObject.toString());
-
-
 
         fragment = new ParkingDetailsFragment();
         fragment.setArguments(args);

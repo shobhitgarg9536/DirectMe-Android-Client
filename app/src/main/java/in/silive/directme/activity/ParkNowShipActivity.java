@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import in.silive.directme.R;
 import in.silive.directme.adapter.BoatPagerAdapterParkNow;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
@@ -31,11 +32,6 @@ public class ParkNowShipActivity extends AppCompatActivity {
     ViewPager mViewPager;
     int count = 1;
     ImageView left, right;
-    Bundle arguments;
-    String spritesheetship1 = "ship1spritesheet.png";
-    String spritesheetship2 = "spritesheetship.png";
-    int Frame_Width_ship1 = 720;
-    int Frame_Width_ship2 = 637;
     private SharedPreferences sharedpreferences;
     boolean network_available;
     private FetchData apicalling;
@@ -96,10 +92,13 @@ public class ParkNowShipActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            });
+            }, this);
             apicalling.setArgs(API_URL_LIST.GARAGE_SHIPS_URL, token, "");
             apicalling.execute();
 
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(this);
         }
     }
     void startfragments() {

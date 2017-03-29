@@ -101,10 +101,13 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             fetchData.setArgs(API_URL_LIST.OTHER_USER_PORT_URL+user_id+"/", token, "");
             fetchData.execute();
 
+        }else{
+            in.silive.directme.dialog.AlertDialog alertDialog = new in.silive.directme.dialog.AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
 

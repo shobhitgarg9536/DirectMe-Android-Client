@@ -71,11 +71,8 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
         View v = inflater.inflate(R.layout.portdetails, container,
                 false);
 
-
         UsernameTextview = (TextView) v.findViewById(R.id.username);
-
         TypeTextView = (TextView) v.findViewById(R.id.type);
-
         land=(ImageView)v.findViewById(R.id.land);
         boat=(ImageView)v.findViewById(R.id.boat);
         Catch=(Button) v.findViewById(R.id.catchbutton);
@@ -114,12 +111,9 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
             }
             else
             {
-
                 UsernameTextview.setText("N-A");
                 TypeTextView.setText(type);
-
                 Catch.setEnabled(false);
-
             }
 
         } catch (JSONException e) {
@@ -179,8 +173,7 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
 
     }
     void alertDialog()
-    {final String ship_img=sharedPreferences.getString(Constants.SHIP_IMAGE_URL,"");
-
+    {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Do you want to Catch ship");
         builder1.setCancelable(true);
@@ -225,7 +218,7 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
                 public void processFinish(String output) {
 
                 }
-            });
+            }, getContext());
             String post_data = "";
 
             try {
@@ -237,6 +230,9 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
             apicalling.setArgs(API_URL_LIST.FINE_URL, token, post_data);
             apicalling.execute();
 
+        }else{
+            in.silive.directme.dialog.AlertDialog alertDialog = new in.silive.directme.dialog.AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
 }

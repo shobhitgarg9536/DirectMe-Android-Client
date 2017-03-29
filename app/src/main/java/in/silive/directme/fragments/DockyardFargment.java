@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import in.silive.directme.R;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
@@ -121,9 +122,12 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
                 public void processFinish(String output) {
                     buySlotStatus();
                 }
-            });
+            }, getContext());
             apicalling.setArgs(API_URL_LIST.BUY_SLOT, token, "");
             apicalling.execute();
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
 
@@ -149,10 +153,13 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
                         }
                         startFragment();
                     }
-                });
+                }, getContext());
                 int next_ship_id = Integer.valueOf(ship_id) + 1;
                 apicalling.setArgs(API_URL_LIST.GARAGE_SHIP_DETAIL_URL + next_ship_id + "/", token, "");
                 apicalling.execute();
+            }else{
+                AlertDialog alertDialog = new AlertDialog();
+                alertDialog.alertDialog(getContext());
             }
         }else if(v.getId() == R.id.imageViewGarageLocked){
             buySlot();

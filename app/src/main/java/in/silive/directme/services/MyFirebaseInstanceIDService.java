@@ -12,10 +12,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.NetworkUtils;
 
 /**
  * Created by Shobhit-pc on 2/16/2017.
@@ -52,33 +54,38 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         if (authorization_token.equals(""))
             return;
 
-        // sending fcm token to server
-        FetchData fetchData = new FetchData(new FetchDataListener() {
-            @Override
-            public void processStart() {
+        if (NetworkUtils.isNetConnected()) {
+            // sending fcm token to server
+            FetchData fetchData = new FetchData(new FetchDataListener() {
+                @Override
+                public void processStart() {
 
+                }
+
+                @Override
+                public void processFinish(String output) {
+                    pref = DirectMe.getInstance().sharedPrefs;
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
+                    editor.commit();
+
+                }
+            }, getApplicationContext());
+            String post_data = "";
+            try {
+                post_data = URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8");
+                Log.d("fcm", post_data);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
+            fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE, authorization_token, post_data);
+            fetchData.execute();
 
-            @Override
-            public void processFinish(String output) {
-                pref = DirectMe.getInstance().sharedPrefs;
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("FirebaseIdSendToServer", "1");//1 means firebase id is registered
-                editor.commit();
-
-            }
-        });
-        String post_data = "";
-        try {
-            post_data = URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8");
-            Log.d("fcm", post_data);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Log.e(TAG, "sendRegistrationToServer: " + token);
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(getApplicationContext());
         }
-        fetchData.setArgs(API_URL_LIST.FIREBASE_TOKEN_UPDATE, authorization_token, post_data);
-        fetchData.execute();
-
-        Log.e(TAG, "sendRegistrationToServer: " + token);
     }
 
     private void storeRegIdInPref(String token) {

@@ -157,7 +157,7 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
         if (!DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
             intent = new Intent(this, DashboardActivity.class);
         } else {
-           intent = new Intent(this, LoginActivity.class);
+          intent = new Intent(this, LoginActivity.class);
         }
         startActivity(intent);
     }

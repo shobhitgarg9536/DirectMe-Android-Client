@@ -19,6 +19,7 @@ import in.silive.directme.R;
 import in.silive.directme.activity.ParkNowActivity;
 import in.silive.directme.adapter.DataUserSelectAdapter;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
 import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.model.UserDetailsList;
 import in.silive.directme.network.FetchData;
@@ -100,7 +101,7 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             String post_data = "";
             try {
                 post_data = URLEncoder.encode("island_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
@@ -109,6 +110,10 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
             }
             apicalling.setArgs(API_URL_LIST.GET_USER_LIST, token, post_data);
             apicalling.execute();
+
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(getContext());
         }
     }
     private ArrayList<UserDetailsList> prepareData() {

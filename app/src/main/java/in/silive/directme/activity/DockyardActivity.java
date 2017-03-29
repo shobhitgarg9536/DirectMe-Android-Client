@@ -12,14 +12,15 @@ import android.widget.ImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import in.silive.directme.R;
 import in.silive.directme.adapter.GarageAdapter;
 import in.silive.directme.application.DirectMe;
+import in.silive.directme.dialog.AlertDialog;
+import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
+import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
-import in.silive.directme.listeners.FetchDataListener;
-import in.silive.directme.R;
-import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.ViewPagerAnimation;
 
 
@@ -80,10 +81,13 @@ public class DockyardActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            });
+            }, this);
             apicalling.setArgs(API_URL_LIST.GARAGE_SHIPS_URL, token, "");
             apicalling.execute();
 
+        }else{
+            AlertDialog alertDialog = new AlertDialog();
+            alertDialog.alertDialog(this);
         }
     }
 
