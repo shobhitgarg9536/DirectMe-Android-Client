@@ -48,6 +48,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
     private String status;
     private String island_id;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
