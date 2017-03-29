@@ -155,18 +155,9 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
     public void onAnimationEnd(Animation animation) {
         Intent intent;
         if (DirectMe.getInstance().sharedPrefs.getString(Constants.AUTH_TOKEN, "").equals("")) {
-            SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString(Constants.AUTH_TOKEN, "891a38fb459d8a7a006fc9673df66b54830eb577");
-            editor.commit();
             intent = new Intent(this, DashboardActivity.class);
         } else {
-            SharedPreferences sharedpreferences = DirectMe.getInstance().sharedPrefs;
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString(Constants.AUTH_TOKEN, "891a38fb459d8a7a006fc9673df66b54830eb577");
-            editor.commit();
-            intent = new Intent(this, DashboardActivity.class);
-//           intent = new Intent(this, LoginActivity.class);
+          intent = new Intent(this, LoginActivity.class);
         }
         startActivity(intent);
     }
