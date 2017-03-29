@@ -1,7 +1,10 @@
 package in.silive.directme.network;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,9 +30,12 @@ public class FetchData extends AsyncTask<String, String, String> {
     private FetchDataListener delegate = null;
     private String post_data = null;
     private String urlString = "";
+    private Context mContext;
+    ProgressDialog progressDialog;
 
-    public FetchData(FetchDataListener fetchDataListener) {
+    public FetchData(FetchDataListener fetchDataListener, Context context) {
         delegate = fetchDataListener;
+        this.mContext = context;
     }
 
     @Override
@@ -38,6 +44,9 @@ public class FetchData extends AsyncTask<String, String, String> {
                 "urlString :" + urlString +
                         "\ntoken :" + token +
                         "\nPost Data :" + post_data);
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         super.onPreExecute();
 
     }
@@ -107,6 +116,7 @@ public class FetchData extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         LoggerUtils.logger("postExecute() : \n" + result);
+        progressDialog.cancel();
         delegate.processFinish(result);
         super.onPostExecute(result);
     }

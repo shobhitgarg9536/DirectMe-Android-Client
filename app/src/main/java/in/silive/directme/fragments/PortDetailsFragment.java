@@ -218,7 +218,7 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
                 public void processFinish(String output) {
 
                 }
-            });
+            }, getContext());
             String post_data = "";
 
             try {

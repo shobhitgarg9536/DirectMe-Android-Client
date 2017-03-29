@@ -101,7 +101,7 @@ public class ParkingPortFragment extends Fragment implements View.OnClickListene
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             fetchData.setArgs(API_URL_LIST.OTHER_USER_PORT_URL+user_id+"/", token, "");
             fetchData.execute();
 

@@ -113,7 +113,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             apiCalling.setArgs(API_URL_LIST.PORTS_URL + user_id + "/", token, "");
             apiCalling.execute();
 

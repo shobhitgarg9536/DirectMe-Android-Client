@@ -179,7 +179,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                         initiatePopupWindow("Sorry your ship is not docked...",0);
                     }
                 }
-            });
+            }, getContext());
             String post_data = "";
             try {
                 post_data= URLEncoder.encode("ship_id", "UTF-8") + "=" + URLEncoder.encode(ship_id, "UTF-8");

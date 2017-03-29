@@ -101,7 +101,7 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             String post_data = "";
             try {
                 post_data = URLEncoder.encode("island_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");

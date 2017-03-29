@@ -122,7 +122,7 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
                 public void processFinish(String output) {
                     buySlotStatus();
                 }
-            });
+            }, getContext());
             apicalling.setArgs(API_URL_LIST.BUY_SLOT, token, "");
             apicalling.execute();
         }else{
@@ -153,7 +153,7 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
                         }
                         startFragment();
                     }
-                });
+                }, getContext());
                 int next_ship_id = Integer.valueOf(ship_id) + 1;
                 apicalling.setArgs(API_URL_LIST.GARAGE_SHIP_DETAIL_URL + next_ship_id + "/", token, "");
                 apicalling.execute();

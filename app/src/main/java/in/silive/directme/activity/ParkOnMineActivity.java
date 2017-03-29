@@ -144,7 +144,7 @@ public class ParkOnMineActivity extends AppCompatActivity implements View.OnClic
                         e.printStackTrace();
                     }
                 }
-            });
+            }, this);
             apiCalling.setArgs(API_URL_LIST.PORTS_URL, token, "");
             apiCalling.execute();
 

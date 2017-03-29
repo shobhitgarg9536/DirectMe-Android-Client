@@ -74,7 +74,7 @@ public class LeaderBoardFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             fetchData.setArgs(API_URL_LIST.LEADERBOARD_URL, token,"");
             fetchData.execute();
 

@@ -110,7 +110,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
                         e.printStackTrace();
                     }
                 }
-            });
+            }, getContext());
             fetchData.setArgs(API_URL_LIST.PARKING_DOCKS_URL, token, "");
             fetchData.execute();
 

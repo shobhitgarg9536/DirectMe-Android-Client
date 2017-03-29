@@ -111,7 +111,7 @@ public class ParkingUserPortViewFragment extends Fragment {
                             public void processFinish(String output) {
                                 alertDialog("You have unsuccessfully undock your ship");
                             }
-                        });
+                        }, getContext());
                         String post_data = "";
 
                         try {

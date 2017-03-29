@@ -94,7 +94,7 @@ public class ShowroomActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            });
+            }, this);
             apicalling.setArgs(API_URL_LIST.SHOWROOM_SHIPS_URL, token, "");
             apicalling.execute();
 

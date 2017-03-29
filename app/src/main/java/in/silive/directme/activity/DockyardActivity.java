@@ -81,7 +81,7 @@ public class DockyardActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            });
+            }, this);
             apicalling.setArgs(API_URL_LIST.GARAGE_SHIPS_URL, token, "");
             apicalling.execute();
 

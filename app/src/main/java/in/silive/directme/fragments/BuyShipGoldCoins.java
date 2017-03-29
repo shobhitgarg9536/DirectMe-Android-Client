@@ -162,7 +162,7 @@ public class BuyShipGoldCoins extends Fragment {
                 public void processFinish(String output) {
                     buyShipResponse();
                 }
-            });
+            }, getContext());
             String post_data = "";
 
             try {

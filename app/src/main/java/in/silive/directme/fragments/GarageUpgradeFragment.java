@@ -198,7 +198,7 @@ public class GarageUpgradeFragment extends Fragment {
                 public void processFinish(String output) {
                     Upgrade();
                 }
-            });
+            }, getContext());
             String post_data = "";
 
             try {

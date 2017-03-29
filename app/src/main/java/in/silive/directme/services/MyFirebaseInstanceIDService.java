@@ -70,7 +70,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
                     editor.commit();
 
                 }
-            });
+            }, getApplicationContext());
             String post_data = "";
             try {
                 post_data = URLEncoder.encode("fcm_token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8");
