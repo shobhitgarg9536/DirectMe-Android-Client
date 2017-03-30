@@ -6,6 +6,7 @@ package in.silive.directme.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -71,6 +72,7 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
         private TextView usr_name;
         private ImageView usr_img;
         private String user_id;
+        private ConstraintLayout back;
         FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction;
         ShipTransitionFragment fragment;
@@ -86,7 +88,8 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
 
             usr_name = (TextView)view.findViewById(R.id.usr_name);
             usr_img = (ImageView) view.findViewById(R.id.img_user);
-            view.setOnClickListener(this);
+            back=(ConstraintLayout)view.findViewById(R.id.constraint);
+            back.setOnClickListener(this);
         }
 
 

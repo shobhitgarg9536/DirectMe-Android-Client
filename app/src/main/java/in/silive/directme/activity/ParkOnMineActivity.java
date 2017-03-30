@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import org.json.JSONArray;
@@ -55,7 +56,8 @@ public class ParkOnMineActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.parkonmine);
         ButterKnife.bind(this);
         sharedpreference = DirectMe.getInstance().sharedPrefs;
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);//to make screen full screen
         parkingport1.setOnClickListener(this);
         parkingport2.setOnClickListener(this);
         nonparkingport3.setOnClickListener(this);
@@ -67,56 +69,21 @@ public class ParkOnMineActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.parkingport1:
-
                 parkedDetail("0");
-
-
-                if (jsonObject != null) {
-                    fragmentInitialise();
-
-                }
-
-
                 break;
             case R.id.parkingport2:
                 parkedDetail("1");
-                if (jsonObject != null) {
-                    fragmentInitialise();
-
-                }
-
                 break;
             case R.id.nonparkingport3:
                 parkedDetail("2");
-                if (jsonObject != null) {
-                    fragmentInitialise();
-
-                }
-
                 break;
             case R.id.nonparkingport4:
                 parkedDetail("3");
-
-                if (jsonObject != null) {
-                    fragmentInitialise();
-
-                }
-
-
                 break;
             case R.id.nonparkingport5:
                 parkedDetail("4");
-
-                if (jsonObject != null) {
-                    fragmentInitialise();
-
-                }
-
-
                 break;
-
         }
 
     }
@@ -143,6 +110,10 @@ public class ParkOnMineActivity extends AppCompatActivity implements View.OnClic
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    if(jsonObject!=null) {
+                        fragmentInitialise();
+                    }
+
                 }
             }, this);
             apiCalling.setArgs(API_URL_LIST.PORTS_URL, token, "");
@@ -164,6 +135,7 @@ public class ParkOnMineActivity extends AppCompatActivity implements View.OnClic
         fragment = new PortDetailsFragment();
         fragment.setArguments(args);
         fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }

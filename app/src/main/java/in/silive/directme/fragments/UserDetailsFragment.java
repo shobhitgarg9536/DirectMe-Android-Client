@@ -1,7 +1,9 @@
 package in.silive.directme.fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +35,6 @@ import in.silive.directme.utils.NetworkUtils;
  * Created by simran on 2/24/2017.
  */
 
-
 public class UserDetailsFragment extends Fragment implements View.OnClickListener {
     public String user_names[];
     public String user_id[];
@@ -40,6 +42,7 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
     ImageView refresh;
     SharedPreferences sharedPreferences;
     FetchData apicalling;
+    ConstraintLayout back;
     RecyclerView.LayoutManager layoutManager;
     JSONArray arr;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +59,6 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
     }
     private void initViews() {
         refresh.setVisibility(View.VISIBLE);
-
         recyclerView.setHasFixedSize(true);
         if (arr.length() < 5) {
             layoutManager = new GridLayoutManager(getActivity(), arr.length());
@@ -131,5 +133,6 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         connect();
+
     }
 }

@@ -78,17 +78,33 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:text="SELECT BOAT"
+    <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/guideline101"
+        android:orientation="vertical"
+
+        app:layout_constraintGuide_percent="0.35" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline111"
+        app:layout_constraintGuide_percent="0.65"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:id="@+id/select"
-        app:layout_constraintRight_toLeftOf="@+id/guideline8"
+        android:background="@drawable/seelctboat"
+        app:layout_constraintRight_toLeftOf="@+id/guideline111"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline10"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline101"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="2dp"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
         app:layout_constraintVertical_bias="0.0" />
