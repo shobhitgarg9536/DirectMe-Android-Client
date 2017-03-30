@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:clickable="true"
-    android:background="@drawable/parkonmine_back"
+    android:background="@drawable/parkonmine_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,153 +13,463 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline52"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
-
-    <ImageView
-        android:id="@+id/parkingport1"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-
-        app:srcCompat="@drawable/parkonmineparking"
-        app:layout_constraintRight_toLeftOf="@+id/guideline52"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline56"
-        app:layout_constraintTop_toTopOf="@+id/guideline57"
-        android:layout_marginTop="120dp"
-        app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline59"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.444" />
-
-    <ImageView
-        android:id="@+id/parkingport2"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/parkonmineparking"
-        app:layout_constraintRight_toLeftOf="@+id/guideline52"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline56"
-        app:layout_constraintTop_toTopOf="@+id/guideline57"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline59"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/nonparkingport3"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/parkonminenonparking"
-        app:layout_constraintRight_toLeftOf="@+id/guideline53"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline52"
-        app:layout_constraintTop_toTopOf="@+id/guideline57"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline59"
-        android:layout_marginBottom="180dp"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintHorizontal_bias="0.25" />
+        app:layout_constraintGuide_percent="0.4"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="237dp" />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline64"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.58"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline65"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline66"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.19"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline67"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.28"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline68"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.30"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline69"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.39"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline70"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline71"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.56"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline72"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.455"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline73"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.545"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline74"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12"
+        />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline53"
+        android:id="@+id/guideline75"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline76"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.61"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline77"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.70"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline78"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73"
+        />
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline79"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82"
+        />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline67"
+        android:background="@drawable/parkonmineparking"
+
+        app:layout_constraintLeft_toLeftOf="@+id/guideline66"
+        app:layout_constraintTop_toTopOf="@+id/guideline64"
+
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline65"
+        >
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline41"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline42"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline43"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline44"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88"
+            />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/parkingport1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline44"
+
+        app:layout_constraintLeft_toLeftOf="@+id/guideline43"
+        app:layout_constraintTop_toTopOf="@+id/guideline41"
+
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline42"
+
+        app:layout_constraintVertical_bias="0.444"
+        android:layout_marginTop="0dp" />
+
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline69"
+        android:background="@drawable/parkonmineparking"
+
+        app:layout_constraintLeft_toLeftOf="@+id/guideline68"
+        app:layout_constraintTop_toTopOf="@+id/guideline70"
+
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline71">
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline141"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline142"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline143"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline144"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/parkingport2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/guideline144"
+
+            app:layout_constraintLeft_toLeftOf="@+id/guideline143"
+            app:layout_constraintTop_toTopOf="@+id/guideline141"
+
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline142"
+
+            app:layout_constraintVertical_bias="0.444"
+            android:layout_marginTop="0dp" />
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline73"
+        android:background="@drawable/parkonminenonparking"
+
+        app:layout_constraintLeft_toLeftOf="@+id/guideline72"
+        app:layout_constraintTop_toTopOf="@+id/guideline74"
+
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline75">
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline241"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline242"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline243"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline244"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/nonparkingport3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/guideline244"
+
+            app:layout_constraintLeft_toLeftOf="@+id/guideline243"
+            app:layout_constraintTop_toTopOf="@+id/guideline241"
+
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline242"
+
+            app:layout_constraintVertical_bias="0.444"
+            android:layout_marginTop="0dp" />
+        </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline54"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7195946" />
+        app:layout_constraintGuide_percent="0.7195946"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="426dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline55"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5202703" />
-
-    <ImageView
-        android:id="@+id/nonparkingport4"
-        android:layout_width="50dp"
+        app:layout_constraintGuide_percent="0.5202703"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="308dp" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline77"
+        android:background="@drawable/parkonminenonparking"
 
-        app:srcCompat="@drawable/parkonminenonparking"
-        app:layout_constraintRight_toLeftOf="@+id/guideline54"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline55"
-        app:layout_constraintTop_toTopOf="@+id/guideline57"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline59"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintHorizontal_bias="0.903"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintLeft_toLeftOf="@+id/guideline76"
+        app:layout_constraintTop_toTopOf="@+id/guideline70"
 
-    <ImageView
-        android:id="@+id/nonparkingport5"
-        android:layout_width="50dp"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline71">
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline341"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline342"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline343"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline344"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/nonparkingport4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/guideline344"
+
+            app:layout_constraintLeft_toLeftOf="@+id/guideline343"
+            app:layout_constraintTop_toTopOf="@+id/guideline341"
+
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline342"
+
+            app:layout_constraintVertical_bias="0.444"
+            android:layout_marginTop="0dp" />
+        </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/parkonminenonparking"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline54"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/guideline58"
-        app:layout_constraintTop_toTopOf="@+id/guideline57"
-        android:layout_marginTop="120dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline59"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintRight_toLeftOf="@+id/guideline79"
+        android:background="@drawable/parkonminenonparking"
+
+        app:layout_constraintLeft_toLeftOf="@+id/guideline78"
+        app:layout_constraintTop_toTopOf="@+id/guideline64"
+
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline65">
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline441"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline442"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline443"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline444"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/nonparkingport5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/guideline444"
+
+            app:layout_constraintLeft_toLeftOf="@+id/guideline443"
+            app:layout_constraintTop_toTopOf="@+id/guideline441"
+
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline442"
+
+            app:layout_constraintVertical_bias="0.444"
+            android:layout_marginTop="0dp" />
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline56"
-        app:layout_constraintGuide_percent="0"
-        app:layout_constraintGuide_begin="0dp"
-        android:orientation="vertical" />
+        app:layout_constraintGuide_percent="0.0"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline57"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.0" />
+        app:layout_constraintGuide_percent="0.0"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline58"
-        app:layout_constraintGuide_percent="1"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
+        app:layout_constraintGuide_percent="1.0"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="592dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline59"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1.0" />
+        app:layout_constraintGuide_percent="1.0"
+        tools:layout_editor_absoluteY="335dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline57"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="0dp" />
 </android.support.constraint.ConstraintLayout>

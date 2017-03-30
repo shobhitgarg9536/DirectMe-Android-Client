@@ -15,4 +15,14 @@
     <style name="ToolbarColoredBackArrow" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColorSecondary">#FFFFFFFF</item>
     </style>
-</resources>
+
+    <style name="ToolTipLayoutCustomStyle">
+        <item name="ttlm_padding">25dip</item>
+        <item name="ttlm_backgroundColor">#2980b9</item>
+        <item name="ttlm_strokeWeight">2dip</item>
+        <item name="ttlm_cornerRadius">8dip</item>
+
+        <item name="android:textAppearance">?android:attr/textAppearanceInverse</item>
+    </style>
+
+    </resources>

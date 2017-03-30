@@ -7,9 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,10 +25,12 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.silive.directme.R;
+import in.silive.directme.activity.DashboardActivity;
 import in.silive.directme.activity.LoginActivity;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.Keys;
+import it.sephiroth.android.library.tooltip.Tooltip;
 
 
 /**
@@ -42,12 +47,18 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     TextView bamboo_count;
     @BindView(R.id.textView_banana_count)
     TextView banana_count;
+    @BindView(R.id.textView_xp_count)
+    TextView xp_count;
     @BindView(R.id.textView_gold_count)
     TextView gold_count;
     @BindView(R.id.textView_coconut_count)
     TextView coconut_count;
     @BindView(R.id.textView_wood_count)
     TextView wood_count;
+    @BindView(R.id.level)
+    TextView level;
+    @BindView(R.id.island_name)
+    TextView island_name;
     @BindView(R.id.island)
     ImageView island;
     @BindView(R.id.logout)
@@ -63,6 +74,8 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     int Experience_Count;
     String commodity[]=new String[5];
     private GoogleApiClient mGoogleApiClient;
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.user_profile, container,
@@ -85,15 +98,146 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         coconut_count.setText(Coconut_Count);
         final String expreience=sharedpreference.getString(Keys.experience,"");
         Experience_Count =Integer.parseInt(expreience);
-        progressBar_experience.setMax(10000);
-        progressBar_experience.setProgress(Experience_Count);
+       setExperiencelevel(expreience);
+        xp_count.setText(expreience);
         final  String username=sharedpreference.getString(Keys.username,"");
         user_name.setText(username);
         final String island_id=sharedpreference.getString(Keys.island_id,"");
         islandImage(island_id);
+        island.setOnClickListener(this);
         final String gravatar=sharedpreference.getString(Keys.gravatar,"");
         Picasso.with(getActivity()).load(gravatar).into(avatar);
+        avatar.setOnClickListener(this);
         return rootView;
+    }
+    void setExperiencelevel(String experience)
+    {int count=Integer.parseInt(experience);
+       if(count<=Constants.XPCOUNT_LEVEL1)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL1);
+           progressBar_experience.setProgress(count);
+           level.setText("Level1");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL1&&count<=Constants.XPCOUNT_LEVEL2)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL2);
+           progressBar_experience.setProgress(count);
+           level.setText("Level1");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL2&&count<=Constants.XPCOUNT_LEVEL3)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL3);
+           progressBar_experience.setProgress(count);
+           level.setText("Level2");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL3&&count<=Constants.XPCOUNT_LEVEL4)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL4);
+           progressBar_experience.setProgress(count);
+           level.setText("Level3");
+       }
+        else if(count>Constants.XPCOUNT_LEVEL4&&count<=Constants.XPCOUNT_LEVEL5)
+        {
+            progressBar_experience.setMax(Constants.XPCOUNT_LEVEL5);
+            progressBar_experience.setProgress(count);
+            level.setText("Level4");
+        }
+        else if(count>Constants.XPCOUNT_LEVEL5&&count<=Constants.XPCOUNT_LEVEL6)
+        {
+            progressBar_experience.setMax(Constants.XPCOUNT_LEVEL6);
+            progressBar_experience.setProgress(count);
+            level.setText("Level5");
+        }
+       else if(count>Constants.XPCOUNT_LEVEL6&&count<=Constants.XPCOUNT_LEVEL7)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL7);
+           progressBar_experience.setProgress(count);
+           level.setText("Level6");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL7&&count<=Constants.XPCOUNT_LEVEL8)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL8);
+           progressBar_experience.setProgress(count);
+           level.setText("Level7");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL8&&count<=Constants.XPCOUNT_LEVEL9)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL9);
+           progressBar_experience.setProgress(count);
+           level.setText("Level8");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL9&&count<=Constants.XPCOUNT_LEVEL10)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL10);
+           progressBar_experience.setProgress(count);
+           level.setText("Level9");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL10&&count<=Constants.XPCOUNT_LEVEL11)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL11);
+           progressBar_experience.setProgress(count);
+           level.setText("Level10");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL11&&count<=Constants.XPCOUNT_LEVEL12)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL12);
+           progressBar_experience.setProgress(count);
+           level.setText("Level11");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL12&&count<=Constants.XPCOUNT_LEVEL13)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL13);
+           progressBar_experience.setProgress(count);
+           level.setText("Level12");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL13&&count<=Constants.XPCOUNT_LEVEL14)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL14);
+           progressBar_experience.setProgress(count);
+           level.setText("Level13");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL14&&count<=Constants.XPCOUNT_LEVEL15)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL15);
+           progressBar_experience.setProgress(count);
+           level.setText("Level14");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL15&&count<=Constants.XPCOUNT_LEVEL16)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL16);
+           progressBar_experience.setProgress(count);
+           level.setText("Level15");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL16&&count<=Constants.XPCOUNT_LEVEL17)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL17);
+           progressBar_experience.setProgress(count);
+           level.setText("Level16");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL17&&count<=Constants.XPCOUNT_LEVEL18)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL18);
+           progressBar_experience.setProgress(count);
+           level.setText("Level17");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL18&&count<=Constants.XPCOUNT_LEVEL19)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL19);
+           progressBar_experience.setProgress(count);
+           level.setText("Level18");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL19&&count<=Constants.XPCOUNT_LEVEL20)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL20);
+           progressBar_experience.setProgress(count);
+           level.setText("Level19");
+       }
+       else if(count>Constants.XPCOUNT_LEVEL20)
+       {
+           progressBar_experience.setMax(Constants.XPCOUNT_LEVEL20);
+           progressBar_experience.setProgress(count);
+           level.setText("Level20");
+       }
     }
     void islandImage(String island_id)
     {
@@ -114,30 +258,98 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     }
     @Override
     public void onClick(View v) {
-        alertDialog(getResources().getString(R.string.logout));
+        {
+            switch (v.getId()) {
+                case R.id.logout:
+                    alertDialog(getResources().getString(R.string.logout));
+                    break;
+                case R.id.island:
+                    Tooltip.make(
+                            getContext(),
+                            new Tooltip.Builder()
+                                    .anchor(v, Tooltip.Gravity.RIGHT)
+                                    .closePolicy(new Tooltip.ClosePolicy()
+                                            .insidePolicy(true, false)
+                                            .outsidePolicy(true, false), 3000)
+                                    .text("Island alloted")
+                                     .withStyleId(R.style.ToolTipLayoutCustomStyle)
+                                    .fitToScreen(true)
+                                    .activateDelay(800)
+                                    .showDelay(300)
+                                    .maxWidth(500)
+                                    .withOverlay(false)
+                                    .floatingAnimation(Tooltip.AnimationBuilder.DEFAULT)
+                                    .build()
+                    ).show();
+                    final  String alloted_island_name=sharedpreference.getString(Keys.island_name,"");
+                    island_name.setText(alloted_island_name);
+                    AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
+                    AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
+                    island_name.startAnimation(fadeIn);
+                    island_name.startAnimation(fadeOut);
+                    fadeIn.setDuration(3000);
+                    fadeIn.setFillAfter(true);
+                    fadeOut.setDuration(2000);
+                    fadeOut.setFillAfter(true);
+                    fadeOut.setStartOffset(3000+fadeIn.getStartOffset());
+
+                    break;
+                case R.id.avatar:Tooltip.make(
+                        getContext(),
+                        new Tooltip.Builder()
+                                .anchor(v, Tooltip.Gravity.RIGHT)
+                                .closePolicy(new Tooltip.ClosePolicy()
+                                        .insidePolicy(true, false)
+                                        .outsidePolicy(true, false), 3000)
+                                .text("Xp Required for next level")
+                                .withStyleId(R.style.ToolTipLayoutCustomStyle)
+                                .fitToScreen(true)
+                                .activateDelay(800)
+                                .showDelay(300)
+                                .maxWidth(500)
+                                .withArrow(true)
+                                .withOverlay(false)
+                                .floatingAnimation(Tooltip.AnimationBuilder.DEFAULT)
+                                .build()
+                ).show();
+                    break;
+
+            }
+        }
     }
     void alertDialog(String message)
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage(message);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View dialogView= inflater.inflate(R.layout.alert_label_editor, null);
+        builder1.setView(dialogView);
+        builder1.setCancelable(false);
+        final AlertDialog alertDialog = builder1.create();
+        TextView message_textview=(TextView)dialogView.findViewById(R.id.message);
+        message_textview.setText(message);
+        message_textview.setTextSize(30);
+        Button yes=(Button)dialogView.findViewById(R.id.yes);
+        Button no=(Button)dialogView.findViewById(R.id.No);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeToken();
+
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+
+            }
+        });
         builder1.setCancelable(true);
 
-        builder1.setPositiveButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        builder1.setNegativeButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                   removeToken();
-                    }
-                });
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        alertDialog.show();
+
+
+
     }
     @Override
     public void onStart() {
@@ -151,7 +363,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         super.onStart();
     }
     private void removeToken() {
-        SharedPreferences.Editor editor=sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.clear();
         editor.commit();
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
@@ -159,12 +371,13 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onResult(Status status) {
                         // ...
-                        Intent intent=new Intent(getActivity(), LoginActivity.class);
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                         getActivity().finish();
                     }
                 });
     }
-}
+    }

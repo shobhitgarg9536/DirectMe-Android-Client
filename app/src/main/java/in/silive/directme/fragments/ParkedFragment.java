@@ -27,7 +27,6 @@ import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
 import in.silive.directme.utils.NetworkUtils;
-
 public class ParkedFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.parkingport1)
     ImageView parkingport1;
@@ -47,10 +46,12 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
     FragmentTransaction fragmentTransaction;
     ParkingDetailsFragment fragment;
     Bundle args;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.parkonmine, container,
                 false);
+
         ButterKnife.bind(this, rootView);
         sharedpreference = DirectMe.getInstance().sharedPrefs;
         parkingport1.setOnClickListener(this);
@@ -58,44 +59,32 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
         nonparkingport3.setOnClickListener(this);
         nonparkingport4.setOnClickListener(this);
         nonparkingport5.setOnClickListener(this);
+        api_calling();
         return rootView;
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.parkingport1:
                 parkedDetail(0);
-                if (jsonObject != null) {
-                    fragmentInitialise();
-                }
                 break;
             case R.id.parkingport2:
                 parkedDetail(1);
-                if (jsonObject != null) {
-                    fragmentInitialise();
-                }
                 break;
             case R.id.nonparkingport3:
                 parkedDetail(2);
-                if (jsonObject != null) {
-                    fragmentInitialise();
-                }
                 break;
             case R.id.nonparkingport4:
                 parkedDetail(3);
-                if (jsonObject != null) {
-                    fragmentInitialise();
-                }
                 break;
             case R.id.nonparkingport5:
                 parkedDetail(4);
-                if (jsonObject != null) {
-                    fragmentInitialise();
-                }
                 break;
         }
     }
-    public void parkedDetail(final int parking_no) {
+    JSONArray user;
+    public void api_calling() {
         final String token = sharedpreference.getString(Constants.AUTH_TOKEN, "");
         final String user_id = sharedpreference.getString(Constants.USER_ID, "");
         network_available = NetworkUtils.isNetConnected();
@@ -104,14 +93,26 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void processStart() {
                 }
+
                 @Override
                 public void processFinish(String output) {
                     try {
-                        JSONArray user = new JSONArray(output);
-                        jsonObject = user.getJSONObject(parking_no);
+                        user = new JSONArray(output);
+                        for (int i = 0; i < 5; i++) {
+                            jsonObject = user.getJSONObject(i);
+                            JSONArray logs = jsonObject.getJSONArray("logs");
+                            if (logs.length() > 0) {
+
+                                JSONObject logdetails = logs.getJSONObject(0);
+                                String ship_img_url = logdetails.get("ship_image").toString();
+                                showPort(i, ship_img_url);
+                            } else {
+                            }
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
                 }
             }, getContext());
             apiCalling.setArgs(API_URL_LIST.PORTS_URL + user_id + "/", token, "");
@@ -122,6 +123,26 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
             alertDialog.alertDialog(getContext());
         }
     }
+
+    JSONObject jsonObject1;
+    public void parkedDetail(final int parking_no) {
+
+       try {
+           jsonObject1= user.getJSONObject(parking_no);
+
+       } catch(JSONException e)
+       {
+        e.printStackTrace();
+    }
+                    if(jsonObject1!=null)
+
+    {
+        fragmentInitialise();
+    }
+
+}
+
+
     void showPort(int position , String ship_url ){
         switch (position){
             case 0:
@@ -146,8 +167,7 @@ public class ParkedFragment extends Fragment implements View.OnClickListener {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left);
         args = new Bundle();
-        args.putString("data", jsonObject.toString());
-
+        args.putString("data", jsonObject1.toString());
         fragment = new ParkingDetailsFragment();
         fragment.setArguments(args);
         fragmentTransaction.replace(R.id.fragment_container, fragment);
