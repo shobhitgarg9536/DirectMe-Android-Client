@@ -96,6 +96,7 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
            Drawable drawable = clDockyard.getBackground();
             drawable.setAlpha(100);
             ivShipUpgrade.setVisibility(View.GONE);
+            pbGarageBoat.setVisibility(View.GONE);
         }
         if(dock_status.equals("buy")){
             clDockyard.setVisibility(View.VISIBLE);

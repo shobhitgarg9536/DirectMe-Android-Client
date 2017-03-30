@@ -46,6 +46,7 @@ public class FetchData extends AsyncTask<String, String, String> {
                         "\nPost Data :" + post_data);
         progressDialog = new ProgressDialog(mContext);
         progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         super.onPreExecute();
 

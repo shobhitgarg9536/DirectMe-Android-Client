@@ -1,11 +1,14 @@
 package in.silive.directme.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,10 +21,11 @@ import in.silive.directme.model.ParkingUserListModel;
 
 public class ParkingUserListAdapter extends RecyclerView.Adapter<ParkingUserListAdapter.MyViewHolder> {
 
+    private final Context context;
     private List<ParkingUserListModel> parkingUserLists;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView userName;
+         TextView userName;
 
         public MyViewHolder(View view) {
             super(view);
@@ -30,8 +34,9 @@ public class ParkingUserListAdapter extends RecyclerView.Adapter<ParkingUserList
     }
 
 
-    public ParkingUserListAdapter(List<ParkingUserListModel> parkingUserLists) {
+    public ParkingUserListAdapter(List<ParkingUserListModel> parkingUserLists, Context context) {
         this.parkingUserLists = parkingUserLists;
+        this.context = context;
     }
 
     @Override
