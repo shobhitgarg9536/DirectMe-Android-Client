@@ -73,9 +73,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
         jsonArrayIslanad3 = new JSONArray();
         jsonArrayIslanad4 = new JSONArray();
 
-
         apiCalling();
-
 
         return view;
     }
@@ -91,7 +89,6 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
                 public void processStart() {
 
                 }
-
                 @Override
                 public void processFinish(String output) {
                     try {
@@ -208,7 +205,7 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
     }
 
     void showUserList(final ArrayList<ParkingUserListModel> parkingUserList) {
-        ParkingUserListAdapter parkingUserListAdapter = new ParkingUserListAdapter(parkingUserList);
+        ParkingUserListAdapter parkingUserListAdapter = new ParkingUserListAdapter(parkingUserList, getContext());
          final Dialog dialog = new Dialog(getActivity());
           dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
            dialog.setContentView(R.layout.recycler_view_user);

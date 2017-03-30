@@ -13,6 +13,7 @@ public class ParkingUserListModel {
         this.user_id = user_id;
     }
 
+
     public String getUserName() {
         return userName;
     }
