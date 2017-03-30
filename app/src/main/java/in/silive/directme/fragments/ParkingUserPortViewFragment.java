@@ -109,7 +109,16 @@ public class ParkingUserPortViewFragment extends Fragment {
 
                             @Override
                             public void processFinish(String output) {
-                                alertDialog("You have unsuccessfully undock your ship");
+                                final String responsecode=sharedPreferences.getString(Constants.RESPONSE_CODE,"");
+                                if (Integer.parseInt(responsecode)== 200)
+                                {
+                                    alertDialog("You have successfully undock your ship",0);
+                                }
+                                else
+                                {
+                                    alertDialog("Sorry your ship is not undocked. Try again!",1);
+                                }
+
                             }
                         }, getContext());
                         String post_data = "";
@@ -129,22 +138,27 @@ public class ParkingUserPortViewFragment extends Fragment {
         return view;
     }
 
-    void alertDialog(String message)
+    void alertDialog(String message, final int flag)
     {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage(message);
-        builder1.setCancelable(true);
+        builder1.setCancelable(false);
 
         builder1.setPositiveButton(
                 "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        sendToSuperWorld();
+                        if (flag == 0)
+                            sendToSuperWorld();
+                        else
+                            dialog.dismiss();
                     }
+
                 });
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
+
     }
 
     private void sendToSuperWorld() {
