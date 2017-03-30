@@ -63,30 +63,32 @@
         android:id="@+id/textViewLeaderBoardUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UserName"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
         android:layout_marginLeft="8dp"
-        app:layout_constraintRight_toLeftOf="@+id/guideline110"
+        android:fontFamily="sans-serif-condensed"
+        android:text="UserName"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/guideline113"
-        app:layout_constraintTop_toTopOf="@+id/guideline112"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/guideline107"
-        app:layout_constraintVertical_bias="0.512"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintRight_toLeftOf="@+id/guideline110"
+        app:layout_constraintTop_toTopOf="@+id/guideline112"
+        app:layout_constraintVertical_bias="0.512" />
 
     <TextView
         android:id="@+id/textViewLeaderBoardRank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rank"
-        android:textSize="20sp"
         android:fontFamily="sans-serif-condensed"
+        android:text="Rank"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/guideline113"
-        app:layout_constraintTop_toTopOf="@+id/guideline112"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline111"
         app:layout_constraintRight_toRightOf="@+id/guideline106"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline111"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline112" />
 
 
 </android.support.constraint.ConstraintLayout>
