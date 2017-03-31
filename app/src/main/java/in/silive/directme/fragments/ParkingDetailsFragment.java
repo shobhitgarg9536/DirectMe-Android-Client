@@ -45,13 +45,12 @@ import in.silive.directme.utils.NetworkUtils;
 public class ParkingDetailsFragment extends Fragment implements View.OnClickListener {
     TextView UsernameTextview,TypeTextView;
     JSONObject json_data;
-    Button Catch;
     ImageView land,boat;
     private String type,id;
     SharedPreferences sharedPreferences;
     ConstraintLayout r1;
     FetchData apicalling;
-    Button Dock;
+    Button dock;
     int flag=0;
     String username,ship_img_url;
     private boolean network_available;
@@ -77,8 +76,8 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         land=(ImageView)v.findViewById(R.id.land);
         boat=(ImageView)v.findViewById(R.id.boat);
         r1=(ConstraintLayout)v.findViewById(R.id.background);
-        Dock=(Button)v.findViewById(R.id.catchbutton);
-        Dock.setOnClickListener(this);
+        dock =(Button)v.findViewById(R.id.catchbutton);
+        dock.setOnClickListener(this);
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
         try {
             json_data= new JSONObject(getArguments().getString("data", ""));
@@ -96,13 +95,13 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
                         .into(boat);
 
                 UsernameTextview.setText(username);
-                Dock.setVisibility(View.GONE);
+                dock.setVisibility(View.GONE);
             }
             else
             {
                 UsernameTextview.setText("N-A");
                 TypeTextView.setText(type);
-                Dock.setEnabled(true);
+                dock.setEnabled(true);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -115,12 +114,12 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         if(flag==0)
         {
-            Dock.setEnabled(true);
+            dock.setEnabled(true);
             alertDialog();
         }
         else if(flag==1)
         {
-            Dock.setEnabled(false);
+            dock.setEnabled(false);
         }
     }
     String  ship_image;
@@ -128,7 +127,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
     {final String ship_img=sharedPreferences.getString(Constants.SHIP_IMAGE_URL,"");
         ship_image=ship_img;
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Do you want to Dock your ship");
+        builder1.setMessage("Do you want to dock your ship");
         builder1.setCancelable(true);
         builder1.setPositiveButton(
                 "Yes",

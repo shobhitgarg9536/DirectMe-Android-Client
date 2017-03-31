@@ -58,7 +58,7 @@ public class DataUserSelectAdapter extends RecyclerView.Adapter<DataUserSelectAd
 
         viewHolder.usr_name.setText(user_details.get(i).getUser_name());
         //   Picasso.with(context).load(user_details.get(i).getUser_image_url()).resize(240, 120).into(viewHolder.usr_img);
-        viewHolder.usr_img.setImageResource(R.drawable.img_wood);
+        //viewHolder.usr_img.setImageResource(R.drawable.avatar);
         userid=user_details.get(i).getUser_id();
         viewHolder.setUserId(userid);
     }

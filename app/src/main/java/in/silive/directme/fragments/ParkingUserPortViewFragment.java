@@ -72,6 +72,7 @@ public class ParkingUserPortViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.portdetails , container ,false);
         clBackground=(ConstraintLayout) view.findViewById(R.id.background);
         btDock=(Button) view.findViewById(R.id.catchbutton);
+        btDock.setBackgroundResource(R.drawable.undock);
         Bundle bundle = getArguments();
         port_jsonObject = bundle.getString("port_jsonObject");
         parkingType = bundle.getString("parkingType");
