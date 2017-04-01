@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,6 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
         boat=(ImageView)v.findViewById(R.id.boat);
         Catch=(Button) v.findViewById(R.id.catchbutton);
         r1=(ConstraintLayout)v.findViewById(R.id.background);
-
         Catch.setOnClickListener(this);
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
 
@@ -112,6 +112,7 @@ public class PortDetailsFragment extends Fragment implements View.OnClickListene
             else
             {
                 UsernameTextview.setText("N-A");
+                UsernameTextview.setGravity(Gravity.CENTER);
                 TypeTextView.setText(type);
                 Catch.setEnabled(false);
             }

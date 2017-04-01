@@ -16,9 +16,11 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,7 +104,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout wave10;
     @BindView(R.id.userprofile)
     ImageView avatar;
-     Bundle args;
+    @BindView(R.id.progressbar)
+    ProgressBar progressBar;
+    Bundle args;
     JSONObject jsonObject;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,7 +210,18 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                         editor.putString(Keys.firstname,first_name);
                         editor.putString(Keys.experience,experience);
                         editor.putString(Keys.gravatar,gravatar);
-                        Picasso.with(getApplicationContext()).load(gravatar).into(avatar);
+                        Picasso.with(getApplicationContext()).load(gravatar).into(avatar, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                progressBar.setVisibility(View.GONE);
+                                avatar.setEnabled(true);
+                            }
+
+                            @Override
+                            public void onError() {
+
+                            }
+                        });
                         JSONArray things = jsonObject.getJSONArray(Keys.inventory);
                             for(i=0;i<5;i++) {
                                 JSONObject jsonObject1 = things.getJSONObject(i);
@@ -215,7 +230,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                                 //putting values
                                 editor.putString(Keys.co[i], Integer.toString(commod[i]));
                                 editor.commit();
-                                avatar.setEnabled(true);
+
                             }
                             controller.setBambooCount(commod[1]);
                             controller.setBananaCount(commod[2]);

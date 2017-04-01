@@ -77,6 +77,7 @@ public class ParkingUserPortViewFragment extends Fragment {
         parkingType = bundle.getString("parkingType");
         userNameTextview = (TextView) view.findViewById(R.id.username);
         parkingTypeTextView = (TextView) view.findViewById(R.id.type);
+        btDock.setBackgroundResource(R.drawable.undock);
         startAnimation();
 
         parkingTypeTextView.setText(parkingType);
@@ -164,6 +165,7 @@ public class ParkingUserPortViewFragment extends Fragment {
     private void sendToSuperWorld() {
         Intent i = new Intent(getActivity() , DashboardActivity.class);
         startActivity(i);
+        getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         getActivity().finish();
     }
 

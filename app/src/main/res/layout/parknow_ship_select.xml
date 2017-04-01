@@ -16,7 +16,7 @@
 
         <ProgressBar
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="50dp"
             android:layout_margin="50dp"
             android:id="@+id/progressBarParkNowShipSelect"
             app:layout_constraintRight_toRightOf="parent"
@@ -114,8 +114,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="TextView"
-        android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="40dp"
         android:textColor="#000000"
         app:layout_constraintRight_toLeftOf="@+id/guideline8"
         android:layout_marginRight="8dp"

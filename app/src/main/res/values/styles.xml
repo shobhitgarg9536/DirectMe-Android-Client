@@ -21,8 +21,14 @@
         <item name="ttlm_backgroundColor">#2980b9</item>
         <item name="ttlm_strokeWeight">2dip</item>
         <item name="ttlm_cornerRadius">8dip</item>
-
+        <item name="android:textAppearance">?android:attr/textAppearanceInverse</item>
+    </style>
+    <style name="ToolTipLayoutCustomStyleParknow">
+    <item name="ttlm_padding">25dip</item>
+    <item name="ttlm_backgroundColor">#e67e22</item>
+    <item name="ttlm_strokeWeight">2dip</item>
+    <item name="ttlm_cornerRadius">8dip</item>
         <item name="android:textAppearance">?android:attr/textAppearanceInverse</item>
     </style>
 
-    </resources>
+</resources>

@@ -54,7 +54,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/avatar"
         app:layout_constraintRight_toLeftOf="@+id/guideline78"
         app:layout_constraintLeft_toLeftOf="@+id/guideline35"
         app:layout_constraintBottom_toTopOf="@+id/guideline251"
@@ -89,6 +88,43 @@
             android:id="@+id/guideline784"
             app:layout_constraintGuide_percent="1"
             android:orientation="horizontal"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline785"
+            app:layout_constraintGuide_percent="0.3"
+            android:orientation="horizontal"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline786"
+            app:layout_constraintGuide_percent="0.7"
+            android:orientation="horizontal"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline787"
+            app:layout_constraintGuide_percent="0.3"
+            android:orientation="vertical"
+            />
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline788"
+            app:layout_constraintGuide_percent="0.7"
+            android:orientation="vertical"
+            />
+        <ProgressBar
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/progressbar"
+            app:layout_constraintRight_toLeftOf="@+id/guideline788"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline787"
+            app:layout_constraintBottom_toTopOf="@+id/guideline786"
+            app:layout_constraintTop_toTopOf="@+id/guideline785"
             />
 
         <de.hdodenhof.circleimageview.CircleImageView

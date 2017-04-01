@@ -79,6 +79,7 @@ public class ParkingDetailsFragment extends Fragment implements View.OnClickList
         r1=(ConstraintLayout)v.findViewById(R.id.background);
         Dock=(Button)v.findViewById(R.id.catchbutton);
         Dock.setOnClickListener(this);
+        Dock.setBackgroundResource(R.drawable.dock);
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
         try {
             json_data= new JSONObject(getArguments().getString("data", ""));
