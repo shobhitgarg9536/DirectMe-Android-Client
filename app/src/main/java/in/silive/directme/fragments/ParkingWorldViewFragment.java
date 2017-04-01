@@ -15,7 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +26,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import in.silive.directme.R;
 import in.silive.directme.adapter.ParkingUserListAdapter;
 import in.silive.directme.application.DirectMe;
@@ -47,14 +52,34 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
     android.support.constraint.ConstraintLayout cluserList;
     private String status;
     private String island_id;
-
+    @BindView(R.id.wave1)
+    RelativeLayout wave1;
+    @BindView(R.id.wave2)
+    RelativeLayout wave2;
+    @BindView(R.id.wave3)
+    RelativeLayout wave3;
+    @BindView(R.id.wave4)
+    RelativeLayout wave4;
+    @BindView(R.id.wave5)
+    RelativeLayout wave5;
+    @BindView(R.id.wave6)
+    RelativeLayout wave6;
+    @BindView(R.id.wave7)
+    RelativeLayout wave7;
+    @BindView(R.id.wave8)
+    RelativeLayout wave8;
+    @BindView(R.id.wave9)
+    RelativeLayout wave9;
+    @BindView(R.id.wave10)
+    RelativeLayout wave10;
+    int offsetValue=0;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.parknow, container, false);
-
+        ButterKnife.bind(this,view);
         iv_island1 = (ImageView) view.findViewById(R.id.imageViewisland1marker);
         iv_island2 = (ImageView) view.findViewById(R.id.imageViewisland2marker);
         iv_island3 = (ImageView) view.findViewById(R.id.imageViewisland3marker);
@@ -72,6 +97,41 @@ public class ParkingWorldViewFragment extends Fragment implements View.OnClickLi
         jsonArrayIslanad2 = new JSONArray();
         jsonArrayIslanad3 = new JSONArray();
         jsonArrayIslanad4 = new JSONArray();
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.waveanimationparknow);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener(){
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if(offsetValue>=10000) {
+                    offsetValue=0;
+                    offsetValue = offsetValue + 1000;
+                    animation.setStartOffset(offsetValue);
+                }
+                else
+                {
+                    offsetValue = offsetValue + 1000;
+                    animation.setStartOffset(offsetValue);
+                }
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        wave1.startAnimation(animation);
+        wave2.startAnimation(animation);
+        wave3.startAnimation(animation);
+        wave4.startAnimation(animation);
+        wave5.startAnimation(animation);
+        wave6.startAnimation(animation);
+        wave7.startAnimation(animation);
+        wave8.startAnimation(animation);
+        wave9.startAnimation(animation);
+        wave10.startAnimation(animation);
 
         apiCalling();
 

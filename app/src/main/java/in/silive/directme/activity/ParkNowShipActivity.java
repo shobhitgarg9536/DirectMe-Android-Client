@@ -63,6 +63,21 @@ public class ParkNowShipActivity extends AppCompatActivity {
             }
         });
       connect();
+
+        if((!mViewPager.arrowScroll(View.FOCUS_LEFT))&&(!mViewPager.arrowScroll(View.FOCUS_RIGHT)))
+       {
+           left.setVisibility(View.INVISIBLE);
+           right.setVisibility(View.INVISIBLE);
+       }
+        else if(!mViewPager.arrowScroll(View.FOCUS_RIGHT))
+        {
+            right.setVisibility(View.INVISIBLE);
+        }
+        else if(!mViewPager.arrowScroll(View.FOCUS_LEFT))
+        {
+            left.setVisibility(View.INVISIBLE);
+        }
+
     }
     void connect() {
         final String token = sharedpreferences.getString(Constants.AUTH_TOKEN, "");

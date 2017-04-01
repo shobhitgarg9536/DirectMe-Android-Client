@@ -2,6 +2,7 @@ package in.silive.directme.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +64,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
     FragmentTransaction fragmentTransaction;
     UserDetailsFragment fragment;
     int offsetValue=0;
+    Typeface type;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
         island3.setOnClickListener(this);
         island4.setOnClickListener(this);
         pirate_Island.setOnClickListener(this);
+        type = Typeface.createFromAsset(getAssets(),"fonts/CarnevaleeFreakshow.ttf");
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.waveanimationparknow);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener(){
@@ -180,6 +184,8 @@ public class ParkNowActivity extends AppCompatActivity implements View.OnClickLi
             final AlertDialog alertDialog = builder1.create();
             Button yes=(Button)dialogView.findViewById(R.id.yes);
             Button no=(Button)dialogView.findViewById(R.id.No);
+            TextView message=(TextView)dialogView.findViewById(R.id.message);
+            message.setTypeface(type);
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

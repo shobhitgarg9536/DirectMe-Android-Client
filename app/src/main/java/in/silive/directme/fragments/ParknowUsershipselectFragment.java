@@ -8,11 +8,13 @@ package in.silive.directme.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -28,6 +30,10 @@ import in.silive.directme.R;
 import in.silive.directme.activity.ParkNowActivity;
 import in.silive.directme.application.DirectMe;
 import in.silive.directme.utils.Constants;
+import it.sephiroth.android.library.tooltip.Tooltip;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+import jp.wasabeef.picasso.transformations.GrayscaleTransformation;
 
 import static in.silive.directme.fragments.DockyardFargment.json_data;
 
@@ -54,7 +60,18 @@ public class ParknowUsershipselectFragment extends android.support.v4.app.Fragme
         boat_name=(TextView)v.findViewById(R.id.txtboatname);
         select = (Button) v.findViewById(R.id.select);
         pbShip = (ProgressBar) v.findViewById(R.id.progressBarParkNowShipSelect);
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/CarnevaleeFreakshow.ttf");
+        boat_name.setTypeface(type);
         select.setOnClickListener(this);
+        AlphaAnimation fadeOut = new AlphaAnimation(0.0f , 1.0f ) ;
+        AlphaAnimation fadeIn = new AlphaAnimation( 1.0f , 0.0f ) ;
+        boat_name.startAnimation(fadeIn);
+        boat_name.startAnimation(fadeOut);
+        fadeIn.setDuration(500);
+        fadeIn.setFillAfter(true);
+        fadeOut.setDuration(1000);
+        fadeOut.setFillAfter(true);
+        fadeOut.setStartOffset(500+fadeIn.getStartOffset());
         try {
             json_data = new JSONObject(getArguments().getString("data", ""));
             boatName = json_data.getString("name");
@@ -86,9 +103,47 @@ public class ParknowUsershipselectFragment extends android.support.v4.app.Fragme
         }
         else
         {
-            boat_image.setImageResource(R.drawable.ship1);
-            select.setEnabled(false);
+            Picasso.with(getContext())
+                    .load(boatImageUrl)
+                    .transform(new GrayscaleTransformation())
+                    .into(boat_image, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            pbShip.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
+
+            select.setVisibility(View.GONE);
             boat_name.setText(boatName);
+            boat_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Tooltip.make(
+                            getContext(),
+                            new Tooltip.Builder()
+                                    .anchor(v, Tooltip.Gravity.RIGHT)
+                                    .closePolicy(new Tooltip.ClosePolicy()
+                                            .insidePolicy(true, false)
+                                            .outsidePolicy(true, false), 3000)
+                                    .text("Boat is already Docked")
+                                    .withStyleId(R.style.ToolTipLayoutCustomStyleParknow)
+                                    .fitToScreen(true)
+                                    .activateDelay(800)
+                                    .showDelay(300)
+                                    .maxWidth(500)
+                                    .withArrow(true)
+                                    .withOverlay(false)
+                                    .floatingAnimation(Tooltip.AnimationBuilder.DEFAULT)
+                                    .build()
+                    ).show();
+
+                }
+            });
         }
         return v;
 
