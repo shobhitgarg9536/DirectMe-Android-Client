@@ -162,7 +162,6 @@
         android:id="@+id/boat"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
@@ -179,7 +178,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline65"
         app:layout_constraintGuide_percent="1"
-
         android:orientation="vertical" />
 
     <android.support.constraint.Guideline
@@ -216,7 +214,6 @@
         android:id="@+id/catchbutton"
         android:layout_width="120dp"
         android:layout_height="0dp"
-
         android:background="@drawable/catchbutton"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline61"
