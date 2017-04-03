@@ -40,7 +40,7 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
     SharedPreferences sharedPreferences;
     FetchData apicalling;
     private boolean network_available;
-    private String ship_id;
+    private String ship_id, next_ship_id;
     JSONObject upgradeShipJsonArray;
     android.support.constraint.ConstraintLayout clDockyard;
 
@@ -57,6 +57,7 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
             boatImageUrl = json_data.getString("ship_image");
             status = json_data.getString("ship_status");
             ship_id =json_data.getString("ship_id");
+            next_ship_id = json_data.getString("next_ship_store_id");
             dock_status = json_data.getString("dock_status");
 
         } catch (JSONException e) {
@@ -155,7 +156,6 @@ public class DockyardFargment extends Fragment implements View.OnClickListener
                         startFragment();
                     }
                 }, getContext());
-                int next_ship_id = Integer.valueOf(ship_id) + 1;
                 apicalling.setArgs(API_URL_LIST.GARAGE_SHIP_DETAIL_URL + next_ship_id + "/", token, "");
                 apicalling.execute();
             }else{

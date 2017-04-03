@@ -59,6 +59,30 @@ public class DockyardActivity extends AppCompatActivity {
             }
         });
         connect();
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position == 0)
+                    left.setVisibility(View.GONE);
+                else if(position == count-1)
+                    right.setVisibility(View.GONE);
+                else {
+                    left.setVisibility(View.VISIBLE);
+                    right.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     void connect() {

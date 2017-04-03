@@ -31,6 +31,7 @@ import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.Keys;
 import in.silive.directme.utils.NetworkUtils;
 
 /**
@@ -41,8 +42,8 @@ public class GarageUpgradeFragment extends Fragment {
 
     SeekBar sbBanana, sbCoconut, sbBamboo, sbTimber;
     int user_banana_count, user_coconut_count, user_bamboo_counnt, user_timber_count;
+    int banana_count = 0, coconut_count = 0 , bamboo_count = 0, timber_count = 0;
     private String ship_id, ship_name, ship_image_url;
-    int[] upgrade_count;
     ImageView btupgrade, ivshipImage;
     ProgressBar pbUpgradeShip;
     TextView tvshipName, tvBananaCount, tvCoconutCount, tvBambooCount, tvTimberCount;
@@ -84,12 +85,11 @@ public class GarageUpgradeFragment extends Fragment {
             JSONObject jsonObject = new JSONObject(upgradeShipJsonArray);
             ship_name = jsonObject.getString("name");
             ship_image_url = jsonObject.getString("image");
+            bamboo_count = jsonObject.getInt("bamboo_required");
+            banana_count = jsonObject.getInt("banana_required");
+            coconut_count = jsonObject.getInt("coconut_required");
+            timber_count = jsonObject.getInt("timber_required");
             JSONArray jsonArray1 = jsonObject.getJSONArray("items_required");
-            upgrade_count = new int[jsonArray1.length()];
-            for(int i=0; i<jsonArray1.length(); i++) {
-                JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
-                    upgrade_count[i] = jsonObject1.getInt("count");
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -111,30 +111,28 @@ public class GarageUpgradeFragment extends Fragment {
 
         //getting user inventories from shared preferences
         for (int i = 0; i < 5; i++) {
-            if (sharedPreferences.contains(DashboardActivity.co[i])) {
-                commod[i] = Integer.parseInt(sharedPreferences.getString(DashboardActivity.co[i], ""));
-            }
+                commod[i] = Integer.parseInt(sharedPreferences.getString(Keys.co[i], ""));
         }
 
         user_banana_count =commod[2];
-        user_timber_count = commod[0];
-        user_bamboo_counnt = commod[3];
-        user_coconut_count = commod[1];
+        user_timber_count = commod[3];
+        user_bamboo_counnt = commod[1];
+        user_coconut_count = commod[4];
 
-        sbCoconut.setMax(upgrade_count[0]);
-        sbTimber.setMax(upgrade_count[1]);
-        sbBanana.setMax(upgrade_count[2]);
-        sbBamboo.setMax(upgrade_count[3]);
+        sbCoconut.setMax(coconut_count);
+        sbTimber.setMax(timber_count);
+        sbBanana.setMax(banana_count);
+        sbBamboo.setMax(bamboo_count);
 
         int banana_req, coconut_req, bamboo_req, timber_req;
-        coconut_req = upgrade_count[0] - user_coconut_count;
-        timber_req = upgrade_count[1] - user_timber_count;
-        banana_req = upgrade_count[2] - user_banana_count;
-        bamboo_req = upgrade_count[3] - user_bamboo_counnt;
+        coconut_req = coconut_count - user_coconut_count;
+        timber_req = timber_count - user_timber_count;
+        banana_req = banana_count - user_banana_count;
+        bamboo_req = bamboo_count - user_bamboo_counnt;
 
         if(coconut_req <= 0) {
             tvCoconutCount.setText("0");
-            sbCoconut.setProgress(upgrade_count[0]);
+            sbCoconut.setProgress(coconut_count);
         }
         else {
             upgradeFlag = 1;
@@ -143,7 +141,7 @@ public class GarageUpgradeFragment extends Fragment {
         }
         if(timber_req <= 0) {
             tvTimberCount.setText("0");
-            sbTimber.setProgress(upgrade_count[1]);
+            sbTimber.setProgress(timber_count);
         }
         else {
             upgradeFlag = 1;
@@ -152,7 +150,7 @@ public class GarageUpgradeFragment extends Fragment {
         }
         if(banana_req <= 0) {
             tvBambooCount.setText("0");
-            sbBanana.setProgress(upgrade_count[2]);
+            sbBanana.setProgress(banana_count);
         }
         else {
             upgradeFlag = 1;
@@ -161,7 +159,7 @@ public class GarageUpgradeFragment extends Fragment {
         }
         if(bamboo_req <= 0) {
             tvBambooCount.setText("0");
-            sbBamboo.setProgress(upgrade_count[3]);
+            sbBamboo.setProgress(bamboo_count);
         }
         else {
             upgradeFlag = 1;

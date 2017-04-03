@@ -2,7 +2,7 @@ package in.silive.directme.utils;
 
 
 public class API_URL_LIST {
-    public static final String BASE_URL="http://direct-me.herokuapp.com/";
+    public static final String BASE_URL="http://dm.silive.in/";
     public static final String COMODITY_URL = "user/";
     public static final String PARKED_URL = "core/ships/";
     public static final String SHOWROOM_SHIPS_URL = "core/ships/";

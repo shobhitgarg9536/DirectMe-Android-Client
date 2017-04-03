@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Key;
 
 import in.silive.directme.R;
 import in.silive.directme.activity.DashboardActivity;
@@ -32,6 +33,7 @@ import in.silive.directme.listeners.FetchDataListener;
 import in.silive.directme.network.FetchData;
 import in.silive.directme.utils.API_URL_LIST;
 import in.silive.directme.utils.Constants;
+import in.silive.directme.utils.Keys;
 import in.silive.directme.utils.NetworkUtils;
 
 /**
@@ -97,12 +99,10 @@ public class BuyShipGoldCoins extends Fragment {
         sharedPreferences = DirectMe.getInstance().sharedPrefs;
         //getting user inventories from shared preferences
         for (int i = 0; i < 5; i++) {
-            if (sharedPreferences.contains(DashboardActivity.co[i])) {
-                commod[i] = Integer.parseInt(sharedPreferences.getString(DashboardActivity.co[i], ""));
-            }
+                commod[i] = Integer.parseInt(sharedPreferences.getString(Keys.co[i], ""));
         }
 
-        user_gold_coin_count =commod[2];
+        user_gold_coin_count =commod[0];
 
         sbGoldCoin.setMax(goldCoinCost);
 
@@ -140,7 +140,6 @@ public class BuyShipGoldCoins extends Fragment {
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.add(android.R.id.content, fragment);
-                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
